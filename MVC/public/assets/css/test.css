@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: rgb(221, 235, 255);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+input[type="email"],input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6a11cb;
+    background-image: linear-gradient(89deg, rgba(0, 2, 44, 1) 0%, rgba(0, 5, 109, 1) 18%, rgba(118, 0, 158, 1) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+.links{
+    a{
+        padding-left: 20;
+        padding-right: 20;
+    }
+}
