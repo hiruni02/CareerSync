@@ -1,0 +1,1 @@
+<h1>You are looking at the home view</h1>
