@@ -1,6 +1,10 @@
 <?php
     class Home extends Controller{
         public function index(){
+            //db test
+            $model = new Model;
+            $model->test();
+
             $this->view("home");
         }
     }

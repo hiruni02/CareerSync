@@ -18,7 +18,7 @@
                 <input type="text" placeholder="First Name" name="firstName" required>
                 <input type="text" placeholder="Last Name" name="lastName" required>
                 <select name="role" id="role" onchange="this.style.color = this.value === 'placeholder' ? '#888' : '#000'" style="color: #888;">
-                    <option value="placeholder" disabled selected hidden>Select role</option>
+                    <option disabled selected hidden>Select role</option>
                     <option value="admin">Admin</option>
                     <option value="candidate">Candidate</option>
                     <option value="validation team member">Validation Team Member</option>
