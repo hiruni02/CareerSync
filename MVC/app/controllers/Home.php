@@ -3,7 +3,8 @@
         public function index(){
             //db test
             $model = new Model;
-            $model->test();
+            $model->CreateTable();
+            $model->SelectTable();
 
             $this->view("home");
         }

@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="<?=ROOT?>assets/css/test.css">
-        <title>Login</title>
+        <title>Home</title>
     </head>
     <body>
         <h1>You are looking at the home view of    </h1>
