@@ -4,7 +4,11 @@
             //db test
             $model = new Model;
             $model->CreateTable();
-            $model->SelectTable();
+            
+            //show the entire array
+            $arr2['id']=5;
+            $result=$model->where([], $arr2);
+            show($result);
 
             $this->view("home");
         }

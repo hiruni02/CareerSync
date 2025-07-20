@@ -34,10 +34,11 @@
                     if (is_int($param)) $types .= 'i';//.= is concatenaton operator
                     elseif (is_double($param)) $types .= 'd';
                     elseif (is_string($param)) $types .= 's';
+                    $bind_values[]=$param;
                 }
-                $stmt->bind_param($types, ...$data);
+                $stmt->bind_param($types, ...$bind_values);
             }
-            $check = $stmt->execute();
+            $stmt->execute();
             if (stripos(trim($query), "SELECT") === 0) {
                 $result = $stmt->get_result();
                 $rows = [];
