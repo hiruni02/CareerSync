@@ -11,12 +11,9 @@
         </script>
     </head>
     <body>
-        <img src="<?=ROOT?>assets/images/logo2.png" alt="logo" width="100px" height="100px" style="padding-right: 100px;">
         <div class="login-container">
             <h1>Register</h1>
             <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                <input type="text" placeholder="First Name" name="firstName" required>
-                <input type="text" placeholder="Last Name" name="lastName" required>
                 <select name="role" id="role" onchange="this.style.color = this.value === 'placeholder' ? '#888' : '#000'" style="color: #888;">
                     <option disabled selected hidden>Select role</option>
                     <option value="admin">Admin</option>
@@ -25,13 +22,14 @@
                     <option value="company">Company</option>
                     <option value="counselor">Career-Counselor</option>
                 </select>
+                <input type="text" placeholder="First Name" name="firstName" required>
+                <input type="text" placeholder="Last Name" name="lastName" required>
                 <input type="email" placeholder="Email" name="email" required>
                 <input type="password" placeholder="Password" name="password" required>
-                <button type="submit">Log In</button>
+                <button type="submit">Register</button>
             </form>
             <div class="links">
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Create Account</a></t>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Forgot password?</a>
+                <a href="login">Sign in instead</a></t>
             </div>
         </div>
     </body>
