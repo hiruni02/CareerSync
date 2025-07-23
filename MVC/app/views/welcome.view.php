@@ -34,6 +34,9 @@
             </select>
             <button type="submit" id="proceedBtn">Proceed</button>
         </form>
+        <div class="links">
+            <a href="login">Sign in instead</a></t>
+        </div>
     </div>
 </body>
 </html>
