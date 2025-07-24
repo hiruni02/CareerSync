@@ -1,6 +1,9 @@
+<?php
+$role = $_GET['role'];
+?>
 <html>
     <head>
-        <link rel="stylesheet" href="<?=ROOT?>assets/css/test.css">
+        <link rel="stylesheet" href="<?=ROOT?>assets/css/styles.css">
         <title>Register</title>
         <script>
             // Set correct color on load
@@ -11,27 +14,78 @@
         </script>
     </head>
     <body>
-        <img src="<?=ROOT?>assets/images/logo2.png" alt="logo" width="100px" height="100px" style="padding-right: 100px;">
-        <div class="login-container">
-            <h1>Register</h1>
-            <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                <input type="text" placeholder="First Name" name="firstName" required>
-                <input type="text" placeholder="Last Name" name="lastName" required>
-                <select name="role" id="role" onchange="this.style.color = this.value === 'placeholder' ? '#888' : '#000'" style="color: #888;">
-                    <option disabled selected hidden>Select role</option>
-                    <option value="admin">Admin</option>
-                    <option value="candidate">Candidate</option>
-                    <option value="validation team member">Validation Team Member</option>
-                    <option value="company">Company</option>
-                    <option value="counselor">Career-Counselor</option>
-                </select>
-                <input type="email" placeholder="Email" name="email" required>
-                <input type="password" placeholder="Password" name="password" required>
-                <button type="submit">Log In</button>
-            </form>
+        <div class="container">
+            <?php
+            switch($role){
+                case 'admin':
+                    //html for admin registration form
+                    echo
+                    '
+                    <h1>Register as the Admin</h1>
+                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <input type="text" placeholder="First Name" name="firstName" required>
+                        <input type="text" placeholder="Last Name" name="lastName" required>
+                        <input type="email" placeholder="Email" name="email" required>
+                        <input type="password" placeholder="Password" name="password" required>
+                        <button type="submit">Register</button>
+                    </form>';
+                    break;
+                case 'candidate':
+                    //html for candidate registration form
+                    echo
+                    '
+                    <h1>Register as a Candidate</h1>
+                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <input type="text" placeholder="First Name" name="firstName" required>
+                        <input type="text" placeholder="Last Name" name="lastName" required>
+                        <input type="email" placeholder="Email" name="email" required>
+                        <input type="password" placeholder="Password" name="password" required>
+                        <button type="submit">Register</button>
+                    </form>';
+                    break;
+                case 'validation team member':
+                    //html for validation team member registration form
+                    echo
+                    '
+                    <h1>Register as a Validation-team member</h1>
+                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <input type="text" placeholder="First Name" name="firstName" required>
+                        <input type="text" placeholder="Last Name" name="lastName" required>
+                        <input type="email" placeholder="Email" name="email" required>
+                        <input type="password" placeholder="Password" name="password" required>
+                        <button type="submit">Register</button>
+                    </form>';
+                    break;
+                case 'company':
+                    //html for admin company registration form
+                    echo
+                    '
+                    <h1>Register as a Company</h1>
+                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <input type="text" placeholder="First Name" name="firstName" required>
+                        <input type="text" placeholder="Last Name" name="lastName" required>
+                        <input type="email" placeholder="Email" name="email" required>
+                        <input type="password" placeholder="Password" name="password" required>
+                        <button type="submit">Register</button>
+                    </form>';
+                    break;
+                case 'counselor':
+                    //html for admin career-counselor registration form
+                    echo
+                    '
+                    <h1>Register as a CareerCounselor</h1>
+                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <input type="text" placeholder="First Name" name="firstName" required>
+                        <input type="text" placeholder="Last Name" name="lastName" required>
+                        <input type="email" placeholder="Email" name="email" required>
+                        <input type="password" placeholder="Password" name="password" required>
+                        <button type="submit">Register</button>
+                    </form>';
+                    break;
+            }
+            ?>
             <div class="links">
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Create Account</a></t>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Forgot password?</a>
+                <a href="login">Sign in instead</a></t>
             </div>
         </div>
     </body>

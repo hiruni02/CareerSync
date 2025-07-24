@@ -2,8 +2,11 @@
     class Home extends Controller{
         public function index(){
             //db test
-            $model = new Model;
-            $model->test();
+            $user = new User;
+            $user->CreateTable();
+            
+            $arr['name']='jack';
+            $user->insert($arr);
 
             $this->view("home");
         }
