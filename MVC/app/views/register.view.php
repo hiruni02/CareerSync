@@ -30,7 +30,6 @@ $role = $_GET['role'];
                         <button type="submit">Register</button>
                     </form>';
                     break;
-                    break;
                 case 'candidate':
                     //html for candidate registration form
                     echo
