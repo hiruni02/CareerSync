@@ -3,10 +3,19 @@
         public function index(){
             //db test
             $user = new User;
-            $user->CreateTable();
+            $user->CreateTables();
             
             //$arr['name']='jack';
             //$user->insert($arr);
+            //$result = $user->SelectAll();
+            //show($result);
+            
+            $arr['email']='anuk.Thotawatta@gmail.com';
+            $arr['password']='1234';
+            $arr['role']='admin';
+            $arr['status']='active';
+
+            $user->insert($arr);
             //$result = $user->SelectAll();
             //show($result);
 

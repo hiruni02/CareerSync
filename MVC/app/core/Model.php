@@ -5,13 +5,17 @@
         protected $limit = 10;
         protected $offset = 0;
         protected $order_type = "asc";
-        protected $order_column = "id";
+        protected $order_column = "user_id";
 
-        public function CreateTable(){
+        public function CreateTables(){
             $query = "CREATE TABLE IF NOT EXISTS users (
-                        ID int AUTO_INCREMENT primary key,
-                        Name varchar(50) not null
-                        )";
+                        user_id INT AUTO_INCREMENT PRIMARY KEY,
+                        email VARCHAR(100) NOT NULL,
+                        password VARCHAR(255) NOT NULL,
+                        role ENUM('student', 'counselor', 'hr', 'validator', 'admin') NOT NULL,
+                        status ENUM('active', 'inactive', 'pending') DEFAULT 'pending',
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )";//need to make the email unique
             $this->query($query);
         }
         public function SelectAll(){
@@ -54,6 +58,13 @@
             return false;
         }
         public function insert($data){
+            if(!empty($this->allowedColumns)){//remove unwanted data
+                foreach($data as $key => $value){
+                    if(!in_array($key,$this->allowedColumns)){
+                        unset($data[$key]);
+                    }
+                }
+            }
             $keys = array_keys($data);
             
             $query = "INSERT INTO $this->table (".implode(",",$keys).") VALUES (" . implode(",", array_fill(0, count($keys), "?")) . ")";
@@ -62,6 +73,13 @@
             return false;
         }
         public function update($id,$data,$id_column='id'){
+            if(!empty($this->allowedColumns)){//remove unwanted data
+                foreach($this->data as $key => $value){
+                    if(!in_array($key,$this->allowedColumns)){
+                        unset($data[$key]);
+                    }
+                }
+            }
             $keys = array_keys($data);
             $query = "UPDATE $this->table SET ";
             foreach($keys as $key){
