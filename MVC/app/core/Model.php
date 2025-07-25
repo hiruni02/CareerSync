@@ -4,6 +4,8 @@
         
         protected $limit = 10;
         protected $offset = 0;
+        protected $order_type = "asc";
+        protected $order_column = "id";
 
         public function CreateTable(){
             $query = "CREATE TABLE IF NOT EXISTS users (
@@ -12,8 +14,8 @@
                         )";
             $this->query($query);
         }
-        public function SelectTable(){
-            $query ="SELECT * FROM Accounts";
+        public function SelectAll(){
+            $query ="SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
             $result = $this->query($query);
             show($result);
         }
@@ -28,7 +30,7 @@
                 $query .= $key . "!=? AND ";
             }
             $query = rtrim($query," AND ");
-            $query .= " LIMIT $this->limit OFFSET $this->offset";
+            $query .= "ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
             $data = array_merge($data,$data_not);
             return $this->query($query,$data);
         }

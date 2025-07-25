@@ -5,8 +5,10 @@
             $user = new User;
             $user->CreateTable();
             
-            $arr['name']='jack';
-            $user->insert($arr);
+            //$arr['name']='jack';
+            //$user->insert($arr);
+            //$result = $user->SelectAll();
+            //show($result);
 
             $this->view("home");
         }

@@ -1,9 +1,4 @@
 <?php
-    //loads a class that you can find
-    spl_autoload_register(function($className){
-        require $filename = "../app/models/".ucfirst($className).".php";
-    });
-
     #the ones capitalized first are classes
     require 'config.php';
     require 'functions.php';
@@ -11,3 +6,9 @@
     require 'Model.php';
     require 'Controller.php';
     require 'App.php';
+
+    //loads a class that you can find
+    spl_autoload_register(function($className){
+        $filename = "../app/models/".ucfirst($className).".php";
+        require $filename;
+    });

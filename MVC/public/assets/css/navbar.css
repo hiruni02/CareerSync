@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    margin: 0;
+    background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
+    height: 100vh;
+}
+/*Navigation bar css*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.name{
+  font-size: 30;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+}
+.navbar {
+  background: linear-gradient(to right, #1e1f4b, #662a86);
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navlinks{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+.navlinks li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+.navbtn{
+    width: 100px;
+    height: 50px;
+    padding: 12px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+.navbtn:hover{
+    transform: scale(1.2);
+    z-index: 1;
+    background: linear-gradient(to right, #1e1f4b, #3c1053);
+
+}

@@ -1,14 +1,19 @@
 <html>
     <head>
-        <link rel="stylesheet" href="<?=ROOT?>assets/css/styles.css">
+        <link rel="stylesheet" href="<?=ROOT?>assets/css/navbar.css">
         <title>Home</title>
     </head>
     <body>
-        <div class="container">
-            <h1>You are looking at the home view of    </h1>
-            <img src="<?=ROOT?>assets/images/logo2.png" alt="logo" width="100px" height="100px" style="padding-right: auto; padding-left:auto">
-            <button type="button"><a href='welcome'>Register</a></button>
-            <button type="button"><a href='login'>Login</a></button>
+        <nav class="navbar">
+            <div class="name">CareerSync</div>
+            <ul class="navlinks">
+                <li><a href="home"><button class="navbtn">Home</button></a></li>
+                <li><a href="login"><button class="navbtn">Login</button></a></li>
+                <li><a href="welcome"><button class="navbtn">Register</button></a></li>
+            </ul>
+        </nav>
+        <div class='page-content'>
+            
         </div>
     </body>
 </html>

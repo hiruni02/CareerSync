@@ -1,6 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>assets/css/styles.css">
+    <link rel="stylesheet" href="<?=ROOT?>assets/css/navbar.css">
     <title>Welcome to CareerSync</title>
     <script>
         window.onload = function () {
@@ -20,22 +21,32 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to CareerSync</h1>
-        <h3>please choose your role</h3>
-        <form action="register" method="GET">
-            <select name="role" id="role">
-                <option value="" disabled selected hidden>Your role</option>
-                <option value="admin">Admin</option>
-                <option value="candidate">Candidate</option>
-                <option value="validation team member">Validation Team Member</option>
-                <option value="company">Company</option>
-                <option value="counselor">Career-Counselor</option>
-            </select>
-            <button type="submit" id="proceedBtn">Proceed</button>
-        </form>
-        <div class="links">
-            <a href="login">Sign in instead</a></t>
+    <nav class="navbar">
+            <div class="name">CareerSync</div>
+            <ul class="navlinks">
+                <li><a href="home"><button class="navbtn">Home</button></a></li>
+                <li><a href="login"><button class="navbtn">Login</button></a></li>
+                <li><a href="welcome"><button class="navbtn">Register</button></a></li>
+            </ul>
+        </nav>
+    <div class='page-content'>
+        <div class="container">
+            <h1>Welcome to CareerSync</h1>
+            <h3>please choose your role</h3>
+            <form action="register" method="GET">
+                <select name="role" id="role">
+                    <option value="" disabled selected hidden>Your role</option>
+                    <option value="admin">Admin</option>
+                    <option value="candidate">Candidate</option>
+                    <option value="validation team member">Validation Team Member</option>
+                    <option value="company">Company</option>
+                    <option value="counselor">Career-Counselor</option>
+                </select>
+                <button type="submit" id="proceedBtn">Proceed</button>
+            </form>
+            <div class="links">
+                <a href="login">Sign in instead</a></t>
+            </div>
         </div>
     </div>
 </body>
