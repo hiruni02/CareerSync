@@ -60,13 +60,16 @@ $role = $_GET['role'];
                     //html for admin company registration form
                     echo
                     '
-                    <h1>Register as a Company</h1>
+                    <h1>Company Registration</h1>
                     <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="text" placeholder="Last Name" name="lastName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                        <button type="submit">Register</button>
+                            <input type="text" placeholder="Company Name" name="companyName" required>
+                            <input type="email" placeholder="Company Email" name="companyEmail" required>
+                            <input type="password" placeholder="Password" name="password" required>
+                            <input type="text" placeholder="Contact Person Name" name="contactName" required>
+                            <input type="tel" placeholder="Phone Number (optional)" name="phone">
+                            <input type="url" placeholder="Company Website (optional)" name="website">
+                            <input type="text" placeholder="Your Position (e.g. HR, Manager)" name="position">
+                            <button type="submit">Register Company</button>
                     </form>';
                     break;
                 case 'counselor':
