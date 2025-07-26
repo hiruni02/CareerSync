@@ -1,5 +1,6 @@
 <?php
-    class welcome extends Controller{
+    class welcome{
+        use Controller;
         public function index(){
             $this->view("welcome");
         }

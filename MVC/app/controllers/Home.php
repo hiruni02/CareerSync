@@ -14,7 +14,7 @@
             $user->insert($arr);
             //$result = $user->SelectAll();
             //show($result);
-            show("from the index function");
+
             $this->view("home");
         }
     }

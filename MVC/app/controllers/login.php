@@ -1,5 +1,6 @@
 <?php
-    class login extends Controller{
+    class login{
+        use Controller;
         public function index(){
             $this->view("login");
         }

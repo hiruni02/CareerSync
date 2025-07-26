@@ -1,5 +1,6 @@
 <?php
-    class register extends Controller{
+    class register{
+        use Controller;
         public function index(){
             $this->view("register");
         }
