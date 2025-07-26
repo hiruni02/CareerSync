@@ -62,5 +62,5 @@ body {
 .navbar_right
 .navbtn:hover {
   transform: scale(1.2);
-  background: linear-gradient(to right, #1e1f4b, #3c1053);
+  background: linear-gradient(to right,#5a197e,#1e1f4b);
 }

@@ -20,8 +20,8 @@ $role = $_GET['role'];
                 <div class="name">CareerSync</div>
                 <ul class="navbar_links">
                 <li><a href="home"><button class="navbtn">Home</button></a></li>
-                <li><a href="#"><button class="navbtn">About</button></a></li>
-                <li><a href="#"><button class="navbtn">Contact</button></a></li>
+                <li><a href="about"><button class="navbtn">About</button></a></li>
+                <li><a href="contact"><button class="navbtn">Contact</button></a></li>
                 </ul>
             </div>
 
