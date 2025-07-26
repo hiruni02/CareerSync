@@ -1,14 +1,10 @@
 <?php
-    class Home extends Controller{
+    class Home{
+        use Controller;
         public function index(){
             //db test
             $user = new User;
             $user->CreateTables();
-            
-            //$arr['name']='jack';
-            //$user->insert($arr);
-            //$result = $user->SelectAll();
-            //show($result);
             
             $arr['email']='anuk.Thotawatta@gmail.com';
             $arr['password']='1234';
@@ -18,7 +14,7 @@
             $user->insert($arr);
             //$result = $user->SelectAll();
             //show($result);
-
+            show("from the index function");
             $this->view("home");
         }
     }

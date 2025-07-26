@@ -1,5 +1,5 @@
 <?php
-    class Controller{
+    trait Controller{
         public function view($name){
             $filename = "../app/views/".$name.".view.php";
             if(file_exists($filename)){
