@@ -23,14 +23,14 @@
         <div class='page-content'>
             <div class="container">
                 <h1>Login</h1>
-                <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                <form method="POST" action="">
                     <input type="email" placeholder="Email" name="email" required>
                     <input type="password" placeholder="Password" name="password" required>
                     <button type="submit">Log In</button>
                 </form>
                 <div class="links">
                     <a href="welcome">Create Account</a></t>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Forgot password?</a>
+                    <a href="">Forgot password?</a>
             </div>
         </div>
         </div>

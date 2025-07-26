@@ -39,7 +39,7 @@ $role = $_GET['role'];
                         echo
                         '
                         <h1>Register as the Admin</h1>
-                        <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <form method="POST" action="">
                             <input type="text" placeholder="First Name" name="firstName" required>
                             <input type="text" placeholder="Last Name" name="lastName" required>
                             <input type="email" placeholder="Email" name="email" required>
@@ -52,7 +52,7 @@ $role = $_GET['role'];
                         echo
                         '
                         <h1>Register as a Candidate</h1>
-                        <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <form method="POST" action="">
                             <input type="text" placeholder="First Name" name="firstName" required>
                             <input type="text" placeholder="Last Name" name="lastName" required>
                             <input type="email" placeholder="Email" name="email" required>
@@ -65,7 +65,7 @@ $role = $_GET['role'];
                         echo
                         '
                         <h1>Register as a Validation-team member</h1>
-                        <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <form method="POST" action="">
                             <input type="text" placeholder="First Name" name="firstName" required>
                             <input type="text" placeholder="Last Name" name="lastName" required>
                             <input type="email" placeholder="Email" name="email" required>
@@ -78,7 +78,7 @@ $role = $_GET['role'];
                         echo
                         '
                         <h1>Register as a Company</h1>
-                        <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <form method="POST" action="">
                             <input type="text" placeholder="First Name" name="firstName" required>
                             <input type="text" placeholder="Last Name" name="lastName" required>
                             <input type="email" placeholder="Email" name="email" required>
@@ -91,7 +91,7 @@ $role = $_GET['role'];
                         echo
                         '
                         <h1>Register as a CareerCounselor</h1>
-                        <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <form method="POST" action="">
                             <input type="text" placeholder="First Name" name="firstName" required>
                             <input type="text" placeholder="Last Name" name="lastName" required>
                             <input type="email" placeholder="Email" name="email" required>
