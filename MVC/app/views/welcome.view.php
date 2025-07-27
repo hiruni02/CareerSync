@@ -45,7 +45,7 @@
                     <option value="" disabled selected hidden>Your role</option>
                     <option value="admin">Admin</option>
                     <option value="candidate">Candidate</option>
-                    <option value="validation team member">Validation Team Member</option>
+                    <option value="validator">Validation Team Member</option>
                     <option value="company">Company</option>
                     <option value="counselor">Career-Counselor</option>
                 </select>

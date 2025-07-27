@@ -36,68 +36,123 @@ $role = $_GET['role'];
                 switch($role){
                     case 'admin':
                         //html for admin registration form
-                        echo
-                        '
-                        <h1>Register as the Admin</h1>
-                        <form method="POST" action="">
-                            <input type="text" placeholder="First Name" name="firstName" required>
-                            <input type="text" placeholder="Last Name" name="lastName" required>
-                            <input type="email" placeholder="Email" name="email" required>
+                        ?>
+                        <h1>Register as an Admin</h1>
+                        <form method="POST">
+                            <input type="text" placeholder="First Name" name="firstName" required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input type="text" placeholder="Last Name" name="lastName" required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input type="email" placeholder="Email" name="email" required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+
+                            <?php if (!empty($errors['email'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                            <?php endif; ?>
+
                             <input type="password" placeholder="Password" name="password" required>
+
                             <button type="submit">Register</button>
-                        </form>';
+                        </form>
+                    <?php
                         break;
                     case 'candidate':
                         //html for candidate registration form
-                        echo
-                        '
+                        ?>
                         <h1>Register as a Candidate</h1>
-                        <form method="POST" action="">
-                            <input type="text" placeholder="First Name" name="firstName" required>
-                            <input type="text" placeholder="Last Name" name="lastName" required>
-                            <input type="email" placeholder="Email" name="email" required>
+                        <form method="POST">
+                            <input type="text" placeholder="First Name" name="firstName" required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input type="text" placeholder="Last Name" name="lastName" required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input type="email" placeholder="Email" name="email" required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+
+                            <?php if (!empty($errors['email'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                            <?php endif; ?>
+
                             <input type="password" placeholder="Password" name="password" required>
+
                             <button type="submit">Register</button>
-                        </form>';
+                        </form>
+                    <?php
                         break;
-                    case 'validation team member':
+                    case 'validator':
                         //html for validation team member registration form
-                        echo
-                        '
-                        <h1>Register as a Validation-team member</h1>
-                        <form method="POST" action="">
-                            <input type="text" placeholder="First Name" name="firstName" required>
-                            <input type="text" placeholder="Last Name" name="lastName" required>
-                            <input type="email" placeholder="Email" name="email" required>
+                        ?>
+                        <h1>Register as a Vlidation team member</h1>
+                        <form method="POST">
+                            <input type="text" placeholder="First Name" name="firstName" required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input type="text" placeholder="Last Name" name="lastName" required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input type="email" placeholder="Email" name="email" required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+
+                            <?php if (!empty($errors['email'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                            <?php endif; ?>
+
                             <input type="password" placeholder="Password" name="password" required>
+
                             <button type="submit">Register</button>
-                        </form>';
+                        </form>
+                    <?php
                         break;
                     case 'company':
                         //html for admin company registration form
-                        echo
-                        '
+                        ?>
                         <h1>Register as a Company</h1>
-                        <form method="POST" action="">
-                            <input type="text" placeholder="First Name" name="firstName" required>
-                            <input type="text" placeholder="Last Name" name="lastName" required>
-                            <input type="email" placeholder="Email" name="email" required>
+                        <form method="POST">
+                            <input type="text" placeholder="First Name" name="firstName" required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input type="text" placeholder="Last Name" name="lastName" required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input type="email" placeholder="Email" name="email" required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+
+                            <?php if (!empty($errors['email'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                            <?php endif; ?>
+
                             <input type="password" placeholder="Password" name="password" required>
+
                             <button type="submit">Register</button>
-                        </form>';
+                        </form>
+                    <?php
                         break;
                     case 'counselor':
                         //html for admin career-counselor registration form
-                        echo
-                        '
-                        <h1>Register as a CareerCounselor</h1>
-                        <form method="POST" action="">
-                            <input type="text" placeholder="First Name" name="firstName" required>
-                            <input type="text" placeholder="Last Name" name="lastName" required>
-                            <input type="email" placeholder="Email" name="email" required>
+                        ?>
+                        <h1>Register as a Career Colunselor</h1>
+                        <form method="POST">
+                            <input type="text" placeholder="First Name" name="firstName" required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input type="text" placeholder="Last Name" name="lastName" required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input type="email" placeholder="Email" name="email" required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+
+                            <?php if (!empty($errors['email'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                            <?php endif; ?>
+
                             <input type="password" placeholder="Password" name="password" required>
+
                             <button type="submit">Register</button>
-                        </form>';
+                        </form>
+                    <?php
                         break;
                 }
                 ?>

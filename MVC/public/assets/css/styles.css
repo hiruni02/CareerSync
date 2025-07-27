@@ -88,3 +88,8 @@ button:hover {
 .links a:hover{
     color: purple;
 }
+.error {
+    color: red;
+    margin-top: 4px;
+    font-size: 14px;
+}

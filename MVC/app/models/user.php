@@ -6,7 +6,5 @@ class User{
         'email',
         'password',
         'role',
-        'status',
-        'created_at'
     ];
 }

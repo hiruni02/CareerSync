@@ -1,5 +1,6 @@
 <?php
-    class contact extends Controller{
+    class contact{
+        use Controller;
         public function index(){
             $this->view("contact");
         }
