@@ -2,18 +2,9 @@
     class Home{
         use Controller;
         public function index(){
-            //db test
+            
             $user = new User;
             $user->CreateTables();
-            
-            $arr['email']='anuk.Thotawatta@gmail.com';
-            $arr['password']='1234';
-            $arr['role']='admin';
-            $arr['status']='active';
-
-            $user->insert($arr);
-            //$result = $user->SelectAll();
-            //show($result);
 
             $this->view("home");
         }
