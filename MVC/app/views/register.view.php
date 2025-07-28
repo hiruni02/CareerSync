@@ -36,11 +36,21 @@ $role = $_GET['role'];
                     '
                     <h1>Register as a Candidate</h1>
                     <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="text" placeholder="Last Name" name="lastName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                        <button type="submit">Register</button>
+                    <label>First Name:</label><br>
+                    <input type="text" name="firstName" placeholder="First Name" pattern="[A-Za-z]{2,}" title="Enter at least 2 letters" required><br><br>
+                    <label>Last Name:</label><br>
+                    <input type="text" name="lastName" placeholder="Last Name" pattern="[A-Za-z]{2,}" title="Enter at least 2 letters" required><br><br>
+                    <label>Email:</label><br>
+                    <input type="email" name="email" placeholder="Email" required><br><br>
+                    <label>Password:</label><br>
+                    <input type="password" name="password" placeholder="Password" minlength="6" title="At least 6 characters" required><br><br>
+                    <label>Phone Number:</label><br>
+                    <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" title="Enter 10-digit phone number" required><br><br>
+                    <label>Role (type your role):</label><br>
+                    <input type="text" name="role" placeholder="e.g. Developer, Tester" required><br><br>
+                    <label>Upload CV:</label><br>
+                    <input type="file" name="cv" accept=".pdf,.doc,.docx" required><br><br>
+                    <button type="submit">Register</button>
                     </form>';
                     break;
                 case 'validation team member':
@@ -78,11 +88,19 @@ $role = $_GET['role'];
                     '
                     <h1>Register as a CareerCounselor</h1>
                     <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="text" placeholder="Last Name" name="lastName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                        <button type="submit">Register</button>
+                    <input type="text" name="firstName" placeholder="First Name" required>
+                    <input type="text" name="lastName" placeholder="Last Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>           
+                    <input type="text" name="qualification" placeholder="Highest Qualification" required>          
+                    <input type="text" name="specialization" placeholder="Specialization (e.g., IT, Finance)" required>
+                    <label>
+                        Upload Resume (PDF):
+                        <input type="file" name="resume" accept=".pdf">
+                    </label>
+
+                    <button type="submit">Register</button>
                     </form>';
                     break;
             }
