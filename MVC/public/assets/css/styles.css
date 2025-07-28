@@ -1,12 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
-    height: 100vh;
-}
 .page-content{
+    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
