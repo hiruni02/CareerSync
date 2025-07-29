@@ -3,6 +3,14 @@
   src: url("../fonts/logo-font.ttf");
   font-weight: 600;
 }
+@font-face {
+  font-family: "BebasNeue";
+  src: url("../fonts/BebasNeue-Regular.ttf");
+}
+@font-face {
+  font-family: "Audiowide";
+  src: url("../fonts/Audiowide-Regular.ttf");
+}
 * {
   margin: 0;
   padding: 0;

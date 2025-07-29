@@ -8,8 +8,9 @@
         protected $order_column = "user_id";
         public $errors = [];
 
+        //hardcoded function to create the entire database
         public function CreateTables(){
-            $query = "CREATE TABLE IF NOT EXISTS users (
+            $user_table = "CREATE TABLE IF NOT EXISTS users (
                         user_id INT AUTO_INCREMENT PRIMARY KEY,
                         email VARCHAR(100) NOT NULL UNIQUE,
                         password VARCHAR(255) NOT NULL,
@@ -17,7 +18,22 @@
                         status ENUM('active', 'inactive', 'pending') DEFAULT 'pending',
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
-            $this->query($query);
+        /*    $this->query($user_table);
+
+            $candidate_table = "";
+            $this->query($candidate_table);
+
+            $admin_table = "";
+            $this->query($admin_table);
+
+            $company_table = "";
+            $this->query($company_table);
+
+            $counselor_table = "";
+            $this->query($counselor_table);
+
+            $validator_table = "";
+            $this->query($validator_table);*/
         }
         public function SelectAll(){
             $query ="SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";

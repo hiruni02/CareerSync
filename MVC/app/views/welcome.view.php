@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
-    <link rel="stylesheet" href="<?=ROOT?>assets/css/styles.css">
+    <link rel="stylesheet" href="<?=ROOT?>assets/css/forms.css">
     <title>Welcome to CareerSync</title>
     <script>
         window.onload = function () {

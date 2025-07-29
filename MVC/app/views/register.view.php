@@ -4,7 +4,7 @@ $role = $_GET['role'];
 <html>
     <head>
         <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
-        <link rel="stylesheet" href="<?=ROOT?>assets/css/styles.css">
+        <link rel="stylesheet" href="<?=ROOT?>assets/css/forms.css">
         <title>Register</title>
         <script>
             // Set correct color on load
