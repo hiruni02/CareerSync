@@ -16,7 +16,7 @@
                         role ENUM('candidate', 'counselor', 'company', 'validator', 'admin') NOT NULL,
                         status ENUM('active', 'inactive', 'pending') DEFAULT 'pending',
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                    )";//need to make the email unique
+                    )";
             $this->query($query);
         }
         public function SelectAll(){

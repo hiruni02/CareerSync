@@ -1,0 +1,27 @@
+footer {
+    width: 100%;
+    position: relative; /* or just remove position */
+    background: linear-gradient(60deg, rgb(16, 0, 31) 0%, rgb(57, 0, 121) 50%, rgb(16, 0, 31) 100%);
+    color: #fff;
+    padding: 50px 0 30px;
+    border-top-left-radius: 75px;
+    border-top-right-radius: 75px;
+    font-size: 13px;
+    line-height: 20px;
+}
+.row{
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.col{
+    flex-basis: 25%;
+    padding: 10px;
+}
+.logo{
+    font-family: "logo-font";
+    color: #d97ce4;
+}

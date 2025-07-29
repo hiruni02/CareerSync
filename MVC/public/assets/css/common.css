@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "logo-font";
+  src: url("../fonts/logo-font.ttf");
+  font-weight: 600;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
+}

@@ -1,3 +1,11 @@
+html,body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.page-content{
+    flex: 1;
+}
 .intro {
     display: flex;
     align-items: center;
@@ -47,30 +55,12 @@
     transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
-footer{
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    background: linear-gradient(60deg, rgb(16, 0, 31) 0%, rgb(57, 0, 121) 50%, rgb(16, 0, 31) 100%);
-    color: #fff;
-    padding: 50px 0 30px;
-    border-top-left-radius: 75px;
-    border-top-right-radius: 75px;
-    font-size: 13px;
-    line-height: 20px;
-}
-.row{
-    width: 85%;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
-}
-.col{
-    flex-basis: 25%;
-    padding: 10px;
-}
-.logo{
-    color: #d97ce4;
+.jobs{
+    background: rgb(221, 235, 255);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    height:auto;
 }
