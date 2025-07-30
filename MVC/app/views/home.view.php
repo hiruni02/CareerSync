@@ -39,9 +39,12 @@
                 
             </div>
         </section>
-        <section class="jobs">
-                    <h3>[job/internship listing goes here]</h3>
-        </section>
+        
+        <div class="list-container">
+                <div class="jobs">
+                    <h3>[ job / internship listing goes here  ]</h3>
+                </div>
+        </div>
     </div>
     <?php
     include("footer.php");

@@ -8,6 +8,7 @@
   align-items: center;
   position: sticky;
   width: 100%;
+  top: 0px;
 }
 .navbar-left {
   display: flex;

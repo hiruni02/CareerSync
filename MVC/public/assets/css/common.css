@@ -20,4 +20,6 @@ body{
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
