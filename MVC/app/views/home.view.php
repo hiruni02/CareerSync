@@ -2,6 +2,7 @@
     <head>
         <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
         <link rel="stylesheet" href="<?=ROOT?>assets/css/home.css">
+        <link rel="stylesheet" href="<?=ROOT?>assets/css/joblist.css">
         <script>
             function confirm_logout(){
                 if(confirm("Are you sure you want to log out") == true){
@@ -40,9 +41,30 @@
             </div>
         </section>
         
-        <div class="list-container">
-                <div class="jobs">
+        <div class="jobContainer">
+                <div class="scrollBox"><!-- some test values -->
                     <h3>[ job / internship listing goes here  ]</h3>
+                    <div class="listItem">
+                        job1
+                    </div>
+                    <div class="listItem">
+                        job2
+                    </div>
+                    <div class="listItem">
+                        job3
+                    </div>
+                    <div class="listItem">
+                        job4
+                    </div>
+                    <div class="listItem">
+                        job5
+                    </div>
+                    <div class="listItem">
+                        job6
+                    </div>
+                    <div class="listItem">
+                        job7
+                    </div>
                 </div>
         </div>
     </div>

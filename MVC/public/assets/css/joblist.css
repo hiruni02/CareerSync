@@ -1,0 +1,37 @@
+.scrollBox{
+    background: rgb(221, 235, 255);
+    padding: 40px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+    text-align: center;
+    width: 800px;
+    height: 800px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.jobContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    padding: 100px;
+}
+.listItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(60deg, rgb(207, 184, 255) 0%, rgb(182, 255, 251) 100%);
+    border: 2px solid rgb(148, 140, 255);
+    border-radius: 15px;
+    height: 150px;
+    transition: 0.2s ease;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+.listItem:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+    z-index: 2;    
+}
+.listItem:last-child {
+    margin-bottom: 0;
+}
