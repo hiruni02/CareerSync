@@ -1,25 +1,13 @@
 <html>
     <head>
-        <link rel="stylesheet" href="<?=ROOT?>assets/css/navbar.css">
+        <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
         <link rel="stylesheet" href="<?=ROOT?>assets/css/about.css">
         <title>Login</title>
     </head>
     <body>
-        <nav class="navbar">
-            <div class="navbar-left">
-                <div class="name">CareerSync</div>
-                <ul class="navbar_links">
-                <li><a href="home"><button class="navbtn">Home</button></a></li>
-                <li><a href="about"><button class="navbtn" disabled>About</button></a></li>
-                <li><a href="contact"><button class="navbtn">Contact</button></a></li>
-                </ul>
-            </div>
-
-            <ul class="navbar_right">
-                <li><a href="login"><button class="navbtn">Login</button></a></li>
-                <li><a href="welcome"><button class="navbtn">Register</button></a></li>
-            </ul>
-        </nav>
+        <?php
+        include("navbar.php");
+        ?>
         <div class='page-content'>
             <section class="about-section">
                 <div class="container">

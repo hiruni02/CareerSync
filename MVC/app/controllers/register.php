@@ -5,6 +5,9 @@
             $user = new User;
             $data = [];
 
+            //if not logged in the $username variable is deafulted to 'User'
+            $data['username'] = empty($_SESSION['USER']) ? 'User' :$_SESSION['USER']->email;
+            
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Add role to POST
                 if (isset($_GET['role'])) {
@@ -16,16 +19,21 @@
 
                 if ($existing) {
                     $user->errors['email'] = "Email already exists";
-                } else {
+                }
+                else if($_POST['confirm_password'] !== $_POST['password']){
+                    $user->errors['confirm_password'] = "passwords do not match";
+                }
+                else{
                     $user->insert($_POST);
-                    header("Location: " . ROOT . "home");
+                    redirect('login');
                     exit;
                 }
+
+                
 
                 // Send errors to the view
                 $data['errors'] = $user->errors;
             }
-
             $this->view("register", $data);
         }
     }
