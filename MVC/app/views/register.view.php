@@ -58,6 +58,16 @@ $role = $_GET['role'];
                                 placeholder="Password" 
                                 name="password" 
                                 required>
+                            
+                            <input 
+                                type="password" 
+                                placeholder="Confirm Password" 
+                                name="confirm_password" 
+                                required
+                                style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
+                                <?php if (!empty($errors['confirm_password'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                                <?php endif; ?>
 
                             <button type="submit">Register</button>
                         </form>
