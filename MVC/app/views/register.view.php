@@ -27,20 +27,37 @@ $role = $_GET['role'];
                         ?>
                         <h1>Register as an Admin</h1>
                         <form method="POST">
-                            <input type="text" placeholder="First Name" name="firstName" required
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
                                 value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
 
-                            <input type="text" placeholder="Last Name" name="lastName" required
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
                                 value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
 
-                            <input type="email" placeholder="Email" name="email" required
-                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
 
-                            <?php if (!empty($errors['email'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                            <?php endif; ?>
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
 
-                            <input type="password" placeholder="Password" name="password" required>
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
 
                             <button type="submit">Register</button>
                         </form>
@@ -51,20 +68,37 @@ $role = $_GET['role'];
                         ?>
                         <h1>Register as a Candidate</h1>
                         <form method="POST">
-                            <input type="text" placeholder="First Name" name="firstName" required
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
                                 value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
 
-                            <input type="text" placeholder="Last Name" name="lastName" required
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
                                 value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
 
-                            <input type="email" placeholder="Email" name="email" required
-                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
 
-                            <?php if (!empty($errors['email'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                            <?php endif; ?>
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
 
-                            <input type="password" placeholder="Password" name="password" required>
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
 
                             <button type="submit">Register</button>
                         </form>
@@ -75,20 +109,37 @@ $role = $_GET['role'];
                         ?>
                         <h1>Register as a Vlidation team member</h1>
                         <form method="POST">
-                            <input type="text" placeholder="First Name" name="firstName" required
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
                                 value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
 
-                            <input type="text" placeholder="Last Name" name="lastName" required
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
                                 value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
 
-                            <input type="email" placeholder="Email" name="email" required
-                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
 
-                            <?php if (!empty($errors['email'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                            <?php endif; ?>
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
 
-                            <input type="password" placeholder="Password" name="password" required>
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
 
                             <button type="submit">Register</button>
                         </form>
@@ -99,20 +150,37 @@ $role = $_GET['role'];
                         ?>
                         <h1>Register as a Company</h1>
                         <form method="POST">
-                            <input type="text" placeholder="First Name" name="firstName" required
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
                                 value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
 
-                            <input type="text" placeholder="Last Name" name="lastName" required
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
                                 value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
 
-                            <input type="email" placeholder="Email" name="email" required
-                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
 
-                            <?php if (!empty($errors['email'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                            <?php endif; ?>
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
 
-                            <input type="password" placeholder="Password" name="password" required>
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
 
                             <button type="submit">Register</button>
                         </form>
@@ -123,20 +191,37 @@ $role = $_GET['role'];
                         ?>
                         <h1>Register as a Career Colunselor</h1>
                         <form method="POST">
-                            <input type="text" placeholder="First Name" name="firstName" required
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
                                 value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
 
-                            <input type="text" placeholder="Last Name" name="lastName" required
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
                                 value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
 
-                            <input type="email" placeholder="Email" name="email" required
-                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
 
-                            <?php if (!empty($errors['email'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                            <?php endif; ?>
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
 
-                            <input type="password" placeholder="Password" name="password" required>
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
 
                             <button type="submit">Register</button>
                         </form>

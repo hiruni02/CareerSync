@@ -18,8 +18,8 @@
                         status ENUM('active', 'inactive', 'pending') DEFAULT 'pending',
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
-        /*    $this->query($user_table);
-
+            $this->query($user_table);
+/*
             $candidate_table = "";
             $this->query($candidate_table);
 
