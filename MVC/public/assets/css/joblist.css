@@ -19,13 +19,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(60deg, rgb(207, 184, 255) 0%, rgb(182, 255, 251) 100%);
-    border: 2px solid rgb(148, 140, 255);
     border-radius: 15px;
     height: 150px;
     transition: 0.2s ease;
     padding-top: 10px;
     margin-bottom: 20px;
+    background: rgba(236, 221, 255, 0.322);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .listItem:hover{
     transform: scale(1.05);
