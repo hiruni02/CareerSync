@@ -32,7 +32,7 @@
                 <?php
                     }else{
                         ?>
-                            <h2 style="font-family: roboto,sans-serif;">Welcome, <?=$username?></h1>
+                            <h2 style="font-family: roboto,sans-serif;">Welcome, <?=$username?></h2>
                         <?php
                     }
                 ?>
