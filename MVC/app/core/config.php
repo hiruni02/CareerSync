@@ -17,5 +17,5 @@
         define('DBUSER','root');
         define('DBPASS','');
         
-        define('ROOT','http://the website name once you launch the website to the internet');
+        define('ROOT','../public/');
     }

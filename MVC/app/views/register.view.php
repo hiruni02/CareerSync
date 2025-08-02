@@ -3,7 +3,8 @@ $role = $_GET['role'];
 ?>
 <html>
     <head>
-        <link rel="stylesheet" href="<?=ROOT?>assets/css/styles.css">
+        <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
+        <link rel="stylesheet" href="<?=ROOT?>assets/css/forms.css">
         <title>Register</title>
         <script>
             // Set correct color on load
@@ -14,78 +15,273 @@ $role = $_GET['role'];
         </script>
     </head>
     <body>
-        <div class="container">
-            <?php
-            switch($role){
-                case 'admin':
-                    //html for admin registration form
-                    echo
-                    '
-                    <h1>Register as the Admin</h1>
-                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="text" placeholder="Last Name" name="lastName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                        <button type="submit">Register</button>
-                    </form>';
-                    break;
-                case 'candidate':
-                    //html for candidate registration form
-                    echo
-                    '
-                    <h1>Register as a Candidate</h1>
-                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="text" placeholder="Last Name" name="lastName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                        <button type="submit">Register</button>
-                    </form>';
-                    break;
-                case 'validation team member':
-                    //html for validation team member registration form
-                    echo
-                    '
-                    <h1>Register as a Validation-team member</h1>
-                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="text" placeholder="Last Name" name="lastName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                        <button type="submit">Register</button>
-                    </form>';
-                    break;
-                case 'company':
-                    //html for admin company registration form
-                    echo
-                    '
-                    <h1>Register as a Company</h1>
-                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="text" placeholder="Last Name" name="lastName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                        <button type="submit">Register</button>
-                    </form>';
-                    break;
-                case 'counselor':
-                    //html for admin career-counselor registration form
-                    echo
-                    '
-                    <h1>Register as a CareerCounselor</h1>
-                    <form method="POST" action="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        <input type="text" placeholder="First Name" name="firstName" required>
-                        <input type="text" placeholder="Last Name" name="lastName" required>
-                        <input type="email" placeholder="Email" name="email" required>
-                        <input type="password" placeholder="Password" name="password" required>
-                        <button type="submit">Register</button>
-                    </form>';
-                    break;
-            }
-            ?>
-            <div class="links">
-                <a href="login">Sign in instead</a></t>
+        <?php
+        include("navbar.php");
+        ?>
+        <div class='page-content'>
+            <div class="container">
+                <?php
+                switch($role){
+                    case 'admin':
+                        //html for admin registration form
+                        ?>
+                        <h1>Register as an Admin</h1>
+                        <form method="POST">
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
+
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
+
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
+                            
+                            <input 
+                                type="password" 
+                                placeholder="Confirm Password" 
+                                name="confirm_password" 
+                                required
+                                style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
+                                <?php if (!empty($errors['confirm_password'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                                <?php endif; ?>
+
+                            <button type="submit">Register</button>
+                        </form>
+                    <?php
+                        break;
+                    case 'candidate':
+                        //html for candidate registration form
+                        ?>
+                        <h1>Register as a Candidate</h1>
+                        <form method="POST">
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
+
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
+
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
+                            
+                            <input 
+                                type="password" 
+                                placeholder="Confirm Password" 
+                                name="confirm_password" 
+                                required
+                                style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
+                                <?php if (!empty($errors['confirm_password'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                                <?php endif; ?>
+
+                            <button type="submit">Register</button>
+                        </form>
+                    <?php
+                        break;
+                    case 'validator':
+                        //html for validation team member registration form
+                        ?>
+                        <h1>Register as a Validation team member</h1>
+                        <form method="POST">
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
+
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
+
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
+                            
+                            <input 
+                                type="password" 
+                                placeholder="Confirm Password" 
+                                name="confirm_password" 
+                                required
+                                style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
+                                <?php if (!empty($errors['confirm_password'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                                <?php endif; ?>
+
+                            <button type="submit">Register</button>
+                        </form>
+                    <?php
+                        break;
+                    case 'company':
+                        //html for admin company registration form
+                        ?>
+                        <h1>Register as a Company</h1>
+                        <form method="POST">
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
+
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
+
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
+
+                            <input 
+                                type="password" 
+                                placeholder="Confirm Password" 
+                                name="confirm_password" 
+                                required
+                                style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
+                                <?php if (!empty($errors['confirm_password'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                                <?php endif; ?>
+
+                            <button type="submit">Register</button>
+                        </form>
+                    <?php
+                        break;
+                    case 'counselor':
+                        //html for admin career-counselor registration form
+                        ?>
+                        <h1>Register as a Career Colunselor</h1>
+                        <form method="POST">
+                            <input 
+                                type="text" 
+                                placeholder="First Name" 
+                                name="firstName" 
+                                required
+                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+
+                            <input 
+                                type="text"
+                                placeholder="Last Name" 
+                                name="lastName" 
+                                required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input 
+                                type="email" 
+                                placeholder="Email" 
+                                name="email" 
+                                required
+                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
+
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
+
+                            <input 
+                                type="password" 
+                                placeholder="Password" 
+                                name="password" 
+                                required>
+
+                            <input 
+                                type="password" 
+                                placeholder="Confirm Password" 
+                                name="confirm_password" 
+                                required
+                                style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
+                                <?php if (!empty($errors['confirm_password'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                                <?php endif; ?>
+
+                            <button type="submit">Register</button>
+                        </form>
+                    <?php
+                        break;
+                }
+                ?>
+                <div class="links">
+                    <a href="login">Sign in instead</a></t>
+                </div>
             </div>
         </div>
     </body>
