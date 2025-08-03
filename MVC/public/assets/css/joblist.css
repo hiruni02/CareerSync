@@ -1,5 +1,12 @@
+.job-section {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .scrollBox{
-    background: rgb(221, 235, 255);
+    background: #c0d5db;
     padding: 40px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
     text-align: center;
@@ -7,15 +14,14 @@
     height: 800px;
     overflow: scroll;
     overflow-x: hidden;
+    border-radius: 10px;
 }
 .jobContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;  
-    min-height: 400px;   
-    height: auto;       
-    flex-direction: column;
+  flex: 1;
+  background-color: #c0d5db;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 1000px;
 }
 .listItem{
     display: flex;
@@ -39,4 +45,22 @@
 }
 .listItem:last-child {
     margin-bottom: 0;
+}
+
+.filtersContainer {
+  flex: 0 0 25%;
+  background-color: #cf6666;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 400px;
+}
+
+#salRange {
+  width: 300px;
+  accent-color: #9900ff;
+}
+
+#salValue {
+  margin-top: 10px;
+  font-weight: bold;
 }
