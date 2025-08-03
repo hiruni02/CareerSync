@@ -2,7 +2,6 @@
     <head>
         <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
         <link rel="stylesheet" href="<?=ROOT?>assets/css/home.css">
-        <link rel="stylesheet" href="<?=ROOT?>assets/css/joblist.css">
         <script>
             function confirm_logout(){
                 if(confirm("Are you sure you want to log out") == true){
@@ -50,25 +49,9 @@
                         
                     </div>
                 </section>
-                <section class="job-section">
-                <div class="filtersContainer">
-                    <label for="salRange">Salary Range:</label><br>
-                    <input type="range" id="salRange" name="salRange" min="21000" max="10000000" value="21000">
-                    <div id="salValue">21000</div>
-                </div>
-                    <div class="jobContainer">
-                        <div class="scrollBox">
-                            <h3 style="padding-bottom: 25px;">Select a position</h3>
-                            <div class="listItem">job1</div>
-                            <div class="listItem">job2</div>
-                            <div class="listItem">job3</div>
-                            <div class="listItem">job4</div>
-                            <div class="listItem">job5</div>
-                            <div class="listItem">job6</div>
-                            <div class="listItem">job7</div>
-                        </div>
-                    </div>
-                </section>
+                <?php
+                include("jobFilter.php");
+                ?>
             </div>
             <?php
             include("footer.php");

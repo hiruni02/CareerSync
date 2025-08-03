@@ -2,7 +2,7 @@
   display: flex;
   gap: 20px;
   padding: 40px;
-  max-width: 1200px;
+  max-width: 70vw;
   margin: 0 auto;
 }
 .scrollBox{
@@ -10,8 +10,8 @@
     padding: 40px;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
     text-align: center;
-    width: 800px;
-    height: 800px;
+    width: 46vw;
+    height: 100vh;
     overflow: scroll;
     overflow-x: hidden;
     border-radius: 10px;
@@ -21,14 +21,21 @@
   background-color: #c0d5db;
   border-radius: 10px;
   overflow: hidden;
-  width: 1000px;
+  width: 1500vw;
+}
+.jobContainer h3 {
+  padding: 25px; 
+  font-family: 'Audiowide'; 
+  text-align: center; 
+  font-size: 35px; 
+  color: #1e1f4b;
 }
 .listItem{
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    height: 150px;
+    height: 20vh;
     transition: 0.2s ease;
     padding-top: 10px;
     margin-bottom: 20px;
@@ -46,13 +53,18 @@
 .listItem:last-child {
     margin-bottom: 0;
 }
-
+/*this section is for the filter options*/
 .filtersContainer {
   flex: 0 0 25%;
-  background-color: #cf6666;
+  background: #c0d5db;
   padding: 20px;
   border-radius: 10px;
   min-height: 400px;
+}
+.filtersContainer label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 
 #salRange {
@@ -63,4 +75,10 @@
 #salValue {
   margin-top: 10px;
   font-weight: bold;
+}
+.filterTypeBox{
+  padding: 10px;
+}
+.filterTypeBox ul li{
+  list-style-type: none;
 }
