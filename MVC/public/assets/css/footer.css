@@ -6,7 +6,7 @@ footer {
     padding: 50px 0 30px;
     border-top-left-radius: 75px;
     border-top-right-radius: 75px;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 20px;
 }
 .row{
@@ -17,24 +17,23 @@ footer {
     align-items: flex-start;
     justify-content: space-between;
 }
-.col{
+.col {
     flex-basis: 25%;
     padding: 10px;
+    color: white;
 }
-.col ul li{
+
+.col p a{
     text-decoration: none;
+    color: white;
+}
+
+.col p a:hover{
+    color: rgb(195, 159, 230);
 }
 .logo{
     font-family: "logo-font";
     color: #f4b0fc;
 }
-a{
-    color: white;
-}
-a:hover{
-    color:blue;
-}
-ul,p{
-    list-style-type: none;
-    font-size: 15px;
-}
+
+
