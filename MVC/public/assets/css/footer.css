@@ -21,7 +21,20 @@ footer {
     flex-basis: 25%;
     padding: 10px;
 }
+.col ul li{
+    text-decoration: none;
+}
 .logo{
     font-family: "logo-font";
     color: #f4b0fc;
+}
+a{
+    color: white;
+}
+a:hover{
+    color:blue;
+}
+ul,p{
+    list-style-type: none;
+    font-size: 15px;
 }
