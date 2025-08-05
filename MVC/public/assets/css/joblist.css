@@ -60,7 +60,7 @@
   padding: 20px;
   border-radius: 10px;
   min-height: 400px;
-  min-width: 0vw;
+  min-width: 20vw;
   max-width: 20vw;
 }
 .filtersContainer label {

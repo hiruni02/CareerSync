@@ -31,9 +31,15 @@
 
             $counselor_table = "";
             $this->query($counselor_table);
-
-            $validator_table = "";
-            $this->query($validator_table);*/
+*/
+            $validator_table = "CREATE TABLE IF NOT EXISTS validator(
+                user_id INT AUTO_INCREMENT PRIMARY KEY,
+                firstName VARCHAR(100),
+                lastName VARCHAR(100),
+                nic_no INT,
+                FOREIGN KEY (user_id) REFERENCES users(user_id)
+            )";
+            $this->query($validator_table);
         }
         public function SelectAll(){
             $query ="SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
