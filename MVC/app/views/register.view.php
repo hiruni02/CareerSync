@@ -177,7 +177,10 @@ $role = $_GET['role'];
                                 name="nic_path" 
                                 required
                                 accept=".pdf, .jpg, .jpeg, .png"
-                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+                                style="<?= !empty($errors['nic_path']) ? 'border: 2px solid red;':'' ?>">
+                                <?php if (!empty($errors['nic_path'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['nic_path'] ?></div>
+                                <?php endif; ?>
 
                             <input 
                                 type="password" 

@@ -36,11 +36,11 @@
                 user_id INT AUTO_INCREMENT PRIMARY KEY,
                 firstName VARCHAR(100) NOT NULL,
                 lastName VARCHAR(100) NOT NULL,
-                phoneNo VARCHAR(10) NOT NULL UNIQUE,
-                nic_no INT NOT NULL UNIQUE,
+                phoneNo VARCHAR(10) NOT NULL , 
+                nic_no INT NOT NULL ,
                 nic_path VARCHAR(1000),
                 FOREIGN KEY (user_id) REFERENCES users(user_id)
-            )";
+            )";//need to make NIC unique after fixing error handling
             $this->query($validator_table);
         }
         public function SelectAll(){
