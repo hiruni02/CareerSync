@@ -10,8 +10,9 @@
             
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Add role to POST
-                if (isset($_GET['role'])) {
-                    $_POST['role'] = $_GET['role'];
+                $role = $_GET['role'] ?? null;
+                if ($role) {
+                    $_POST['role'] = $role;
                 }
 
                 //Check if email already exists
@@ -25,10 +26,63 @@
                 }
                 else{
                     $user->insert($_POST);
+                    $newUser = $user->first(['email' => $_POST['email']]);
+
+                    //updating validator table fields
+                    switch($role){
+                        case 'validator':
+                            $validator = new validator;
+
+                            $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/validator_ids/';
+                            
+                            // Make sure folder exists
+                            if (!file_exists($upload_path)) {
+                                mkdir($upload_path, 0777, true);
+                            }
+
+                            $filename = time() . '_' . basename($_FILES['nic_path']['name']);//makes each upload file name unique
+                            $target_file = $upload_path . $filename;
+
+                            /*if (move_uploaded_file($_FILES['nic_path']['tmp_name'], $target_file)) {
+                                // Insert into validator table
+                                $validatorData = [
+                                    'user_id'   => $newUser->user_id,
+                                    'firstName' => $_POST['firstName'],
+                                    'lastName'  => $_POST['lastName'],
+                                    'phoneNo'   => $_POST['phoneNo'],
+                                    'nic_no'    => $_POST['nic_no'],
+                                    'nic_path'  => $target_file,
+                                ];
+
+                                $validator->insert($validatorData);
+                            } else {
+                                $user->errors['nic_path'] = "Failed to upload ID proof";
+                            }*/
+                            $validatorData = [
+                                    'user_id'   => $newUser->user_id,
+                                    'firstName' => $_POST['firstName'],
+                                    'lastName'  => $_POST['lastName'],
+                                    'phoneNo'   => $_POST['phoneNo'],
+                                    'nic_no'    => $_POST['nic_no'],
+                                    'nic_path'  => $target_file,
+                                ];
+
+                                $validator->insert($validatorData);
+                        break;
+/*
+                        case 'company':
+                        break;
+
+                        case 'conunselor':
+                        break;
+
+                        case 'validator':
+                        break;*/
+                    }
+
                     redirect('login');
                     exit;
                 }
-
                 
 
                 // Send errors to the view

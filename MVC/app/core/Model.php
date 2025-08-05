@@ -34,9 +34,11 @@
 */
             $validator_table = "CREATE TABLE IF NOT EXISTS validator(
                 user_id INT AUTO_INCREMENT PRIMARY KEY,
-                firstName VARCHAR(100),
-                lastName VARCHAR(100),
-                nic_no INT,
+                firstName VARCHAR(100) NOT NULL,
+                lastName VARCHAR(100) NOT NULL,
+                phoneNo VARCHAR(10) NOT NULL UNIQUE,
+                nic_no INT NOT NULL UNIQUE,
+                nic_path VARCHAR(1000),
                 FOREIGN KEY (user_id) REFERENCES users(user_id)
             )";
             $this->query($validator_table);

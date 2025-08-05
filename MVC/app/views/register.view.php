@@ -128,7 +128,7 @@ $role = $_GET['role'];
                         //html for validation team member registration form
                         ?>
                         <h1>Register as a Validation team member</h1>
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             <input 
                                 type="text" 
                                 placeholder="First Name" 
@@ -154,6 +154,30 @@ $role = $_GET['role'];
                                 <?php if (!empty($errors['email'])): ?>
                                     <div style="color:red;" class="error"><?= $errors['email'] ?></div>
                                 <?php endif; ?>
+                            
+                            <input 
+                                type="text"
+                                placeholder="Phone Number" 
+                                name="phoneNo" 
+                                required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <input 
+                                type="text"
+                                placeholder="NIC Number" 
+                                name="nic_no" 
+                                required
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+
+                            <label for="id_proof" >Insert a photo of your National ID Card</label>
+                            <input 
+                                id="id_proof"
+                                type="file"
+                                placeholder="Insert a photo of your National ID Card" 
+                                name="nic_path" 
+                                required
+                                accept=".pdf, .jpg, .jpeg, .png"
+                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
 
                             <input 
                                 type="password" 
