@@ -93,6 +93,41 @@ $role = $_GET['role'];
                                 value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
 
                             <input 
+                                type="text"
+                                placeholder="NIC Number" 
+                                name="NIC" 
+                                required
+                                value="<?= isset($_POST['NIC']) ? htmlspecialchars($_POST['NIC']) : '' ?>">
+
+                            <input 
+                                type="date"
+                                placeholder="Date of Birth" 
+                                name="dob" 
+                                required
+                                value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
+                            
+                            <input 
+                                type="text"
+                                placeholder="Address: 123 Main St " 
+                                name="Address" 
+                                required
+                                value="<?= isset($_POST['Address']) ? htmlspecialchars($_POST['Address']) : '' ?>">
+
+                                <input 
+                                type="text"
+                                placeholder="Colombo" 
+                                name="Address" 
+                                required
+                                value="<?= isset($_POST['Address']) ? htmlspecialchars($_POST['Address']) : '' ?>">
+
+                                <input 
+                                type="text"
+                                placeholder="Colombo District " 
+                                name="Address" 
+                                required
+                                value="<?= isset($_POST['Address']) ? htmlspecialchars($_POST['Address']) : '' ?>">
+
+                            <input 
                                 type="email" 
                                 placeholder="Email" 
                                 name="email" 
@@ -103,6 +138,16 @@ $role = $_GET['role'];
                                 <?php if (!empty($errors['email'])): ?>
                                     <div style="color:red;" class="error"><?= $errors['email'] ?></div>
                                 <?php endif; ?>
+                            
+                            <input 
+                                type="tel"
+                                placeholder="Contact Number:07xxxxxxxx" 
+                                name="Contact Number" 
+                                pattern="[0-9]{10}"
+                                required
+                                value="<?= isset($_POST['Contact Number']) ? htmlspecialchars($_POST['Contact Number']) : '' ?>">
+                            
+                            
 
                             <input 
                                 type="password" 
