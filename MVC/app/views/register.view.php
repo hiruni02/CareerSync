@@ -182,21 +182,14 @@ $role = $_GET['role'];
                         <form method="POST">
                             <input 
                                 type="text" 
-                                placeholder="First Name" 
-                                name="firstName" 
+                                placeholder="Company name" 
+                                name="companyname"
                                 required
-                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
-
-                            <input 
-                                type="text"
-                                placeholder="Last Name" 
-                                name="lastName" 
-                                required
-                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+                                value="<?= isset($_POST['companyname']) ? htmlspecialchars($_POST['companyname']) : '' ?>">
 
                             <input 
                                 type="email" 
-                                placeholder="Email" 
+                                placeholder="Company email" 
                                 name="email" 
                                 required
                                 value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
@@ -205,6 +198,13 @@ $role = $_GET['role'];
                                 <?php if (!empty($errors['email'])): ?>
                                     <div style="color:red;" class="error"><?= $errors['email'] ?></div>
                                 <?php endif; ?>
+
+                            <input 
+                                type="tel" 
+                                placeholder="Contact number ex: 071 888 8888" 
+                                name="phonenumber" 
+                                pattern="[0-9]{10}"
+                                required>
 
                             <input 
                                 type="password" 
