@@ -34,6 +34,20 @@
 
             $validator_table = "";
             $this->query($validator_table);*/
+
+            $counselor_table = "CREATE TABLE IF NOT EXISTS career_counselors( 
+                        user_id INT AUTO_INCREMENT PRIMARY KEY,
+                        first_name VARCHAR(100) NOT NULL,
+                        last_name VARCHAR(100) NOT NULL,
+                        phone VARCHAR(15) NOT NULL, 
+                        nic VARCHAR(20) NOT NULL UNIQUE,
+                        proof_file VARCHAR(1000),
+                        certificate_file VARCHAR(1000),
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
+                    )";
+            $this->query($counselor_table);
+
+
         }
         public function SelectAll(){
             $query ="SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
