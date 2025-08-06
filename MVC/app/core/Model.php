@@ -21,10 +21,7 @@
             $this->query($user_table);
 
             /*$candidate_table = "";
-            $this->query($candidate_table);
-
-            $admin_table = "";
-            $this->query($admin_table);*/
+            $this->query($candidate_table);*/
 
             $company_table = "CREATE TABLE IF NOT EXISTS company (
                     user_id INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,3 +1,4 @@
+
 <?php
     function show($stuff){
             echo "<pre>";
