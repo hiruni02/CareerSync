@@ -8,46 +8,54 @@
                     event.preventDefault();
                 }
             }
+
+            window.onload = function () {
+                const rangeInput = document.getElementById("salRange");
+                const valueDisplay = document.getElementById("salValue");
+
+                rangeInput.addEventListener("input", function () {
+                valueDisplay.textContent = Number(this.value).toLocaleString();
+                });
+            };
         </script>
         <title>Home</title>
     </head>
     <body>
-    <?php
-    include("navbar.php");
-    ?>
-    <div class='page-content'>
-        <section class="intro">
-            <div class="intro-content">
-                <h1>Empowering Careers. Connecting Talent.</h1>
-                <p style="padding-bottom: 50px;">One platform for potential employees, companies collaborate.</p>
-                <?php
-                    if($username=='User'){
-                ?>
-                        <p style=" font-size: 20px; padding-bottom:20px;">you are currently exploring as a guest.<br> would you like to:</p>
-                        <div class="intro-buttons">
-                            <a href="login"><button class="intro-btn">Login</button></a>
-                            <p style=" font-size: 25px;">- or -</p>
-                            <a href="welcome"><button class="intro-btn secondary">Register</button></a>
-                        </div>
-                <?php
-                    }else{
-                        ?>
-                            <h2 style="font-family: roboto,sans-serif;">Welcome, <?=$username?></h2>
+        <div class="page-wrapper">
+            <?php
+            include("navbar.php");
+            ?>
+            <div class='page-content'>
+                <section class="intro">
+                    <div class="intro-content">
+                        <h1>Empowering Careers. Connecting Talent.</h1>
+                        <p style="padding-bottom: 50px;">One platform for potential employees, companies collaborate.</p>
                         <?php
-                    }
+                            if($username=='User'){
+                        ?>
+                                <p style=" font-size: 20px; padding-bottom:20px;">you are currently exploring as a guest.<br> would you like to:</p>
+                                <div class="intro-buttons">
+                                    <a href="login"><button class="intro-btn">Login</button></a>
+                                    <p style=" font-size: 25px;">- or -</p>
+                                    <a href="welcome"><button class="intro-btn secondary">Register</button></a>
+                                </div>
+                        <?php
+                            }else{
+                                ?>
+                                    <h2 style="font-family: roboto,sans-serif;">Welcome, <?=$username?></h1>
+                                <?php
+                            }
+                        ?>
+                        
+                    </div>
+                </section>
+                <?php
+                include("jobFilter.php");
                 ?>
-                
             </div>
-        </section>
-        
-        <div class="list-container">
-                <div class="jobs">
-                    <h3>[ job / internship listing goes here  ]</h3>
-                </div>
+            <?php
+            include("footer.php");
+            ?>
         </div>
-    </div>
-    <?php
-        include("footer.php");
-    ?>
     </body>
 </html>

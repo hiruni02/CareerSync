@@ -1,0 +1,86 @@
+.job-section {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+  max-width: 70vw;
+  margin: 0 auto;
+}
+.scrollBox{
+    background: #d5f6ff;
+    padding: 40px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+    text-align: center;
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 10px;
+}
+.jobContainer {
+  flex: 1;
+  background: #d5f6ff;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 40vw;
+}
+.jobContainer h3 {
+  padding: 25px; 
+  font-family: 'Audiowide'; 
+  text-align: center; 
+  font-size: 35px; 
+  color: #1e1f4b;
+}
+.listItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    height: 150px;
+    transition: 0.2s ease;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    background: rgba(236, 221, 255, 0.322);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.listItem:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+    z-index: 2;    
+}
+.listItem:last-child {
+    margin-bottom: 0;
+}
+/*this section is for the filter options*/
+.filtersContainer {
+  flex: 0 0 25%;
+  background: #d5f6ff;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 400px;
+  min-width: 20vw;
+  max-width: 20vw;
+}
+.filtersContainer label {
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+#salRange {
+  width: 90%;
+  accent-color: #9900ff;
+}
+
+#salValue {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.filterTypeBox{
+  padding: 10px;
+}
+.filterTypeBox ul li{
+  list-style-type: none;
+}

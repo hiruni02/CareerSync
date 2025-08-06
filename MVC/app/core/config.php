@@ -17,5 +17,5 @@
         define('DBUSER','root');
         define('DBPASS','');
         
-        define('ROOT','../public/');
+        define('ROOT','http://localhost/CareerSync/MVC/public/');
     }

@@ -9,6 +9,7 @@
   position: sticky;
   width: 100%;
   top: 0px;
+  z-index: 10;
 }
 .navbar-left {
   display: flex;
@@ -47,9 +48,11 @@
 .navbtn:hover {
   transform: scale(1.2);
   background: linear-gradient(to right,#7b4697, #2e3096);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
 }
 .navbar_right
 .navbtn:hover {
   transform: scale(1.2);
   background: linear-gradient(to right,#5a197e,#1e1f4b);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
 }

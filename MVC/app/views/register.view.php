@@ -171,7 +171,7 @@ $role = $_GET['role'];
                         //html for validation team member registration form
                         ?>
                         <h1>Register as a Validation team member</h1>
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             <input 
                                 type="text" 
                                 placeholder="First Name" 
@@ -196,6 +196,39 @@ $role = $_GET['role'];
 
                                 <?php if (!empty($errors['email'])): ?>
                                     <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
+                            
+                            <input 
+                                type="text"
+                                placeholder="Phone Number" 
+                                name="phoneNo" 
+                                required
+                                value="<?= isset($_POST['phoneNo']) ? htmlspecialchars($_POST['phoneNo']) : '' ?>">
+
+                            <input 
+                                type="text"
+                                placeholder="NIC Number" 
+                                name="nic_no" 
+                                required
+                                value="<?= isset($_POST['nic_no']) ? htmlspecialchars($_POST['nic_no']) : '' ?>"
+                                style="<?= !empty($errors['nic_no']) ? 'border: 2px solid red;':'' ?>">
+
+                                <?php if (!empty($errors['nic_no'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['nic_no'] ?></div>
+                                <?php endif; ?>
+
+                            <label for="id_proof" >Insert a photo of your National ID Card</label>
+                            <input 
+                                id="id_proof"
+                                type="file"
+                                placeholder="Insert a photo of your National ID Card" 
+                                name="nic_path" 
+                                required
+                                accept=".pdf, .jpg, .jpeg, .png"
+                                style="<?= !empty($errors['nic_path']) ? 'border: 2px solid red;':'' ?>">
+
+                                <?php if (!empty($errors['nic_path'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['nic_path'] ?></div>
                                 <?php endif; ?>
 
                             <input 
