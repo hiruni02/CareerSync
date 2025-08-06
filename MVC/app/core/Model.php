@@ -10,7 +10,6 @@
 
         //hardcoded function to create the entire database
         public function CreateTables(){
-            
             $user_table = "CREATE TABLE IF NOT EXISTS users (
                         user_id INT AUTO_INCREMENT PRIMARY KEY,
                         email VARCHAR(100) NOT NULL UNIQUE,
@@ -20,6 +19,18 @@
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
             $this->query($user_table);
+
+            $counselor_table = "CREATE TABLE IF NOT EXISTS career_counselors( 
+                        user_id INT AUTO_INCREMENT PRIMARY KEY,
+                        first_name VARCHAR(100) NOT NULL,
+                        last_name VARCHAR(100) NOT NULL,
+                        phone VARCHAR(15) NOT NULL, 
+                        nic VARCHAR(20) NOT NULL UNIQUE,
+                        nic_path VARCHAR(1000) NOT NULL UNIQUE,
+                        certificate_path VARCHAR(1000) NOT NULL UNIQUE,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
+                    )";
+            $this->query($counselor_table);
 
             $candidate_table = "CREATE TABLE IF NOT EXISTS candidate (
                         user_id INT PRIMARY KEY,
@@ -36,17 +47,6 @@
             
             $this->query($candidate_table);
 
- /*           $admin_table = "";
-            $this->query($admin_table);
-
-            $company_table = "";
-            $this->query($company_table);
-
-            $counselor_table = "";
-            $this->query($counselor_table);
-
-            $validator_table = "";
-            $this->query($validator_table);*/
         }
         public function SelectAll(){
             $query ="SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
