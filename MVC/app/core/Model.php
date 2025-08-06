@@ -41,8 +41,8 @@
                         last_name VARCHAR(100) NOT NULL,
                         phone VARCHAR(15) NOT NULL, 
                         nic VARCHAR(20) NOT NULL UNIQUE,
-                        proof_file VARCHAR(1000),
-                        certificate_file VARCHAR(1000),
+                        nic_path VARCHAR(1000) NOT NULL UNIQUE,
+                        certificate_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
             $this->query($counselor_table);
