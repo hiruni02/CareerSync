@@ -160,14 +160,19 @@ $role = $_GET['role'];
                                 placeholder="Phone Number" 
                                 name="phoneNo" 
                                 required
-                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+                                value="<?= isset($_POST['phoneNo']) ? htmlspecialchars($_POST['phoneNo']) : '' ?>">
 
                             <input 
                                 type="text"
                                 placeholder="NIC Number" 
                                 name="nic_no" 
                                 required
-                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+                                value="<?= isset($_POST['nic_no']) ? htmlspecialchars($_POST['nic_no']) : '' ?>"
+                                style="<?= !empty($errors['nic_no']) ? 'border: 2px solid red;':'' ?>">
+
+                                <?php if (!empty($errors['nic_no'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['nic_no'] ?></div>
+                                <?php endif; ?>
 
                             <label for="id_proof" >Insert a photo of your National ID Card</label>
                             <input 
@@ -178,8 +183,9 @@ $role = $_GET['role'];
                                 required
                                 accept=".pdf, .jpg, .jpeg, .png"
                                 style="<?= !empty($errors['nic_path']) ? 'border: 2px solid red;':'' ?>">
+
                                 <?php if (!empty($errors['nic_path'])): ?>
-                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['nic_path'] ?></div>
+                                    <div style="color:red;" class="error"><?= $errors['nic_path'] ?></div>
                                 <?php endif; ?>
 
                             <input 
