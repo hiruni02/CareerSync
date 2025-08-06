@@ -93,6 +93,41 @@ $role = $_GET['role'];
                                 value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
 
                             <input 
+                                type="text"
+                                placeholder="NIC Number" 
+                                name="NIC" 
+                                required
+                                value="<?= isset($_POST['NIC']) ? htmlspecialchars($_POST['NIC']) : '' ?>">
+
+                            <input 
+                                type="date"
+                                placeholder="Date of Birth" 
+                                name="dob" 
+                                required
+                                value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
+                            
+                            <input 
+                                type="text"
+                                placeholder="Address: 123 Main St " 
+                                name="Address" 
+                                required
+                                value="<?= isset($_POST['Address']) ? htmlspecialchars($_POST['Address']) : '' ?>">
+
+                                <input 
+                                type="text"
+                                placeholder="Colombo" 
+                                name="Address" 
+                                required
+                                value="<?= isset($_POST['Address']) ? htmlspecialchars($_POST['Address']) : '' ?>">
+
+                                <input 
+                                type="text"
+                                placeholder="Colombo District " 
+                                name="Address" 
+                                required
+                                value="<?= isset($_POST['Address']) ? htmlspecialchars($_POST['Address']) : '' ?>">
+
+                            <input 
                                 type="email" 
                                 placeholder="Email" 
                                 name="email" 
@@ -103,7 +138,15 @@ $role = $_GET['role'];
                                 <?php if (!empty($errors['email'])): ?>
                                     <div style="color:red;" class="error"><?= $errors['email'] ?></div>
                                 <?php endif; ?>
-
+                            
+                            <input 
+                                type="tel"
+                                placeholder="Contact Number:07xxxxxxxx" 
+                                name="Contact Number" 
+                                pattern="[0-9]{10}"
+                                required
+                                value="<?= isset($_POST['Contact Number']) ? htmlspecialchars($_POST['Contact Number']) : '' ?>">
+                            
                             <input 
                                 type="password" 
                                 placeholder="Password" 
@@ -229,13 +272,8 @@ $role = $_GET['role'];
                     case 'counselor':
                         //html for admin career-counselor registration form
                         ?>
-                        <?php
-    // Assume $errors is already defined as an array and being filled in your backend controller
-?>
                         <h1>Register as a Career Counselor</h1>
-
                         <form method="POST" enctype="multipart/form-data">
-
                             <input 
                                 type="text" 
                                 placeholder="First Name" 
@@ -249,7 +287,7 @@ $role = $_GET['role'];
                                 name="last_name" 
                                 required
                                 value="<?= isset($_POST['last_name']) ? htmlspecialchars($_POST['last_name']) : '' ?>">
-
+                          
                             <input 
                                 type="email" 
                                 placeholder="Email" 
@@ -258,9 +296,9 @@ $role = $_GET['role'];
                                 value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
                                 style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
 
-                            <?php if (!empty($errors['email'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                            <?php endif; ?>
+                                <?php if (!empty($errors['email'])): ?>
+                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                <?php endif; ?>
 
                             <input 
                                 type="text"
@@ -276,7 +314,6 @@ $role = $_GET['role'];
                                 required
                                 value="<?= isset($_POST['nic']) ? htmlspecialchars($_POST['nic']) : '' ?>">
 
-                            <!-- Proof of Identity -->
                             <label for="proof">Upload Proof of National Identity</label>
                             <input 
                                 id="proof"
@@ -286,11 +323,10 @@ $role = $_GET['role'];
                                 accept=".pdf, .jpg, .jpeg, .png"
                                 style="<?= !empty($errors['proof']) ? 'border: 2px solid red;' : '' ?>">
 
-                            <?php if (!empty($errors['proof'])): ?>
-                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['proof'] ?></div>
-                            <?php endif; ?>
+                                <?php if (!empty($errors['proof'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['proof'] ?></div>
+                                <?php endif; ?>
 
-                            <!-- Certificate -->
                             <label for="certificate">Upload your Certificate</label>
                             <input 
                                 id="certificate"
@@ -300,9 +336,9 @@ $role = $_GET['role'];
                                 accept=".pdf, .jpg, .jpeg, .png"
                                 style="<?= !empty($errors['certificate']) ? 'border: 2px solid red;' : '' ?>">
 
-                            <?php if (!empty($errors['certificate'])): ?>
-                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['certificate'] ?></div>
-                            <?php endif; ?>
+                                <?php if (!empty($errors['certificate'])): ?>
+                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['certificate'] ?></div>
+                                <?php endif; ?>
 
                             <input 
                                 type="password" 
@@ -323,7 +359,6 @@ $role = $_GET['role'];
 
                             <button type="submit">Register</button>
                         </form>
-
                     <?php
                         break;
                 }
