@@ -10,6 +10,7 @@
 
         //hardcoded function to create the entire database
         public function CreateTables(){
+            
             $user_table = "CREATE TABLE IF NOT EXISTS users (
                         user_id INT AUTO_INCREMENT PRIMARY KEY,
                         email VARCHAR(100) NOT NULL UNIQUE,
@@ -19,11 +20,23 @@
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
             $this->query($user_table);
-/*
-            $candidate_table = "";
+
+            $candidate_table = "CREATE TABLE IF NOT EXISTS candidate (
+                        user_id INT PRIMARY KEY,
+                        firstName VARCHAR(100)NOT NULL,
+                        lastName VARCHAR(100)NOT NULL,
+                        nic_No INT NOT NULL UNIQUE,
+                        DOB DATETIME NOT NULL ,
+                        address VARCHAR(100)NOT NULL,
+                        contactNo VARCHAR(10)NOT NULL,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
+                    )";
+            
+            
+            
             $this->query($candidate_table);
 
-            $admin_table = "";
+ /*           $admin_table = "";
             $this->query($admin_table);
 
             $company_table = "";
