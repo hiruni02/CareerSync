@@ -19,7 +19,17 @@
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
             $this->query($user_table);
-
+          
+            $company_table = "CREATE TABLE IF NOT EXISTS company (
+                    user_id INT AUTO_INCREMENT PRIMARY KEY,
+                    companyname VARCHAR(100),
+                    email VARCHAR(100) NOT NULL UNIQUE,
+                    phonenumber VARCHAR(15),
+                    password VARCHAR(255) NOT NULL,
+                    FOREIGN KEY (user_id) REFERENCES users(user_id)
+                 )";
+            $this->query($company_table);
+          
             $counselor_table = "CREATE TABLE IF NOT EXISTS career_counselors( 
                         user_id INT AUTO_INCREMENT PRIMARY KEY,
                         first_name VARCHAR(100) NOT NULL,
@@ -42,9 +52,7 @@
                         contactNo VARCHAR(10)NOT NULL,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
-            
-            
-            
+          
             $this->query($candidate_table);
 
         }

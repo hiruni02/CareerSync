@@ -1,3 +1,4 @@
+
 <?php
     class logout{
         use Controller;
