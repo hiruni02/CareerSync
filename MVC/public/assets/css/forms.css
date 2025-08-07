@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 80px);;
+    padding-top: 12vh;
 }
 .container {
     background: rgb(221, 235, 255);
