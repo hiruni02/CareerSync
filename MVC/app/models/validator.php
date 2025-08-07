@@ -6,7 +6,7 @@ class validator{
         'user_id',
         'firstName',
         'lastName',
-        'phoneNo',
+        'contactNo',
         'nic_no',
         'nic_path',
     ];
