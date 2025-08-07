@@ -30,10 +30,10 @@
                    )";
             $this->query($company_table);
           
-            $counselor_table = "CREATE TABLE IF NOT EXISTS career_counselors( 
+            $counselor_table = "CREATE TABLE IF NOT EXISTS counselor( 
                         user_id INT AUTO_INCREMENT PRIMARY KEY,
-                        first_name VARCHAR(100) NOT NULL,
-                        last_name VARCHAR(100) NOT NULL,
+                        firstName VARCHAR(100) NOT NULL,
+                        lastName VARCHAR(100) NOT NULL,
                         contactNo VARCHAR(10) NOT NULL, 
                         counselor_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                         certificate_path VARCHAR(1000) NOT NULL UNIQUE,
