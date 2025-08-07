@@ -163,14 +163,14 @@ $role = $_GET['role'];
                             </div>
 
                             <div class="input-field">
-                                <label for="phoneNo">Enter Contact Number</label>
+                                <label for="contactNo">Enter Contact Number</label>
                                 <input 
                                     type="tel"
                                     placeholder="Contact Number:07xxxxxxxx" 
-                                    name="phoneNo" 
+                                    name="contactNo" 
                                     pattern="[0-9]{10}"
                                     required
-                                    value="<?= isset($_POST['phoneNo']) ? htmlspecialchars($_POST['phoneNo']) : '' ?>">
+                                    value="<?= isset($_POST['contactNo']) ? htmlspecialchars($_POST['contactNo']) : '' ?>">
                             </div>
 
                             <div class="input-field">
@@ -240,14 +240,14 @@ $role = $_GET['role'];
                             </div>
 
                             <div class="input-field">
-                                <label for="phoneNo">Enter Contact Number</label>
+                                <label for="contactNo">Enter Contact Number</label>
                                 <input 
                                     type="text"
                                     placeholder="Contact Number:07xxxxxxxx"
-                                    name="phoneNo" 
+                                    name="contactNo" 
                                     pattern="[0-9]{10}"
                                     required
-                                    value="<?= isset($_POST['phoneNo']) ? htmlspecialchars($_POST['phoneNo']) : '' ?>">
+                                    value="<?= isset($_POST['contactNo']) ? htmlspecialchars($_POST['contactNo']) : '' ?>">
                             </div>
 
                             <div class="input-field">
@@ -332,7 +332,7 @@ $role = $_GET['role'];
                             <input 
                                 type="tel" 
                                 placeholder="Contact number ex: 071 888 8888" 
-                                name="phonenumber" 
+                                name="contactNo" 
                                 pattern="[0-9]{10}"
                                 required>
 
@@ -397,14 +397,28 @@ $role = $_GET['role'];
                             </div>
 
                             <div class="input-field">
-                                <label for="phoneNo">Enter Contact Number</label>
+                                <label for="contactNo">Enter Contact Number</label>
                                 <input 
                                     type="text"
                                     placeholder="Contact Number:07xxxxxxxx"
-                                    name="phoneNo" 
+                                    name="contactNo" 
                                     pattern="[0-9]{10}"
                                     required
-                                    value="<?= isset($_POST['phoneNo']) ? htmlspecialchars($_POST['phoneNo']) : '' ?>">
+                                    value="<?= isset($_POST['contactNo']) ? htmlspecialchars($_POST['contactNo']) : '' ?>">
+                            </div>
+
+                            <div class="input-field">
+                                <label for="counselor_photo_path">Upload your Profile Picture</label>
+                                <input 
+                                    type="file" 
+                                    name="counselor_photo_path" 
+                                    required 
+                                    accept=".pdf, .jpg, .jpeg, .png"
+                                    style="<?= !empty($errors['counselor_photo_path']) ? 'border: 2px solid red;' : '' ?>">
+
+                                    <?php if (!empty($errors['counselor_photo_path'])): ?>
+                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['counselor_photo_path'] ?></div>
+                                    <?php endif; ?>
                             </div>
 
                             <div class="input-field">

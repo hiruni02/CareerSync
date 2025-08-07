@@ -24,7 +24,7 @@
                       user_id INT AUTO_INCREMENT PRIMARY KEY,
                       companyname VARCHAR(100),
                       email VARCHAR(100) NOT NULL UNIQUE,
-                      phonenumber VARCHAR(15),
+                      contactNo VARCHAR(15),
                       password VARCHAR(255) NOT NULL,
                       FOREIGN KEY (user_id) REFERENCES users(user_id)
                    )";
@@ -34,9 +34,8 @@
                         user_id INT AUTO_INCREMENT PRIMARY KEY,
                         first_name VARCHAR(100) NOT NULL,
                         last_name VARCHAR(100) NOT NULL,
-                        phone VARCHAR(15) NOT NULL, 
-                        nic VARCHAR(20) NOT NULL UNIQUE,
-                        nic_path VARCHAR(1000) NOT NULL UNIQUE,
+                        contactNo VARCHAR(10) NOT NULL, 
+                        counselor_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                         certificate_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
@@ -46,9 +45,9 @@
                         user_id INT AUTO_INCREMENT PRIMARY KEY,
                         firstName VARCHAR(100) NOT NULL,
                         lastName VARCHAR(100) NOT NULL,
-                        phoneNo VARCHAR(10) NOT NULL , 
+                        contactNo VARCHAR(10) NOT NULL , 
                         nic_no INT NOT NULL UNIQUE,
-                        nic_path VARCHAR(1000),
+                        nic_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
             $this->query($validator_table);
@@ -57,10 +56,10 @@
                         user_id INT PRIMARY KEY,
                         firstName VARCHAR(100)NOT NULL,
                         lastName VARCHAR(100)NOT NULL,
-                        nic_No INT NOT NULL UNIQUE,
                         DOB DATETIME NOT NULL ,
                         address VARCHAR(100)NOT NULL,
                         contactNo VARCHAR(10)NOT NULL,
+                        candidate_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
             
