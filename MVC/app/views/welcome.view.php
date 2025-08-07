@@ -25,7 +25,7 @@
     include("navbar.php");
     ?>
     <div class='page-content'>
-        <div class="container">
+        <div class="container" style="width: 25vw;">
             <h1>Welcome to CareerSync</h1>
             <h3>please choose your role</h3>
             <form action="register" method="GET">
