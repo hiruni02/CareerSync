@@ -172,81 +172,102 @@ $role = $_GET['role'];
                         ?>
                         <h1>Register as a Validation team member</h1>
                         <form method="POST" enctype="multipart/form-data">
-                            <input 
-                                type="text" 
-                                placeholder="First Name" 
-                                name="firstName" 
-                                required
-                                value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
-
-                            <input 
-                                type="text"
-                                placeholder="Last Name" 
-                                name="lastName" 
-                                required
-                                value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
-
-                            <input 
-                                type="email" 
-                                placeholder="Email" 
-                                name="email" 
-                                required
-                                value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
-                                style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
-
-                                <?php if (!empty($errors['email'])): ?>
-                                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                                <?php endif; ?>
+                            <div class="input-field">
+                                <label for="firstName">Enter First Name</label>
+                                <input 
+                                    type="text" 
+                                    placeholder="First Name" 
+                                    name="firstName" 
+                                    required
+                                    value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+                            </div>
                             
-                            <input 
-                                type="text"
-                                placeholder="Phone Number" 
-                                name="phoneNo" 
-                                required
-                                value="<?= isset($_POST['phoneNo']) ? htmlspecialchars($_POST['phoneNo']) : '' ?>">
+                            <div class="input-field">
+                                <label for="lastName">Enter Last Name</label>
+                                <input 
+                                    type="text"
+                                    placeholder="Last Name" 
+                                    name="lastName" 
+                                    required
+                                    value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+                            </div>
 
-                            <input 
-                                type="text"
-                                placeholder="NIC Number" 
-                                name="nic_no" 
-                                required
-                                value="<?= isset($_POST['nic_no']) ? htmlspecialchars($_POST['nic_no']) : '' ?>"
-                                style="<?= !empty($errors['nic_no']) ? 'border: 2px solid red;':'' ?>">
+                            <div class="input-field">
+                                <label for="email">Enter Email Address</label>
+                                <input 
+                                    type="email" 
+                                    placeholder="Email" 
+                                    name="email" 
+                                    required
+                                    value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+                                    style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
 
-                                <?php if (!empty($errors['nic_no'])): ?>
-                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['nic_no'] ?></div>
-                                <?php endif; ?>
+                                    <?php if (!empty($errors['email'])): ?>
+                                        <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                                    <?php endif; ?>
+                            </div>
 
-                            <label for="id_proof" >Insert a photo of your National ID Card</label>
-                            <input 
-                                id="id_proof"
-                                type="file"
-                                placeholder="Insert a photo of your National ID Card" 
-                                name="nic_path" 
-                                required
-                                accept=".pdf, .jpg, .jpeg, .png"
-                                style="<?= !empty($errors['nic_path']) ? 'border: 2px solid red;':'' ?>">
+                            <div class="input-field">
+                                <label for="phoneNo">Enter Phone Number</label>
+                                <input 
+                                    type="text"
+                                    placeholder="Phone Number" 
+                                    name="phoneNo" 
+                                    required
+                                    value="<?= isset($_POST['phoneNo']) ? htmlspecialchars($_POST['phoneNo']) : '' ?>">
+                            </div>
 
-                                <?php if (!empty($errors['nic_path'])): ?>
-                                    <div style="color:red;" class="error"><?= $errors['nic_path'] ?></div>
-                                <?php endif; ?>
+                            <div class="input-field">
+                                <label for="nic_no">Enter NIC Number</label>
+                                <input 
+                                    type="text"
+                                    placeholder="NIC Number" 
+                                    name="nic_no" 
+                                    required
+                                    value="<?= isset($_POST['nic_no']) ? htmlspecialchars($_POST['nic_no']) : '' ?>"
+                                    style="<?= !empty($errors['nic_no']) ? 'border: 2px solid red;':'' ?>">
 
-                            <input 
-                                type="password" 
-                                placeholder="Password" 
-                                name="password" 
-                                required>
-                            
-                            <input 
-                                type="password" 
-                                placeholder="Confirm Password" 
-                                name="confirm_password" 
-                                required
-                                style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
-                                <?php if (!empty($errors['confirm_password'])): ?>
-                                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
-                                <?php endif; ?>
+                                    <?php if (!empty($errors['nic_no'])): ?>
+                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['nic_no'] ?></div>
+                                    <?php endif; ?>
+                            </div>
 
+                            <div class="input-field">
+                            <label for="nic_path" >Insert a photo of your National ID Card</label>
+                                <input 
+                                    type="file"
+                                    placeholder="Insert a photo of your National ID Card" 
+                                    name="nic_path" 
+                                    required
+                                    accept=".pdf, .jpg, .jpeg, .png"
+                                    style="<?= !empty($errors['nic_path']) ? 'border: 2px solid red;':'' ?>">
+
+                                    <?php if (!empty($errors['nic_path'])): ?>
+                                        <div style="color:red;" class="error"><?= $errors['nic_path'] ?></div>
+                                    <?php endif; ?>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="password" >Enter Password</label>
+                                <input 
+                                    type="password" 
+                                    placeholder="Password" 
+                                    name="password" 
+                                    required>
+                            </div>
+
+                            <div class="input-field">
+                                <label for="confirm_password" >Re-enter the Pasword</label>
+                                <input 
+                                    type="password" 
+                                    placeholder="Confirm Password" 
+                                    name="confirm_password" 
+                                    required
+                                    style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
+                                    <?php if (!empty($errors['confirm_password'])): ?>
+                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                                    <?php endif; ?>
+                            </div>
                             <button type="submit">Register</button>
                         </form>
                     <?php
