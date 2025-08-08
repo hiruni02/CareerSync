@@ -116,6 +116,7 @@
             $data = array_merge($data,$data_not);
             return $this->query($query,$data);
         }
+        /*
         public function first($data,$data_not = []){
             $keys = array_keys($data);
             $keys_not = array_keys($data_not);
@@ -134,6 +135,26 @@
                 return $result[0];
             }
             return false;
+        }*/
+        //this is the new first function prevents incorrect SQL syntax when params are empty
+        public function first($data = [], $data_not = []) {
+            $query = "SELECT * FROM $this->table";
+            $params = [];
+            $conditions = [];
+            foreach ($data as $key => $value) {
+                $conditions[] = "$key = ?";
+                $params[] = $value;
+            }
+            foreach ($data_not as $key => $value) {
+                $conditions[] = "$key != ?";
+                $params[] = $value;
+            }
+            if (!empty($conditions)) {
+                $query .= " WHERE " . implode(" AND ", $conditions);
+            }
+            $query .= " LIMIT $this->limit OFFSET $this->offset";
+            $result = $this->query($query, $params);
+            return $result ? $result[0] : false;
         }
         public function insert($data){
             if(!empty($this->allowedColumns)){//remove unwanted data

@@ -16,7 +16,7 @@ $role = $_GET['role'];
     </head>
     <body>
         <?php
-        include("navbar.php");
+        include("components/navbar.php");
         ?>
         <div class='page-content'>
             <div class="container">
