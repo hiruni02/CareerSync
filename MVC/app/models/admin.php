@@ -1,13 +1,11 @@
 <?php
-class Counselor {
+class Admin{
     use Model;
-    protected $table = 'career_counselors';
+    protected $table = 'admin';
     protected $allowedColumns = [
         'user_id',
         'firstName',
         'lastName',
         'contactNo',
-        'counselor_photo_path',
-        'certificate_path',
     ];
 }

@@ -22,16 +22,15 @@
 </head>
 <body>
     <?php
-    include("navbar.php");
+    include("components/navbar.php");
     ?>
     <div class='page-content'>
-        <div class="container">
+        <div class="container" style="width: 25vw;">
             <h1>Welcome to CareerSync</h1>
             <h3>please choose your role</h3>
             <form action="register" method="GET">
                 <select name="role" id="role">
                     <option value="" disabled selected hidden>Your role</option>
-                    <option value="admin">Admin</option>
                     <option value="candidate">Candidate</option>
                     <option value="validator">Validation Team Member</option>
                     <option value="company">Company</option>

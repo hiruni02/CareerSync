@@ -6,7 +6,7 @@
     </head>
     <body>
         <?php
-        include("navbar.php");
+        include("components/navbar.php");
         ?>
         <div class='page-content'>
             <section class="about-section">

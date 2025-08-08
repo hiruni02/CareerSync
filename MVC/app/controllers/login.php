@@ -6,14 +6,41 @@
             $data=[];
 
             //if not logged in the $username variable is deafulted to 'User'
-            $data['username'] = empty($_SESSION['USER']) ? 'User' :$_SESSION['USER']->email;
+            $data['username'] = empty($_SESSION['USER']) ? 'User' :$_SESSION['USER']->firstName;
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $row = $user->first(['email' => $_POST['email']]);
                 if($row){
                     if($row->password===$_POST['password']){
-                        //echo "<h1> LOGGED IN</h>";
                         $_SESSION['USER'] = $row;
+                        switch($row->role){
+                            case 'admin':
+                                $admin = new Admin();
+                                $extra = $admin->first(['user_id' => $row->user_id]);
+                                break;
+                            case 'candidate':
+                                $candidate = new Candidate();
+                                $extra = $candidate->first(['user_id' => $row->user_id]);
+                                break;
+                            case 'counselor':
+                                $counselor = new Counselor();
+                                $extra = $counselor->first(['user_id' => $row->user_id]);
+                                break;
+                            case 'validator':
+                                $validator = new Validator();
+                                $extra = $validator->first(['user_id' => $row->user_id]);
+                                break;
+                            case 'company':
+                                $company = new Company();
+                                $extra = $company->first(['user_id' => $row->user_id]);
+                                break;
+                            default:
+                                $extra = null;
+                        }
+
+                        if ($extra && isset($extra->firstName)) {
+                            $_SESSION['USER']->firstName = $extra->firstName;
+                        }
                         redirect('home');
                         exit;
                     }

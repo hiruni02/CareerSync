@@ -1,5 +1,5 @@
 <?php
-class company{
+class Company{
     use Model;
     protected $table = 'company';
     protected $allowedColumns = [

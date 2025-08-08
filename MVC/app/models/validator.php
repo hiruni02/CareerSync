@@ -1,12 +1,12 @@
 <?php
-class validator{
+class Validator{
     use Model;
     protected $table = 'validator';
     protected $allowedColumns = [
         'user_id',
         'firstName',
         'lastName',
-        'phoneNo',
+        'contactNo',
         'nic_no',
         'nic_path',
     ];
