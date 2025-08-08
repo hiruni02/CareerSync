@@ -6,7 +6,7 @@
 </head>
 <body>
     <?php
-    include("navbar.php");
+    include("components/navbar.php");
     ?>
 
     <h3>This is dashboard</h3>

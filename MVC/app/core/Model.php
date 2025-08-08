@@ -20,35 +20,65 @@
                     )";
             $this->query($user_table);
           
+
+            $company_table = "CREATE TABLE IF NOT EXISTS admin (
+                        user_id INT PRIMARY KEY,
+                        firstName VARCHAR(100) NOT NULL,
+                        lastName VARCHAR(100) NOT NULL,
+                        contactNo VARCHAR(10) NOT NULL,
+                        email VARCHAR(100) NOT NULL UNIQUE,
+                        password VARCHAR(255) NOT NULL,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
+                   )";
+            $this->query($company_table);
+
+
+            $admin_email = 'admin@gmail.com';
+            $admin_password = 'root'; // need to hash this for futher protection
+
+            $check_admin = "SELECT * FROM users WHERE email = ?";
+            $does_admin_exist = $this->query($check_admin, [$admin_email]);
+
+            if(!$does_admin_exist){//if admin doesnt exist then add the admin row
+                $insert_user = "INSERT INTO users (email, password, role, status) VALUES (?, ?, 'admin', 'active')";
+                $this->query($insert_user, [$admin_email, $admin_password]);
+
+                $user_id = 1;
+
+                $insert_admin = "INSERT INTO admin (user_id, firstName, lastName, contactNo, email, password) 
+                                VALUES (?, 'root', 'root', '0712345678', ?, ?)";
+                $this->query($insert_admin, [$user_id, $admin_email, $admin_password]);
+            }
+
+
             $company_table = "CREATE TABLE IF NOT EXISTS company (
-                      user_id INT AUTO_INCREMENT PRIMARY KEY,
-                      companyname VARCHAR(100),
-                      email VARCHAR(100) NOT NULL UNIQUE,
-                      phonenumber VARCHAR(15),
-                      password VARCHAR(255) NOT NULL,
-                      FOREIGN KEY (user_id) REFERENCES users(user_id)
+                        user_id INT PRIMARY KEY,
+                        companyname VARCHAR(100),
+                        email VARCHAR(100) NOT NULL UNIQUE,
+                        contactNo VARCHAR(15),
+                        password VARCHAR(255) NOT NULL,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
                    )";
             $this->query($company_table);
           
-            $counselor_table = "CREATE TABLE IF NOT EXISTS career_counselors( 
-                        user_id INT AUTO_INCREMENT PRIMARY KEY,
-                        first_name VARCHAR(100) NOT NULL,
-                        last_name VARCHAR(100) NOT NULL,
-                        phone VARCHAR(15) NOT NULL, 
-                        nic VARCHAR(20) NOT NULL UNIQUE,
-                        nic_path VARCHAR(1000) NOT NULL UNIQUE,
+            $counselor_table = "CREATE TABLE IF NOT EXISTS counselor( 
+                        user_id INT PRIMARY KEY,
+                        firstName VARCHAR(100) NOT NULL,
+                        lastName VARCHAR(100) NOT NULL,
+                        contactNo VARCHAR(10) NOT NULL, 
+                        counselor_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                         certificate_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
             $this->query($counselor_table);
 
             $validator_table = "CREATE TABLE IF NOT EXISTS validator(
-                        user_id INT AUTO_INCREMENT PRIMARY KEY,
+                        user_id INT PRIMARY KEY,
                         firstName VARCHAR(100) NOT NULL,
                         lastName VARCHAR(100) NOT NULL,
-                        phoneNo VARCHAR(10) NOT NULL , 
+                        contactNo VARCHAR(10) NOT NULL , 
                         nic_no INT NOT NULL UNIQUE,
-                        nic_path VARCHAR(1000),
+                        nic_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
             $this->query($validator_table);
@@ -57,10 +87,10 @@
                         user_id INT PRIMARY KEY,
                         firstName VARCHAR(100)NOT NULL,
                         lastName VARCHAR(100)NOT NULL,
-                        nic_No INT NOT NULL UNIQUE,
                         DOB DATETIME NOT NULL ,
                         address VARCHAR(100)NOT NULL,
                         contactNo VARCHAR(10)NOT NULL,
+                        candidate_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
             
@@ -86,6 +116,7 @@
             $data = array_merge($data,$data_not);
             return $this->query($query,$data);
         }
+        /*
         public function first($data,$data_not = []){
             $keys = array_keys($data);
             $keys_not = array_keys($data_not);
@@ -104,6 +135,26 @@
                 return $result[0];
             }
             return false;
+        }*/
+        //this is the new first function prevents incorrect SQL syntax when params are empty
+        public function first($data = [], $data_not = []) {
+            $query = "SELECT * FROM $this->table";
+            $params = [];
+            $conditions = [];
+            foreach ($data as $key => $value) {
+                $conditions[] = "$key = ?";
+                $params[] = $value;
+            }
+            foreach ($data_not as $key => $value) {
+                $conditions[] = "$key != ?";
+                $params[] = $value;
+            }
+            if (!empty($conditions)) {
+                $query .= " WHERE " . implode(" AND ", $conditions);
+            }
+            $query .= " LIMIT $this->limit OFFSET $this->offset";
+            $result = $this->query($query, $params);
+            return $result ? $result[0] : false;
         }
         public function insert($data){
             if(!empty($this->allowedColumns)){//remove unwanted data

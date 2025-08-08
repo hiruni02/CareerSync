@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?=ROOT?>assets/css/navbar.css">
 <nav class="navbar">
     <div class="navbar-left">
-        <div class="nav_name">CareerSync</div>
+        <div class="logo">CareerSync</div>
             <ul class="navbar_links">
                 <li><a href="home"><button class="navbtn" >Home</button></a></li>
                 <li><a href="about"><button class="navbtn">About</button></a></li>

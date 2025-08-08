@@ -23,7 +23,7 @@
     <body>
         <div class="page-wrapper">
             <?php
-            include("navbar.php");
+            include("components/navbar.php");
             ?>
             <div class='page-content'>
                 <section class="intro">
@@ -50,11 +50,11 @@
                     </div>
                 </section>
                 <?php
-                include("jobFilter.php");
+                include("components/jobFilter.php");
                 ?>
             </div>
             <?php
-            include("footer.php");
+            include("components/footer.php");
             ?>
         </div>
     </body>
