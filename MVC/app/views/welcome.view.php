@@ -31,7 +31,6 @@
             <form action="register" method="GET">
                 <select name="role" id="role">
                     <option value="" disabled selected hidden>Your role</option>
-                    <option value="admin">Admin</option>
                     <option value="candidate">Candidate</option>
                     <option value="validator">Validation Team Member</option>
                     <option value="company">Company</option>

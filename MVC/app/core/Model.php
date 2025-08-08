@@ -20,18 +20,49 @@
                     )";
             $this->query($user_table);
           
+
+            $company_table = "CREATE TABLE IF NOT EXISTS admin (
+                        user_id INT PRIMARY KEY,
+                        firstName VARCHAR(100) NOT NULL,
+                        lastName VARCHAR(100) NOT NULL,
+                        contactNo VARCHAR(10) NOT NULL,
+                        email VARCHAR(100) NOT NULL UNIQUE,
+                        password VARCHAR(255) NOT NULL,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
+                   )";
+            $this->query($company_table);
+
+
+            $admin_email = 'admin@gmail.com';
+            $admin_password = 'root'; // need to hash this for futher protection
+
+            $check_admin = "SELECT * FROM users WHERE email = ?";
+            $does_admin_exist = $this->query($check_admin, [$admin_email]);
+
+            if(!$does_admin_exist){//if admin doesnt exist then add the admin row
+                $insert_user = "INSERT INTO users (email, password, role, status) VALUES (?, ?, 'admin', 'active')";
+                $this->query($insert_user, [$admin_email, $admin_password]);
+
+                $user_id = 1;
+
+                $insert_admin = "INSERT INTO admin (user_id, firstName, lastName, contactNo, email, password) 
+                                VALUES (?, 'root', 'root', '0712345678', ?, ?)";
+                $this->query($insert_admin, [$user_id, $admin_email, $admin_password]);
+            }
+
+
             $company_table = "CREATE TABLE IF NOT EXISTS company (
-                      user_id INT AUTO_INCREMENT PRIMARY KEY,
-                      companyname VARCHAR(100),
-                      email VARCHAR(100) NOT NULL UNIQUE,
-                      contactNo VARCHAR(15),
-                      password VARCHAR(255) NOT NULL,
-                      FOREIGN KEY (user_id) REFERENCES users(user_id)
+                        user_id INT PRIMARY KEY,
+                        companyname VARCHAR(100),
+                        email VARCHAR(100) NOT NULL UNIQUE,
+                        contactNo VARCHAR(15),
+                        password VARCHAR(255) NOT NULL,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
                    )";
             $this->query($company_table);
           
             $counselor_table = "CREATE TABLE IF NOT EXISTS counselor( 
-                        user_id INT AUTO_INCREMENT PRIMARY KEY,
+                        user_id INT PRIMARY KEY,
                         firstName VARCHAR(100) NOT NULL,
                         lastName VARCHAR(100) NOT NULL,
                         contactNo VARCHAR(10) NOT NULL, 
@@ -42,7 +73,7 @@
             $this->query($counselor_table);
 
             $validator_table = "CREATE TABLE IF NOT EXISTS validator(
-                        user_id INT AUTO_INCREMENT PRIMARY KEY,
+                        user_id INT PRIMARY KEY,
                         firstName VARCHAR(100) NOT NULL,
                         lastName VARCHAR(100) NOT NULL,
                         contactNo VARCHAR(10) NOT NULL , 
