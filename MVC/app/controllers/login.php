@@ -40,6 +40,8 @@
 
                         if ($extra && isset($extra->firstName)) {
                             $_SESSION['USER']->firstName = $extra->firstName;
+                            $_SESSION['user_id'] = $row->user_id;
+                            $_SESSION['role'] = $row->role;
                         }
                         redirect('home');
                         exit;
@@ -50,7 +52,6 @@
                 }
                 else{
                     $user->errors['email'] = "Email doesnt exist";
-                    //echo $user->errors['email'];
                 }
                 //Send errors to the view
                 $data['errors'] = $user->errors;

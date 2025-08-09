@@ -6,15 +6,15 @@
   margin: 0 auto;
 }
 .scrollBox{
-    background: #d5f6ff;
-    padding: 40px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
-    text-align: center;
-    width: 100%;
-    max-height: 70vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    border-radius: 10px;
+  background: #d5f6ff;
+  padding: 40px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+  text-align: center;
+  width: 100%;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 10px;
 }
 .jobContainer {
   flex: 1;
@@ -22,6 +22,7 @@
   border-radius: 10px;
   overflow: hidden;
   min-width: 40vw;
+  border: 5px solid #662a86;
 }
 .jobContainer h3 {
   padding: 25px; 
@@ -62,6 +63,7 @@
   min-height: 400px;
   min-width: 20vw;
   max-width: 20vw;
+  border: 5px solid #662a86;
 }
 .filtersContainer label {
   font-size: 18px;
