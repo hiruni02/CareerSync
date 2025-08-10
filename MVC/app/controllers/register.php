@@ -65,30 +65,69 @@ class register{
                     break;
                     
                     case 'company':
-                        $company = new company;
+                        $company = new Company;
 
+                        // Check if company email already exists
                         $company_existing = $company->first(['email' => $_POST['email']]);
                         if ($company_existing) {
                             $user->errors['email'] = "Company email already exists";
-                        }
-                        else {
-                            // Insert into users table first
-                            $user->insert($userTableData);
-                            $newUser = $user->first(['email' => $_POST['email']]);
+                        } else {
+                            // Handle business registration certificate upload
+                            if (isset($_FILES['business_certificate']) && $_FILES['business_certificate']['error'] === UPLOAD_ERR_OK) {
+                                $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/certificates/';
+                                $filename = time() . '_' . basename($_FILES['business_certificate']['name']); // unique file name
+                                $target_file = $upload_path . $filename;
 
-                            // Prepare company table data
-                            $companyData = [
-                                'user_id'      => $newUser->user_id,
-                                'companyname'  => $_POST['companyname'],
-                                'email'        => $_POST['email'],
-                                'contactNo'    => $_POST['contactNo'],
-                            ];
-                            $company->insert($companyData);
+                                // Create directory if not exists
+                                if (!is_dir($upload_path)) {
+                                    mkdir($upload_path, 0777, true);
+                                }
 
-                            redirect('login');
-                            exit;
+                                // Validate file extension
+                                $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
+                                $fileExt = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+                                if (in_array($fileExt, $allowedExtensions)) {
+                                    if (move_uploaded_file($_FILES['business_certificate']['tmp_name'], $target_file)) {
+                                        // Store relative path in DB for later use
+                                        $certificatePath = 'assets/uploads/certificates/' . $filename;
+                                    } else {
+                                        $user->errors['business_certificate'] = "Error uploading the business registration certificate.";
+                                    }
+                                } else {
+                                    $user->errors['business_certificate'] = "Invalid file type. Allowed types: PDF, JPG, JPEG, PNG.";
+                                }
+                            } else {
+                                $user->errors['business_certificate'] = "Please upload a business registration certificate.";
+                            }
+
+                            // Proceed only if there are no errors
+                            if (empty($user->errors)) {
+                                // Insert into users table first
+                                $user->insert($userTableData);
+                                $newUser = $user->first(['email' => $_POST['email']]);
+
+                                // Prepare company table data
+                                $companyData = [
+                                    'user_id'              => $newUser->user_id,
+                                    'companyname'          => $_POST['companyname'],
+                                    'email'                => $_POST['email'],
+                                    'contactNo'            => $_POST['contactNo'],
+                                    'hr_name'              => $_POST['hr_name'],
+                                    'hr_email'             => $_POST['hr_email'],
+                                    'hr_contact'           => $_POST['hr_contact'],
+                                    'business_certificate' => $certificatePath,
+                                    'password'             => $_POST['password']  // stored as-is, no hashing
+                                ];
+
+                                $company->insert($companyData);
+
+                                redirect('login');
+                                exit;
+                            }
                         }
-                    break;
+                        break;
+
 
                     /*
                     case 'conunselor':
