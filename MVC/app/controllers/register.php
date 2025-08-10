@@ -48,7 +48,7 @@
                                         'user_id'   => $newUser->user_id,
                                         'firstName' => $_POST['firstName'],
                                         'lastName'  => $_POST['lastName'],
-                                        'contactNo'   => $_POST['contactNo'],
+                                        'contactNo' => $_POST['contactNo'],
                                         'nic_no'    => $_POST['nic_no'],
                                         'nic_path'  => $target_file,
                                     ];
