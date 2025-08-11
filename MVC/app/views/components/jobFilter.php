@@ -9,7 +9,7 @@
         <div class="filterTypeBox ">
             <label>Sort by:</label><br>
             <ul class="radioList">
-                <li><label><input type="radio" name="filter"> No filter</label></li>
+                <li><label><input type="radio" name="filter" checked> No filter</label></li>
                 <li><label><input type="radio" name="filter"> Ascending order</label></li>
                 <li><label><input type="radio" name="filter"> Descending order</label></li>
                 <li><label><input type="radio" name="filter"> Highest Salary</label></li>

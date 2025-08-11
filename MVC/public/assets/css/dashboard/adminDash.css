@@ -1,0 +1,49 @@
+.dashboard_tag{
+    padding-bottom: 30px;
+    font-family: "logo-font";
+    font-size: 45px;
+}
+.counting_boxes{
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(186, 112, 255, 0.575);
+    border-radius: 15px;
+    align-items: justify;
+    display: flex;
+    padding: 20px;
+}
+.box_segment{
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(211, 231, 255);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+}
+.box_segment h1{
+    color: rgb(59, 8, 59);
+}
+.content_section{
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(186, 112, 255, 0.575);
+    border-radius: 15px;
+    align-items: justify;
+    display: flex;
+    padding: 20px;
+    margin-top: 20px;
+}
+.content_section section{
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(211, 231, 255);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+}
