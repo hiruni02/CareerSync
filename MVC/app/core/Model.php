@@ -95,7 +95,21 @@
                     )";
             
             $this->query($candidate_table);
+
+            $user_table = "CREATE TABLE IF NOT EXISTS jobs (
+                        job_id INT AUTO_INCREMENT PRIMARY KEY,
+                        company_id INT NOT NULL,
+                        title VARCHAR(100)NOT NULL,
+                        description VARCHAR(100)NOT NULL,
+                        type ENUM('internship','fulltime'),
+                        salary INT NOT NULL,
+                        status ENUM('open','closed') DEFAULT 'open',
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (company_id) REFERENCES users(user_id)
+                    )";
+            $this->query($user_table);
         }
+
         public function SelectAll(){
             $query ="SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
             $result = $this->query($query);

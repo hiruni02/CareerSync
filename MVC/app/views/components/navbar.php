@@ -6,6 +6,13 @@
                 <li><a href="home"><button class="navbtn" >Home</button></a></li>
                 <li><a href="about"><button class="navbtn">About</button></a></li>
                 <li><a href="contact"><button class="navbtn">Contact</button></a></li>
+                <?php
+                    if($username!='User'){
+                ?>
+                        <li><a href="dashboard"><button class="navbtn" style="padding: 0px;">Dashboard</button></a></li>
+                <?php
+                    }
+                ?>
             </ul>
         </div>
     <ul class="navbar_right">
