@@ -2,7 +2,7 @@
 <h1 class="dashboard_tag">Dash Board</h1>
 <div class="counting_boxes">
     <div class="box_segment">
-        Total Users: <br>
+        Total Users:<br>
         <h1>170</h1>
     </div>
     <div class="box_segment">
@@ -24,6 +24,17 @@
 </div>
 <div class="content_section">
     <section>
-        tables for system alerts, pending requests, etc go here
+        <table border="2px">
+            <tr>
+                <th>Request Type</th>
+                <th>User</th>
+                <th>email</th>
+            </tr>
+            <tr>
+                <td>pending</td>
+                <td>Anuk</td>
+                <td>anuk@gmail.com</td>
+            </tr>
+        </table>
     </section>
 </div>

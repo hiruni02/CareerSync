@@ -11,10 +11,10 @@
     align-items: justify;
     display: flex;
     padding: 20px;
+    flex-wrap: wrap;
 }
 .box_segment{
-    width: fit-content;
-    height: fit-content;
+    max-width: 300px;
     background-color: rgb(211, 231, 255);
     border-radius: 15px;
     padding: 20px;
@@ -22,12 +22,15 @@
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 25px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
 }
 .box_segment h1{
     color: rgb(59, 8, 59);
 }
 .content_section{
-    width: fit-content;
+    width: 100%;
     height: fit-content;
     background-color: rgba(186, 112, 255, 0.575);
     border-radius: 15px;
@@ -35,9 +38,12 @@
     display: flex;
     padding: 20px;
     margin-top: 20px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
 }
 .content_section section{
-    width: fit-content;
+    width: 100%;
     height: fit-content;
     background-color: rgb(211, 231, 255);
     border-radius: 15px;
@@ -46,4 +52,5 @@
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 25px;
+    display: flex;
 }
