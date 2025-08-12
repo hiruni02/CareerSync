@@ -1,7 +1,7 @@
 <?php
 class Counselor {
     use Model;
-    protected $table = 'career_counselors';
+    protected $table = 'counselor';
     protected $allowedColumns = [
         'user_id',
         'firstName',

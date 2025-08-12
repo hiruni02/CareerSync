@@ -61,14 +61,44 @@
                                 }
                             }
                         break;
-                        /*
-                        case 'company':
-                        break;
+                        
+                        case 'counselor':
+                            $counselor = new Counselor;
 
-                        case 'conunselor':
-                        break;
+                                $photo_upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/counselor_photos/';
+                                $certificate_upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/counselor_certificates/';
 
-                        case 'candidate':
+                                // Create unique file names
+                                $photo_filename = time() . '_' . basename($_FILES['counselor_photo_path']['name']);
+                                $certificate_filename = time() . '_' . basename($_FILES['certificate']['name']);
+                                $photo_target = $photo_upload_path . $photo_filename;
+                                $certificate_target = $certificate_upload_path . $certificate_filename;
+
+        
+                                if(move_uploaded_file($_FILES['counselor_photo_path']['tmp_name'], $photo_target) &&
+                                   move_uploaded_file($_FILES['certificate']['tmp_name'], $certificate_target)) {
+                                   $user->insert($userTableData);
+                                   $newUser = $user->first(['email' => $_POST['email']]);
+
+                                    // Insert into career_counselors table
+                                    $counselorData = [
+                                        'user_id'         => $newUser->user_id,
+                                        'firstName'      => $_POST['firstName'],
+                                        'lastName'       => $_POST['lastName'],
+                                        'contactNo'            => $_POST['contactNo'],
+                                        'counselor_photo_path' => $photo_target,
+                                        'certificate_path'     => $certificate_target,
+                                    ];
+                                    $counselor->insert($counselorData);
+
+                                    redirect('login');
+                                    exit;
+                                } else {
+                                    $user->errors['file_upload'] = "Failed to upload proof or certificate file";
+                                }
+                            
+                        break;
+                        /*case 'candidate':
                         break;*/
                     }
                 }
