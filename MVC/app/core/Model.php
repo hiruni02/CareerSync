@@ -77,8 +77,7 @@
                         firstName VARCHAR(100) NOT NULL,
                         lastName VARCHAR(100) NOT NULL,
                         contactNo VARCHAR(10) NOT NULL , 
-                        nic_no INT NOT NULL UNIQUE,
-                        nic_path VARCHAR(1000) NOT NULL UNIQUE,
+                        validator_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
             $this->query($validator_table);

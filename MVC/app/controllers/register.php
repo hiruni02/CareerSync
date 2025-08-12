@@ -30,35 +30,28 @@
                         case 'validator':
                             $validator = new Validator;
 
-                            $nic_existing = $validator->first(['nic_no' => $_POST['nic_no']]);
-                            if ($nic_existing) {
-                                $user->errors['nic_no'] = "NIC number already exists";
-                            }
-                            else{
-                                $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/validator_ids/';
-                                $filename = time() . '_' . basename($_FILES['nic_path']['name']);//makes each upload file name unique
-                                $target_file = $upload_path . $filename;
+                            $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/validator_photos/';
+                            $filename = time() . '_' . basename($_FILES['validator_photo_path']['name']);//makes each upload file name unique
+                            $photo_target = $upload_path . $filename;
 
-                                if (move_uploaded_file($_FILES['nic_path']['tmp_name'], $target_file)) {
-                                    $user->insert($userTableData);
-                                    $newUser = $user->first(['email' => $_POST['email']]);
+                            if (move_uploaded_file($_FILES['validator_photo_path']['tmp_name'], $photo_target)) {
+                                $user->insert($userTableData);
+                                $newUser = $user->first(['email' => $_POST['email']]);
 
-                                    // Insert into validator table
-                                    $validatorData = [
-                                        'user_id'   => $newUser->user_id,
-                                        'firstName' => $_POST['firstName'],
-                                        'lastName'  => $_POST['lastName'],
-                                        'contactNo' => $_POST['contactNo'],
-                                        'nic_no'    => $_POST['nic_no'],
-                                        'nic_path'  => $target_file,
-                                    ];
-                                    $validator->insert($validatorData);
+                                // Insert into validator table
+                                $validatorData = [
+                                    'user_id'   => $newUser->user_id,
+                                    'firstName' => $_POST['firstName'],
+                                    'lastName'  => $_POST['lastName'],
+                                    'contactNo' => $_POST['contactNo'],
+                                    'validator_photo_path'  => $photo_target,
+                                ];
+                                $validator->insert($validatorData);
 
-                                    redirect('login');
-                                    exit;
-                                } else {
-                                    $user->errors['nic_path'] = "Failed to upload NIC photo";
-                                }
+                                redirect('login');
+                                exit;
+                            } else {
+                                $user->errors['validator_photo_path'] = "Failed to upload profile picture";
                             }
                         break;
                         
@@ -82,12 +75,12 @@
 
                                     // Insert into career_counselors table
                                     $counselorData = [
-                                        'user_id'         => $newUser->user_id,
-                                        'firstName'      => $_POST['firstName'],
-                                        'lastName'       => $_POST['lastName'],
-                                        'contactNo'            => $_POST['contactNo'],
-                                        'counselor_photo_path' => $photo_target,
-                                        'certificate_path'     => $certificate_target,
+                                        'user_id'               => $newUser->user_id,
+                                        'firstName'             => $_POST['firstName'],
+                                        'lastName'              => $_POST['lastName'],
+                                        'contactNo'             => $_POST['contactNo'],
+                                        'counselor_photo_path'  => $photo_target,
+                                        'certificate_path'      => $certificate_target,
                                     ];
                                     $counselor->insert($counselorData);
 

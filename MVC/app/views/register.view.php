@@ -56,11 +56,10 @@ $role = $_GET['role'];
                                     required
                                     value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
                                     style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
-
-                                    <?php if (!empty($errors['email'])): ?>
-                                        <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                                    <?php endif; ?>
                             </div>
+                            <?php if (!empty($errors['email'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                            <?php endif; ?>
 
                             <div class="input-field">
                                 <label for="dob">Enter Date of Birth</label>
@@ -90,11 +89,10 @@ $role = $_GET['role'];
                                     required
                                     accept=".pdf, .jpg, .jpeg, .png"
                                     style="<?= !empty($errors['candidate_photo_path']) ? 'border: 2px solid red;':'' ?>">
-
-                                    <?php if (!empty($errors['candidate_photo_path'])): ?>
-                                        <div style="color:red;" class="error"><?= $errors['candidate_photo_path'] ?></div>
-                                    <?php endif; ?>
                             </div>
+                            <?php if (!empty($errors['candidate_photo_path'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['candidate_photo_path'] ?></div>
+                            <?php endif; ?>
 
                             <div class="input-field">
                                 <label for="contactNo">Enter Contact Number</label>
@@ -124,11 +122,11 @@ $role = $_GET['role'];
                                     name="confirm_password" 
                                     required
                                     style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
+                            </div> 
+                            <?php if (!empty($errors['confirm_password'])): ?>
+                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                            <?php endif; ?>    
 
-                                    <?php if (!empty($errors['confirm_password'])): ?>
-                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
-                                    <?php endif; ?>
-                            </div>                         
                             <button type="submit">Register</button>
                         </form>
                     <?php
@@ -167,11 +165,10 @@ $role = $_GET['role'];
                                     required
                                     value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
                                     style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
-
-                                    <?php if (!empty($errors['email'])): ?>
-                                        <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                                    <?php endif; ?>
                             </div>
+                            <?php if (!empty($errors['email'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                            <?php endif; ?>
 
                             <div class="input-field">
                                 <label for="contactNo">Enter Contact Number</label>
@@ -185,34 +182,18 @@ $role = $_GET['role'];
                             </div>
 
                             <div class="input-field">
-                                <label for="nic_no">Enter NIC Number</label>
-                                <input 
-                                    type="text"
-                                    placeholder="NIC Number" 
-                                    name="nic_no" 
-                                    required
-                                    value="<?= isset($_POST['nic_no']) ? htmlspecialchars($_POST['nic_no']) : '' ?>"
-                                    style="<?= !empty($errors['nic_no']) ? 'border: 2px solid red;':'' ?>">
-
-                                    <?php if (!empty($errors['nic_no'])): ?>
-                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['nic_no'] ?></div>
-                                    <?php endif; ?>
-                            </div>
-
-                            <div class="input-field">
-                            <label for="nic_path" >Insert a photo of your National ID Card</label>
+                            <label for="validator_photo_path" >Insert a photo of yourself</label>
                                 <input 
                                     type="file"
                                     placeholder="Insert a photo of your National ID Card" 
-                                    name="nic_path" 
+                                    name="validator_photo_path" 
                                     required
                                     accept=".pdf, .jpg, .jpeg, .png"
-                                    style="<?= !empty($errors['nic_path']) ? 'border: 2px solid red;':'' ?>">
-
-                                    <?php if (!empty($errors['nic_path'])): ?>
-                                        <div style="color:red;" class="error"><?= $errors['nic_path'] ?></div>
-                                    <?php endif; ?>
+                                    style="<?= !empty($errors['validator_photo_path']) ? 'border: 2px solid red;':'' ?>">
                             </div>
+                            <?php if (!empty($errors['validator_photo_path'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['validator_photo_path'] ?></div>
+                            <?php endif; ?>
 
                             <div class="input-field">
                                 <label for="password" >Enter Password</label>
@@ -231,10 +212,11 @@ $role = $_GET['role'];
                                     name="confirm_password" 
                                     required
                                     style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
-                                    <?php if (!empty($errors['confirm_password'])): ?>
-                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
-                                    <?php endif; ?>
                             </div>
+                            <?php if (!empty($errors['confirm_password'])): ?>
+                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                            <?php endif; ?>
+
                             <button type="submit">Register</button>
                         </form>
                     <?php
@@ -324,11 +306,10 @@ $role = $_GET['role'];
                                     required
                                     value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
                                     style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
-
-                                    <?php if (!empty($errors['email'])): ?>
-                                        <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                                    <?php endif; ?>
                             </div>
+                            <?php if (!empty($errors['email'])): ?>
+                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                            <?php endif; ?>
 
                             <div class="input-field">
                                 <label for="contactNo">Enter Contact Number</label>
@@ -349,11 +330,10 @@ $role = $_GET['role'];
                                     required 
                                     accept=".pdf, .jpg, .jpeg, .png"
                                     style="<?= !empty($errors['counselor_photo_path']) ? 'border: 2px solid red;' : '' ?>">
-
-                                    <?php if (!empty($errors['counselor_photo_path'])): ?>
-                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['counselor_photo_path'] ?></div>
-                                    <?php endif; ?>
                             </div>
+                            <?php if (!empty($errors['counselor_photo_path'])): ?>
+                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['counselor_photo_path'] ?></div>
+                            <?php endif; ?>
 
                             <div class="input-field">
                                 <label for="certificate">Upload your Certificate</label>
@@ -364,11 +344,10 @@ $role = $_GET['role'];
                                     required 
                                     accept=".pdf, .jpg, .jpeg, .png"
                                     style="<?= !empty($errors['certificate']) ? 'border: 2px solid red;' : '' ?>">
-
-                                    <?php if (!empty($errors['certificate'])): ?>
-                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['certificate'] ?></div>
-                                    <?php endif; ?>
                             </div>
+                            <?php if (!empty($errors['certificate'])): ?>
+                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['certificate'] ?></div>
+                            <?php endif; ?>
 
                             <div class="input-field">
                                 <label for="password" >Enter Password</label>
@@ -387,10 +366,10 @@ $role = $_GET['role'];
                                     name="confirm_password" 
                                     required
                                     style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
-                                    <?php if (!empty($errors['confirm_password'])): ?>
-                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
-                                    <?php endif; ?>
                             </div>
+                            <?php if (!empty($errors['confirm_password'])): ?>
+                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                            <?php endif; ?>
 
                             <button type="submit">Register</button>
                         </form>
