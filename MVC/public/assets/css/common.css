@@ -3,37 +3,54 @@
   src: url("../fonts/logo-font.ttf");
   font-weight: 600;
 }
+
 @font-face {
   font-family: "BebasNeue";
   src: url("../fonts/BebasNeue-Regular.ttf");
 }
+
 @font-face {
   font-family: "Audiowide";
   src: url("../fonts/Audiowide-Regular.ttf");
 }
-html, body {
+
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 .page-content {
-  flex: 1; /* Pushes footer to the bottom if content is short */
+  flex: 1;
+  /* Pushes footer to the bottom if content is short */
   padding: 40px;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+
+body {
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
+  background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%); 
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+@media (max-width: 600px) {
+  body {
+    background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
 }
