@@ -58,3 +58,11 @@ footer {
     color: #f4b0fc;
     margin-bottom: 10px;
 }
+@media (max-width: 600px) {
+    footer{
+        border-radius: 0px;
+    }
+    #nav_links{
+        display: none;
+    }
+}

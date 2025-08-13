@@ -35,9 +35,10 @@
   color: #444;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .about-section h1 {
     font-size: 28px;
+    text-align: justify;
   }
 
   .about-section p, .about-section ul li {
