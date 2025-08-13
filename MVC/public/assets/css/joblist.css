@@ -34,7 +34,7 @@
 .listItem{
     display: flex;
     border-radius: 15px;
-    height: 150px;
+    height: fit-content;
     transition: 0.2s ease;
     padding-top: 10px;
     margin-bottom: 20px;
@@ -97,4 +97,46 @@
 }
 .filterTypeBox ul li{
   list-style-type: none;
+}
+
+@media (max-width: 600px) {
+  .job-section {
+    flex-direction: column; /* stack filters and job list */
+    padding: 10px;
+    max-width: none;
+    margin-left: -40px;
+    margin-right: -40px;
+  }
+
+  .filtersContainer {
+    flex: 1 1 auto;
+    max-width: 100%;
+    min-width: auto;
+    margin-bottom: 15px;
+  }
+
+  .jobContainer {
+    min-width: auto;
+    max-width: 100%;
+  }
+
+  .scrollBox {
+    background: #d5f6ff88;
+    padding: 40px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+    text-align: center;
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 10px;
+  }
+
+  .job-title {
+    font-size: 16px;
+  }
+
+  .job-description {
+    font-size: 12px;
+  }
 }
