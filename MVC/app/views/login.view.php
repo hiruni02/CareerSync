@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
         <link rel="stylesheet" href="<?=ROOT?>assets/css/forms.css">
         <title>Login</title>
@@ -9,7 +10,7 @@
         include("components/navbar.php");
         ?>
         <div class='page-content'>
-            <div class="container" style="width: 25vw;">
+            <div class="login-container">
                 <h1>Login</h1>
                 <form method="POST">
                     <div class="input-field">

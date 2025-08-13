@@ -56,3 +56,55 @@
   background: linear-gradient(to right,#5a197e,#1e1f4b);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
 }
+
+/* Mobile optimization */
+@media (max-width: 600px) {
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+  }
+  .navbar-left,
+  .navbar_links,
+  .navbar_right {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .navbtn {
+    width: auto;
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+
+  /* Page content */
+  .page-content {
+    padding: 20px 10px;
+    text-align: center;
+  }
+
+  /* Filter + Job list */
+  .filters-container, 
+  .job-list-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .filters-and-jobs {
+    flex-direction: column; /* stack filter above jobs */
+    gap: 20px;
+  }
+
+  /* Fonts and elements */
+  h1, h2, h3 {
+    font-size: 1.2em;
+  }
+  p {
+    font-size: 0.9em;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 15px;
+  }
+}

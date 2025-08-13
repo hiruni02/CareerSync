@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
     <link rel="stylesheet" href="<?=ROOT?>assets/css/forms.css">
     <title>Welcome to CareerSync</title>
@@ -25,7 +26,7 @@
     include("components/navbar.php");
     ?>
     <div class='page-content'>
-        <div class="container" style="width: 25vw;">
+        <div class="role-container">
             <h1>Welcome to CareerSync</h1>
             <h3>please choose your role</h3>
             <form action="register" method="GET">
