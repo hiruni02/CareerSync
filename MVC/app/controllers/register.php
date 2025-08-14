@@ -104,14 +104,13 @@
                                     'companyName'          => $_POST['companyName'],
                                     'email'                => $_POST['email'],
                                     'contactNo'            => $_POST['contactNo'],
-                                    'hr_name'              => $_POST['hr_name'],
+                                    'hr_firstName'         => $_POST['hr_firstName'],
+                                    'hr_lastName'         => $_POST['hr_lastName'],
                                     'hr_email'             => $_POST['hr_email'],
                                     'hr_contact'           => $_POST['hr_contact'],
                                     'business_certificate' => $certificatePath,
                                     'password'             => $_POST['password']  // stored as-is, no hashing
                                 ];
-                                $insertResult = $company->insert($companyData);
-
                                 $company->insert($companyData);
 
                                 redirect('login');

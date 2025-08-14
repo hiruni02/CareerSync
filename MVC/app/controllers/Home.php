@@ -3,7 +3,7 @@
         use Controller;
         public function index(){
             //if not logged in the $username variable is deafulted to 'User'
-            $data['username'] = empty($_SESSION['USER']) ? 'User' :$_SESSION['USER']->companyname;
+            $data['username'] = empty($_SESSION['USER']) ? 'User' :$_SESSION['USER']->firstName;
 
             $user = new User;
             $user->CreateTables();

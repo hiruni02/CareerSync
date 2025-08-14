@@ -5,12 +5,13 @@ class Company {
     protected $allowedColumns = [
         'user_id',
         'companyName',
-        'email',                // matches company email input
+        'email',                
         'contactNo',
-        'hr_name',
+        'hr_firstName',
+        'hr_lastName',
         'hr_email',
-        'hr_contact',
-        'business_certificate', // file name/path for uploaded certificate
-        'password',             // hashed password
+        'hr_contactNo',
+        'business_certificate', 
+        'password',  
     ];
 }

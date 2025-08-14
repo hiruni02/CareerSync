@@ -238,7 +238,7 @@ $role = $_GET['role'];
                             </div>
 
                             <div class="input-field">
-                                    <label for="email">Enter Company Email Address</label>
+                                    <label for="email">Enter Company Email</label>
                                 <input 
                                     type="email" 
                                     placeholder="Company email" 
@@ -264,13 +264,23 @@ $role = $_GET['role'];
                             </div>
                             
                             <div class="input-field">
-                                <label for="hr_name">HR Manager Name</label>
+                                <label for="hr_firstName">HR Manager First Name</label>
                                 <input 
                                     type="text" 
-                                    placeholder="Full name of HR Manager" 
-                                    name="hr_name" 
+                                    placeholder="First name of HR Manager" 
+                                    name="hr_firstName" 
                                     required
-                                    value="<?= isset($_POST['hr_name']) ? htmlspecialchars($_POST['hr_name']) : '' ?>">
+                                    value="<?= isset($_POST['hr_firstName']) ? htmlspecialchars($_POST['hr_firstName']) : '' ?>">
+                            </div>
+
+                            <div class="input-field">
+                                <label for="hr_lastName">HR Manager Last Name</label>
+                                <input 
+                                    type="text" 
+                                    placeholder="Last name of HR Manager" 
+                                    name="hr_lastName" 
+                                    required
+                                    value="<?= isset($_POST['hr_lastName']) ? htmlspecialchars($_POST['hr_lastName']) : '' ?>">
                             </div>
 
                             <div class="input-field">
