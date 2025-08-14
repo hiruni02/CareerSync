@@ -158,42 +158,38 @@ class register
 
                         break;
 
-                        case 'candidate':
-                            $candidate = new Candidate;
-                            $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/candidate_photos/';
-                            $filename = time() . '_' . basename($_FILES['candidate_photo_path']['name']); 
-                            $photo_target = $upload_path . $filename;
+                    case 'candidate':
+                        $candidate = new Candidate;
+                        $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/candidate_photos/';
+                        $filename = time() . '_' . basename($_FILES['candidate_photo_path']['name']);
+                        $photo_target = $upload_path . $filename;
 
-                            if (move_uploaded_file($_FILES['candidate_photo_path']['tmp_name'], $photo_target)) {
+                        if (move_uploaded_file($_FILES['candidate_photo_path']['tmp_name'], $photo_target)) {
 
-                                $user->insert($userTableData);
-                                $newUser = $user->first(['email' => $_POST['email']]);
+                            $user->insert($userTableData);
+                            $newUser = $user->first(['email' => $_POST['email']]);
 
-                                $candidateData = [
-                                    'user_id'              => $newUser->user_id,
-                                    'firstName'            => $_POST['firstName'],
-                                    'lastName'             => $_POST['lastName'],
-                                    'DOB'                  => $_POST['dob'],
-                                    'address'              => $_POST['address'],
-                                    'contactNo'            => $_POST['contactNo'],
-                                    'candidate_photo_path' => $photo_target,
+                            $candidateData = [
+                                'user_id'              => $newUser->user_id,
+                                'firstName'            => $_POST['firstName'],
+                                'lastName'             => $_POST['lastName'],
+                                'DOB'                  => $_POST['dob'],
+                                'address'              => $_POST['address'],
+                                'contactNo'            => $_POST['contactNo'],
+                                'candidate_photo_path' => $photo_target,
                             ];
 
                             $candidate->insert($candidateData);
 
                             redirect('login');
                             exit;
-                            } else {
-                                $user->errors['candidate_photo_path'] = "Failed to upload profile picture";
+                        } else {
+                            $user->errors['candidate_photo_path'] = "Failed to upload profile picture";
                         }
 
                         break;
-                    }
-
                 }
             }
-
-
             // Send errors to the view
             $data['errors'] = $user->errors;
         }
