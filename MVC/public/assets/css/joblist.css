@@ -5,7 +5,8 @@
   max-width: 70vw;
   margin: 0 auto;
 }
-.scrollBox{
+
+.scrollBox {
   background: #d5f6ff88;
   padding: 40px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
@@ -16,6 +17,7 @@
   overflow-x: hidden;
   border-radius: 10px;
 }
+
 .jobContainer {
   flex: 1;
   background: #d5f6ff88;
@@ -24,48 +26,56 @@
   min-width: 40vw;
   border: 5px solid #662a86b7;
 }
+
 .jobContainer h3 {
-  padding: 25px; 
-  font-family: 'Audiowide'; 
-  text-align: center; 
-  font-size: 35px; 
+  padding: 25px;
+  font-family: 'Audiowide';
+  text-align: center;
+  font-size: 35px;
   color: #1e1f4b;
 }
-.listItem{
-    display: flex;
-    border-radius: 15px;
-    height: 150px;
-    transition: 0.2s ease;
-    padding-top: 10px;
-    margin-bottom: 20px;
-    background: rgba(236, 221, 255, 0.322);
-    border-radius: 20px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
+
+.listItem {
+  display: flex;
+  border-radius: 15px;
+  height: fit-content;
+  transition: 0.2s ease;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  background: rgba(236, 221, 255, 0.322);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }
-.job-content{
+
+.job-content {
   padding: 10px;
 }
-.job-title{
+
+.job-title {
   font-size: 20px;
   font-weight: bold;
   padding-bottom: 20px;
   text-align: justify;
 }
-.job-description{
+
+.job-description {
   font-size: 14px;
   text-align: justify;
 }
-.listItem:hover{
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
-    z-index: 2;    
+
+.listItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+  z-index: 2;
 }
+
 .listItem:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
+
 /*this section is for the filter options*/
 .filtersContainer {
   flex: 0 0 25%;
@@ -77,10 +87,17 @@
   max-width: 20vw;
   border: 5px solid #662a86b7;
 }
+
 .filtersContainer label {
   font-size: 18px;
   margin-bottom: 10px;
   display: inline-block;
+}
+
+.filtersContainer h2 {
+  font-family: 'Audiowide';
+  padding-bottom: 20px;
+  color: #1e1f4b;
 }
 
 #salRange {
@@ -92,9 +109,54 @@
   margin-top: 10px;
   font-weight: bold;
 }
-.filterTypeBox{
+
+.filterTypeBox {
   padding: 10px;
 }
-.filterTypeBox ul li{
+
+.filterTypeBox ul li {
   list-style-type: none;
+}
+
+@media (max-width: 600px) {
+  .job-section {
+    flex-direction: column;
+    /* stack filters and job list */
+    padding: 10px;
+    max-width: none;
+    margin-left: -40px;
+    margin-right: -40px;
+  }
+
+  .filtersContainer {
+    flex: 1 1 auto;
+    max-width: 100%;
+    min-width: auto;
+    margin-bottom: 15px;
+  }
+
+  .jobContainer {
+    min-width: auto;
+    max-width: 100%;
+  }
+
+  .scrollBox {
+    background: #d5f6ff88;
+    padding: 40px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+    text-align: center;
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 10px;
+  }
+
+  .job-title {
+    font-size: 16px;
+  }
+
+  .job-description {
+    font-size: 12px;
+  }
 }

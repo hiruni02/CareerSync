@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?=ROOT?>assets/css/footer.css">
+<link rel="stylesheet" href="<?= ROOT ?>assets/css/footer.css">
 
 <footer>
     <div class="footer-container">
@@ -7,7 +7,7 @@
             <p>Empowering careers.<br>Connecting talent.</p>
         </div>
 
-        <div class="footer-column">
+        <div class="footer-column" id="nav_links">
             <h3>Navigation</h3>
             <ul>
                 <li><a href="home">Home</a></li>

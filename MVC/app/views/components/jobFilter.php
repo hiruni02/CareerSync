@@ -1,10 +1,11 @@
-<link rel="stylesheet" href="<?=ROOT?>assets/css/joblist.css">
+<link rel="stylesheet" href="<?= ROOT ?>assets/css/joblist.css">
 <section class="job-section">
     <div class="filtersContainer">
         <div class="filterTypeBox ">
-            <label for="salRange">Salary Range:</label><br>
-            <input type="range" id="salRange" name="salRange" min="21000" max="10000000" value="210000">
-            <div id="salValue">21000</div>
+            <h2>Filters :</h1>
+                <label for="salRange">Salary Range:</label><br>
+                <input type="range" id="salRange" name="salRange" min="21000" max="10000000" value="210000">
+                <div id="salValue">21000</div>
         </div>
         <div class="filterTypeBox ">
             <label>Sort by:</label><br>
@@ -27,7 +28,7 @@
                     <div class="job-title">JOB TITLE</div>
                     <div class="job-description">
                         THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE 
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>
@@ -37,7 +38,7 @@
                     <div class="job-title">JOB TITLE</div>
                     <div class="job-description">
                         THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE 
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>
@@ -47,7 +48,7 @@
                     <div class="job-title">JOB TITLE</div>
                     <div class="job-description">
                         THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE 
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>
@@ -57,7 +58,7 @@
                     <div class="job-title">JOB TITLE</div>
                     <div class="job-description">
                         THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE 
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>
@@ -67,7 +68,7 @@
                     <div class="job-title">JOB TITLE</div>
                     <div class="job-description">
                         THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE 
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>
@@ -77,7 +78,7 @@
                     <div class="job-title">JOB TITLE</div>
                     <div class="job-description">
                         THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE 
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>
@@ -87,7 +88,7 @@
                     <div class="job-title">JOB TITLE</div>
                     <div class="job-description">
                         THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE 
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>

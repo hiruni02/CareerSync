@@ -1,110 +1,156 @@
 /*Navigation bar css*/
-.navbar {
-  background: linear-gradient(to right, #1e1f4b, #662a86);
-  color: white;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  width: 100%;
-  top: 0;
-  z-index: 10;
+.mobile {
+  display: none;
 }
-.navbar-left {
-  display: flex;
-  align-items: center;
-  gap: 30px;
+
+.desktop {
+  display: block;
+
+  .navbar {
+    background: linear-gradient(to right, #1e1f4b, #662a86);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+  }
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .logo {
+    font-family: "logo-font";
+    color: #f4b0fc;
+    font-size: 35px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .navbar_links,
+  .navbar_right {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .navbtn {
+    width: 100px;
+    height: 50px;
+    padding: 12px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+  }
+
+  .navbar-left .navbtn:hover {
+    transform: scale(1.2);
+    background: linear-gradient(to right, #7b4697, #2e3096);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
+  }
+
+  .navbar_right .navbtn:hover {
+    transform: scale(1.2);
+    background: linear-gradient(to right, #5a197e, #1e1f4b);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
+  }
 }
-.logo {
-  font-family: "logo-font";
-  color: #f4b0fc;
-  font-size: 35px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.navbar_links,
-.navbar_right {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  padding: 0;
-  margin: 0;
-}
-.navbtn {
-  width: 100px;
-  height: 50px;
-  padding: 12px;
-  background: transparent;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  text-decoration: none;
-}
-.navbar-left
-.navbtn:hover {
-  transform: scale(1.2);
-  background: linear-gradient(to right,#7b4697, #2e3096);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
-}
-.navbar_right
-.navbtn:hover {
-  transform: scale(1.2);
-  background: linear-gradient(to right,#5a197e,#1e1f4b);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
-}
+
 
 /* Mobile optimization */
 @media (max-width: 600px) {
   /* Navbar */
-  .navbar {
-    flex-direction: column;
-    padding: 10px;
-    text-align: center;
-  }
-  .navbar-left,
-  .navbar_links,
-  .navbar_right {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .navbtn {
-    width: auto;
-    padding: 10px 15px;
-    font-size: 16px;
+
+  .desktop {
+    display: none;
   }
 
-  /* Page content */
-  .page-content {
-    padding: 20px 10px;
-    text-align: center;
-  }
+  .mobile {
+    display: block;
 
-  /* Filter + Job list */
-  .filters-container, 
-  .job-list-container {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .filters-and-jobs {
-    flex-direction: column; /* stack filter above jobs */
-    gap: 20px;
-  }
+    .navbar {
+      background: linear-gradient(to right, #1e1f4b, #662a86);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 25;
+    }
 
-  /* Fonts and elements */
-  h1, h2, h3 {
-    font-size: 1.2em;
-  }
-  p {
-    font-size: 0.9em;
-  }
+    .logo {
+      font-family: "logo-font";
+      color: #f4b0fc;
+      font-size: 28px;
+      font-weight: 700;
+      white-space: nowrap;
+      padding-left: 50px;
+    }
 
-  /* Footer */
-  footer {
-    text-align: center;
-    padding: 15px;
+    .hamburger_btn img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .hamburger_btn {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 30;
+      cursor: pointer;
+    }
+
+    .mobile_menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: linear-gradient(to right, #1e1f4b, #662a86);
+      padding: 20px;
+      transition: left 0.3s ease;
+      z-index: 20;
+    }
+
+    .mobile_menu.active {
+      left: 0;
+      padding-top: 50px;
+    }
+
+    .mobile_menu .mobile_links {
+      list-style: none;
+      padding: 0;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile_menu .navbtn {
+      width: 100%;
+      height: 50px;
+      padding: 12px;
+      background: linear-gradient(to right, #662a86, #1e1f4b);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+    }
   }
 }

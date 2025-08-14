@@ -4,6 +4,7 @@
     align-items: center;
     padding-top: 12vh;
 }
+
 .container {
     background: rgb(221, 235, 255);
     padding: 40px;
@@ -13,6 +14,7 @@
     width: 45vw;
     height: auto;
 }
+
 .role-container {
     /*because role selection box was too long*/
     background: rgb(221, 235, 255);
@@ -23,6 +25,7 @@
     width: 25vw;
     height: auto;
 }
+
 .login-container {
     background: rgb(221, 235, 255);
     padding: 40px;
@@ -32,10 +35,12 @@
     width: 25vw;
     height: auto;
 }
+
 h1 {
     margin-bottom: 20px;
     font-size: 24px;
 }
+
 input {
     padding: 12px;
     border: 1px solid #ccc;
@@ -43,11 +48,13 @@ input {
     font-size: 14px;
     width: 60%;
 }
+
 input:hover {
     transform: scale(1.02);
     transition-duration: 0.3s;
     z-index: 1;
 }
+
 select {
     width: 100%;
     padding: 12px;
@@ -56,6 +63,7 @@ select {
     border-radius: 8px;
     font-size: 14px;
 }
+
 button {
     width: 100%;
     padding: 12px;
@@ -69,15 +77,18 @@ button {
     transition: 0.3s ease;
     text-decoration: none;
 }
+
 button a {
     color: white;
     text-decoration: none;
 }
+
 button:hover {
     opacity: 0.7;
     transform: scale(1.02);
     z-index: 1;
 }
+
 .links {
     margin-top: 30px;
     display: flex;
@@ -86,27 +97,33 @@ button:hover {
     /* space between links */
     font-size: 17px;
 }
+
 .links a {
     color: #333;
     text-decoration: none;
     transition: color 0.3s ease;
 }
+
 .links a:hover {
     color: purple;
 }
+
 .error {
     color: red;
     margin-top: 4px;
     font-size: 14px;
 }
+
 .input-field {
     display: flex;
     padding: 5px;
     justify-content: space-between;
 }
+
 .input-field label {
     align-content: center;
 }
+
 .container button {
     margin: 10px;
 }
@@ -118,36 +135,44 @@ button:hover {
         padding-left: 10px;
         padding-right: 10px;
     }
+
     .container {
         width: 100%;
         box-shadow: none;
     }
+
     .role-container {
         width: 100%;
         box-shadow: none;
     }
+
     .login-container {
         width: 100%;
         box-shadow: none;
     }
+
     h1 {
         font-size: 20px;
     }
+
     .input-field {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
     }
+
     input,
     select {
         width: 100%;
         font-size: 16px;
     }
+
     button {
         width: 100%;
         padding: 14px;
         font-size: 16px;
     }
+
     .links {
         flex-direction: column;
         gap: 15px;

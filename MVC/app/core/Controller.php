@@ -1,25 +1,26 @@
 <?php
-    trait Controller{
-        public function view($name,$data=[]){
+trait Controller
+{
+    public function view($name, $data = [])
+    {
 
-            // Add global admin info
-            $adminModel = new Admin();
-            $admin = $adminModel->first([]); // fetch first admin
+        // Add global admin info
+        $adminModel = new Admin();
+        $admin = $adminModel->first([]); // fetch first admin
 
-            $data['admin_email'] = $admin->email;
-            $data['admin_contact'] = $admin->contactNo;
+        $data['admin_email'] = $admin->email;
+        $data['admin_contact'] = $admin->contactNo;
 
-            // Extract data to make variables available in view
-            if(!empty($data)){
-                extract($data);
-            }
-            $filename = "../app/views/".$name.".view.php";
-            if(file_exists($filename)){
-                require $filename;
-                
-            }else{
-                $filename = "../app/views/404.view.php";
-                require $filename;
-            }
+        // Extract data to make variables available in view
+        if (!empty($data)) {
+            extract($data);
+        }
+        $filename = "../app/views/" . $name . ".view.php";
+        if (file_exists($filename)) {
+            require $filename;
+        } else {
+            $filename = "../app/views/404.view.php";
+            require $filename;
         }
     }
+}

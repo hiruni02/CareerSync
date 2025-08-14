@@ -1,0 +1,98 @@
+<h1>Register as a Career Counselor</h1>
+<form method="POST" enctype="multipart/form-data">
+    <div class="input-field">
+        <label for="firstName">Enter First Name</label>
+        <input
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            required
+            value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
+    </div>
+
+    <div class="input-field">
+        <label for="lastName">Enter Last Name</label>
+        <input
+            type="text"
+            placeholder="Last Name"
+            name="lastName"
+            required
+            value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
+    </div>
+
+    <div class="input-field">
+        <label for="email">Enter Email Address</label>
+        <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            required
+            value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
+            style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
+    </div>
+    <?php if (!empty($errors['email'])): ?>
+        <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+    <?php endif; ?>
+
+    <div class="input-field">
+        <label for="contactNo">Enter Contact Number</label>
+        <input
+            type="text"
+            placeholder="Contact Number:07xxxxxxxx"
+            name="contactNo"
+            pattern="[0-9]{10}"
+            required
+            value="<?= isset($_POST['contactNo']) ? htmlspecialchars($_POST['contactNo']) : '' ?>">
+    </div>
+
+    <div class="input-field">
+        <label for="counselor_photo_path">Upload your Profile Picture</label>
+        <input
+            type="file"
+            name="counselor_photo_path"
+            required
+            accept=".pdf, .jpg, .jpeg, .png"
+            style="<?= !empty($errors['counselor_photo_path']) ? 'border: 2px solid red;' : '' ?>">
+    </div>
+    <?php if (!empty($errors['counselor_photo_path'])): ?>
+        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['counselor_photo_path'] ?></div>
+    <?php endif; ?>
+
+    <div class="input-field">
+        <label for="certificate">Upload your Certificate</label>
+        <input
+            id="certificate"
+            type="file"
+            name="certificate"
+            required
+            accept=".pdf, .jpg, .jpeg, .png"
+            style="<?= !empty($errors['certificate']) ? 'border: 2px solid red;' : '' ?>">
+    </div>
+    <?php if (!empty($errors['certificate'])): ?>
+        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['certificate'] ?></div>
+    <?php endif; ?>
+
+    <div class="input-field">
+        <label for="password">Enter Password</label>
+        <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            required>
+    </div>
+
+    <div class="input-field">
+        <label for="confirm_password">Re-enter the Pasword</label>
+        <input
+            type="password"
+            placeholder="Confirm Password"
+            name="confirm_password"
+            required
+            style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;' : '' ?>">
+    </div>
+    <?php if (!empty($errors['confirm_password'])): ?>
+        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+    <?php endif; ?>
+
+    <button type="submit">Register</button>
+</form>

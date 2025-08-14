@@ -1,5 +1,6 @@
 <?php
-class Candidate{
+class Candidate
+{
     use Model;
     protected $table = 'candidate';
     protected $allowedColumns = [
