@@ -294,11 +294,11 @@ $role = $_GET['role'];
                             </div>
 
                             <div class="input-field">
-                                <label for="hr_contact">HR Contact Number</label>
+                                <label for="hr_contactNo">HR Contact Number</label>
                                 <input 
                                     type="tel" 
                                     placeholder="HR contact number ex: 0718888888" 
-                                    name="hr_contact" 
+                                    name="hr_contactNo" 
                                     pattern="[0-9]{10}"
                                     required>
                             </div>

@@ -58,11 +58,15 @@
                     case 'company':
                         $company = new Company;
 
-                        // Check if company email already exists
-                        $company_existing = $company->first(['email' => $_POST['email']]);
-                        if ($company_existing) {
-                            $user->errors['email'] = "Company email already exists";
-                        } else {
+                        //Check if email already exists
+                        $email_existing = $user->first(['email' => $_POST['email']]);
+                        if ($email_existing) {
+                            $user->errors['email'] = "Email already exists";
+                        }
+                        else if($_POST['confirm_password'] !== $_POST['password']){
+                            $user->errors['confirm_password'] = "passwords do not match";
+                        }
+                        else {
                             // Handle business registration certificate upload
                             if (isset($_FILES['business_certificate']) && $_FILES['business_certificate']['error'] === UPLOAD_ERR_OK) {
                                 $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/certificates/';
@@ -102,14 +106,12 @@
                                 $companyData = [
                                     'user_id'              => $newUser->user_id,
                                     'companyName'          => $_POST['companyName'],
-                                    'email'                => $_POST['email'],
                                     'contactNo'            => $_POST['contactNo'],
                                     'hr_firstName'         => $_POST['hr_firstName'],
-                                    'hr_lastName'         => $_POST['hr_lastName'],
+                                    'hr_lastName'          => $_POST['hr_lastName'],
                                     'hr_email'             => $_POST['hr_email'],
-                                    'hr_contact'           => $_POST['hr_contact'],
+                                    'hr_contactNo'         => $_POST['hr_contactNo'],
                                     'business_certificate' => $certificatePath,
-                                    'password'             => $_POST['password']  // stored as-is, no hashing
                                 ];
                                 $company->insert($companyData);
 
