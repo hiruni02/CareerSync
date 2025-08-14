@@ -245,13 +245,13 @@ $role = $_GET['role'];
                         <h1>Register as a Company</h1>
                         <form method="POST" enctype="multipart/form-data">
                             <div class="input-field">
-                                    <label for="companyname">Enter Company Name</label>
+                                    <label for="companyName">Enter Company Name</label>
                                 <input 
                                     type="text" 
                                     placeholder="Company name" 
-                                    name="companyname"
+                                    name="companyName"
                                     required
-                                    value="<?= isset($_POST['companyname']) ? htmlspecialchars($_POST['companyname']) : '' ?>">
+                                    value="<?= isset($_POST['companyName']) ? htmlspecialchars($_POST['companyName']) : '' ?>">
                             </div>
 
                             <div class="input-field">

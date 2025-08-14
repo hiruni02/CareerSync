@@ -4,7 +4,7 @@ class Company {
     protected $table = 'company';
     protected $allowedColumns = [
         'user_id',
-        'companyname',
+        'companyName',
         'email',                // matches company email input
         'contactNo',
         'hr_name',

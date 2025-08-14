@@ -20,19 +20,6 @@
                     )";
             $this->query($user_table);
           
-
-            $company_table = "CREATE TABLE IF NOT EXISTS admin (
-                        user_id INT PRIMARY KEY,
-                        firstName VARCHAR(100) NOT NULL,
-                        lastName VARCHAR(100) NOT NULL,
-                        contactNo VARCHAR(10) NOT NULL,
-                        email VARCHAR(100) NOT NULL UNIQUE,
-                        password VARCHAR(255) NOT NULL,
-                        FOREIGN KEY (user_id) REFERENCES users(user_id)
-                   )";
-            $this->query($company_table);
-
-
             $admin_email = 'admin@gmail.com';
             $admin_password = 'root'; // need to hash this for futher protection
 

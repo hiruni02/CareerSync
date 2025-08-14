@@ -109,7 +109,7 @@ class register
                                 // Prepare company table data
                                 $companyData = [
                                     'user_id'              => $newUser->user_id,
-                                    'companyname'          => $_POST['companyname'],
+                                    'companyName'          => $_POST['companyName'],
                                     'email'                => $_POST['email'],
                                     'contactNo'            => $_POST['contactNo'],
                                     'hr_name'              => $_POST['hr_name'],
