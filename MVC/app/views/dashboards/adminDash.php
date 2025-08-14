@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?=ROOT?>assets/css/dashboard/adminDash.css">
+<link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/adminDash.css">
 <h1 class="dashboard_tag">Dash Board</h1>
 <div class="counting_boxes">
     <div class="box_segment">

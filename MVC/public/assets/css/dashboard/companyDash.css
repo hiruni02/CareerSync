@@ -1,16 +1,18 @@
-.list_btn_container{
+.list_btn_container {
     width: fit-content;
     height: 10%;
     padding: 20px;
     background-color: rgb(181, 134, 224);
     border-radius: 15px;
 }
-.list_btn_container label{
+
+.list_btn_container label {
     font-size: 20px;
 }
-.list_btn{
+
+.list_btn {
     color: rgb(255, 255, 255);
-    background: linear-gradient(to right,#7b4697, #2e3096);
+    background: linear-gradient(to right, #7b4697, #2e3096);
     border-radius: 15px;
     padding: 20px;
     transition-duration: .2s;
@@ -18,7 +20,8 @@
     border: 0px;
     font-size: 20px;
 }
-.list_btn:hover{
+
+.list_btn:hover {
     transform: scale(1.1);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
 }

@@ -1,5 +1,6 @@
 <?php
-class Admin{
+class Admin
+{
     use Model;
     protected $table = 'admin';
     protected $allowedColumns = [

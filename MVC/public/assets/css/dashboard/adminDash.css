@@ -1,9 +1,10 @@
-.dashboard_tag{
+.dashboard_tag {
     padding-bottom: 30px;
     font-family: "logo-font";
     font-size: 45px;
 }
-.counting_boxes{
+
+.counting_boxes {
     width: fit-content;
     height: fit-content;
     background-color: rgba(186, 112, 255, 0.575);
@@ -13,7 +14,8 @@
     padding: 20px;
     flex-wrap: wrap;
 }
-.box_segment{
+
+.box_segment {
     max-width: 300px;
     background-color: rgb(211, 231, 255);
     border-radius: 15px;
@@ -26,10 +28,12 @@
     flex-grow: 1;
     flex-direction: column;
 }
-.box_segment h1{
+
+.box_segment h1 {
     color: rgb(59, 8, 59);
 }
-.content_section{
+
+.content_section {
     width: 100%;
     height: fit-content;
     background-color: rgba(186, 112, 255, 0.575);
@@ -42,7 +46,8 @@
     flex-grow: 1;
     flex-direction: column;
 }
-.content_section section{
+
+.content_section section {
     width: 100%;
     height: fit-content;
     background-color: rgb(211, 231, 255);

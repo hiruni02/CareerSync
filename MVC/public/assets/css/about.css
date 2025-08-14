@@ -41,7 +41,8 @@
     text-align: justify;
   }
 
-  .about-section p, .about-section ul li {
+  .about-section p,
+  .about-section ul li {
     font-size: 16px;
   }
 }

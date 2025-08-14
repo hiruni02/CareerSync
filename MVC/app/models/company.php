@@ -1,5 +1,6 @@
 <?php
-class Company {
+class Company
+{
     use Model;
     protected $table = 'company';
     protected $allowedColumns = [
@@ -10,6 +11,6 @@ class Company {
         'hr_lastName',
         'hr_email',
         'hr_contactNo',
-        'business_certificate', 
+        'business_certificate',
     ];
 }

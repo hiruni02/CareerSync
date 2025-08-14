@@ -1,64 +1,63 @@
 <?php
-    class login{
-        use Controller;
-        public function index(){
-            $user = new User;
-            $data=[];
+class login
+{
+    use Controller;
+    public function index()
+    {
+        $user = new User;
+        $data = [];
 
-            //if not logged in the $username variable is deafulted to 'User'
-            $data['username'] = empty($_SESSION['USER']) ? 'User' :$_SESSION['USER']->firstName;
+        //if not logged in the $username variable is deafulted to 'User'
+        $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->firstName;
 
-            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-                $row = $user->first(['email' => $_POST['email']]);
-                if($row){
-                    if($row->password===$_POST['password']){
-                        $_SESSION['USER'] = $row;
-                        switch($row->role){
-                            case 'admin':
-                                $admin = new Admin();
-                                $extra = $admin->first(['user_id' => $row->user_id]);
-                                break;
-                            case 'candidate':
-                                $candidate = new Candidate();
-                                $extra = $candidate->first(['user_id' => $row->user_id]);
-                                break;
-                            case 'counselor':
-                                $counselor = new Counselor();
-                                $extra = $counselor->first(['user_id' => $row->user_id]);
-                                break;
-                            case 'validator':
-                                $validator = new Validator();
-                                $extra = $validator->first(['user_id' => $row->user_id]);
-                                break;
-                            case 'company':
-                                $company = new Company();
-                                $extra = $company->first(['user_id' => $row->user_id]);
-                                break;
-                            default:
-                                $extra = null;
-                        }
-
-                        if ($extra && isset($extra->firstName)) {
-                            $_SESSION['USER']->firstName = $extra->firstName;
-                            $_SESSION['user_id'] = $row->user_id;
-                            $_SESSION['role'] = $row->role;
-                        }
-                        redirect('home');
-                        exit;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $row = $user->first(['email' => $_POST['email']]);
+            if ($row) {
+                if ($row->password === $_POST['password']) {
+                    $_SESSION['USER'] = $row;
+                    switch ($row->role) {
+                        case 'admin':
+                            $admin = new Admin();
+                            $extra = $admin->first(['user_id' => $row->user_id]);
+                            break;
+                        case 'candidate':
+                            $candidate = new Candidate();
+                            $extra = $candidate->first(['user_id' => $row->user_id]);
+                            break;
+                        case 'counselor':
+                            $counselor = new Counselor();
+                            $extra = $counselor->first(['user_id' => $row->user_id]);
+                            break;
+                        case 'validator':
+                            $validator = new Validator();
+                            $extra = $validator->first(['user_id' => $row->user_id]);
+                            break;
+                        case 'company':
+                            $company = new Company();
+                            $extra = $company->first(['user_id' => $row->user_id]);
+                            break;
+                        default:
+                            $extra = null;
                     }
-                    else{
-                        $user->errors['password'] = "Incorrect password";
-                    }
-                }
-                else{
-                    $user->errors['email'] = "Email doesnt exist";
-                }
-                //Send errors to the view
-                $data['errors'] = $user->errors;
 
+                    if ($extra && isset($extra->firstName)) {
+                        $_SESSION['USER']->firstName = $extra->firstName;
+                        $_SESSION['user_id'] = $row->user_id;
+                        $_SESSION['role'] = $row->role;
+                    }
+                    redirect('home');
+                    exit;
+                } else {
+                    $user->errors['password'] = "Incorrect password";
+                }
+            } else {
+                $user->errors['email'] = "Email doesnt exist";
             }
-            
-
-            $this->view("login",$data);
+            //Send errors to the view
+            $data['errors'] = $user->errors;
         }
+
+
+        $this->view("login", $data);
     }
+}

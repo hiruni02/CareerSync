@@ -2,352 +2,48 @@
 $role = $_GET['role'];
 ?>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
-        <link rel="stylesheet" href="<?=ROOT?>assets/css/forms.css">
-        <title>Register</title>
-        <script>
-            // Set correct color on load
-            window.onload = function () {
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/common.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/forms.css">
+    <title>Register</title>
+    <script>
+        // Set correct color on load
+        window.onload = function() {
             const select = document.getElementById('role');
             select.style.color = select.value === 'placeholder' ? '#888' : '#000';
-            };
-        </script>
-    </head>
-    <body>
-        <?php
-        include("components/navbar.php");
-        ?>
-        <div class='page-content'>
-            <div class="container">
-                <?php
-                switch($role){
-                    case 'candidate':
-                        //html for candidate registration form
-                        ?>
-                        <h1>Register as a Candidate</h1>
-                        <form method="POST" enctype="multipart/form-data">
-                            <div class="input-field">
-                                <label for="firstName">Enter First Name</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="First Name" 
-                                    name="firstName" 
-                                    required
-                                    value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
-                            </div>
+        };
+    </script>
+</head>
 
-                            <div class="input-field">
-                                <label for="lastName">Enter Last Name</label>
-                                <input 
-                                    type="text"
-                                    placeholder="Last Name" 
-                                    name="lastName" 
-                                    required
-                                    value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="email">Enter Email Address</label>
-                                <input 
-                                    type="email" 
-                                    placeholder="Email" 
-                                    name="email" 
-                                    required
-                                    value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
-                                    style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
-                            </div>
-                            <?php if (!empty($errors['email'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                            <?php endif; ?>
-
-                            <div class="input-field">
-                                <label for="dob">Enter Date of Birth</label>
-                                <input 
-                                    type="date"
-                                    placeholder="Date of Birth" 
-                                    name="dob" 
-                                    required
-                                    value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="address">Enter Residential Address</label>
-                                <input 
-                                    type="text"
-                                    placeholder="Enter your full Address here " 
-                                    name="address" 
-                                    required
-                                    value="<?= isset($_POST['address']) ? htmlspecialchars($_POST['address']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                            <label for="candidate_photo_path" >Insert a photo of yourself</label>
-                                <input 
-                                    type="file"
-                                    name="candidate_photo_path" 
-                                    required
-                                    accept=".pdf, .jpg, .jpeg, .png"
-                                    style="<?= !empty($errors['candidate_photo_path']) ? 'border: 2px solid red;':'' ?>">
-                            </div>
-                            <?php if (!empty($errors['candidate_photo_path'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['candidate_photo_path'] ?></div>
-                            <?php endif; ?>
-
-                            <div class="input-field">
-                                <label for="contactNo">Enter Contact Number</label>
-                                <input 
-                                    type="tel"
-                                    placeholder="Contact Number:07xxxxxxxx" 
-                                    name="contactNo" 
-                                    pattern="[0-9]{10}"
-                                    required
-                                    value="<?= isset($_POST['contactNo']) ? htmlspecialchars($_POST['contactNo']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="password" >Enter Password</label>
-                                <input 
-                                    type="password" 
-                                    placeholder="Password" 
-                                    name="password" 
-                                    required>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="confirm_password" >Re-enter the Pasword</label>
-                                <input 
-                                    type="password" 
-                                    placeholder="Confirm Password" 
-                                    name="confirm_password" 
-                                    required
-                                    style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
-                            </div> 
-                            <?php if (!empty($errors['confirm_password'])): ?>
-                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
-                            <?php endif; ?>    
-
-                            <button type="submit">Register</button>
-                        </form>
-                    <?php
-                        break;
-                    case 'validator':
-                        //html for validation team member registration form
-                        ?>
-                        <h1>Register as a Validation team member</h1>
-                        <form method="POST" enctype="multipart/form-data">
-                            <div class="input-field">
-                                <label for="firstName">Enter First Name</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="First Name" 
-                                    name="firstName" 
-                                    required
-                                    value="<?= isset($_POST['firstName']) ? htmlspecialchars($_POST['firstName']) : '' ?>">
-                            </div>
-                            
-                            <div class="input-field">
-                                <label for="lastName">Enter Last Name</label>
-                                <input 
-                                    type="text"
-                                    placeholder="Last Name" 
-                                    name="lastName" 
-                                    required
-                                    value="<?= isset($_POST['lastName']) ? htmlspecialchars($_POST['lastName']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="email">Enter Email Address</label>
-                                <input 
-                                    type="email" 
-                                    placeholder="Email" 
-                                    name="email" 
-                                    required
-                                    value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
-                                    style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
-                            </div>
-                            <?php if (!empty($errors['email'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                            <?php endif; ?>
-
-                            <div class="input-field">
-                                <label for="contactNo">Enter Contact Number</label>
-                                <input 
-                                    type="text"
-                                    placeholder="Contact Number:07xxxxxxxx"
-                                    name="contactNo" 
-                                    pattern="[0-9]{10}"
-                                    required
-                                    value="<?= isset($_POST['contactNo']) ? htmlspecialchars($_POST['contactNo']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                            <label for="validator_photo_path" >Insert a photo of yourself</label>
-                                <input 
-                                    type="file"
-                                    placeholder="Insert a photo of your National ID Card" 
-                                    name="validator_photo_path" 
-                                    required
-                                    accept=".pdf, .jpg, .jpeg, .png"
-                                    style="<?= !empty($errors['validator_photo_path']) ? 'border: 2px solid red;':'' ?>">
-                            </div>
-                            <?php if (!empty($errors['validator_photo_path'])): ?>
-                                <div style="color:red;" class="error"><?= $errors['validator_photo_path'] ?></div>
-                            <?php endif; ?>
-
-                            <div class="input-field">
-                                <label for="password" >Enter Password</label>
-                                <input 
-                                    type="password" 
-                                    placeholder="Password" 
-                                    name="password" 
-                                    required>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="confirm_password" >Re-enter the Pasword</label>
-                                <input 
-                                    type="password" 
-                                    placeholder="Confirm Password" 
-                                    name="confirm_password" 
-                                    required
-                                    style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
-                            </div>
-                            <?php if (!empty($errors['confirm_password'])): ?>
-                                <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
-                            <?php endif; ?>
-
-                            <button type="submit">Register</button>
-                        </form>
-                    <?php
-                        break;
-                    case 'company':
-                        //html for admin company registration form
-                        ?>
-                        <h1>Register as a Company</h1>
-                        <form method="POST" enctype="multipart/form-data">
-                            <div class="input-field">
-                                    <label for="companyName">Enter Company Name</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="Company name" 
-                                    name="companyName"
-                                    required
-                                    value="<?= isset($_POST['companyName']) ? htmlspecialchars($_POST['companyName']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                                    <label for="email">Enter Company Email</label>
-                                <input 
-                                    type="email" 
-                                    placeholder="Company email" 
-                                    name="email" 
-                                    required
-                                    value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
-                                    style="<?= !empty($errors['email']) ? 'border: 2px solid red;':'' ?>">
-
-                                    <?php if (!empty($errors['email'])): ?>
-                                        <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                                    <?php endif; ?>
-                            </div>
-                            
-                            <div class = input-field>
-                                    <label for = "contactNo">Enter Contact Number</label>
-                                <input 
-                                    type="tel" 
-                                    placeholder="Contact number ex: 071 888 8888" 
-                                    name="contactNo" 
-                                    pattern="[0-9]{10}"
-                                    required>
-                                
-                            </div>
-                            
-                            <div class="input-field">
-                                <label for="hr_firstName">HR Manager First Name</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="First name of HR Manager" 
-                                    name="hr_firstName" 
-                                    required
-                                    value="<?= isset($_POST['hr_firstName']) ? htmlspecialchars($_POST['hr_firstName']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="hr_lastName">HR Manager Last Name</label>
-                                <input 
-                                    type="text" 
-                                    placeholder="Last name of HR Manager" 
-                                    name="hr_lastName" 
-                                    required
-                                    value="<?= isset($_POST['hr_lastName']) ? htmlspecialchars($_POST['hr_lastName']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="hr_email">HR Contact Email</label>
-                                <input 
-                                    type="email" 
-                                    placeholder="HR contact email" 
-                                    name="hr_email" 
-                                    required
-                                    value="<?= isset($_POST['hr_email']) ? htmlspecialchars($_POST['hr_email']) : '' ?>">
-                            </div>
-
-                            <div class="input-field">
-                                <label for="hr_contactNo">HR Contact Number</label>
-                                <input 
-                                    type="tel" 
-                                    placeholder="HR contact number ex: 0718888888" 
-                                    name="hr_contactNo" 
-                                    pattern="[0-9]{10}"
-                                    required>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="business_certificate">Business Registration Certificate</label>
-                                <input 
-                                    type="file" 
-                                    name="business_certificate" 
-                                    accept=".pdf,.jpg,.jpeg,.png" 
-                                    required>
-                            </div>
-
-                            <div class = input-field>
-                                <label for="password" >Enter Password</label>
-                                <input 
-                                    type="password" 
-                                    placeholder="Password" 
-                                    name="password" 
-                                    required>
-                            </div>
-
-                            <div class="input-field">
-                                <label for="confirm_password" >Re-enter the Pasword</label>
-                                <input 
-                                    type="password" 
-                                    placeholder="Confirm Password" 
-                                    name="confirm_password" 
-                                    required
-                                    style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;':'' ?>">
-                                    <?php if (!empty($errors['confirm_password'])): ?>
-                                        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
-                                    <?php endif; ?>
-                            </div>
-
-                            <button type="submit">Register</button>
-                        </form>
-                    <?php
-                        break;
-                    case 'counselor':
-                        //html for admin career-counselor registration form
-                        include("registration_forms/counselor.php");
-                        break;
-                }
-                ?>
-                <div class="links">
-                    <a href="login">Sign in instead</a></t>
-                </div>
+<body>
+    <?php
+    include("components/navbar.php");
+    ?>
+    <div class='page-content'>
+        <div class="container">
+            <?php
+            switch ($role) {
+                case 'candidate':
+                    include("registration_forms/candidate.php");
+                    break;
+                case 'validator':
+                    include("registration_forms/validator.php");
+                    break;
+                case 'company':
+                    include("registration_forms/company.php");
+                    break;
+                case 'counselor':
+                    include("registration_forms/counselor.php");
+                    break;
+            }
+            ?>
+            <div class="links">
+                <a href="login">Sign in instead</a></t>
             </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

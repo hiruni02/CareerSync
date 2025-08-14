@@ -1,5 +1,6 @@
 <?php
-class Validator{
+class Validator
+{
     use Model;
     protected $table = 'validator';
     protected $allowedColumns = [

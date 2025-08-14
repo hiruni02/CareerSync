@@ -1,15 +1,16 @@
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?=ROOT?>assets/css/common.css">
-    <link rel="stylesheet" href="<?=ROOT?>assets/css/forms.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/common.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/forms.css">
     <title>Welcome to CareerSync</title>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             const select = document.getElementById('role');
             const button = document.getElementById('proceedBtn');
             button.disabled = true;
-            select.addEventListener('change', function () {
+            select.addEventListener('change', function() {
                 const selected = select.value;
                 // Enable if a valid option is picked
                 if (selected !== '') {
@@ -21,6 +22,7 @@
         };
     </script>
 </head>
+
 <body>
     <?php
     include("components/navbar.php");
@@ -45,4 +47,5 @@
         </div>
     </div>
 </body>
+
 </html>
