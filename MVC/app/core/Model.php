@@ -20,19 +20,6 @@
                     )";
             $this->query($user_table);
           
-
-            $company_table = "CREATE TABLE IF NOT EXISTS admin (
-                        user_id INT PRIMARY KEY,
-                        firstName VARCHAR(100) NOT NULL,
-                        lastName VARCHAR(100) NOT NULL,
-                        contactNo VARCHAR(10) NOT NULL,
-                        email VARCHAR(100) NOT NULL UNIQUE,
-                        password VARCHAR(255) NOT NULL,
-                        FOREIGN KEY (user_id) REFERENCES users(user_id)
-                   )";
-            $this->query($company_table);
-
-
             $admin_email = 'admin@gmail.com';
             $admin_password = 'root'; // need to hash this for futher protection
 
@@ -52,14 +39,19 @@
 
 
             $company_table = "CREATE TABLE IF NOT EXISTS company (
-                        user_id INT PRIMARY KEY,
-                        companyname VARCHAR(100),
-                        email VARCHAR(100) NOT NULL UNIQUE,
-                        contactNo VARCHAR(15),
-                        password VARCHAR(255) NOT NULL,
-                        FOREIGN KEY (user_id) REFERENCES users(user_id)
-                   )";
+                            user_id INT PRIMARY KEY,
+                            companyname VARCHAR(100) NOT NULL,
+                            email VARCHAR(100) NOT NULL UNIQUE,
+                            contactNo VARCHAR(15) NOT NULL,
+                            hr_name VARCHAR(100) NOT NULL,
+                            hr_email VARCHAR(100) NOT NULL,
+                            hr_contact VARCHAR(15) NOT NULL,
+                            business_certificate VARCHAR(255) NOT NULL,
+                            password VARCHAR(255) NOT NULL,
+                            FOREIGN KEY (user_id) REFERENCES users(user_id)
+                        )";
             $this->query($company_table);
+
           
             $counselor_table = "CREATE TABLE IF NOT EXISTS counselor( 
                         user_id INT PRIMARY KEY,
