@@ -118,7 +118,7 @@
                             exit;
                             } else {
                                 $user->errors['candidate_photo_path'] = "Failed to upload profile picture";
-                            }
+                        }
 
                         break;
                     }
