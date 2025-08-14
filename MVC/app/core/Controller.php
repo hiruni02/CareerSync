@@ -6,8 +6,8 @@
             $adminModel = new Admin();
             $admin = $adminModel->first([]); // fetch first admin
 
-            $data['admin_email'] = $admin->email ?? 'info@careersync.com';
-            $data['admin_contact'] = $admin->contactNo ?? '+94 77 123 4567';
+            $data['admin_email'] = $admin->email;
+            $data['admin_contact'] = $admin->contactNo;
 
             // Extract data to make variables available in view
             if(!empty($data)){

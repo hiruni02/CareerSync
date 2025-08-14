@@ -7,7 +7,6 @@ class Validator{
         'firstName',
         'lastName',
         'contactNo',
-        'nic_no',
-        'nic_path',
+        'validator_photo_path',
     ];
 }
