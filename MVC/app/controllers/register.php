@@ -1,14 +1,16 @@
 <?php
-class register{
+class register
+{
     use Controller;
 
-    public function index(){
+    public function index()
+    {
         $user = new User;
         $data = [];
 
         // if not logged in, the $username variable is defaulted to 'User'
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Add role to POST
             $role = $_GET['role'] ?? null;
@@ -20,23 +22,20 @@ class register{
             $email_existing = $user->first(['email' => $_POST['email']]);
             if ($email_existing) {
                 $user->errors['email'] = "Email already exists";
-            }
-            else if ($_POST['confirm_password'] !== $_POST['password']) {
+            } else if ($_POST['confirm_password'] !== $_POST['password']) {
                 $user->errors['confirm_password'] = "passwords do not match";
-            }
-            else {
+            } else {
                 $userTableData = $_POST;
 
                 // updating table fields based on role
-                switch($role){
+                switch ($role) {
                     case 'validator':
                         $validator = new validator;
 
                         $nic_existing = $validator->first(['nic_no' => $_POST['nic_no']]);
                         if ($nic_existing) {
                             $user->errors['nic_no'] = "NIC number already exists";
-                        }
-                        else {
+                        } else {
                             $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/validator_ids/';
                             $filename = time() . '_' . basename($_FILES['nic_path']['name']); // makes each upload file name unique
                             $target_file = $upload_path . $filename;
@@ -62,8 +61,8 @@ class register{
                                 $user->errors['nic_path'] = "Failed to upload NIC photo";
                             }
                         }
-                    break;
-                    
+                        break;
+
                     case 'company':
                         $company = new Company;
 
@@ -119,6 +118,9 @@ class register{
                                     'business_certificate' => $certificatePath,
                                     'password'             => $_POST['password']  // stored as-is, no hashing
                                 ];
+                                $insertResult = $company->insert($companyData);
+
+                                
 
                                 $company->insert($companyData);
 
@@ -129,16 +131,16 @@ class register{
                         break;
 
 
-                    /*
+                        /*
                     case 'conunselor':
                     break;
 
                     case 'candidate':
                     break;
                     */
-                } 
-            } 
-            
+                }
+            }
+
             // Send errors to the view
             $data['errors'] = $user->errors;
         }
@@ -146,5 +148,3 @@ class register{
         $this->view("register", $data);
     }
 }
-
-            
