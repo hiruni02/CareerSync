@@ -5,7 +5,15 @@ class Home
     public function index()
     {
         //if not logged in the $username variable is deafulted to 'User'
-        $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->firstName;
+        if (empty($_SESSION['USER'])) {
+            $data['username'] = 'User';
+        } else {
+            if ($_SESSION['USER']->role !== 'company') {
+                $data['username'] = $_SESSION['USER']->firstName;
+            }else{
+                $data['username'] = $_SESSION['USER']->hr_firstName;
+            }
+        }
 
         $user = new User;
         $user->CreateTables();
