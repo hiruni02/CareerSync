@@ -24,17 +24,36 @@
 </div>
 <div class="content_section">
     <section>
-        <table border="2px">
-            <tr>
-                <th>Request Type</th>
-                <th>User</th>
-                <th>email</th>
-            </tr>
-            <tr>
-                <td>pending</td>
-                <td>Anuk</td>
-                <td>anuk@gmail.com</td>
-            </tr>
+        <table>
+            <thead>
+                <tr>
+                    <th>Request Type</th>
+                    <th>User</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Request Type">pending</td>
+                    <td data-label="User">Anuk</td>
+                    <td data-label="Email">anuk@gmail.com</td>
+                </tr>
+                <tr>
+                    <td data-label="Request Type">pending</td>
+                    <td data-label="User">Anuk</td>
+                    <td data-label="Email">anuk@gmail.com</td>
+                </tr>
+                <tr>
+                    <td data-label="Request Type">pending</td>
+                    <td data-label="User">Anuk</td>
+                    <td data-label="Email">anuk@gmail.com</td>
+                </tr>
+                <tr>
+                    <td data-label="Request Type">pending</td>
+                    <td data-label="User">Anuk</td>
+                    <td data-label="Email">anuk@gmail.com</td>
+                </tr>
+            </tbody>
         </table>
     </section>
 </div>

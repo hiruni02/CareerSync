@@ -80,6 +80,7 @@
 
   .mobile {
     display: block;
+    width: 100%;
 
     .navbar {
       background: linear-gradient(to right, #1e1f4b, #662a86);

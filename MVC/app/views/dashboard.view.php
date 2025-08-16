@@ -13,6 +13,7 @@
         include("components/navbar.php");
         ?>
         <div class="page-content">
+            <div class="settings_btn"><img src="<?= ROOT ?>assets/images/settings_icon.png" alt="settings_btn"></div>
             <?php
             switch ($_SESSION['role']) {
                 case 'admin':
