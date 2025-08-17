@@ -13,7 +13,9 @@
         include("components/navbar.php");
         ?>
         <div class="page-content">
-            <div class="settings_btn"><img src="<?= ROOT ?>assets/images/settings_icon.png" alt="settings_btn"></div>
+            <div class="settings_btn" onclick="toggleSettings()">
+                <img src="<?= ROOT ?>assets/images/settings_icon.png" alt="settings_btn">
+            </div>
             <?php
             switch ($_SESSION['role']) {
                 case 'admin':
@@ -35,6 +37,12 @@
             ?>
         </div>
     </div>
+    <script>
+        function toggleSettings() {
+            const menu = document.getElementById('settings_menu');
+            menu.classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>

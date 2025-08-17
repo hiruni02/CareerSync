@@ -1,5 +1,18 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/adminDash.css">
-<h1 class="dashboard_tag">Dash Board</h1>
+
+
+
+<div class="settings_menu" id="settings_menu">
+    <ul class="settings_links">
+        <li><a href=""><button class="setting_btn">Your Profile</button></a></li>
+        <li><a href=""><button class="setting_btn">Change Password</button></a></li>
+    </ul>
+</div>
+
+
+
+
+<h1 class="dashboard_tag">Admin Dash Board</h1>
 <div class="counting_boxes">
     <div class="box_segment">
         Total Users:<br>
