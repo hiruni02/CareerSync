@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/companyDash.css">
-<h1>This is the validator dashboard</h1>
+<h1>This is the Company dashboard</h1>
 <div class="list_btn_container">
     <label for="list_btn">Insert job or internship position: </label>
     <a href="">

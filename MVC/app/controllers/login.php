@@ -50,6 +50,7 @@ class login
                     if ($extra) {
                         if ($row->role === 'company') {
                             $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
+                            $_SESSION['role'] = 'company';
                         } else {
                             $_SESSION['USER']->firstName = $extra->firstName;
                         }
