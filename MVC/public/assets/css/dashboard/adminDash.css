@@ -1,13 +1,7 @@
-.dashboard_tag {
-    padding-bottom: 30px;
-    font-family: "logo-font";
-    font-size: 45px;
-}
-
 .counting_boxes {
     width: fit-content;
     height: fit-content;
-    background-color: rgba(186, 112, 255, 0.575);
+    background-color: var(--mid);
     border-radius: 15px;
     align-items: justify;
     display: flex;
@@ -35,7 +29,7 @@
 
 .content_section {
     width: 100%;
-    background-color: rgba(186, 112, 255, 0.575);
+    background-color: var(--mid);
     border-radius: 15px;
     padding: 20px;
     margin-top: 20px;
@@ -75,7 +69,7 @@
 }
 
 .content_section th {
-    background-color: rgba(186, 112, 255, 0.8);
+    background-color: var(--mid);
     color: white;
     text-transform: uppercase;
     letter-spacing: 0.5px;

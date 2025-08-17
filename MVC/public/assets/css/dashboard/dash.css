@@ -2,6 +2,12 @@
     padding: 50px;
 }
 
+.dashboard_tag {
+    padding-bottom: 30px;
+    font-family: "logo-font";
+    font-size: 45px;
+}
+
 .settings_btn {
     position: fixed;
     cursor: pointer;
