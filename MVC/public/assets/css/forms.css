@@ -118,10 +118,24 @@ button:hover {
     display: flex;
     padding: 5px;
     justify-content: space-between;
+    position: relative;
 }
 
 .input-field label {
     align-content: center;
+}
+
+.input-field .eye {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    height: 0.1rem !important;
+    width: 0.1rem !important;
+    z-index: 100;
+    background-image: url("../svg_icons/eye_open.svg");
+    background-color: transparent !important;
+    background-size: cover;
+    fill: black;
 }
 
 .container button {
