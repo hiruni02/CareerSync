@@ -197,6 +197,11 @@ button:hover {
         gap: 5px;
     }
 
+    .input-field .eye {
+        top: 1.7rem;
+        right: 0.4rem;
+    }
+
     .input-field-login {
         flex-direction: column;
         align-items: flex-start;
