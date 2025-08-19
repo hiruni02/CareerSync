@@ -1,16 +1,15 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/adminDash.css">
 
-
-
 <div class="settings_menu" id="settings_menu">
     <ul class="settings_links">
-        <li><a href=""><button class="setting_btn">Your Profile</button></a></li>
+        <li><a href=""><button class="setting_btn" id="profileBtn">Your Profile</button></a></li>
         <li><a href=""><button class="setting_btn">Change Password</button></a></li>
     </ul>
 </div>
 
-
-
+<?php
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
+?>
 
 <h1 class="dashboard_tag">Admin Dash Board</h1>
 <div class="counting_boxes">

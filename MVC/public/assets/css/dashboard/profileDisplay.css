@@ -1,0 +1,49 @@
+.profile_display {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.profile_display.active {
+    display: block;
+}
+
+.pd_content {
+    width: 90%;
+    height: 70%;
+    background: rgb(221, 235, 255);
+    border: solid var(--mid) 5px;
+    display: flex;
+    margin: 100px;
+    border-radius: 60px;
+    padding: 50px;
+    position: relative;
+}
+
+.backBtn {
+    background-color: var(--mid);
+    width: 150px;
+    height: 100px;
+    border-radius: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    right: 30px;
+    top: 30px;
+    position: absolute;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.backBtn:hover {
+    transform: scale(1.08);
+    z-index: 1;
+}
