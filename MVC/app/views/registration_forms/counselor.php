@@ -1,3 +1,4 @@
+<script src="<?= ROOT ?>assets/JS/toggle_pw_visibility.js"></script>
 <h1>Register as a Career Counselor</h1>
 <form method="POST" enctype="multipart/form-data">
     <div class="input-field">
@@ -79,6 +80,7 @@
             placeholder="Password"
             name="password"
             required>
+        <button onclick="show_password()" class="eye" type="button" id="eye"></button>
     </div>
 
     <div class="input-field">
@@ -89,6 +91,7 @@
             name="confirm_password"
             required
             style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;' : '' ?>">
+        <button onclick="show_password()" class="eye" type="button" id="eye"></button>
     </div>
     <?php if (!empty($errors['confirm_password'])): ?>
         <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
