@@ -1,4 +1,17 @@
-<script src="<?= ROOT ?>assets/JS/toggle_pw_visibility.js"></script>
+<script>
+    function show_password() {
+        console.log(document.getElementById("pass").type);
+        var x = document.getElementById("pass");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("eye").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
+        } else {
+            x.type = "password";
+            document.getElementById("eye").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+
+        }
+    }
+</script>
 <h1>Register as a Candidate</h1>
 <form method="POST" enctype="multipart/form-data">
     <div class="input-field">
@@ -83,6 +96,7 @@
         <label for="password">Enter Password</label>
         <input
             type="password"
+            id="pass"
             placeholder="Password"
             name="password"
             required>
@@ -93,11 +107,11 @@
         <label for="confirm_password">Re-enter the Pasword</label>
         <input
             type="password"
+            id="pass"
             placeholder="Confirm Password"
             name="confirm_password"
             required
             style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;' : '' ?>">
-        <button onclick="show_password()" class="eye" type="button" id="eye"></button>
     </div>
     <?php if (!empty($errors['confirm_password'])): ?>
         <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>

@@ -7,7 +7,6 @@ $role = $_GET['role'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= ROOT ?>assets/css/common.css">
     <link rel="stylesheet" href="<?= ROOT ?>assets/css/forms.css">
-    <script src="<?= ROOT ?>assets/JS/toggle_pw_visibility.js"></script>
     <title>Register</title>
     <script>
         // Set correct color on load

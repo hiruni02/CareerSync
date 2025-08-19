@@ -137,6 +137,29 @@ button:hover {
     fill: black;
 }
 
+.input-field-login {
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.input-field-login label {
+    align-content: center;
+}
+
+.input-field-login .eye {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    width: 1px !important;
+    z-index: 100;
+    background-image: url("../svg_icons/eye_open.svg");
+    background-color: transparent !important;
+    background-size: cover;
+    fill: black;
+}
+
 .container button {
     margin: 10px;
 }
@@ -169,6 +192,12 @@ button:hover {
     }
 
     .input-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .input-field-login {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
