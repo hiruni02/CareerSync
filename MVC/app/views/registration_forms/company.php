@@ -1,7 +1,34 @@
+<script>
+    function show_password() {
+        console.log(document.getElementById("pass").type);
+        var x = document.getElementById("pass");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
+        } else {
+            x.type = "password";
+            document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+
+        }
+    }
+
+    function show_confirm_password() {
+        console.log(document.getElementById("confirm_pass").type);
+        var x = document.getElementById("confirm_pass");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
+        } else {
+            x.type = "password";
+            document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+
+        }
+    }
+</script>
 <h1>Register as a Company</h1>
 <form method="POST" enctype="multipart/form-data">
     <div class="input-field">
-        <label for="companyName">Enter Company Name</label>
+        <label for="companyName">Company Name</label>
         <input
             type="text"
             placeholder="Company name"
@@ -11,7 +38,7 @@
     </div>
 
     <div class="input-field">
-        <label for="email">Enter Company Email</label>
+        <label for="email">Company Email</label>
         <input
             type="email"
             placeholder="Company email"
@@ -26,7 +53,7 @@
     </div>
 
     <div class=input-field>
-        <label for="contactNo">Enter Contact Number</label>
+        <label for="contactNo">Contact Number</label>
         <input
             type="tel"
             placeholder="Contact number ex: 071 888 8888"
@@ -85,27 +112,31 @@
             required>
     </div>
 
-    <div class=input-field>
-        <label for="password">Enter Password</label>
+    <div class="input-field">
+        <label for="password">Password</label>
         <input
             type="password"
+            id="pass"
             placeholder="Password"
             name="password"
             required>
+        <button onclick="show_password()" class="eye" type="button" id="eye1"></button>
     </div>
 
     <div class="input-field">
-        <label for="confirm_password">Re-enter the Pasword</label>
+        <label for="confirm_password">Re-enter Pasword</label>
         <input
             type="password"
+            id="confirm_pass"
             placeholder="Confirm Password"
             name="confirm_password"
             required
             style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;' : '' ?>">
-        <?php if (!empty($errors['confirm_password'])): ?>
-            <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
-        <?php endif; ?>
+        <button onclick="show_confirm_password()" class="eye" type="button" id="eye2"></button>
     </div>
+    <?php if (!empty($errors['confirm_password'])): ?>
+        <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+    <?php endif; ?>
 
     <button type="submit">Register</button>
 </form>

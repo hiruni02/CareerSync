@@ -1,5 +1,17 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/adminDash.css">
-<h1 class="dashboard_tag">Dash Board</h1>
+
+<div class="settings_menu" id="settings_menu">
+    <ul class="settings_links">
+        <li><a href=""><button class="setting_btn" id="profileBtn">Your Profile</button></a></li>
+        <li><a href=""><button class="setting_btn">Change Password</button></a></li>
+    </ul>
+</div>
+
+<?php
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
+?>
+
+<h1 class="dashboard_tag">Admin Dash Board</h1>
 <div class="counting_boxes">
     <div class="box_segment">
         Total Users:<br>
@@ -24,17 +36,36 @@
 </div>
 <div class="content_section">
     <section>
-        <table border="2px">
-            <tr>
-                <th>Request Type</th>
-                <th>User</th>
-                <th>email</th>
-            </tr>
-            <tr>
-                <td>pending</td>
-                <td>Anuk</td>
-                <td>anuk@gmail.com</td>
-            </tr>
+        <table>
+            <thead>
+                <tr>
+                    <th>Request Type</th>
+                    <th>User</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Request Type">pending</td>
+                    <td data-label="User">Anuk</td>
+                    <td data-label="Email">anuk@gmail.com</td>
+                </tr>
+                <tr>
+                    <td data-label="Request Type">pending</td>
+                    <td data-label="User">Anuk</td>
+                    <td data-label="Email">anuk@gmail.com</td>
+                </tr>
+                <tr>
+                    <td data-label="Request Type">pending</td>
+                    <td data-label="User">Anuk</td>
+                    <td data-label="Email">anuk@gmail.com</td>
+                </tr>
+                <tr>
+                    <td data-label="Request Type">pending</td>
+                    <td data-label="User">Anuk</td>
+                    <td data-label="Email">anuk@gmail.com</td>
+                </tr>
+            </tbody>
         </table>
     </section>
 </div>

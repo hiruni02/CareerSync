@@ -2,7 +2,7 @@
     width: fit-content;
     height: 10%;
     padding: 20px;
-    background-color: rgb(181, 134, 224);
+    background-color: var(--mid);
     border-radius: 15px;
 }
 
