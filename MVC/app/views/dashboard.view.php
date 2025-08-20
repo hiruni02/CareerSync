@@ -17,7 +17,7 @@
                 <img src="<?= ROOT ?>assets/images/settings_icon.png" alt="settings_btn">
             </div>
             <?php
-            switch ($_SESSION['role']) {
+            switch ($_SESSION['USER']->role) {
                 case 'admin':
                     include("dashboards/adminDash.php");
                     break;

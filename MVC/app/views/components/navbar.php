@@ -8,7 +8,7 @@
                 <li><a href="about"><button class="navbtn">About</button></a></li>
                 <li><a href="contact"><button class="navbtn">Contact</button></a></li>
                 <?php
-                if ($username != 'User') {
+                if (isset($_SESSION['USER'])) {
                 ?>
                     <li><a href="dashboard"><button class="navbtn" style="padding: 0px;">Dashboard</button></a></li>
                 <?php
@@ -18,7 +18,7 @@
         </div>
         <ul class="navbar_right">
             <?php
-            if ($username == 'User') {
+            if (!isset($_SESSION['USER'])) {
             ?>
                 <li><a href="login"><button class="navbtn">Login</button></a></li>
                 <li><a href="welcome"><button class="navbtn">Register</button></a></li>
@@ -45,10 +45,10 @@
             <li><a href="home"><button class="navbtn">Home</button></a></li>
             <li><a href="about"><button class="navbtn">About</button></a></li>
             <li><a href="contact"><button class="navbtn">Contact</button></a></li>
-            <?php if ($username != 'User') { ?>
+            <?php if (isset($_SESSION['USER'])) { ?>
                 <li><a href="dashboard"><button class="navbtn">Dashboard</button></a></li>
             <?php } ?>
-            <?php if ($username == 'User') { ?>
+            <?php if (!isset($_SESSION['USER'])) { ?>
                 <li><a href="login"><button class="navbtn">Login</button></a></li>
                 <li><a href="welcome"><button class="navbtn">Register</button></a></li>
             <?php } else { ?>

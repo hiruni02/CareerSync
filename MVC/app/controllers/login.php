@@ -42,15 +42,14 @@ class login
 
                     if ($extra && isset($extra->firstName)) {
                         $_SESSION['USER']->firstName = $extra->firstName;
-                        $_SESSION['user_id'] = $row->user_id;
-                        $_SESSION['role'] = $row->role;
+                        $_SESSION['USER']->user_id = $row->user_id;
+                        $_SESSION['USER']->role = $row->role;
                     }
-                    
+
                     // For companies, use HR's first name for display
                     if ($extra) {
                         if ($row->role === 'company') {
                             $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
-                            $_SESSION['role'] = 'company';
                         } else {
                             $_SESSION['USER']->firstName = $extra->firstName;
                         }
