@@ -28,7 +28,7 @@
 <h1>Register as a Candidate</h1>
 <form method="POST" enctype="multipart/form-data">
     <div class="input-field">
-        <label for="firstName">Enter First Name</label>
+        <label for="firstName">First Name</label>
         <input
             type="text"
             placeholder="First Name"
@@ -48,7 +48,7 @@
     </div>
 
     <div class="input-field">
-        <label for="email">Enter Email Address</label>
+        <label for="email">Email Address</label>
         <input
             type="email"
             placeholder="Email"
@@ -62,7 +62,7 @@
     <?php endif; ?>
 
     <div class="input-field">
-        <label for="dob">Enter Date of Birth</label>
+        <label for="dob">Date of Birth</label>
         <input
             type="date"
             placeholder="Date of Birth"
@@ -72,7 +72,7 @@
     </div>
 
     <div class="input-field">
-        <label for="address">Enter Residential Address</label>
+        <label for="address">Residential Address</label>
         <input
             type="text"
             placeholder="Enter your full Address here "
@@ -95,7 +95,7 @@
     <?php endif; ?>
 
     <div class="input-field">
-        <label for="contactNo">Enter Contact Number</label>
+        <label for="contactNo">Contact Number</label>
         <input
             type="tel"
             placeholder="Contact Number:07xxxxxxxx"
@@ -106,7 +106,7 @@
     </div>
 
     <div class="input-field">
-        <label for="password">Enter Password</label>
+        <label for="password">Password</label>
         <input
             type="password"
             id="pass"
@@ -117,7 +117,7 @@
     </div>
 
     <div class="input-field">
-        <label for="confirm_password">Re-enter the Pasword</label>
+        <label for="confirm_password">Re-enter Pasword</label>
         <input
             type="password"
             id="confirm_pass"

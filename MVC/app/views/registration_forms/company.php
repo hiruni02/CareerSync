@@ -28,7 +28,7 @@
 <h1>Register as a Company</h1>
 <form method="POST" enctype="multipart/form-data">
     <div class="input-field">
-        <label for="companyName">Enter Company Name</label>
+        <label for="companyName">Company Name</label>
         <input
             type="text"
             placeholder="Company name"
@@ -38,7 +38,7 @@
     </div>
 
     <div class="input-field">
-        <label for="email">Enter Company Email</label>
+        <label for="email">Company Email</label>
         <input
             type="email"
             placeholder="Company email"
@@ -53,7 +53,7 @@
     </div>
 
     <div class=input-field>
-        <label for="contactNo">Enter Contact Number</label>
+        <label for="contactNo">Contact Number</label>
         <input
             type="tel"
             placeholder="Contact number ex: 071 888 8888"
@@ -113,7 +113,7 @@
     </div>
 
     <div class="input-field">
-        <label for="password">Enter Password</label>
+        <label for="password">Password</label>
         <input
             type="password"
             id="pass"
@@ -124,7 +124,7 @@
     </div>
 
     <div class="input-field">
-        <label for="confirm_password">Re-enter the Pasword</label>
+        <label for="confirm_password">Re-enter Pasword</label>
         <input
             type="password"
             id="confirm_pass"
