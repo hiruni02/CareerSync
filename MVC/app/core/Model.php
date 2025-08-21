@@ -22,16 +22,15 @@ trait Model
                     )";
         $this->query($user_table);
 
-        $company_table = "CREATE TABLE IF NOT EXISTS admin (
+        $admin_table = "CREATE TABLE IF NOT EXISTS admin (
                         user_id INT PRIMARY KEY,
                         firstName VARCHAR(100) NOT NULL,
                         lastName VARCHAR(100) NOT NULL,
                         contactNo VARCHAR(10) NOT NULL,
-                        email VARCHAR(100) NOT NULL UNIQUE,
-                        password VARCHAR(255) NOT NULL,
+                        admin_photo_path VARCHAR(255) NOT NULL,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                    )";
-        $this->query($company_table);
+        $this->query($admin_table);
 
         $admin_email = 'admin@gmail.com';
         $admin_password = 'root'; // need to hash this for futher protection
@@ -45,9 +44,9 @@ trait Model
 
             $user_id = 1;
 
-            $insert_admin = "INSERT INTO admin (user_id, firstName, lastName, contactNo, email, password) 
-                                VALUES (?, 'root', 'root', '0712345678', ?, ?)";
-            $this->query($insert_admin, [$user_id, $admin_email, $admin_password]);
+            $insert_admin = "INSERT INTO admin (user_id, firstName, lastName, contactNo, admin_photo_path) 
+                                VALUES (?, 'root', 'root', '0712345678', 'assets/uploads/defaultPhoto')";
+            $this->query($insert_admin, [$user_id]);
         }
 
         $company_table = "CREATE TABLE IF NOT EXISTS company (

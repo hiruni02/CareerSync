@@ -31,6 +31,8 @@
     h1 {
         color: var(--darkpurple);
         padding: 0px 0px 20px 0px;
+        font-family: "logo-font";
+        font-size: 45px;
     }
 }
 
@@ -64,10 +66,17 @@
     z-index: 1;
 }
 
+.profile_picture img{
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    border: solid var(--mid) 5px;
+}
+
 @media (max-width: 600px) {
     .pd_content {
         width: 90%;
-        height: 70%;
+        height: fit-content;
         background: rgb(221, 235, 255);
         border: solid var(--mid) 5px;
         display: flex;
