@@ -45,7 +45,7 @@ trait Model
             $user_id = 1;
 
             $insert_admin = "INSERT INTO admin (user_id, firstName, lastName, contactNo, admin_photo_path) 
-                                VALUES (?, 'root', 'root', '0712345678', 'assets/uploads/defaultPhoto')";
+                                VALUES (?, 'root', 'root', '0712345678', 'assets/uploads/defaultPhoto.jpg')";
             $this->query($insert_admin, [$user_id]);
         }
 

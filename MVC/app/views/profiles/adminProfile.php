@@ -6,7 +6,7 @@
         // show($userTable);
         // show($adminTable);
         ?>
-        <div class="profile_picture"><img src="<?=ROOT?>assets/uploads/defaultPhoto.jpg" alt="<?=ROOT?>assets/uploads/defaultPhoto.jpg"></div>
+        <div class="profile_picture"><img src="<?=ROOT.$adminTable->admin_photo_path?>" alt="admin photo"></div>
         <div class="info_segment"><label>First name :</label><?php echo $adminTable->firstName; ?></div>
         <div class="info_segment"><label>Last name :</label><?php echo $adminTable->lastName; ?></div>
         <div class="info_segment"><label>Contact number :</label><?php echo $adminTable->contactNo; ?></div>
