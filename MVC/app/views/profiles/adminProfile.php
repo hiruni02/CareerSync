@@ -2,13 +2,15 @@
 <div class="profile_display">
     <div class="pd_content">
         <h1>user profile</h1>
-        <button class="backBtn" id="backBtn">Back</button>
         <?php
-
-        show($userTable);
-        show($adminTable);
-
+        // show($userTable);
+        // show($adminTable);
         ?>
+        <div class="info_segment"><label>First name :</label><?php echo $adminTable->firstName; ?></div>
+        <div class="info_segment"><label>Last name :</label><?php echo $adminTable->lastName; ?></div>
+        <div class="info_segment"><label>Contact number :</label><?php echo $adminTable->contactNo; ?></div>
+        <div class="info_segment"><label>email address :</label><?php echo $userTable->email; ?></div>
+        <button class="backBtn" id="backBtn">Back</button>
     </div>
 </div>
 
