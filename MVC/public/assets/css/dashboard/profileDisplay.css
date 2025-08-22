@@ -66,16 +66,126 @@
     z-index: 1;
 }
 
-.profile_picture img{
+.profile_picture img {
     height: 200px;
     width: 200px;
     border-radius: 100%;
     border: solid var(--mid) 5px;
 }
 
+.edit_profileBtn {
+    background-color: var(--mid);
+    width: 150px;
+    height: 35px;
+    border-radius: 15px;
+    font-size: 20px;
+    left: 50px;
+    bottom: 70px;
+    position: absolute;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.edit_profile_display {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.edit_profile_display.active {
+    display: flex;
+}
+
+.editWindow {
+    width: 40%;
+    height: 70%;
+    background: rgb(221, 235, 255);
+    border: solid var(--mid) 5px;
+    display: flex;
+    margin-top: 80px;
+    border-radius: 60px;
+    padding: 50px;
+    position: relative;
+    flex-direction: column;
+
+    h1 {
+        color: var(--darkpurple);
+        padding: 0px 0px 20px 0px;
+        font-size: 25px;
+    }
+}
+
+.input-field {
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.input-field label {
+    align-content: center;
+}
+
+.input-field .eye {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.8rem;
+    width: 30px !important;
+    height: 30px !important;
+    z-index: 100;
+    background-image: url("../../svg_icons/eye_open.svg");
+    background-color: transparent !important;
+    background-size: cover;
+    fill: black;
+    border: none;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 60%;
+}
+
+.form_btns {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    margin-top: 20px;
+}
+
+.form_btns button {
+    width: 120px;
+    height: 55px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    background-image: var(--submit_btn_gradient);
+    color: white;
+}
+
+.form_btns button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+
 @media (max-width: 600px) {
     .pd_content {
-        width: 90%;
+        width: 100%;
         height: fit-content;
         background: rgb(221, 235, 255);
         border: solid var(--mid) 5px;
@@ -89,6 +199,7 @@
         h1 {
             color: var(--darkpurple);
             padding: 0px 0px 20px 0px;
+            font-size: 35px;
         }
     }
 
@@ -104,16 +215,40 @@
     }
 
     .backBtn {
+        font-size: 20px;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        border: none;
+    }
+
+    .backBtn {
+        color: transparent;
+    }
+
+    .backBtn::before {
+        content: "X";
+        color: black;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 28px;
+    }
+
+    .edit_profileBtn {
         background-color: var(--mid);
         width: 120px;
-        height: 70px;
+        height: 35px;
         border-radius: 15px;
         font-size: 20px;
-        font-weight: bold;
-        right: 30px;
-        bottom: 30px;
+        left: 50px;
+        bottom: 20px;
         position: absolute;
-        transition: none;
+        transition: 0.3s ease;
         cursor: pointer;
     }
 }

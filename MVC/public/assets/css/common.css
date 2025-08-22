@@ -1,13 +1,14 @@
 :root {
-   --page_gradient: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
-   --navbar_gradient: linear-gradient(to right, #1e1f4b, #662a86);
-   --footer_gradient: linear-gradient(60deg, rgb(16, 0, 31), rgb(57, 0, 121), rgb(16, 0, 31));
-   --nav_btn_gradient: linear-gradient(to right, #7b4697, #2f2779);
+  --page_gradient: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
+  --navbar_gradient: linear-gradient(to right, #1e1f4b, #662a86);
+  --footer_gradient: linear-gradient(60deg, rgb(16, 0, 31), rgb(57, 0, 121), rgb(16, 0, 31));
+  --nav_btn_gradient: linear-gradient(to right, #7b4697, #2f2779);
+  --submit_btn_gradient: linear-gradient(89deg, rgba(0, 2, 44, 1) 0%, rgba(0, 5, 109, 1) 18%, rgba(118, 0, 158, 1) 100%);
 
-   --light: #f4b0fc;
-   --mid: rgb(181, 134, 224);
-   --darkblue: #1e1f4b;
-   --darkpurple: rgb(55, 22, 86);
+  --light: #f4b0fc;
+  --mid: rgb(181, 134, 224);
+  --darkblue: #1e1f4b;
+  --darkpurple: rgb(55, 22, 86);
 }
 
 
