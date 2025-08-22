@@ -24,7 +24,6 @@
                         type="text"
                         placeholder="First Name"
                         name="firstName"
-                        required
                         value="<?= $adminTable->firstName ?>">
                 </div>
 
@@ -34,7 +33,6 @@
                         type="text"
                         placeholder="Last Name"
                         name="lastName"
-                        required
                         value="<?= $adminTable->lastName ?>">
                 </div>
 
@@ -44,7 +42,6 @@
                         type="email"
                         placeholder="Email"
                         name="email"
-                        required
                         value="<?= $userTable->email ?>"
                         style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
                 </div>
@@ -57,7 +54,6 @@
                     <input
                         type="file"
                         name="admin_photo_path"
-                        required
                         accept=".pdf, .jpg, .jpeg, .png"
                         style="<?= !empty($errors['admin_photo_path']) ? 'border: 2px solid red;' : '' ?>">
                 </div>
@@ -72,7 +68,6 @@
                         placeholder="Contact Number:07xxxxxxxx"
                         name="contactNo"
                         pattern="[0-9]{10}"
-                        required
                         value="<?= $adminTable->contactNo ?>">
                 </div>
 
