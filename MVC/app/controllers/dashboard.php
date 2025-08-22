@@ -20,13 +20,10 @@ class Dashboard
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $errors = [];
 
-                    // Validate passwords
                     if ($_POST['password'] !== $_POST['confirm_password']) {
                         $errors['confirm_password'] = "Passwords do not match";
                     }
 
-                    // Handle profile picture upload (optional)
-                    // $photoPath = $data['adminTable']->admin_photo_path; // keep old photo
                     if (!empty($_FILES['admin_photo_path']['name'])) {
                         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/admin_photo/';
 
