@@ -2,18 +2,25 @@
 <div class="profile_display">
     <div class="pd_content">
         <h1>user profile</h1>
-        <?php
-        // show($userTable);
-        // show($adminTable);
-        ?>
-        <div class="profile_picture"><img src="<?= ROOT . $adminTable->admin_photo_path ?>" alt="admin photo"></div>
-        <div class="info_segment"><label>First name :</label><?php echo $adminTable->firstName; ?></div>
-        <div class="info_segment"><label>Last name :</label><?php echo $adminTable->lastName; ?></div>
-        <div class="info_segment"><label>Contact number :</label><?php echo $adminTable->contactNo; ?></div>
-        <div class="info_segment"><label>email address :</label><?php echo $userTable->email; ?></div>
+        <div class="user_data">
+            <div class="profile_picture"><img src="<?= ROOT . $adminTable->admin_photo_path ?>" alt="admin photo"></div>
+            <div class="info_segment"><label>First name :</label>
+                <div class="value"><?php echo $adminTable->firstName; ?></div>
+            </div>
+            <div class="info_segment"><label>Last name :</label>
+                <div class="value"><?php echo $adminTable->lastName; ?></div>
+            </div>
+            <div class="info_segment"><label>Contact number :</label>
+                <div class="value"><?php echo $adminTable->contactNo; ?></div>
+            </div>
+            <div class="info_segment"><label>email address :</label>
+                <div class="value"><?php echo $userTable->email; ?></div>
+            </div>
+        </div>
         <button class="backBtn" id="backBtn">Back</button>
         <button class="edit_profileBtn" id="editBtn">Edit Profile</button>
     </div>
+
     <div class="edit_profile_display">
         <div class="editWindow">
             <h1>Edit profile</h1>

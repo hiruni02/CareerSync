@@ -27,6 +27,7 @@
     padding: 50px;
     position: relative;
     flex-direction: column;
+    align-items: center;
 
     h1 {
         color: var(--darkpurple);
@@ -36,15 +37,33 @@
     }
 }
 
-.info_segment {
-    font-size: 20px;
-    font-weight: bold;
-    color: rgb(76, 0, 147);
-    padding: 10px;
+.user_data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
 
-    label {
-        color: var(--darkblue);
-    }
+.info_segment {
+    display: grid;
+    grid-template-columns: 180px auto;
+    /* left = fixed, right = flexible */
+    align-items: center;
+    width: 60%;
+    /* center nicely within .pd_content */
+    font-size: 20px;
+}
+
+.info_segment label {
+    font-weight: bold;
+    color: var(--darkblue);
+    text-align: right;
+    padding-right: 15px;
+}
+
+.info_segment .value {
+    color: rgb(76, 0, 147);
 }
 
 .backBtn {
@@ -192,7 +211,7 @@ input {
         display: flex;
         margin-top: 0px;
         border-radius: 60px;
-        padding: 50px;
+        padding: 5px;
         position: relative;
         flex-direction: column;
 
@@ -200,17 +219,6 @@ input {
             color: var(--darkpurple);
             padding: 0px 0px 20px 0px;
             font-size: 35px;
-        }
-    }
-
-    .info_segment {
-        font-size: 20px;
-        font-weight: bold;
-        color: rgb(76, 0, 147);
-        padding: 10px;
-
-        label {
-            color: var(--darkblue);
         }
     }
 
@@ -240,15 +248,26 @@ input {
     }
 
     .edit_profileBtn {
-        background-color: var(--mid);
-        width: 120px;
-        height: 35px;
-        border-radius: 15px;
-        font-size: 20px;
-        left: 50px;
-        bottom: 20px;
-        position: absolute;
-        transition: 0.3s ease;
-        cursor: pointer;
+        position: relative;
+        /* instead of absolute */
+        left: auto;
+        bottom: auto;
+        margin: 20px auto 0 auto;
+        /* centers below content */
+        display: block;
+    }
+
+    .info_segment {
+        grid-template-columns: 1fr;
+        
+        text-align: left;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .info_segment label {
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 3px;
     }
 }
