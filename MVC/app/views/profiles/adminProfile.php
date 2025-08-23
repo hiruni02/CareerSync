@@ -57,11 +57,22 @@
                 <?php endif; ?>
 
                 <div class="input-field">
-                    <label for="admin_photo_path">Change Profile Picture</label>
+                    <label for="admin_photo_path">Profile Picture</label><br>
+                    <?php if (!empty($adminTable->admin_photo_path)): ?>
+                        <img src="<?= $adminTable->admin_photo_path ?>"
+                            alt="Current Profile Picture"
+                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                    <?php else: ?>
+                        <img src="assets/uploads/defaultPhoto.jpg"
+                            alt="Default Profile Picture"
+                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                    <?php endif; ?>
+
+                    <br>
                     <input
                         type="file"
                         name="admin_photo_path"
-                        accept=".pdf, .jpg, .jpeg, .png"
+                        accept=".jpg, .jpeg, .png"
                         style="<?= !empty($errors['admin_photo_path']) ? 'border: 2px solid red;' : '' ?>">
                 </div>
                 <?php if (!empty($errors['admin_photo_path'])): ?>

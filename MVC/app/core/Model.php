@@ -35,17 +35,16 @@ trait Model
         $admin_email = 'admin@gmail.com';
         $admin_password = 'root'; // need to hash this for futher protection
 
-        $check_admin = "SELECT * FROM users WHERE email = ?";
-        $does_admin_exist = $this->query($check_admin, [$admin_email]);
+        $check_admin = "SELECT COUNT(*) AS total_rows FROM users";
+        $result = $this->query($check_admin);
 
-        if (!$does_admin_exist) { //if admin doesnt exist then add the admin row
+        if ($result && isset($result[0]->total_rows) && $result[0]->total_rows == 0) {
             $insert_user = "INSERT INTO users (email, password, role, status) VALUES (?, ?, 'admin', 'active')";
             $this->query($insert_user, [$admin_email, $admin_password]);
 
             $user_id = 1;
-
             $insert_admin = "INSERT INTO admin (user_id, firstName, lastName, contactNo, admin_photo_path) 
-                                VALUES (?, 'root', 'root', '0712345678', 'assets/uploads/defaultPhoto.jpg')";
+                     VALUES (?, 'root', 'root', '0712345678', 'assets/uploads/defaultPhoto.jpg')";
             $this->query($insert_admin, [$user_id]);
         }
 

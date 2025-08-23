@@ -218,17 +218,24 @@ input {
         h1 {
             color: var(--darkpurple);
             padding: 0px 0px 20px 0px;
-            font-size: 35px;
+            font-size: 28px;
         }
+    }
+
+    .profile_picture img {
+        height: 150px;
+        width: 150px;
+        border-radius: 100%;
+        border: solid var(--mid) 5px;
     }
 
     .backBtn {
         font-size: 20px;
         position: absolute;
-        right: 20px;
-        top: 20px;
-        width: 50px;
-        height: 50px;
+        right: 15px;
+        top: 15px;
+        width: 40px;
+        height: 40px;
         border-radius: 100%;
         border: none;
     }
@@ -246,7 +253,9 @@ input {
         transform: translate(-50%, -50%);
         font-size: 28px;
     }
-
+    .user_data{
+        padding-left: 10px;
+    }
     .edit_profileBtn {
         position: relative;
         /* instead of absolute */
@@ -259,7 +268,7 @@ input {
 
     .info_segment {
         grid-template-columns: 1fr;
-        
+
         text-align: left;
         width: 100%;
         font-size: 18px;

@@ -16,6 +16,8 @@ class Dashboard
                 $admin = new Admin;
                 $data['adminTable'] = $admin->first(['user_id' => $_SESSION['USER']->user_id]);
 
+                $photoPath = null;
+
                 //code for updating user profile 
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $errors = [];
@@ -42,33 +44,34 @@ class Dashboard
                     }
 
                     if (empty($errors)) {
-                        $user->update($_SESSION['USER']->user_id, [
-                            'email' => $_POST['email'],
-                            'password' => $_POST['password'],
-                        ], 'user_id');
+                        // Prepare user update array
+                        $userUpdate = ['email' => $_POST['email']];
+                        if (!empty($_POST['password'])) {
+                            $userUpdate['password'] = $_POST['password'];
+                        }
+                        $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
 
-                        $admin->update($_SESSION['USER']->user_id, [
-                            'firstName' => $_POST['firstName'],
-                            'lastName' => $_POST['lastName'],
-                            'contactNo' => $_POST['contactNo'],
-                            'admin_photo_path' => $photoPath,
-                        ], 'user_id');
+                        // Prepare admin update array
+                        $adminUpdate = [
+                            'firstName' => $_POST['firstName'] ?? '',
+                            'lastName' => $_POST['lastName'] ?? '',
+                            'contactNo' => $_POST['contactNo'] ?? '',
+                            'admin_photo_path' => $photoPath ?? $data['adminTable']->admin_photo_path
+                        ];
 
-                        $_SESSION['USER'] = $user->first(['user_id' => $_SESSION['USER']->user_id]);
-                        $_SESSION['USER']->firstName = $_POST['firstName'];//this is to fix an error in the home page. do this, or log out once edited profile
+                        $admin->update($_SESSION['USER']->user_id, $adminUpdate, 'user_id');
+
+                        $updatedUser = $user->first(['user_id' => $_SESSION['USER']->user_id]);
+                        if ($updatedUser) {
+                            $_SESSION['USER'] = $updatedUser;
+                        }
+                        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
                         redirect('home');
                         exit;
                     }
 
                     $data['errors'] = $errors;
                 }
-
-
-
-
-
-
-
 
                 break;
             case 'candidate':
