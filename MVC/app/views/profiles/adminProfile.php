@@ -59,13 +59,9 @@
                 <div class="input-field">
                     <label for="admin_photo_path">Profile Picture</label><br>
                     <?php if (!empty($adminTable->admin_photo_path)): ?>
-                        <img src="<?= $adminTable->admin_photo_path ?>"
-                            alt="Current Profile Picture"
-                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                        <img src="<?= $adminTable->admin_photo_path ?>" alt="Current Profile Picture">
                     <?php else: ?>
-                        <img src="assets/uploads/defaultPhoto.jpg"
-                            alt="Default Profile Picture"
-                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+                        <img src="assets/uploads/defaultPhoto.jpg" alt="Default Profile Picture">
                     <?php endif; ?>
 
                     <br>

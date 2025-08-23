@@ -122,7 +122,7 @@
 
 .editWindow {
     width: 40%;
-    height: 70%;
+    max-height: 80vh;
     background: rgb(221, 235, 255);
     border: solid var(--mid) 5px;
     display: flex;
@@ -131,10 +131,11 @@
     padding: 50px;
     position: relative;
     flex-direction: column;
+    overflow-y: auto;
 
     h1 {
         color: var(--darkpurple);
-        padding: 0px 0px 20px 0px;
+        padding-bottom: 20px;
         font-size: 25px;
     }
 }
@@ -150,12 +151,19 @@
     align-content: center;
 }
 
+.input-field img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .input-field .eye {
     position: absolute;
     top: 0.7rem;
     right: 0.8rem;
-    width: 30px !important;
-    height: 30px !important;
+    width: 25px !important;
+    height: 25px !important;
     z-index: 100;
     background-image: url("../../svg_icons/eye_open.svg");
     background-color: transparent !important;
@@ -256,5 +264,56 @@ input {
         bottom: auto;
         margin: 20px auto 0 auto;
         display: block;
+    }
+
+    /* -------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+    .editWindow {
+        overflow-y: auto;
+        width: 90%;
+        height: fit-content;
+        padding: 25px;
+        margin-top: -20px;
+        h1 {
+            padding-bottom: 10px;
+            font-size: 25px;
+        }
+    }
+
+    .input-field {
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
+    .input-field label {
+        padding-bottom: 3px;
+        padding-left: 5px;
+    }
+
+    .input-field img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-top: -15px;
+    }
+
+    .input-field .eye {
+        top: 35px;
+        right: 0.8rem;
+        z-index: 100;
+    }
+
+    input {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .form_btns {
+        gap: 70px;
     }
 }
