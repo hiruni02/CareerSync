@@ -4,16 +4,16 @@
         <h1>user profile</h1>
         <div class="user_data">
             <div class="profile_picture"><img src="<?= ROOT . $adminTable->admin_photo_path ?>" alt="admin photo"></div>
-            <div class="info_segment"><label>First name :</label>
+            <div class="info_segment"><label>First name</label>
                 <div class="value"><?php echo $adminTable->firstName; ?></div>
             </div>
-            <div class="info_segment"><label>Last name :</label>
+            <div class="info_segment"><label>Last name</label>
                 <div class="value"><?php echo $adminTable->lastName; ?></div>
             </div>
-            <div class="info_segment"><label>Contact number :</label>
+            <div class="info_segment"><label>Contact number</label>
                 <div class="value"><?php echo $adminTable->contactNo; ?></div>
             </div>
-            <div class="info_segment"><label>email address :</label>
+            <div class="info_segment"><label>email address</label>
                 <div class="value"><?php echo $userTable->email; ?></div>
             </div>
         </div>
