@@ -30,7 +30,7 @@ class register
                     case 'validator':
                         $validator = new Validator;
 
-                        $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/validator_photos/';
+                        $upload_path = 'assets/uploads/validator_photos/';
                         $filename = time() . '_' . basename($_FILES['validator_photo_path']['name']); //makes each upload file name unique
                         $photo_target = $upload_path . $filename;
 
@@ -67,7 +67,7 @@ class register
                         } else {
                             // Handle business registration certificate upload
                             if (isset($_FILES['business_certificate']) && $_FILES['business_certificate']['error'] === UPLOAD_ERR_OK) {
-                                $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/certificates/';
+                                $upload_path = 'assets/uploads/certificates/';
                                 $filename = time() . '_' . basename($_FILES['business_certificate']['name']); // unique file name
                                 $target_file = $upload_path . $filename;
 
@@ -122,8 +122,8 @@ class register
                     case 'counselor':
                         $counselor = new Counselor;
 
-                        $photo_upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/counselor_photos/';
-                        $certificate_upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/counselor_certificates/';
+                        $photo_upload_path ='assets/uploads/counselor_photos/';
+                        $certificate_upload_path = 'assets/uploads/counselor_certificates/';
 
                         // Create unique file names
                         $photo_filename = time() . '_' . basename($_FILES['counselor_photo_path']['name']);
@@ -160,7 +160,7 @@ class register
 
                     case 'candidate':
                         $candidate = new Candidate;
-                        $upload_path = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/candidate_photos/';
+                        $upload_path = 'assets/uploads/candidate_photos/';
                         $filename = time() . '_' . basename($_FILES['candidate_photo_path']['name']);
                         $photo_target = $upload_path . $filename;
 
