@@ -65,7 +65,9 @@ class Dashboard
                         if ($updatedUser) {
                             $_SESSION['USER'] = $updatedUser;
                         }
-                        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        //$_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        //$_SESSION['USER']->photo_path = $photoPath;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
                     }
@@ -107,6 +109,7 @@ class Dashboard
                             $errors['validator_photo_path'] = "Invalid file type. Only JPG, JPEG, PNG allowed.";
                         } elseif (move_uploaded_file($_FILES['validator_photo_path']['tmp_name'], $target)) {
                             $photoPath = 'assets/uploads/validator_photos/' . $filename;
+                            $_SESSION['USER']->photo_path = $photoPath;
                         } else {
                             $errors['validator_photo_path'] = "Error uploading photo.";
                         }
@@ -134,7 +137,9 @@ class Dashboard
                         if ($updatedUser) {
                             $_SESSION['USER'] = $updatedUser;
                         }
-                        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        //$_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        //$_SESSION['USER']->photo_path = $photoPath;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
                     }

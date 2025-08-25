@@ -56,6 +56,16 @@
     text-decoration: none;
   }
 
+  .nav_pfp img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    top: 5px;
+    right: 145px;
+    border-radius: 50%;
+    position: absolute;
+  }
+
   .navbar-left .navbtn:hover {
     transform: scale(1.2);
     background: var(--nav_btn_gradient);
@@ -102,6 +112,16 @@
       font-weight: 700;
       white-space: nowrap;
       padding-left: 50px;
+    }
+
+    .nav_pfp img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      top:10px;
+      right: 10px;
+      border-radius: 50%;
+      position: absolute;
     }
 
     .hamburger_btn img {
