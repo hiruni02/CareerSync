@@ -65,9 +65,9 @@ class Dashboard
                         if ($updatedUser) {
                             $_SESSION['USER'] = $updatedUser;
                         }
-                        //$_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-                        //$_SESSION['USER']->photo_path = $photoPath;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
-                        unset($_SESSION['USER']);//this loggs out after editing profile
+                        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        $_SESSION['USER']->photo_path = $photoPath;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        //unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
                     }
@@ -137,9 +137,9 @@ class Dashboard
                         if ($updatedUser) {
                             $_SESSION['USER'] = $updatedUser;
                         }
-                        //$_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-                        //$_SESSION['USER']->photo_path = $photoPath;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
-                        unset($_SESSION['USER']);//this loggs out after editing profile
+                        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        $_SESSION['USER']->photo_path = $photoPath;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        //unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
                     }

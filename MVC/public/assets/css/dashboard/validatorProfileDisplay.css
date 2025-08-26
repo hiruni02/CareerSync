@@ -80,6 +80,7 @@
 }
 
 .profile_picture img {
+    object-fit: cover;
     height: 200px;
     width: 200px;
     border-radius: 100%;
