@@ -26,3 +26,186 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
         <h1>2</h1>
     </div>
 </div>
+
+<div class="sbContainer">
+    <h3> Pending Company registration requests:</h3>
+    <div class="scrollBox">
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Company Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="sbContainer">
+    <h3> Pending Student registration requests:</h3>
+    <div class="scrollBox">
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Student Application Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Student Application Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Student Application Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Student Application Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Student Application Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Student Application Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Student Application Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+        <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Student Application Name</div>
+                <div class="description">
+                    THE DESCRIPTION GOES HERE.
+                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

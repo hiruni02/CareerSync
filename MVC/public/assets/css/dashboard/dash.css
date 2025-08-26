@@ -82,7 +82,7 @@
 
 .box_segment {
     max-width: 300px;
-    background-color: rgb(211, 231, 255);
+    background-color: var(--lightBlue);
     border-radius: 15px;
     padding: 20px;
     margin: 10px;
