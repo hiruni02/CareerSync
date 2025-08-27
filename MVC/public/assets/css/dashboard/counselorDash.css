@@ -1,6 +1,6 @@
 .content_section {
     width: 100%;
-    background-color: var(--light-purple); /* counselor theme */
+    background-color: var(--mid);
     border-radius: 15px;
     padding: 20px;
     margin-top: 20px;
@@ -10,7 +10,7 @@
 
 .content_section section {
     width: 100%;
-    background-color: rgb(223, 247, 223); /* softer green background */
+    background-color: rgb(211, 231, 255);
     border-radius: 15px;
     padding: 20px;
     margin: 10px 0;
@@ -40,15 +40,13 @@
 }
 
 .content_section th {
-    background-color: var(--dark-green); /* counselor header color */
-    color: black;
+    background-color: var(--mid);
+    color: white;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .content_section tr:hover {
-    background-color: rgba(76, 175, 80, 0.1); /* subtle green hover */
+    background-color: rgba(186, 112, 255, 0.1);
 }
-
-
 

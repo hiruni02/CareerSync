@@ -1,4 +1,3 @@
-/* Counselor Profile Display Styling */
 .profile_display {
     background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(7px);
@@ -18,24 +17,24 @@
 }
 
 .pd_content {
-    width: 55%;
+    width: 50%;
     max-height: 80vh;
-    background: rgb(235, 248, 255);
-    border: solid var(--lightblue) 5px;
+    background: rgb(221, 235, 255);
+    border: solid var(--mid) 5px;
     display: flex;
     margin-top: 80px;
-    border-radius: 12px;
-    padding: 40px;
+    border-radius: 10px;
+    padding: 50px;
     position: relative;
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
 
     h1 {
-        color: var(--darkblue);
-        padding-bottom: 20px;
+        color: var(--darkpurple);
+        padding: 0px 0px 20px 0px;
         font-family: "logo-font";
-        font-size: 40px;
+        font-size: 45px;
     }
 }
 
@@ -43,18 +42,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .info_segment {
     width: 100%;
-    font-size: 19px;
+    font-size: 20px;
     text-align: center;
 }
 
 .info_segment label {
     font-weight: bold;
-    color: var(--midblue);
+    color: var(--darkblue);
 }
 
 .info_segment .value {
@@ -63,11 +62,11 @@
 
 .backBtn {
     background-image: var(--submit_btn_gradient);
-    color: black;
+    color: white;
     width: 100px;
-    height: 45px;
-    border-radius: 12px;
-    font-size: 26px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 30px;
     font-weight: bold;
     top: 10px;
     right: 10px;
@@ -82,19 +81,20 @@
 }
 
 .profile_picture img {
-    height: 100x;
-    width: 100px;
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
     border-radius: 100%;
-    border: solid var(--lightblue) 5px;
+    border: solid var(--mid) 5px;
 }
 
 .edit_profileBtn {
     background-image: var(--submit_btn_gradient);
-    color: black;
-    width: 140px;
+    color: white;
+    width: 150px;
     height: 35px;
-    border-radius: 12px;
-    font-size: 18px;
+    border-radius: 15px;
+    font-size: 20px;
     transition: 0.3s ease;
     cursor: pointer;
     position: relative;
@@ -104,7 +104,6 @@
     display: block;
 }
 
-/* Edit Window */
 .edit_profile_display {
     background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(7px);
@@ -124,28 +123,28 @@
 }
 
 .editWindow {
-    width: 45%;
+    width: 40%;
     max-height: 80vh;
-    background: rgb(235, 248, 255);
-    border: solid var(--lightblue) 5px;
+    background: rgb(221, 235, 255);
+    border: solid var(--mid) 5px;
     display: flex;
     margin-top: 80px;
-    border-radius: 12px;
-    padding: 40px;
+    border-radius: 10px;
+    padding: 50px;
     position: relative;
     flex-direction: column;
     overflow-y: auto;
 
     h1 {
-        color: var(--darkblue);
-        padding-bottom: 15px;
-        font-size: 24px;
+        color: var(--darkpurple);
+        padding-bottom: 20px;
+        font-size: 25px;
     }
 }
 
 .input-field {
     display: flex;
-    padding: 6px;
+    padding: 5px;
     justify-content: space-between;
     position: relative;
 }
@@ -155,8 +154,8 @@
 }
 
 .input-field img {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -169,10 +168,10 @@
     height: 25px !important;
     z-index: 100;
     background-image: url("../../svg_icons/eye_open.svg");
-    background-size: cover;
-    border: none;
-    fill: black;
     background-color: transparent !important;
+    background-size: cover;
+    fill: black;
+    border: none;
 }
 
 input {
@@ -186,22 +185,22 @@ input {
 .form_btns {
     display: flex;
     justify-content: center;
-    gap: 180px;
+    gap: 200px;
     margin-top: 20px;
 }
 
 .form_btns button {
-    width: 115px;
-    height: 50px;
+    width: 120px;
+    height: 55px;
     padding: 10px 20px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s ease;
     background-image: var(--submit_btn_gradient);
-    color: black;
+    color: white;
 }
 
 .form_btns button:hover {
@@ -209,7 +208,6 @@ input {
     opacity: 0.9;
 }
 
-/* Mobile Responsive */
 @media (max-width: 600px) {
     .pd_content {
         width: 100%;
@@ -231,14 +229,14 @@ input {
     }
 
     .profile_picture img {
-        height: 140px;
-        width: 140px;
+        height: 150px;
+        width: 150px;
         border-radius: 100%;
         border: solid var(--mid) 5px;
     }
 
     .backBtn {
-        font-size: 18px;
+        font-size: 20px;
         position: absolute;
         right: 15px;
         top: 15px;
@@ -254,15 +252,15 @@ input {
 
     .backBtn::before {
         content: "X";
-        color: black;
+        color: white;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 24px;
+        font-size: 28px;
     }
 
-     .edit_profileBtn {
+    .edit_profileBtn {
         position: relative;
         left: auto;
         bottom: auto;
@@ -270,13 +268,15 @@ input {
         display: block;
     }
 
+    /* -------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
     .editWindow {
         overflow-y: auto;
         width: 90%;
         height: fit-content;
-        padding: 20px;
-        margin-top: -10px;
-
+        padding: 25px;
+        margin-top: -20px;
         h1 {
             padding-bottom: 10px;
             font-size: 25px;
@@ -284,8 +284,8 @@ input {
     }
 
     .input-field {
-        flex-direction: column;
         justify-content: flex-start;
+        flex-direction: column;
     }
 
     .input-field label {
@@ -297,7 +297,7 @@ input {
         width: 50px;
         height: 50px;
         object-fit: cover;
-        border-radius: 20%;
+        border-radius: 50%;
         margin-top: -15px;
     }
 
@@ -316,6 +316,6 @@ input {
     }
 
     .form_btns {
-        gap: 60px;
+        gap: 70px;
     }
 }

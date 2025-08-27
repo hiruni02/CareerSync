@@ -66,7 +66,7 @@ class Dashboard
                             $_SESSION['USER'] = $updatedUser;
                         }
                         $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-                        $_SESSION['USER']->photo_path = $photoPath ?? $data['adminTable']->admin_photo_path;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['adminTable']->admin_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
                         //unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
@@ -132,7 +132,7 @@ class Dashboard
                             $_SESSION['USER'] = $updatedUser;
                         }
                         $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-                        $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
                         //unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
@@ -142,10 +142,6 @@ class Dashboard
                 }
                 break;
 
-
-            case 'company':
-                //extract company data
-                break;
             case 'validator':
                 //extract validator data
                 $validator = new Validator;
@@ -202,7 +198,7 @@ class Dashboard
                             $_SESSION['USER'] = $updatedUser;
                         }
                         $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-                        $_SESSION['USER']->photo_path = $photoPath ?? $data['validatorTable']->validator_photo_path;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['validatorTable']->validator_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
                         //unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
@@ -210,10 +206,10 @@ class Dashboard
 
                     $data['errors'] = $errors;
                 }
-
                 break;
+
             case 'counselor':
-                    //extract counselor data
+                //extract counselor data
                 $counselor = new Counselor;
                 $data['counselorTable'] = $counselor->first(['user_id' => $_SESSION['USER']->user_id]);
 
@@ -239,6 +235,7 @@ class Dashboard
                             $errors['counselor_photo_path'] = "Invalid file type. Only JPG, JPEG, PNG allowed.";
                         } elseif (move_uploaded_file($_FILES['counselor_photo_path']['tmp_name'], $target)) {
                             $photoPath = 'assets/uploads/counselor_photos/' . $filename;
+                            $_SESSION['USER']->photo_path = $photoPath;
                         } else {
                             $errors['counselor_photo_path'] = "Error uploading photo.";
                         }
@@ -266,15 +263,21 @@ class Dashboard
                         if ($updatedUser) {
                             $_SESSION['USER'] = $updatedUser;
                         }
-                        $_SESSION['USER']->firstName = $_POST['firstName']; // fix error in homepage
+                        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['counselorTable']->counselor_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        //unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
                     }
 
                     $data['errors'] = $errors;
                 }
-                            break;
-                }
+                break;
+
+            case 'company':
+                //extract company data
+                break;
+        }
 
         $this->view("dashboard", $data);  // loads dashboard.view.php
     }
