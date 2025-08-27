@@ -1,0 +1,321 @@
+/* Counselor Profile Display Styling */
+.profile_display {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.profile_display.active {
+    display: flex;
+}
+
+.pd_content {
+    width: 55%;
+    max-height: 80vh;
+    background: rgb(235, 248, 255);
+    border: solid var(--lightblue) 5px;
+    display: flex;
+    margin-top: 80px;
+    border-radius: 12px;
+    padding: 40px;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+
+    h1 {
+        color: var(--darkblue);
+        padding-bottom: 20px;
+        font-family: "logo-font";
+        font-size: 40px;
+    }
+}
+
+.user_data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.info_segment {
+    width: 100%;
+    font-size: 19px;
+    text-align: center;
+}
+
+.info_segment label {
+    font-weight: bold;
+    color: var(--midblue);
+}
+
+.info_segment .value {
+    color: rgb(76, 0, 147);
+}
+
+.backBtn {
+    background-image: var(--submit_btn_gradient);
+    color: black;
+    width: 100px;
+    height: 45px;
+    border-radius: 12px;
+    font-size: 26px;
+    font-weight: bold;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.backBtn:hover {
+    transform: scale(1.08);
+    z-index: 1;
+}
+
+.profile_picture img {
+    height: 100x;
+    width: 100px;
+    border-radius: 100%;
+    border: solid var(--lightblue) 5px;
+}
+
+.edit_profileBtn {
+    background-image: var(--submit_btn_gradient);
+    color: black;
+    width: 140px;
+    height: 35px;
+    border-radius: 12px;
+    font-size: 18px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin: 20px auto 0 auto;
+    display: block;
+}
+
+/* Edit Window */
+.edit_profile_display {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.edit_profile_display.active {
+    display: flex;
+}
+
+.editWindow {
+    width: 45%;
+    max-height: 80vh;
+    background: rgb(235, 248, 255);
+    border: solid var(--lightblue) 5px;
+    display: flex;
+    margin-top: 80px;
+    border-radius: 12px;
+    padding: 40px;
+    position: relative;
+    flex-direction: column;
+    overflow-y: auto;
+
+    h1 {
+        color: var(--darkblue);
+        padding-bottom: 15px;
+        font-size: 24px;
+    }
+}
+
+.input-field {
+    display: flex;
+    padding: 6px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.input-field label {
+    align-content: center;
+}
+
+.input-field img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.input-field .eye {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.8rem;
+    width: 25px !important;
+    height: 25px !important;
+    z-index: 100;
+    background-image: url("../../svg_icons/eye_open.svg");
+    background-size: cover;
+    border: none;
+    fill: black;
+    background-color: transparent !important;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 60%;
+}
+
+.form_btns {
+    display: flex;
+    justify-content: center;
+    gap: 180px;
+    margin-top: 20px;
+}
+
+.form_btns button {
+    width: 115px;
+    height: 50px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    background-image: var(--submit_btn_gradient);
+    color: black;
+}
+
+.form_btns button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .pd_content {
+        width: 100%;
+        height: fit-content;
+        background: rgb(221, 235, 255);
+        border: solid var(--mid) 5px;
+        display: flex;
+        margin-top: 0px;
+        border-radius: 60px;
+        padding: 5px;
+        position: relative;
+        flex-direction: column;
+
+        h1 {
+            color: var(--darkpurple);
+            padding: 0px 0px 20px 0px;
+            font-size: 28px;
+        }
+    }
+
+    .profile_picture img {
+        height: 140px;
+        width: 140px;
+        border-radius: 100%;
+        border: solid var(--mid) 5px;
+    }
+
+    .backBtn {
+        font-size: 18px;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        border: none;
+    }
+
+    .backBtn {
+        color: transparent;
+    }
+
+    .backBtn::before {
+        content: "X";
+        color: black;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+    }
+
+     .edit_profileBtn {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        margin: 20px auto 0 auto;
+        display: block;
+    }
+
+    .editWindow {
+        overflow-y: auto;
+        width: 90%;
+        height: fit-content;
+        padding: 20px;
+        margin-top: -10px;
+
+        h1 {
+            padding-bottom: 10px;
+            font-size: 25px;
+        }
+    }
+
+    .input-field {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .input-field label {
+        padding-bottom: 3px;
+        padding-left: 5px;
+    }
+
+    .input-field img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 20%;
+        margin-top: -15px;
+    }
+
+    .input-field .eye {
+        top: 35px;
+        right: 0.8rem;
+        z-index: 100;
+    }
+
+    input {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .form_btns {
+        gap: 60px;
+    }
+}
