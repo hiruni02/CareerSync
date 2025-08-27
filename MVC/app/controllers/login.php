@@ -19,28 +19,34 @@ class login
                         case 'admin':
                             $admin = new Admin();
                             $extra = $admin->first(['user_id' => $row->user_id]);
+                            $_SESSION['USER']->photo_path = $extra->admin_photo_path;
                             break;
                         case 'candidate':
                             $candidate = new Candidate();
                             $extra = $candidate->first(['user_id' => $row->user_id]);
+                            $_SESSION['USER']->photo_path = $extra->candidate_photo_path;
                             break;
                         case 'counselor':
                             $counselor = new Counselor();
                             $extra = $counselor->first(['user_id' => $row->user_id]);
+                            $_SESSION['USER']->photo_path = $extra->counselor_photo_path;
                             break;
                         case 'validator':
                             $validator = new Validator();
                             $extra = $validator->first(['user_id' => $row->user_id]);
+                            $_SESSION['USER']->photo_path = $extra->validator_photo_path;
                             break;
                         case 'company':
                             $company = new Company();
                             $extra = $company->first(['user_id' => $row->user_id]);
+                            //NEED TO ADD COMPANY LOGO TO SESSION AFTER COMPANY LOGO IS IMPLEMENTED
                             break;
                         default:
                             $extra = null;
                     }
 
                     if ($extra && isset($extra->firstName)) {
+                        $_SESSION['USER']->firstName = $extra->firstName;
                         $_SESSION['USER']->firstName = $extra->firstName;
                         $_SESSION['USER']->user_id = $row->user_id;
                         $_SESSION['USER']->role = $row->role;

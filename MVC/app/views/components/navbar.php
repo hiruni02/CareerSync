@@ -25,6 +25,7 @@
             <?php
             } else {
             ?>
+                <li class="nav_pfp"><img src=" <?= $_SESSION['USER']->photo_path ?>" alt="pfp"></li>
                 <li><a href="logout" onclick="return confirm('Are you sure you want to log out?');"><button class="navbtn">Log out</button></a></li>
             <?php
             }
@@ -38,6 +39,7 @@
             <img src="<?= ROOT ?>assets/images/options_btn.png" alt="options_btn">
         </div>
         <div class="logo">CareerSync</div>
+        <li class="nav_pfp"><img src="<?= $_SESSION['USER']->photo_path?>" alt="pfp"></li>
     </nav>
 
     <div class="mobile_menu" id="mobileMenu">
