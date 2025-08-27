@@ -47,18 +47,26 @@ class login
 
                     if ($extra && isset($extra->firstName)) {
                         $_SESSION['USER']->firstName = $extra->firstName;
-                        $_SESSION['USER']->firstName = $extra->firstName;
                         $_SESSION['USER']->user_id = $row->user_id;
                         $_SESSION['USER']->role = $row->role;
                     }
-
-                    // For companies, use HR's first name for display
-                    if ($extra) {
-                        if ($row->role === 'company') {
+                    switch ($row->role) {
+                        case "admin":
+                            $_SESSION['USER']->photo_path = $extra->admin_photo_path;
+                            break;
+                        case "candidate":
+                            $_SESSION['USER']->photo_path = $extra->candidate_photo_path;
+                            break;
+                        case "validator":
+                            $_SESSION['USER']->photo_path = $extra->validator_photo_path;
+                            break;
+                        case "counselor":
+                            $_SESSION['USER']->photo_path = $extra->counselor_photo_path;
+                            break;
+                        case "company":
+                            //$_SESSION['USER']->photo_path = $extra->company_photo_path;
                             $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
-                        } else {
-                            $_SESSION['USER']->firstName = $extra->firstName;
-                        }
+                            break;
                     }
 
                     redirect('home');

@@ -3,7 +3,7 @@
     <div class="pd_content">
         <h1>user profile</h1>
         <div class="user_data">
-            <div class="profile_picture"><img src="<?= $candidateTable->candidate_photo_path ?>" alt="candidate photo"></div>
+            <div class="profile_picture"><img src="<?= ROOT . $candidateTable->candidate_photo_path ?>" alt="candidate photo"></div>
             <div class="info_segment"><label>First name</label>
                 <div class="value"><?php echo $candidateTable->firstName; ?></div>
             </div>

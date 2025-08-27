@@ -66,7 +66,7 @@ class Dashboard
                             $_SESSION['USER'] = $updatedUser;
                         }
                         $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-                        $_SESSION['USER']->photo_path = $photoPath;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['adminTable']->admin_photo_path;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
                         //unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;
@@ -77,36 +77,68 @@ class Dashboard
 
                 break;
             case 'candidate':
+                //extract candidate data
                 $candidate = new Candidate;
                 $data['candidateTable'] = $candidate->first(['user_id' => $_SESSION['USER']->user_id]);
 
-                // Handle profile update
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateProfile'])) {
-                    $updateData = [
-                        'first_name' => $_POST['first_name'] ?? '',
-                        'last_name'  => $_POST['last_name'] ?? '',
-                        'phone'      => $_POST['phone'] ?? '',
-                        'email'      => $_POST['email'] ?? '',
-                     ];
+                $photoPath = null;
 
-                    // Profile picture upload
-                    if (!empty($_FILES['profile_pic']['name'])) {
-                        $fileName   = time() . "_" . basename($_FILES['profile_pic']['name']);
-                        $targetPath = "uploads/candidate_photos/" . $fileName;
+                //code for updating user profile 
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $errors = [];
 
-                        if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], $targetPath)) {
-                            $updateData['profile_pic'] = $fileName;
+                    if ($_POST['password'] !== $_POST['confirm_password']) {
+                        $errors['confirm_password'] = "Passwords do not match";
+                    }
+
+                    if (!empty($_FILES['candidate_photo_path']['name'])) {
+                        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/candidate_photos/';
+
+                        $filename = time() . '_' . basename($_FILES['candidate_photo_path']['name']);
+                        $target = $uploadDir . $filename;
+
+                        $allowed = ['jpg', 'jpeg', 'png'];
+                        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                        if (!in_array($ext, $allowed)) {
+                            $errors['candidate_photo_path'] = "Invalid file type. Only JPG, JPEG, PNG allowed.";
+                        } elseif (move_uploaded_file($_FILES['candidate_photo_path']['tmp_name'], $target)) {
+                            $photoPath = 'assets/uploads/candidate_photos/' . $filename;
+                            $_SESSION['USER']->photo_path = $photoPath;
+                        } else {
+                            $errors['candidate_photo_path'] = "Error uploading photo.";
                         }
                     }
 
-                    $candidate->update($data['candidateTable']->candidate_id, $updateData);
+                    if (empty($errors)) {
+                        // Prepare user update array
+                        $userUpdate = ['email' => $_POST['email']];
+                        if (!empty($_POST['password'])) {
+                            $userUpdate['password'] = $_POST['password'];
+                        }
+                        $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
 
-                    // Refresh data
-                    $data['candidateTable'] = $candidate->first(['user_id' => $_SESSION['USER']->user_id]);
+                        // Prepare candidate update array
+                        $candidateUpdate = [
+                            'firstName' => $_POST['firstName'] ?? '',
+                            'lastName' => $_POST['lastName'] ?? '',
+                            'contactNo' => $_POST['contactNo'] ?? '',
+                            'candidate_photo_path' => $photoPath ?? $data['candidateTable']->candidate_photo_path
+                        ];
 
-                    // Redirect to avoid resubmission
-                    header("Location: " . ROOT . "dashboard");
-                    exit;
+                        $candidate->update($_SESSION['USER']->user_id, $candidateUpdate, 'user_id');
+
+                        $updatedUser = $user->first(['user_id' => $_SESSION['USER']->user_id]);
+                        if ($updatedUser) {
+                            $_SESSION['USER'] = $updatedUser;
+                        }
+                        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        //unset($_SESSION['USER']);//this loggs out after editing profile
+                        redirect('home');
+                        exit;
+                    }
+
+                    $data['errors'] = $errors;
                 }
                 break;
 
@@ -170,7 +202,7 @@ class Dashboard
                             $_SESSION['USER'] = $updatedUser;
                         }
                         $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-                        $_SESSION['USER']->photo_path = $photoPath;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['validatorTable']->validator_photo_path;//need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
                         //unset($_SESSION['USER']);//this loggs out after editing profile
                         redirect('home');
                         exit;

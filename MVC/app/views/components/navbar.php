@@ -39,7 +39,10 @@
             <img src="<?= ROOT ?>assets/images/options_btn.png" alt="options_btn">
         </div>
         <div class="logo">CareerSync</div>
-        <li class="nav_pfp"><img src="<?= $_SESSION['USER']->photo_path?>" alt="pfp"></li>
+        <?php if (isset($_SESSION['USER'])) { ?>
+            <li class="nav_pfp"><img src="<?= $_SESSION['USER']->photo_path ?>" alt="pfp"></li>
+        <?php
+        } ?>
     </nav>
 
     <div class="mobile_menu" id="mobileMenu">
