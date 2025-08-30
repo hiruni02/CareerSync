@@ -2,8 +2,7 @@
 
 <div class="settings_menu" id="settings_menu">
     <ul class="settings_links">
-        <li><a href=""><button class="setting_btn" id="profileBtn">Company Profile</button></a></li>
-        <li><a href=""><button class="setting_btn">Manage Jobs</button></a></li>
+        <li><button class="setting_btn" id="profileBtn">Company Profile</button></li>
         <li><a href=""><button class="setting_btn">Change Password</button></a></li>
     </ul>
 </div>
@@ -77,3 +76,5 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
         </table>
     </section>
 </div>
+
+
