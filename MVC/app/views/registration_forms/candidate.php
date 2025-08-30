@@ -38,7 +38,7 @@
     </div>
 
     <div class="input-field">
-        <label for="lastName">Enter Last Name</label>
+        <label for="lastName">Last Name</label>
         <input
             type="text"
             placeholder="Last Name"

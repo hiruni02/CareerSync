@@ -22,8 +22,11 @@
                         name="email"
                         required
                         value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
-                        style="width: 100%">
+                        style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?> width: 100%">
                 </div>
+                <?php if (!empty($errors['email'])): ?>
+                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['email'] ?></div>
+                <?php endif; ?>
 
                 <div class="input-field-login">
                     <input
@@ -34,8 +37,8 @@
                         required
                         value="<?= isset($_POST['password']) ? htmlspecialchars($_POST['password']) : '' ?>"
                         style="<?= !empty($errors['password']) ? 'border: 2px solid red;' : '' ?> width: 100%">
-                        <button onclick="show_password()" class="eye" type="button" id="eye"></button>
-                    </div>
+                    <button onclick="show_password()" class="eye" type="button" id="eye"></button>
+                </div>
                 <?php if (!empty($errors['password'])): ?>
                     <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['password'] ?></div>
                 <?php endif; ?>

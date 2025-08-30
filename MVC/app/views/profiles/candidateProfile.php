@@ -1,17 +1,17 @@
-<link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/adminProfileDisplay.css">
+<link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/candidateProfileDisplay.css">
 <div class="profile_display">
     <div class="pd_content">
         <h1>user profile</h1>
         <div class="user_data">
-            <div class="profile_picture"><img src="<?= ROOT . $adminTable->admin_photo_path ?>" alt="admin photo"></div>
+            <div class="profile_picture"><img src="<?= ROOT . $candidateTable->candidate_photo_path ?>" alt="candidate photo"></div>
             <div class="info_segment"><label>First name</label>
-                <div class="value"><?php echo $adminTable->firstName; ?></div>
+                <div class="value"><?php echo $candidateTable->firstName; ?></div>
             </div>
             <div class="info_segment"><label>Last name</label>
-                <div class="value"><?php echo $adminTable->lastName; ?></div>
+                <div class="value"><?php echo $candidateTable->lastName; ?></div>
             </div>
             <div class="info_segment"><label>Contact number</label>
-                <div class="value"><?php echo $adminTable->contactNo; ?></div>
+                <div class="value"><?php echo $candidateTable->contactNo; ?></div>
             </div>
             <div class="info_segment"><label>email address</label>
                 <div class="value"><?php echo $userTable->email; ?></div>
@@ -31,7 +31,7 @@
                         type="text"
                         placeholder="First Name"
                         name="firstName"
-                        value="<?= $adminTable->firstName ?>">
+                        value="<?= $candidateTable->firstName ?>">
                 </div>
 
                 <div class="input-field">
@@ -40,7 +40,7 @@
                         type="text"
                         placeholder="Last Name"
                         name="lastName"
-                        value="<?= $adminTable->lastName ?>">
+                        value="<?= $candidateTable->lastName ?>">
                 </div>
 
                 <div class="input-field">
@@ -57,9 +57,9 @@
                 <?php endif; ?>
 
                 <div class="input-field">
-                    <label for="admin_photo_path">Profile Picture</label><br>
-                    <?php if (!empty($adminTable->admin_photo_path)): ?>
-                        <img src="<?= $adminTable->admin_photo_path ?>" alt="Current Profile Picture">
+                    <label for="candidate_photo_path">Profile Picture</label><br>
+                    <?php if (!empty($candidateTable->candidate_photo_path)): ?>
+                        <img src="<?= $candidateTable->candidate_photo_path ?>" alt="Current Profile Picture">
                     <?php else: ?>
                         <img src="assets/uploads/defaultPhoto.jpg" alt="Default Profile Picture">
                     <?php endif; ?>
@@ -67,12 +67,12 @@
                     <br>
                     <input
                         type="file"
-                        name="admin_photo_path"
+                        name="candidate_photo_path"
                         accept=".jpg, .jpeg, .png"
-                        style="<?= !empty($errors['admin_photo_path']) ? 'border: 2px solid red;' : '' ?>">
+                        style="<?= !empty($errors['candidate_photo_path']) ? 'border: 2px solid red;' : '' ?>">
                 </div>
-                <?php if (!empty($errors['admin_photo_path'])): ?>
-                    <div style="color:red;" class="error"><?= $errors['admin_photo_path'] ?></div>
+                <?php if (!empty($errors['candidate_photo_path'])): ?>
+                    <div style="color:red;" class="error"><?= $errors['candidate_photo_path'] ?></div>
                 <?php endif; ?>
 
                 <div class="input-field">
@@ -82,7 +82,7 @@
                         placeholder="Contact Number:07xxxxxxxx"
                         name="contactNo"
                         pattern="[0-9]{10}"
-                        value="<?= $adminTable->contactNo ?>">
+                        value="<?= $candidateTable->contactNo ?>">
                 </div>
 
                 <div class="input-field">
