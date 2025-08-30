@@ -143,40 +143,68 @@ class Dashboard
                 break;
 
           case 'company':
+                //extract company data
                 $company = new Company;
                 $data['companyTable'] = $company->first(['user_id' => $_SESSION['USER']->user_id]);
 
-                // Handle profile update
-                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateProfile'])) {
-                    $updateData = [
-                        'companyName'    => $_POST['companyName'] ?? '',
-                        //'company_email'   => $_POST['company_email'] ?? '',
-                        'contactNo'  => $_POST['contactNo'] ?? '',
-                        'hr_firstname'   => $_POST['hr_firstname'] ?? '',
-                        'hr_lastname'    => $_POST['hr_lastname'] ?? '',
-                        'hr_email'        => $_POST['hr_email'] ?? '',
-                        'hr_contactNo' => $_POST['hr_contactNo'] ?? '',
-                    ];
-                    /*if (!empty($_FILES['company_logo']['name'])) {
-                        $fileName   = time() . "_" . basename($_FILES['company_logo']['name']);
-                        $targetPath = "uploads/company_logos/" . $fileName;
+                $photoPath = null;
 
-                        if (move_uploaded_file($_FILES['company_logo']['tmp_name'], $targetPath)) {
-                            $updateData['company_logo'] = $fileName;
-                        }
-                    }*/
-                    if (!empty($_FILES['business_certificate']['name'])) {
-                        $fileName   = time() . "_" . basename($_FILES['business_certificate']['name']);
-                        $targetPath = "uploads/company_docs/" . $fileName;
+                //code for updating user profile 
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $errors = [];
 
-                        if (move_uploaded_file($_FILES['business_certificate']['tmp_name'], $targetPath)) {
-                            $updateData['business_certificate'] = $fileName;
+                    if ($_POST['password'] !== $_POST['confirm_password']) {
+                        $errors['confirm_password'] = "Passwords do not match";
+                    }
+
+                    if (!empty($_FILES['company_photo_path']['name'])) {
+                        $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/company_photos/';
+
+                        $filename = time() . '_' . basename($_FILES['company_photo_path']['name']);
+                        $target = $uploadDir . $filename;
+
+                        $allowed = ['jpg', 'jpeg', 'png'];
+                        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                        if (!in_array($ext, $allowed)) {
+                            $errors['company_photo_path'] = "Invalid file type. Only JPG, JPEG, PNG allowed.";
+                        } elseif (move_uploaded_file($_FILES['company_photo_path']['tmp_name'], $target)) {
+                            $photoPath = 'assets/uploads/company_photos/' . $filename;
+                            $_SESSION['USER']->photo_path = $photoPath;
+                        } else {
+                            $errors['company_photo_path'] = "Error uploading photo.";
                         }
-                    }                    
-                    $company->update($data['companyTable']->company_id, $updateData);
-                    $data['companyTable'] = $company->first(['user_id' => $_SESSION['USER']->user_id]);                  
-                    header("Location: " . ROOT . "dashboard");
-                    exit;
+                    }
+
+                    if (empty($errors)) {
+                        // Prepare user update array
+                        $userUpdate = ['email' => $_POST['email']];
+                        if (!empty($_POST['password'])) {
+                            $userUpdate['password'] = $_POST['password'];
+                        }
+                        $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
+
+                        // Prepare company update array
+                        $companyUpdate = [
+                            'hr_firstName' => $_POST['hr_firstName'] ?? '',
+                            'hr_lastName' => $_POST['hr_lastName'] ?? '',
+                            'contactNo' => $_POST['contactNo'] ?? '',
+                            'company_photo_path' => $photoPath ?? $data['companyTable']->company_photo_path
+                        ];
+
+                        $company->update($_SESSION['USER']->user_id, $companyUpdate, 'user_id');
+
+                        $updatedUser = $user->first(['user_id' => $_SESSION['USER']->user_id]);
+                        if ($updatedUser) {
+                            $_SESSION['USER'] = $updatedUser;
+                        }
+                        $_SESSION['USER']->hr_firstName = $_POST['hr_firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['companyTable']->company_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
+                        //unset($_SESSION['USER']);//this loggs out after editing profile
+                        redirect('home');
+                        exit;
+                    }
+
+                    $data['errors'] = $errors;
                 }
                 break;
 
@@ -312,9 +340,6 @@ class Dashboard
                 }
                 break;
 
-            case 'company':
-                //extract company data
-                break;
         }
 
         $this->view("dashboard", $data);  // loads dashboard.view.php

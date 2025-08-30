@@ -56,7 +56,8 @@ trait Model
                             hr_lastName VARCHAR(100) NOT NULL,
                             hr_email VARCHAR(100) NOT NULL,
                             hr_contactNo VARCHAR(15) NOT NULL,
-                            business_certificate VARCHAR(255) NOT NULL,
+                            business_certificate VARCHAR(255) NOT NULL UNIQUE,
+                            company_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                             FOREIGN KEY (user_id) REFERENCES users(user_id)
                         )";
         $this->query($company_table);

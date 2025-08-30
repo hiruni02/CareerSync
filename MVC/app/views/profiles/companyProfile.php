@@ -1,90 +1,177 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/companyProfileDisplay.css">
 <div class="profile_display">
     <div class="pd_content">
-
+        <h1>user profile</h1>
+        <div class="user_data">
+            <div class="profile_picture"><img src="<?= $companyTable->company_photo_path ?>" alt="company photo"></div>
+            <div class="info_segment"><label>First name</label>
+                <div class="value"><?php echo $companyTable->hr_firstName; ?></div>
+            </div>
+            <div class="info_segment"><label>Last name</label>
+                <div class="value"><?php echo $companyTable->hr_lastName; ?></div>
+            </div>
+            <div class="info_segment"><label>Contact number</label>
+                <div class="value"><?php echo $companyTable->hr_contactNo; ?></div>
+            </div>
+            <div class="info_segment"><label>email address</label>
+                <div class="value"><?php echo $userTable->email; ?></div>
+            </div>
+        </div>
         <button class="backBtn" id="backBtn">Back</button>
-        
-        <div class="profile_card">
-            <h1><b> Company Profile</b></h1>
-            <!--<div class="profile_img">
-                <img src="<?= !empty($companyTable['company_logo']) 
-                            ? ROOT.'assets/uploads/company_logos/'.$companyTable['company_logo'] 
-                            : ROOT.'assets/images/default_company.png' ?>" 
-                     alt="Company Logo">
-            </div>-->
+        <button class="edit_profileBtn" id="editBtn">Edit Profile</button>
+    </div>
 
-            <div class="profile_info">
-                <p><strong>Company Name :</strong> <span><?= htmlspecialchars($companyTable['companyName'] ?? 'N/A') ?></span></p>
-                <!--<p><strong>Company Email :</strong> <span><?= htmlspecialchars($companyTable['company_email'] ?? 'N/A') ?></span></p>-->
-                <p><strong>Contact Number :</strong> <span><?= htmlspecialchars($companyTable['contactNo'] ?? 'N/A') ?></span></p>
-                <hr>
-                <p><strong>HR Manager First Name :</strong> <span><?= htmlspecialchars($companyTable['hr_first_name'] ?? 'N/A') ?></span></p>
-                <p><strong>HR Manager Last Name :</strong> <span><?= htmlspecialchars($companyTable['hr_last_name'] ?? 'N/A') ?></span></p>
-                <p><strong>HR Contact Email :</strong> <span><?= htmlspecialchars($companyTable['hr_email'] ?? 'N/A') ?></span></p>
-                <p><strong>HR Contact Number :</strong> <span><?= htmlspecialchars($companyTable['hr_contactNo'] ?? 'N/A') ?></span></p>
-                <hr>
-                <p><strong>Business Registration Certificate :</strong> 
-                   <?php if (!empty($companyTable['business_certificate'])): ?>
-                       <a href="<?= ROOT.'assets/uploads/company_docs/'.$companyTable['business_certificate'] ?>" target="_blank">View Certificate</a>
-                   <?php else: ?>
-                       <span>N/A</span>
-                   <?php endif; ?>
-                </p>
-            </div>
+    <div class="edit_profile_display">
+        <div class="editWindow">
+            <h1>Edit profile</h1>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="input-field">
+                    <label for="hr_firstName"> HR First Name</label>
+                    <input
+                        type="text"
+                        placeholder="First Name"
+                        name="hr_firstName"
+                        value="<?= $companyTable->hr_firstName ?>">
+                </div>
 
-            <div class="profile_actions">
-                <button class="editBtn" id="editBtn">Edit Profile</button>
-            </div>
+                <div class="input-field">
+                    <label for="hr_lastName">HR Last Name</label>
+                    <input
+                        type="text"
+                        placeholder="Last Name"
+                        name="hr_lastName"
+                        value="<?= $companyTable->hr_lastName ?>">
+                </div>
 
-            <form id="editForm" style="display: none; margin-top:20px;" method="post" action="<?= ROOT ?>updateCompanyProfile" enctype="multipart/form-data">
-                <label>Company Name: <input type="text" name="companyName" value="<?= htmlspecialchars($companyTable['companyName'] ?? '') ?>"></label><br>
-                <!--<label>Company Email: <input type="email" name="company_email" value="<?= htmlspecialchars($companyTable['company_email'] ?? '') ?>"></label><br>-->
-                <label>Contact Number: <input type="text" name="contactNo" value="<?= htmlspecialchars($companyTable['contactNo'] ?? '') ?>"></label><br>
-                
-                <label>HR First Name: <input type="text" name="hr_firstname" value="<?= htmlspecialchars($companyTable['hr_first_name'] ?? '') ?>"></label><br>
-                <label>HR Last Name: <input type="text" name="hr_lastname" value="<?= htmlspecialchars($companyTable['hr_last_name'] ?? '') ?>"></label><br>
-                <label>HR Contact Email: <input type="email" name="hr_email" value="<?= htmlspecialchars($companyTable['hr_email'] ?? '') ?>"></label><br>
-                <label>HR Contact Number: <input type="text" name="hr_contactNo" value="<?= htmlspecialchars($companyTable['hr_contactNo'] ?? '') ?>"></label><br>
+                <div class="input-field">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        value="<?= $userTable->email ?>"
+                        style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
+                </div>
+                <?php if (!empty($errors['email'])): ?>
+                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                <?php endif; ?>
 
-                <!--<label>Company Logo: <input type="file" name="company_logo"></label><br>-->
-                <label>Business Certificate: <input type="file" name="business_certificate"></label><br>
+                <div class="input-field">
+                    <label for="company_photo_path">Profile Picture</label><br>
+                    <?php if (!empty($companyTable->company_photo_path)): ?>
+                        <img src="<?= $companyTable->company_photo_path ?>" alt="Current Profile Picture">
+                    <?php else: ?>
+                        <img src="assets/uploads/defaultPhoto.jpg" alt="Default Profile Picture">
+                    <?php endif; ?>
 
-                <button type="submit">Save Changes</button>
+                    <br>
+                    <input
+                        type="file"
+                        name="company_photo_path"
+                        accept=".jpg, .jpeg, .png"
+                        style="<?= !empty($errors['company_photo_path']) ? 'border: 2px solid red;' : '' ?>">
+                </div>
+                <?php if (!empty($errors['company_photo_path'])): ?>
+                    <div style="color:red;" class="error"><?= $errors['company_photo_path'] ?></div>
+                <?php endif; ?>
+
+                <div class="input-field">
+                    <label for="contactNo">Contact Number</label>
+                    <input
+                        type="tel"
+                        placeholder="Contact Number:07xxxxxxxx"
+                        name="contactNo"
+                        pattern="[0-9]{10}"
+                        value="<?= $companyTable->contactNo ?>">
+                </div>
+
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="pass"
+                        placeholder="Password"
+                        name="password"
+                        required>
+                    <button onclick="show_password()" class="eye" type="button" id="eye1"></button>
+                </div>
+
+                <div class="input-field">
+                    <label for="confirm_password">Re-enter Pasword</label>
+                    <input
+                        type="password"
+                        id="confirm_pass"
+                        placeholder="Confirm Password"
+                        name="confirm_password"
+                        required
+                        style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;' : '' ?>">
+                    <button onclick="show_confirm_password()" class="eye" type="button" id="eye2"></button>
+                </div>
+                <?php if (!empty($errors['confirm_password'])): ?>
+                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>
+                <?php endif; ?>
+
+                <div class="form_btns">
+                    <button type="submit">Save Changes</button>
+                    <button id="edit_backBtn">Back</button>
+                </div>
             </form>
 
-        </div> 
+        </div>
     </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        const profileBtn = document.getElementById("profileBtn");
         const backBtn = document.getElementById("backBtn");
-        const profileBtn = document.getElementById("profileBtn"); // <-- Add this line
-        const editBtn = document.getElementById("editBtn");
-        const editForm = document.getElementById("editForm");
         const profileDisplay = document.querySelector(".profile_display");
+        const editBtn = document.getElementById("editBtn");
+        const edit_backBtn = document.getElementById("edit_backBtn");
+        const editProfile = document.querySelector(".edit_profile_display");
 
-        if (editBtn && editForm) {
-            editBtn.addEventListener("click", () => {
-                editForm.style.display = (editForm.style.display === "none") ? "block" : "none";
-            });
-        }
+        profileBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            profileDisplay.classList.add("active");
+        });
 
-        if (backBtn && profileDisplay) {
-            backBtn.addEventListener("click", () => {
-                profileDisplay.classList.remove("active"); // Better than toggle here
-            });
-        }
+        backBtn.addEventListener("click", () => {
+            profileDisplay.classList.remove("active");
+        });
 
-        // 👇 ADD THIS to handle the profileBtn
-        if (profileBtn && profileDisplay) {
-            profileBtn.addEventListener("click", () => {
-                profileDisplay.classList.add("active"); // Show the profile section
-            });
-        }
+        editBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            editProfile.classList.add("active");
+        });
+
+        edit_backBtn.addEventListener("click", () => {
+            editProfile.classList.remove("active");
+        });
     });
 
+    function show_password() {
+        console.log(document.getElementById("pass").type);
+        var x = document.getElementById("pass");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
+        } else {
+            x.type = "password";
+            document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+
+        }
+    }
+
+    function show_confirm_password() {
+        console.log(document.getElementById("confirm_pass").type);
+        var x = document.getElementById("confirm_pass");
+        if (x.type === "password") {
+            x.type = "text";
+            document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
+        } else {
+            x.type = "password";
+            document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+
+        }
+    }
 </script>
-
-
-

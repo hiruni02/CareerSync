@@ -12,5 +12,6 @@ class Company
         'hr_email',
         'hr_contactNo',
         'business_certificate',
+        'company_photo_path',
     ];
 }

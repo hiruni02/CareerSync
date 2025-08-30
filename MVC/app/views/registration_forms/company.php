@@ -102,15 +102,32 @@
             pattern="[0-9]{10}"
             required>
     </div>
-
+    
     <div class="input-field">
         <label for="business_certificate">Business Registration Certificate</label>
         <input
             type="file"
             name="business_certificate"
-            accept=".pdf,.jpg,.jpeg,.png"
-            required>
+            required
+            accept=".pdf, .jpg, .jpeg, .png"
+            style="<?= !empty($errors['business_certificate']) ? 'border: 2px solid red;' : '' ?>">
     </div>
+    <?php if (!empty($errors['business_certificate'])): ?>
+        <div style="color:red;" class="error"><?= $errors['business_certificate'] ?></div>
+    <?php endif; ?>
+
+    <div class="input-field">
+        <label for="company_photo_path">Company Logo</label>
+        <input
+            type="file"
+            name="company_photo_path"
+            required
+            accept=".pdf, .jpg, .jpeg, .png"
+            style="<?= !empty($errors['company_photo_path']) ? 'border: 2px solid red;' : '' ?>">
+    </div>
+    <?php if (!empty($errors['company_photo_path'])): ?>
+        <div style="color:red;" class="error"><?= $errors['company_photo_path'] ?></div>
+    <?php endif; ?>
 
     <div class="input-field">
         <label for="password">Password</label>

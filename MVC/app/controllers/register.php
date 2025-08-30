@@ -56,73 +56,53 @@ class register
                         break;
 
                     case 'company':
-                        $company = new Company;
+                        $counselor = new Company;
 
-                        //Check if email already exists
-                        $email_existing = $user->first(['email' => $_POST['email']]);
-                        if ($email_existing) {
-                            $user->errors['email'] = "Email already exists";
-                        } else if ($_POST['confirm_password'] !== $_POST['password']) {
-                            $user->errors['confirm_password'] = "passwords do not match";
+                        $photo_upload_path = 'assets/uploads/company_logos/';
+                        $certificate_upload_path = 'assets/uploads/business_certificates/';
+
+                        // Create unique file names
+                        $logo_filename = time() . '_' . basename($_FILES['company_photo_path']['name']);
+                        $certificate_filename = time() . '_' . basename($_FILES['business_certificate']['name']);
+                        $photo_target = $photo_upload_path . $logo_filename;
+                        $certificate_target = $certificate_upload_path . $certificate_filename;
+
+
+                        if (
+                            move_uploaded_file($_FILES['company_photo_path']['tmp_name'], $photo_target) &&
+                            move_uploaded_file($_FILES['business_certificate']['tmp_name'], $certificate_target)
+                        ) {
+                            $user->insert($userTableData);
+                            $newUser = $user->first(['email' => $_POST['email']]);
+
+                            // Insert into company table
+                            $companyData = [
+                                'user_id'               => $newUser->user_id,
+                                'companyName'           => $_POST['companyName'],
+                                'contactNo'             => $_POST['contactNo'],
+                                'hr_firstName'          => $_POST['hr_firstName'],
+                                'hr_lastName'           => $_POST['hr_lastName'],
+                                'hr_email'              => $_POST['hr_email'],
+                                'hr_contactNo'          => $_POST['hr_contactNo'],
+                                'company_photo_path'    => $photo_target,
+                                'business_certificate'  => $certificate_target,
+                                
+                            ];
+                            $counselor->insert($companyData);
+
+                            show($photo_target);
+                            //redirect('login');
+                            exit;
                         } else {
-                            // Handle business registration certificate upload
-                            if (isset($_FILES['business_certificate']) && $_FILES['business_certificate']['error'] === UPLOAD_ERR_OK) {
-                                $upload_path = 'assets/uploads/certificates/';
-                                $filename = time() . '_' . basename($_FILES['business_certificate']['name']); // unique file name
-                                $target_file = $upload_path . $filename;
-
-                                // Create directory if not exists
-                                if (!is_dir($upload_path)) {
-                                    mkdir($upload_path, 0777, true);
-                                }
-
-                                // Validate file extension
-                                $allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
-                                $fileExt = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-
-                                if (in_array($fileExt, $allowedExtensions)) {
-                                    if (move_uploaded_file($_FILES['business_certificate']['tmp_name'], $target_file)) {
-                                        // Store relative path in DB for later use
-                                        $certificatePath = 'assets/uploads/certificates/' . $filename;
-                                    } else {
-                                        $user->errors['business_certificate'] = "Error uploading the business registration certificate.";
-                                    }
-                                } else {
-                                    $user->errors['business_certificate'] = "Invalid file type. Allowed types: PDF, JPG, JPEG, PNG.";
-                                }
-                            } else {
-                                $user->errors['business_certificate'] = "Please upload a business registration certificate.";
-                            }
-
-                            // Proceed only if there are no errors
-                            if (empty($user->errors)) {
-                                // Insert into users table first
-                                $user->insert($userTableData);
-                                $newUser = $user->first(['email' => $_POST['email']]);
-
-                                // Prepare company table data
-                                $companyData = [
-                                    'user_id'              => $newUser->user_id,
-                                    'companyName'          => $_POST['companyName'],
-                                    'contactNo'            => $_POST['contactNo'],
-                                    'hr_firstName'         => $_POST['hr_firstName'],
-                                    'hr_lastName'          => $_POST['hr_lastName'],
-                                    'hr_email'             => $_POST['hr_email'],
-                                    'hr_contactNo'         => $_POST['hr_contactNo'],
-                                    'business_certificate' => $certificatePath,
-                                ];
-                                $company->insert($companyData);
-
-                                redirect('login');
-                                exit;
-                            }
+                            $user->errors['file_upload'] = "Failed to upload file";
                         }
+
                         break;
 
                     case 'counselor':
                         $counselor = new Counselor;
 
-                        $photo_upload_path ='assets/uploads/counselor_photos/';
+                        $photo_upload_path = 'assets/uploads/counselor_photos/';
                         $certificate_upload_path = 'assets/uploads/counselor_certificates/';
 
                         // Create unique file names
