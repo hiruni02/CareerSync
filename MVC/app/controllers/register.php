@@ -90,8 +90,7 @@ class register
                             ];
                             $counselor->insert($companyData);
 
-                            show($photo_target);
-                            //redirect('login');
+                            redirect('login');
                             exit;
                         } else {
                             $user->errors['file_upload'] = "Failed to upload file";

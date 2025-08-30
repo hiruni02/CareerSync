@@ -64,7 +64,7 @@ class login
                             $_SESSION['USER']->photo_path = $extra->counselor_photo_path;
                             break;
                         case "company":
-                            //$_SESSION['USER']->photo_path = $extra->company_photo_path;
+                            $_SESSION['USER']->photo_path = $extra->company_photo_path;
                             $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
                             break;
                     }

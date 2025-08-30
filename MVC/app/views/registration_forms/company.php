@@ -46,20 +46,20 @@
             required
             value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>"
             style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
-
-        <?php if (!empty($errors['email'])): ?>
-            <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-        <?php endif; ?>
     </div>
+    <?php if (!empty($errors['email'])): ?>
+        <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+    <?php endif; ?>
 
     <div class=input-field>
-        <label for="contactNo">Contact Number</label>
+        <label for="contactNo">Company Contact Number</label>
         <input
             type="tel"
-            placeholder="Contact number ex: 071 888 8888"
+            placeholder="Contact number ex: 071 xxx xxxx"
             name="contactNo"
             pattern="[0-9]{10}"
-            required>
+            required
+            value="<?= isset($_POST['hr_email']) ? htmlspecialchars($_POST['contactNo']) : '' ?>">
 
     </div>
 
@@ -100,9 +100,10 @@
             placeholder="HR contact number ex: 0718888888"
             name="hr_contactNo"
             pattern="[0-9]{10}"
-            required>
+            required
+            value="<?= isset($_POST['hr_email']) ? htmlspecialchars($_POST['hr_contactNo']) : '' ?>">
     </div>
-    
+
     <div class="input-field">
         <label for="business_certificate">Business Registration Certificate</label>
         <input

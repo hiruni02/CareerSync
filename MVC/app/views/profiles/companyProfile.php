@@ -4,17 +4,26 @@
         <h1>user profile</h1>
         <div class="user_data">
             <div class="profile_picture"><img src="<?= $companyTable->company_photo_path ?>" alt="company photo"></div>
-            <div class="info_segment"><label>First name</label>
+            <div class="info_segment"><label>Company Name</label>
+                <div class="value"><?php echo $companyTable->companyName; ?></div>
+            </div>
+            <div class="info_segment"><label>Company Contact Number</label>
                 <div class="value"><?php echo $companyTable->hr_firstName; ?></div>
             </div>
-            <div class="info_segment"><label>Last name</label>
+            <div class="info_segment"><label>Company Email</label>
+                <div class="value"><?php echo $userTable->email; ?></div>
+            </div>
+            <div class="info_segment"><label>HR First name</label>
+                <div class="value"><?php echo $companyTable->hr_firstName; ?></div>
+            </div>
+            <div class="info_segment"><label> HR Last name</label>
                 <div class="value"><?php echo $companyTable->hr_lastName; ?></div>
             </div>
-            <div class="info_segment"><label>Contact number</label>
+            <div class="info_segment"><label>HR Contact number</label>
                 <div class="value"><?php echo $companyTable->hr_contactNo; ?></div>
             </div>
-            <div class="info_segment"><label>email address</label>
-                <div class="value"><?php echo $userTable->email; ?></div>
+            <div class="info_segment"><label>HR email address</label>
+                <div class="value"><?php echo $companyTable->hr_email; ?></div>
             </div>
         </div>
         <button class="backBtn" id="backBtn">Back</button>
@@ -26,10 +35,38 @@
             <h1>Edit profile</h1>
             <form method="POST" enctype="multipart/form-data">
                 <div class="input-field">
+                    <label for="companyName"> Company Name</label>
+                    <input
+                        type="text"
+                        placeholder="Company Name"
+                        name="companyName"
+                        value="<?= $companyTable->companyName ?>">
+                </div>
+
+                <div class="input-field">
+                    <label for="contactNo"> Compnay Contact Number</label>
+                    <input
+                        type="text"
+                        placeholder="Contact number ex: 071 xxx xxxx"
+                        name="contactNo"
+                        value="<?= $companyTable->hr_firstName ?>">
+                </div>
+
+                <div class="input-field">
+                    <label for="email">Company Email Address</label>
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        value="<?= $userTable->email ?>"
+                        style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
+                </div>
+            
+                <div class="input-field">
                     <label for="hr_firstName"> HR First Name</label>
                     <input
                         type="text"
-                        placeholder="First Name"
+                        placeholder="HR First Name"
                         name="hr_firstName"
                         value="<?= $companyTable->hr_firstName ?>">
                 </div>
@@ -38,22 +75,31 @@
                     <label for="hr_lastName">HR Last Name</label>
                     <input
                         type="text"
-                        placeholder="Last Name"
+                        placeholder="HR Last Name"
                         name="hr_lastName"
                         value="<?= $companyTable->hr_lastName ?>">
                 </div>
 
                 <div class="input-field">
-                    <label for="email">Email Address</label>
+                    <label for="hr_contactNo"> HR Contact Number</label>
+                    <input
+                        type="text"
+                        placeholder="Contact number ex: 071 xxx xxxx"
+                        name="hr_contactNo"
+                        value="<?= $companyTable->hr_contactNo ?>">
+                </div>
+
+                <div class="input-field">
+                    <label for="email">HR Email Address</label>
                     <input
                         type="email"
-                        placeholder="Email"
-                        name="email"
-                        value="<?= $userTable->email ?>"
-                        style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
+                        placeholder="HR Email Address"
+                        name="hr_email"
+                        value="<?= $companyTable->hr_email ?>"
+                        style="<?= !empty($errors['hr_email']) ? 'border: 2px solid red;' : '' ?>">
                 </div>
-                <?php if (!empty($errors['email'])): ?>
-                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
+                <?php if (!empty($errors['hr_email'])): ?>
+                    <div style="color:red;" class="error"><?= $errors['hr_email'] ?></div>
                 <?php endif; ?>
 
                 <div class="input-field">
@@ -76,14 +122,16 @@
                 <?php endif; ?>
 
                 <div class="input-field">
-                    <label for="contactNo">Contact Number</label>
+                    <label for="business_certificate">Update Business Certificate</label><br>
                     <input
-                        type="tel"
-                        placeholder="Contact Number:07xxxxxxxx"
-                        name="contactNo"
-                        pattern="[0-9]{10}"
-                        value="<?= $companyTable->contactNo ?>">
+                        type="file"
+                        name="business_certificate"
+                        accept=".jpg, .jpeg, .png"
+                        style="<?= !empty($errors['business_certificate']) ? 'border: 2px solid red;' : '' ?>">
                 </div>
+                <?php if (!empty($errors['business_certificate'])): ?>
+                    <div style="color:red;" class="error"><?= $errors['business_certificate'] ?></div>
+                <?php endif; ?>
 
                 <div class="input-field">
                     <label for="password">Password</label>
