@@ -12,7 +12,7 @@
     width: 100%;
     background-color: rgb(211, 231, 255);
     border-radius: 15px;
-    padding: 20px;
+    padding: 20px; 
     margin: 10px 0;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
@@ -49,3 +49,11 @@
 .content_section tr:hover {
     background-color: rgba(186, 112, 255, 0.1);
 }
+
+.scrollBox {
+  max-height: 260px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 5px;
+}
+

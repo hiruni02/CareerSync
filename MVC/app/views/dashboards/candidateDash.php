@@ -30,3 +30,38 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php"
         <h1>5</h1>
     </div>
 </div>
+
+<div class="content_section">
+    <section>
+        <div class="scrollBox">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>position 1</td>
+                        <td><span class="status pending">pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>position 2</td>
+                        <td><span class="status rejected">rejected</span></td>
+                    </tr>
+                    <tr>
+                        <td>position 3</td>
+                        <td><span class="status rejected">rejected</span></td>
+                    </tr>
+                    <tr>
+                        <td>position 1</td>
+                        <td><span class="status pending">pending</span></td>
+                    </tr>
+                    <tr>
+                        <td>position 2</td>
+                        <td><span class="status rejected">rejected</span></td>
+                    </tr>
+                    <tr>
+                        <td>position 3</td>
+                        <td><span class="status rejected">rejected</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>  
