@@ -36,6 +36,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
     </div>
 </div>
 
+<div class="list_pos_box">
+    <label for="">Create New Position :</label>
+    <button src="listPosition">Create</button>
+</div>
+
 <div class="content_section">
     <section>
         <table>
