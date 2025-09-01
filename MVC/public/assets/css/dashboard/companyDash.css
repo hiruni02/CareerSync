@@ -12,7 +12,7 @@
 .content_section table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 16px;
+    font-size: 1rem;
     background: white;
     border-radius: 10px;
     overflow: hidden;
@@ -54,7 +54,7 @@
 .sbContainer h3 {
     margin-bottom: 15px;
     color: #000000;
-    font-size: 22px;
+    font-size: 1.375rem;
     font-weight: bold;
 }
 
@@ -80,14 +80,14 @@
 }
 
 .itemContent .title {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
     margin-bottom: 6px;
     color: #444;
 }
 
 .itemContent .description {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #555;
     line-height: 1.4;
 }
@@ -104,12 +104,12 @@
     margin-top: 20px;
 }
 .list_pos_box label{
-    font-size: 35px;
+    font-size: 2.1875rem;
     font-weight: bold;
     font-family: "Audiowide";
 }
 .list_pos_box button{
-    font-size: 35px;
+    font-size: 2.1875rem;
     font-weight: bold;
     color: white;
     font-family: "logo-font";

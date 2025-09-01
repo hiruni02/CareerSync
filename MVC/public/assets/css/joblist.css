@@ -31,7 +31,7 @@
   padding: 25px;
   font-family: 'Audiowide';
   text-align: center;
-  font-size: 35px;
+  font-size: 2.1875rem;
   color: #1e1f4b;
 }
 
@@ -55,14 +55,14 @@
 }
 
 .job-title {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
   padding-bottom: 20px;
   text-align: justify;
 }
 
 .job-description {
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: justify;
 }
 
@@ -89,7 +89,7 @@
 }
 
 .filtersContainer label {
-  font-size: 18px;
+  font-size: 1.125rem;
   margin-bottom: 10px;
   display: inline-block;
 }
@@ -153,10 +153,10 @@
   }
 
   .job-title {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .job-description {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 }

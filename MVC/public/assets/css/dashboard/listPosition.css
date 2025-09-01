@@ -12,12 +12,49 @@
     display: none;
 }
 
-.listing_application_bg :active {
+.listing_application_bg.active {
     display: flex;
 }
 
 .listing_application_window {
-    background-color: var(--lightBlue);
-    height: 100px;
-    width: 90%;
+    width: 50%;
+    max-height: 80vh;
+    background: rgb(221, 235, 255);
+    border: solid var(--mid) 5px;
+    display: flex;
+    margin-top: 80px;
+    border-radius: 10px;
+    padding: 35px;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+
+    h1 {
+        color: var(--darkpurple);
+        padding: 0px 0px 20px 0px;
+        font-family: "logo-font";
+        font-size: 2rem;
+    }
+}
+
+#listing_application_backBtn {
+    background-image: var(--submit_btn_gradient);
+    color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    transition: 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+#listing_application_backBtn:hover {
+    transform: scale(1.08);
+    z-index: 1;
 }
