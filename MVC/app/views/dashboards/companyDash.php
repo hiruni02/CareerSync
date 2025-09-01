@@ -41,6 +41,10 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
     <button src="listPosition">Create</button>
 </div>
 
+<?php
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/dashboards/listPosition.php");
+?>
+
 <div class="content_section">
     <section>
         <table>

@@ -1,0 +1,23 @@
+.listing_application_bg {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.listing_application_bg :active {
+    display: flex;
+}
+
+.listing_application_window {
+    background-color: var(--lightBlue);
+    height: 100px;
+    width: 90%;
+}
