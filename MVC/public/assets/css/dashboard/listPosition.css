@@ -17,18 +17,17 @@
 }
 
 .listing_application_window {
-    width: 50%;
-    max-height: 80vh;
-    background: rgb(221, 235, 255);
+    width: 70%;
+    height: 85%;
+    background: var(--mid);
     border: solid var(--mid) 5px;
     display: flex;
     margin-top: 80px;
     border-radius: 10px;
-    padding: 35px;
+    padding: 25px;
     position: relative;
     flex-direction: column;
     align-items: center;
-    overflow-y: scroll;
 
     h1 {
         color: var(--darkpurple);
@@ -57,4 +56,50 @@
 #listing_application_backBtn:hover {
     transform: scale(1.08);
     z-index: 1;
+}
+
+.scrollbox {
+    padding: 10px;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    overflow-y: scroll;
+    background-color: var(--lightBlue);
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    align-items: center;
+}
+
+form {
+    width: 100%;
+}
+
+.input-field {
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    position: relative;
+}
+
+select {
+    width: 60%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+textarea{
+    width: 60%;
+    border-radius: 7px;
+}
+
+.input-field label {
+    align-content: center;
+    font-size: 1.2rem;
+}
+
+.submit{
+    padding: 20px;
 }
