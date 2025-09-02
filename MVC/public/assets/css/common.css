@@ -29,6 +29,11 @@
   src: url("../fonts/Audiowide-Regular.ttf");
 }
 
+@font-face {
+  font-family: "merriweather";
+  src: url("../fonts/Merriweather.ttf");
+}
+
 html,
 body {
   height: 100%;

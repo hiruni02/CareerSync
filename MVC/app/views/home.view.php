@@ -39,7 +39,6 @@
                         <p style=" font-size: 20px; padding-bottom:20px;">you are currently exploring as a guest.<br> would you like to:</p>
                         <div class="intro-buttons">
                             <a href="login"><button class="intro-btn">Login</button></a>
-                            <p style=" font-size: 25px;">- or -</p>
                             <a href="welcome"><button class="intro-btn secondary">Register</button></a>
                         </div>
                     <?php
@@ -49,11 +48,19 @@
                         <?php
                     }
                         ?>
-
                 </div>
             </section>
+            <div class="mainSearchBar">
+                <form action="POST">
+                    <input
+                        type="text"
+                        name="searchBar"
+                        placeholder="I'm looking for...   (Eg : Job title, Position, Company)">
+                    <button type="submit" class="searchBtn">Search <img src="<?= ROOT ?>assets/svg_icons/search.svg"></button>
+                </form>
+            </div>
             <?php
-            include("components/jobFilter.php");
+            include("components/joblist.php");
             ?>
         </div>
         <?php
