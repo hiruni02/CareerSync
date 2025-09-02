@@ -23,76 +23,19 @@
     <div class="jobContainer">
         <h3>Select a position:</h3>
         <div class="scrollBox">
-            <div class="listItem">
-                <div class="job-content">
-                    <div class="job-title">JOB TITLE</div>
-                    <div class="job-description">
-                        THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+            <?php
+            for ($x = 0; $x <= 100; $x++) { ?>
+                <div class="listItem">
+                    <div class="job-content">
+                        <div class="job-title">JOB TITLE <?=$x?></div>
+                        <div class="job-description">
+                            THE JOB DESCRIPTION GOES HERE.
+                            YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                            AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="listItem">
-                <div class="job-content">
-                    <div class="job-title">JOB TITLE</div>
-                    <div class="job-description">
-                        THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                    </div>
-                </div>
-            </div>
-            <div class="listItem">
-                <div class="job-content">
-                    <div class="job-title">JOB TITLE</div>
-                    <div class="job-description">
-                        THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                    </div>
-                </div>
-            </div>
-            <div class="listItem">
-                <div class="job-content">
-                    <div class="job-title">JOB TITLE</div>
-                    <div class="job-description">
-                        THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                    </div>
-                </div>
-            </div>
-            <div class="listItem">
-                <div class="job-content">
-                    <div class="job-title">JOB TITLE</div>
-                    <div class="job-description">
-                        THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                    </div>
-                </div>
-            </div>
-            <div class="listItem">
-                <div class="job-content">
-                    <div class="job-title">JOB TITLE</div>
-                    <div class="job-description">
-                        THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                    </div>
-                </div>
-            </div>
-            <div class="listItem">
-                <div class="job-content">
-                    <div class="job-title">JOB TITLE</div>
-                    <div class="job-description">
-                        THE JOB DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </section>

@@ -6,15 +6,15 @@
 }
 
 .scrollBox {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
   background: #d5f6ff88;
-  padding: 40px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
-  text-align: center;
-  width: 100%;
+  border-radius: 10px;
   max-height: 70vh;
   overflow-y: auto;
-  overflow-x: hidden;
-  border-radius: 10px;
 }
 
 .jobContainer {
@@ -35,18 +35,17 @@
 }
 
 .listItem {
-  display: flex;
-  border-radius: 15px;
-  height: fit-content;
-  transition: 0.2s ease;
-  padding-top: 10px;
-  margin-bottom: 20px;
+  display: block;
+  padding: 20px;
   background: rgba(236, 221, 255, 0.322);
-  border-radius: 20px;
+  border-radius: 15px;
   backdrop-filter: blur(15px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid var(--mid);
+  transition: 0.2s ease;
   cursor: pointer;
+  height: fit-content;
+  text-align: left;
 }
 
 .job-content {
@@ -54,23 +53,21 @@
 }
 
 .job-title {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: bold;
-  padding-bottom: 20px;
-  text-align: justify;
+  margin-bottom: 10px;
 }
 
 .job-description {
-  font-size: 0.875rem;
-  text-align: justify;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 .listItem:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.411);
   z-index: 2;
 }
-
 .listItem:last-child {
   margin-bottom: 0;
 }
