@@ -8,11 +8,12 @@
                 <label for="oldPassword">Old Password</label>
                 <input
                     type="password"
-                    id="pass"
+                    id="oldPass"
                     placeholder="Old Password"
                     name="oldPassword"
-                    required>
-                <button onclick="show_password()" class="eye" type="button" id="eye1"></button>
+                    required
+                    style="<?= !empty($errors['oldPassword']) ? 'border: 2px solid red;' : '' ?>">
+                <button onclick="show_old_password()" class="eye" type="button" id="eye0"></button>
             </div>
             <?php if (!empty($errors['oldPassword'])): ?>
                 <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['oldPassword'] ?></div>
@@ -61,10 +62,12 @@
         passwordBtn.addEventListener("click", (e) => {
             e.preventDefault();
             editPwDisplay.classList.add("active");
+            document.body.style.overflow="hidden";
         });
 
         pwBackBtn.addEventListener("click", () => {
             editPwDisplay.classList.remove("active");
+            document.body.style.overflow="auto";
         });
     });
 </script>
