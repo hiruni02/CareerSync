@@ -33,35 +33,29 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php"
 
 <div class="content_section">
     <section>
-        <div class="scrollBox">
-            <table>
-                <tbody>
-                    <tr>
-                        <td>position 1</td>
-                        <td><span class="status pending">pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>position 2</td>
-                        <td><span class="status rejected">rejected</span></td>
-                    </tr>
-                    <tr>
-                        <td>position 3</td>
-                        <td><span class="status rejected">rejected</span></td>
-                    </tr>
-                    <tr>
-                        <td>position 1</td>
-                        <td><span class="status pending">pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>position 2</td>
-                        <td><span class="status rejected">rejected</span></td>
-                    </tr>
-                    <tr>
-                        <td>position 3</td>
-                        <td><span class="status rejected">rejected</span></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="scrollBox" tabindex="0" aria-lable="Application list">
+           <ul class="applications">
+                    <li class="application_item">
+                        <div class="application-title">Position1</div>
+                        <div class="application_state"><span class="status pending">pending</span></div>
+                    </li>
+                    <li class="application_item">
+                        <div class="application-title">Position2</div>
+                        <div class="application_state"><span class="status accepted">accepted</span></div>
+                    </li>
+                    <li class="application_item">
+                        <div class="application-title">Position3</div>
+                        <div class="application_state"><span class="status rejected">rejected</span></div>
+                    </li>
+                    <li class="application_item">
+                        <div class="application-title">Position4</div>
+                        <div class="application_state"><span class="status accepted">accepted</span></div>
+                    </li>
+                    <li class="application_item">
+                        <div class="application-title">Position5</div>
+                        <div class="application_state"><span class="status rejected">rejected</span></div>
+                    </li>
+            </ul>
         </div>
     </section>
 </div>  
