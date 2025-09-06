@@ -12,7 +12,7 @@ class Dashboard
         $data['userTable'] = $user->first(['user_id' => $_SESSION['USER']->user_id]);
 
         $isPasswordChange = ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['oldPassword']));
-        $isProfileUpdate  = ($_SERVER['REQUEST_METHOD'] === 'POST' && !$isPasswordChange);
+        $isProfileUpdate  = ($_SERVER['REQUEST_METHOD'] === 'POST' && !$isPasswordChange);//need to make an actions library and make functions for each action
 
         switch ($_SESSION['USER']->role) {
             case 'admin':
