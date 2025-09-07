@@ -33,7 +33,7 @@
         <div class="editWindow">
             <h1>Edit profile</h1>
             <form method="POST" enctype="multipart/form-data">
-
+                <input type="hidden" name="action" value="profile_change">
                 <div class="input-field">
                     <label for="firstName">First Name</label>
                     <input type="text" placeholder="First Name" name="firstName" value="<?= $counselorTable->firstName ?>">

@@ -3,7 +3,7 @@
     <div class="editPwWindow">
         <h1>Change Password</h1>
         <form method="POST" enctype="multipart/form-data">
-
+            <input type="hidden" name="action" value="password_change">
             <div class="input-field">
                 <label for="oldPassword">Old Password</label>
                 <input
@@ -62,12 +62,12 @@
         passwordBtn.addEventListener("click", (e) => {
             e.preventDefault();
             editPwDisplay.classList.add("active");
-            document.body.style.overflow="hidden";
+            document.body.style.overflow = "hidden";
         });
 
         pwBackBtn.addEventListener("click", () => {
             editPwDisplay.classList.remove("active");
-            document.body.style.overflow="auto";
+            document.body.style.overflow = "auto";
         });
     });
 </script>

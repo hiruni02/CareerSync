@@ -97,15 +97,24 @@ trait Model
 
         $this->query($candidate_table);
 
-        $user_table = "CREATE TABLE IF NOT EXISTS jobs (
+        $user_table = "CREATE TABLE IF NOT EXISTS jobPost (
                         job_id INT AUTO_INCREMENT PRIMARY KEY,
                         company_id INT NOT NULL,
                         title VARCHAR(100)NOT NULL,
-                        description VARCHAR(100)NOT NULL,
-                        type ENUM('internship','fulltime'),
+                        pos_type ENUM('intern','fullTime','partTime','freelance','contract'),
+                        industry VARCHAR(100)NOT NULL,
+                        exp_level ENUM('entry','mid','senior'),
+                        years_of_exp VARCHAR(4)NOT NULL,
+                        edu_requirements VARCHAR(1000),
+                        required_skills VARCHAR(1000),
                         salary INT NOT NULL,
+                        address VARCHAR(1000)NOT NULL,
+                        work_mode ENUM('online','offline','hybrid'),
+                        description VARCHAR(1000)NOT NULL,
+                        vacancies INT NOT NULL,
+                        deadline date NOT NULL,
                         status ENUM('open','closed') DEFAULT 'open',
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (company_id) REFERENCES users(user_id)
                     )";
         $this->query($user_table);

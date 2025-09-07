@@ -5,6 +5,7 @@
         <button id="listing_application_backBtn">Back</button>
         <div class="scrollbox">
             <form method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="posting_job">
                 <div class="input-field">
                     <label for="posTitle">Position Title</label>
                     <input
@@ -24,8 +25,8 @@
                         <option value="intern">Internship</option>
                         <option value="fullTime">Full Time</option>
                         <option value="partTime">Part Time</option>
-                        <option value="partTime">Contract</option>
-                        <option value="partTime">Freelance</option>
+                        <option value="contract">Contract</option>
+                        <option value="freelance">Freelance</option>
                     </select>
                 </div>
 

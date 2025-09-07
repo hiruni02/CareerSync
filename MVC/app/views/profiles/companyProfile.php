@@ -34,6 +34,7 @@
         <div class="editWindow">
             <h1>Edit profile</h1>
             <form method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="action" value="profile_change">
                 <div class="input-field">
                     <label for="companyName"> Company Name</label>
                     <input
