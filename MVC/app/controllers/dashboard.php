@@ -216,7 +216,25 @@ class Dashboard
                     $data['errors'] = $errors;
                 }
                 if($isPostingJob){
-                    echo "posting the job";
+                    $jobPost = new JobPost;
+                    $jobData = [
+                        'company_id'       => $_SESSION['USER']->user_id,
+                        'posTitle'          => $_POST['posTitle'],
+                        'posType'          => $_POST['posType'],
+                        'industry'          => $_POST['industry'],
+                        'exp_level'         => $_POST['exp_level'],
+                        'yearsOfExp'        => $_POST['yearsOfExp'],
+                        'qualifications'    => $_POST['qualifications'] ?? '',
+                        'required_skills'   => $_POST['required_skills'] ?? '',
+                        'salaryDetails'     => $_POST['salaryDetails'],
+                        'address'           => $_POST['address'],
+                        'workMode'          => $_POST['workMode'],
+                        'jobDescription'    => $_POST['jobDescription'],
+                        'vacancies'         => $_POST['vacancies'],
+                        'deadline'          => $_POST['deadline'],
+                    ];
+                    $jobPost->insert($jobData);
+                    unset($_POST);
                 }
                 break;
 

@@ -31,21 +31,21 @@
                 </div>
 
                 <div class="input-field">
-                    <label for="field">Industry/Department</label>
+                    <label for="industry">Industry/Department</label>
                     <input
                         type="text"
                         placeholder="e.g., IT, Marketing, Finance"
-                        name="field"
+                        name="industry"
                         required
-                        value="<?= isset($_POST['field']) ? htmlspecialchars($_POST['field']) : '' ?>">
+                        value="<?= isset($_POST['industry']) ? htmlspecialchars($_POST['industry']) : '' ?>">
                 </div>
 
                 <div class="input-field">
-                    <label for="level">Experience Level</label>
+                    <label for="exp_level">Experience Level</label>
                     <select
-                        name="level"
+                        name="exp_level"
                         required
-                        value="<?= isset($_POST['level']) ? htmlspecialchars($_POST['level']) : '' ?>">
+                        value="<?= isset($_POST['exp_level']) ? htmlspecialchars($_POST['exp_level']) : '' ?>">
                         <option disabled selected hidden>Select reqired level of experience</option>
                         <option value="entry">Entry-level</option>
                         <option value="mid">Mid-level</option>
@@ -74,13 +74,13 @@
                 </div>
 
                 <div class="input-field">
-                    <label for="skillReq">Required Skills</label>
+                    <label for="required_skills">Required Skills</label>
                     <input
                         type="text"
                         placeholder="required Skills"
-                        name="skillReq"
+                        name="required_skills"
                         required
-                        value="<?= isset($_POST['skillReq']) ? htmlspecialchars($_POST['skillReq']) : '' ?>">
+                        value="<?= isset($_POST['required_skills']) ? htmlspecialchars($_POST['required_skills']) : '' ?>">
                 </div>
 
                 <div class="input-field">
@@ -134,13 +134,13 @@
                 </div>
 
                 <div class="input-field">
-                    <label for="capacity">Number of Vacancies</label>
+                    <label for="vacancies">Number of Vacancies</label>
                     <input
                         type="text"
                         placeholder="Number of Vacancies"
-                        name="capacity"
+                        name="vacancies"
                         required
-                        value="<?= isset($_POST['capacity']) ? htmlspecialchars($_POST['capacity']) : '' ?>">
+                        value="<?= isset($_POST['vacancies']) ? htmlspecialchars($_POST['vacancies']) : '' ?>">
                 </div>
 
                 <div class="input-field">
