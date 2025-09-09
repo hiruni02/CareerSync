@@ -12,7 +12,7 @@
     width: 100%;
     background-color: rgb(211, 231, 255);
     border-radius: 15px;
-    padding: 20px;
+    padding: 20px; 
     margin: 10px 0;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
@@ -21,31 +21,69 @@
     overflow-x: auto; /* scroll on small screens */
 }
 
-/* Table Styling */
-.content_section table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
-    background: white;
-    border-radius: 10px;
+.scrollBox {
+  max-height: 260px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 6px;
+  background-color: var(--mid); 
+  border:0px;
+  padding: 8px;
+}
+
+.applications{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.application_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: linear-gradient#f9f9f9;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    background-color:var(--lightBlue);
+    transition:ease 0.3s;
+}
+
+.application-title{
+    color: #222;
+    font-weight : 600;
+    margin-right: 12px;
+    white-space: nowrap;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-overflow: ellipsis;
+    max-width: calc(100% - 150px);
 }
 
-.content_section th, 
-.content_section td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+.application_item:hover{
+    transform: scale(1.01);
+    box-shadow:0 8px 16px rgba(0,0,0,0.219);
+    z-index:2;
 }
 
-.content_section th {
-    background-color: var(--mid);
+.application_state{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.status{
+    padding: 6px 10px;
+    border-radius: 999px;
     color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
 }
 
-.content_section tr:hover {
-    background-color: rgba(186, 112, 255, 0.1);
-}
+.status.pending{background: #f0ad4e;}
+.status.accepted{background: #5cb85c;}
+.status.rejected{background: #d9534f;}
