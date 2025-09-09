@@ -32,7 +32,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php"
 </div>
 
 <div class="content_section">
-    <section>
         <div class="scrollBox">
            <ul class="applications">
                     <li class="application_item">
@@ -57,5 +56,4 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php"
                     </li>
             </ul>
         </div>
-    </section>
 </div>  
