@@ -1,37 +1,40 @@
 .content_section {
     width: 100%;
-    background-color: var(--mid);
-    border-radius: 15px;
-    padding: 20px;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.content_section section {
-    width: 100%;
-    background-color: rgb(211, 231, 255);
+.sent_applications{
+    width: 50%;
     border-radius: 15px;
-    padding: 20px; 
+    background-color: var(--mid);
+    padding: 20px;
     margin: 10px 0;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 18px;
-    display: block; /* let the table control layout */
-    overflow-x: auto; /* scroll on small screens */
+    display: block;
+    overflow-x: auto;
+    h1{
+        font-family: 'logo-font';
+        padding-bottom: 10px;
+        margin-top: -10px;
+    }
 }
+
 
 .scrollBox {
-  max-height: 260px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  border-radius: 6px;
-  background-color: var(--mid); 
-  border:0px;
-  padding: 8px;
+    max-height: 260px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 6px;
+    background-color: var(--mid);
+    border: 0px;
+    padding: 8px;
 }
 
-.applications{
+.applications {
     margin: 0;
     padding: 0;
     display: flex;
@@ -39,7 +42,7 @@
     gap: 10px;
 }
 
-.application_item{
+.application_item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -47,14 +50,14 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     background: linear-gradient#f9f9f9;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    background-color:var(--lightBlue);
-    transition:ease 0.3s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: var(--lightBlue);
+    transition: ease 0.3s;
 }
 
-.application-title{
+.application-title {
     color: #222;
-    font-weight : 600;
+    font-weight: 600;
     margin-right: 12px;
     white-space: nowrap;
     overflow: hidden;
@@ -62,20 +65,20 @@
     max-width: calc(100% - 150px);
 }
 
-.application_item:hover{
+.application_item:hover {
     transform: scale(1.01);
-    box-shadow:0 8px 16px rgba(0,0,0,0.219);
-    z-index:2;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+    z-index: 2;
 }
 
-.application_state{
+.application_state {
     display: flex;
     gap: 8px;
     align-items: center;
     flex: 0 0 auto;
 }
 
-.status{
+.status {
     padding: 6px 10px;
     border-radius: 999px;
     color: white;
@@ -84,6 +87,14 @@
     text-transform: capitalize;
 }
 
-.status.pending{background: #f0ad4e;}
-.status.accepted{background: #5cb85c;}
-.status.rejected{background: #d9534f;}
+.status.pending {
+    background: #f0ad4e;
+}
+
+.status.accepted {
+    background: #5cb85c;
+}
+
+.status.rejected {
+    background: #d9534f;
+}
