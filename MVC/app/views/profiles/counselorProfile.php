@@ -33,7 +33,7 @@
         <div class="editWindow">
             <h1>Edit profile</h1>
             <form method="POST" enctype="multipart/form-data">
-
+                <input type="hidden" name="action" value="profile_change">
                 <div class="input-field">
                     <label for="firstName">First Name</label>
                     <input type="text" placeholder="First Name" name="firstName" value="<?= $counselorTable->firstName ?>">
@@ -71,18 +71,17 @@
 
                 <div class="input-field">
                     <label for="contactNo">Contact Number</label>
-                    <input type="tel"  placeholder="Contact Number:07xxxxxxxx" name="contactNo" pattern="[0-9]{10}" value="<?= $counselorTable->contactNo ?>">
+                    <input type="tel" placeholder="Contact Number:07xxxxxxxx" name="contactNo" pattern="[0-9]{10}" value="<?= $counselorTable->contactNo ?>">
                 </div>
 
                 <div class="input-field">
-                    <label for="password">Password</label>
-                    <input type="password" id="pass" placeholder="Password" name="password" required>
-                    <button onclick="show_password()" class="eye" type="button" id="eye1"></button>
-                </div>
-
-                <div class="input-field">
-                    <label for="confirm_password">Re-enter Password</label>
-                    <input type="password" id="confirm_pass" placeholder="Confirm Password" name="confirm_password" required
+                    <label for="confirm_password">Pasword</label>
+                    <input
+                        type="password"
+                        id="confirm_pass"
+                        placeholder="Enter Password to confirm"
+                        name="confirm_password"
+                        required
                         style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;' : '' ?>">
                     <button onclick="show_confirm_password()" class="eye" type="button" id="eye2"></button>
                 </div>
@@ -98,56 +97,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const profileBtn = document.getElementById("profileBtn");
-        const backBtn = document.getElementById("backBtn");
-        const editBtn = document.getElementById("editBtn");
-        const edit_backBtn = document.getElementById("edit_backBtn");
-        const editProfile = document.querySelector(".edit_profile_display");
-        const profileDisplay = document.querySelector(".profile_display");
-
-        profileBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            profileDisplay.classList.add("active");
-        });
-
-        backBtn.addEventListener("click", () => {
-            profileDisplay.classList.remove("active");
-        });
-
-        editBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            editProfile.classList.add("active");
-        });
-
-        edit_backBtn.addEventListener("click", () => {
-            editProfile.classList.remove("active");
-        });
-    });
-
-    function show_password() {
-        console.log(document.getElementById("pass").type);
-        var x = document.getElementById("pass");
-        if (x.type === "password") {
-            x.type = "text";
-            document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
-        } else {
-            x.type = "password";
-            document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
-        }
-    }
-
-    function show_confirm_password() {
-        console.log(document.getElementById("confirm_pass").type);
-        var x = document.getElementById("confirm_pass");
-        if (x.type === "password") {
-            x.type = "text";
-            document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
-        } else {
-            x.type = "password";
-            document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
-        }
-    }
-</script>

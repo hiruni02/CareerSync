@@ -42,7 +42,93 @@
             const menu = document.getElementById('settings_menu');
             menu.classList.toggle('active');
         }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const profileBtn = document.getElementById("profileBtn");
+            const backBtn = document.getElementById("backBtn");
+            const profileDisplay = document.querySelector(".profile_display");
+            const editBtn = document.getElementById("editBtn");
+            const edit_backBtn = document.getElementById("edit_backBtn");
+            const editProfile = document.querySelector(".edit_profile_display");
+
+            profileBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                profileDisplay.classList.add("active");
+                document.body.style.overflow = "hidden";
+            });
+
+            backBtn.addEventListener("click", () => {
+                profileDisplay.classList.remove("active");
+                document.body.style.overflow = "auto";
+            });
+
+            editBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                editProfile.classList.add("active");
+                document.body.style.overflow = "hidden";
+            });
+
+            edit_backBtn.addEventListener("click", () => {
+                editProfile.classList.remove("active");
+                document.body.style.overflow = "auto";
+            });
+        });
+
+        function show_password() {
+            console.log(document.getElementById("pass").type);
+            var x = document.getElementById("pass");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
+            } else {
+                x.type = "password";
+                document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+
+            }
+        }
+
+        function show_confirm_password() {
+            console.log(document.getElementById("confirm_pass").type);
+            var x = document.getElementById("confirm_pass");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
+            } else {
+                x.type = "password";
+                document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+
+            }
+        }
+
+        function show_old_password() {
+            console.log(document.getElementById("oldPass").type);
+            var x = document.getElementById("oldPass");
+            if (x.type === "password") {
+                x.type = "text";
+                document.getElementById("eye0").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
+            } else {
+                x.type = "password";
+                document.getElementById("eye0").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+
+            }
+        }
     </script>
+    <?php if (!empty($errors)): ?>
+        <!-- error handling for edit profile and edit password -->
+        <script> 
+            document.addEventListener("DOMContentLoaded", () => {
+                <?php if (isset($errors['email']) || isset($errors['admin_photo_path']) || isset($errors['confirm_password'])): ?>
+                    document.querySelector(".profile_display").classList.add("active");
+                    document.querySelector(".edit_profile_display").classList.add("active");
+                <?php endif; ?>
+                <?php if (isset($errors['oldPassword']) || isset($errors['confirm_new_password'])): ?>
+                    document.querySelector(".editPwDisplay").classList.add("active");
+                <?php endif; ?>
+                document.body.style.overflow = "hidden";
+            });
+        </script>
+    <?php endif; ?>
+
 </body>
 
 </html>

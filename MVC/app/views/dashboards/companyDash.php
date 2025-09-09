@@ -3,11 +3,12 @@
 <div class="settings_menu" id="settings_menu">
     <ul class="settings_links">
         <li><button class="setting_btn" id="profileBtn">Company Profile</button></li>
-        <li><a href=""><button class="setting_btn">Change Password</button></a></li>
+        <li><a href=""><button class="setting_btn" id="passwordBtn">Change Password</button></a></li>
     </ul>
 </div>
 
 <?php
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
 ?>
 
@@ -36,9 +37,18 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
     </div>
 </div>
 
+<div class="list_pos_box">
+    <label>Create New Position :</label>
+    <button id="createBtn">Create</button>
+</div>
+
+<?php
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/dashboards/listPosition.php");
+?>
+
 <div class="content_section">
     <section>
-        <table>
+        <!-- <table>
             <thead>
                 <tr>
                     <th>Job Title</th>
@@ -73,8 +83,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
                     <td data-label="Email">emilyd@gmail.com</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </section>
 </div>
-
-

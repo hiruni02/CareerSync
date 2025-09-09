@@ -2,6 +2,7 @@
 class Home
 {
     use Controller;
+    use Database;
     public function index()
     {
         //if not logged in the $username variable is deafulted to 'User'
@@ -14,6 +15,13 @@ class Home
                 $data['username'] = $_SESSION['USER']->hr_firstName;
             }
         }
+
+        $jobPost = new JobPost;
+        $data['jobs'] = $jobPost->SelectAll(); 
+
+        $sql = "SELECT COUNT(*) AS total_rows FROM users";
+        $numOfJobs = $this->query($sql);
+        $data['numOfJobs'] = $numOfJobs[0]->total_rows;
 
         $user = new User;
         $user->CreateTables();
