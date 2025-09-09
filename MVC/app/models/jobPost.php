@@ -19,4 +19,9 @@ class JobPost
         'vacancies',
         'deadline',
     ];
+
+    public function __construct() //overriding "protected $order_column = "user_id";" in model.php
+    {
+        $this->order_column = "job_id";
+    }
 }

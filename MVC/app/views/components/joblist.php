@@ -23,19 +23,22 @@
     <div class="jobContainer">
         <h3>Select a position:</h3>
         <div class="scrollBox">
-            <?php
-            for ($x = 0; $x <= 100; $x++) { ?>
-                <div class="listItem">
-                    <div class="job-content">
-                        <div class="job-title">JOB TITLE <?=$x?></div>
-                        <div class="job-description">
-                            THE JOB DESCRIPTION GOES HERE.
-                            YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                            AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+            <?php if (!empty($data['jobs'])): ?>
+                <?php foreach ($data['jobs'] as $job): ?>
+                    <div class="listItem">
+                        <div class="job-content">
+                            <div class="job-title"><?= htmlspecialchars($job->posTitle) ?></div>
+                            <div class="job-description">
+                                <?= nl2br(htmlspecialchars($job->jobDescription)) ?>
+                            </div>
+                            <div class="job-salary">Salary: <?= htmlspecialchars($job->salaryDetails) ?></div>
+                            <div class="job-deadline">Deadline: <?= htmlspecialchars($job->deadline) ?></div>
                         </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No jobs available.</p>
+            <?php endif; ?>
         </div>
     </div>
 </section>

@@ -124,7 +124,7 @@ trait Model
     {
         $query = "SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
         $result = $this->query($query);
-        show($result);
+        return $result;
     }
     public function where($data, $data_not = [])
     {
