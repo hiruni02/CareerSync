@@ -21,35 +21,6 @@
     overflow-x: auto; /* scroll on small screens */
 }
 
-/* Table Styling */
-.content_section table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.content_section th, 
-.content_section td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.content_section th {
-    background-color: var(--mid);
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.content_section tr:hover {
-    background-color: rgba(186, 112, 255, 0.1);
-}
-
 .scrollBox {
   max-height: 260px;
   overflow-x: hidden;
@@ -77,7 +48,8 @@
     border-radius: 8px;
     background: linear-gradient#f9f9f9;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
+    background-color:var(--lightBlue);
+    transition:ease 0.3s;}
 
 .application-title{
     color: #222;
@@ -87,6 +59,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: calc(100% - 150px);
+}
+
+.application_item:hover{
+    transform: scale(1.01);
+    box-shadow:0 8px 16px rgba(0,0,0,0.219);
+    z-index:2;
 }
 
 .application_state{

@@ -33,7 +33,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php"
 
 <div class="content_section">
     <section>
-        <div class="scrollBox" tabindex="0" aria-lable="Application list">
+        <div class="scrollBox">
            <ul class="applications">
                     <li class="application_item">
                         <div class="application-title">Position1</div>
