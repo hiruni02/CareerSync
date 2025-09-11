@@ -50,17 +50,67 @@
 
 .job-content {
   padding: 10px;
+  text-align: left;
 }
 
 .job-title {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  color: #1e1f4b;
 }
 
-.job-description {
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.job-location, .job-type {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #393939;
+}
+
+.company-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.company-name {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #161616;
+}
+
+.deadline-box {
+  display: flex;
+  align-items: center;
   font-size: 0.85rem;
-  line-height: 1.4;
+  color: #555;
+}
+
+.deadline-box i {
+  margin-right: 5px;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.deadline-text {
+  font-weight: 600;
+  color: #333;
+}
+
+.listItem .icon{
+    width:18px;
+    height: 18px;
+    padding-right: 3px;
+    padding-top: 6px;
 }
 
 .listItem:hover {
