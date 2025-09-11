@@ -51,23 +51,22 @@
                     ?>
                     <div class="listItem">
                     <div class="job-header">
-                        <img class="company-logo" 
-                            src="<?= htmlspecialchars($job->company_photo_path)?>" alt="Logo"
-                            onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<span>Logo</span>')">
+                        <img class="company-logo" src="<?= htmlspecialchars($job->company_photo_path)?>" alt="Logo">
                         <div class="deadline-box" area-hidden="false" title="Application deadline">
-                            <img class="icon" src="<?=ROOT ?>assets/svg_icons/calendar.svg" >
+                            <img class="icon" style="margin-bottom: 7px;" src="<?=ROOT ?>assets/svg_icons/clock.svg" >
                             <span class="deadline-text"><?= $deadlineDisplay ?></span>
                         </div>  
                     </div>
                     <div class="job-content">
                         <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?></h4>
-                        <div class="company-name"><?= htmlspecialchars($job->industry) ?></div>
+                        <h4 class="company-name"><?= htmlspecialchars($job->companyName) ?></h4>
+                        <div class="industry"><?= htmlspecialchars($job->industry) ?></div>
                         <div class="meta-item">
                             <img class="icon" src="<?=ROOT ?>assets/svg_icons/location.svg" >
                             <span class="job-location"><?= htmlspecialchars($job->address) ?></span>
                         </div>
                         <div class="meta-item">
-                            <img class="icon" src="<?=ROOT ?>assets/svg_icons/clock.svg" >
+                            <img class="icon" src="<?=ROOT ?>assets/svg_icons/briefcase.svg" >
                             <span class="job-type"> <?= htmlspecialchars($job->posType) ?></div>
                         </div>
                     </div>

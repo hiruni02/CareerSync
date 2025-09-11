@@ -54,7 +54,7 @@
 }
 
 .job-title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 8px;
   color: #1e1f4b;
@@ -67,7 +67,8 @@
   padding: 10px;
 }
 
-.job-location, .job-type {
+.job-location,
+.job-type {
   font-size: 0.9rem;
   margin-bottom: 5px;
   font-weight: 500;
@@ -82,6 +83,13 @@
 }
 
 .company-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #161616;
+}
+
+.industry {
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: 10px;
@@ -91,8 +99,9 @@
 .deadline-box {
   display: flex;
   align-items: center;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #555;
+  margin-top: -60px;
 }
 
 .deadline-box i {
@@ -106,11 +115,11 @@
   color: #333;
 }
 
-.listItem .icon{
-    width:18px;
-    height: 18px;
-    padding-right: 3px;
-    padding-top: 6px;
+.listItem .icon {
+  width: 20px;
+  height: 20px;
+  padding-right: 3px;
+  padding-top: 6px;
 }
 
 .listItem:hover {
@@ -118,6 +127,7 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.411);
   z-index: 2;
 }
+
 .listItem:last-child {
   margin-bottom: 0;
 }

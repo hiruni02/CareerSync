@@ -20,6 +20,17 @@ class JobPost
         'deadline',
     ];
 
+    public function SelectAll()
+    {
+        $query = "SELECT jobPost.*, company.company_photo_path, company.companyName
+              FROM jobPost
+              JOIN company ON jobPost.company_id = company.user_id
+              ORDER BY $this->order_column $this->order_type
+              LIMIT $this->limit OFFSET $this->offset";
+
+        return $this->query($query);
+    }
+
     public function __construct() //overriding "protected $order_column = "user_id";" in model.php
     {
         $this->order_column = "job_id";

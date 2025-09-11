@@ -20,10 +20,6 @@ class Home
 
         $jobPost = new JobPost;
         $data['jobs'] = $jobPost->SelectAll(); 
-
-        $sql = "SELECT COUNT(*) AS total_rows FROM users";
-        $numOfJobs = $this->query($sql);
-        $data['numOfJobs'] = $numOfJobs[0]->total_rows;
   
         $this->view("home", $data);
     }
