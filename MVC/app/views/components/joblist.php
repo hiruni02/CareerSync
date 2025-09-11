@@ -25,14 +25,50 @@
         <div class="scrollBox">
             <?php if (!empty($data['jobs'])): ?>
                 <?php foreach ($data['jobs'] as $job): ?>
+                    <?php 
+                    $deadlineDisplay = 'N/A';
+                    if (!empty($job->deadline)) {
+                        try{
+                            $today = new DateTime('today');
+                            $deadline=new DateTime($job->deadline);
+                            if($deadline < $today){
+                                $deadlineDisplay = "Closed";
+                            }else{
+                                $diff = $today->diff($deadline);
+                                $days = (int)$diff->format("%a");
+                                if($diff === 0){
+                                    $deadlineDisplay = "Today";
+                                }elseif($diff === 1){
+                                    $deadlineDisplay = "1 day left";
+                                }else{
+                                    $deadlineDisplay = $days . " days left";
+                                }
+                            }
+                        }catch(Exception $e){
+                            $deadlineDisplay = htmlspecialchars($job->deadline);
+                        }
+                    } 
+                    ?>
                     <div class="listItem">
-                        <div class="job-content">
-                            <div class="job-title"><?= htmlspecialchars($job->posTitle) ?></div>
-                            <div class="job-description">
-                                <?= nl2br(htmlspecialchars($job->jobDescription)) ?>
-                            </div>
-                            <div class="job-salary">Salary: <?= htmlspecialchars($job->salaryDetails) ?></div>
-                            <div class="job-deadline">Deadline: <?= htmlspecialchars($job->deadline) ?></div>
+                    <div class="job-header">
+                        <img class="company-logo" 
+                            src="<?= htmlspecialchars($job->company_photo_path)?>" alt="Logo"
+                            onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<span>Logo</span>')">
+                        <div class="deadline-box" area-hidden="false" title="Application deadline">
+                            <img class="icon" src="<?=ROOT ?>assets/svg_icons/calendar.svg" >
+                            <span class="deadline-text"><?= $deadlineDisplay ?></span>
+                        </div>  
+                    </div>
+                    <div class="job-content">
+                        <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?></h4>
+                        <div class="company-name"><?= htmlspecialchars($job->industry) ?></div>
+                        <div class="meta-item">
+                            <img class="icon" src="<?=ROOT ?>assets/svg_icons/location.svg" >
+                            <span class="job-location"><?= htmlspecialchars($job->address) ?></span>
+                        </div>
+                        <div class="meta-item">
+                            <img class="icon" src="<?=ROOT ?>assets/svg_icons/clock.svg" >
+                            <span class="job-type"> <?= htmlspecialchars($job->posType) ?></div>
                         </div>
                     </div>
                 <?php endforeach; ?>
