@@ -15,6 +15,8 @@ class Home
                 $data['username'] = $_SESSION['USER']->hr_firstName;
             }
         }
+        $user = new User;
+        $user->CreateTables();
 
         $jobPost = new JobPost;
         $data['jobs'] = $jobPost->SelectAll(); 
@@ -22,10 +24,7 @@ class Home
         $sql = "SELECT COUNT(*) AS total_rows FROM users";
         $numOfJobs = $this->query($sql);
         $data['numOfJobs'] = $numOfJobs[0]->total_rows;
-
-        $user = new User;
-        $user->CreateTables();
-
+  
         $this->view("home", $data);
     }
 }
