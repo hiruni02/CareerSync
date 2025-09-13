@@ -38,37 +38,31 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/counselorProfile.php"
 </div>
 
 <div class="content_section">
-    <section>
-        <table>
-            <thead>
-                <tr>
-                    <th>Student Name</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td data-label="Student Name">Kavi</td>
-                    <td data-label="Email">kavi@student.com</td>
-                    <td data-label="Status">Session Scheduled</td>
-                </tr>
-                <tr>
-                    <td data-label="Student Name">John</td>
-                    <td data-label="Email">john@student.com</td>
-                    <td data-label="Status">Pending Approval</td>
-                </tr>
-                <tr>
-                    <td data-label="Student Name">Ryan</td>
-                    <td data-label="Email">ryan@student.com</td>
-                    <td data-label="Status">Awaiting Feedback</td>
-                </tr>
-                <tr>
-                    <td data-label="Student Name">Peter</td>
-                    <td data-label="Email">peter@student.com</td>
-                    <td data-label="Status">Completed</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+    <div class='Clients'>
+        <h1>Clients</h1>
+        <div class="scrollBox">
+            <ul class="applications">
+                <li class="application_item">
+                    <div class="application-title">Kavi</div>
+                    <div class="application_state"><span class="status requested">requested</span></div>
+                </li>
+                <li class="application_item">
+                    <div class="application-title">Suman</div>
+                    <div class="application_state"><span class="status completed">completed</span></div>
+                </li>
+                <li class="application_item">
+                    <div class="application-title">Lisa</div>
+                    <div class="application_state"><span class="status pending">pending</span></div>
+                </li>
+                <li class="application_item">
+                    <div class="application-title">Rahul</div>
+                    <div class="application_state"><span class="status completed">completed</span></div>
+                </li>
+                <li class="application_item">
+                    <div class="application-title">Yohan</div>
+                    <div class="application_state"><span class="status pending">pending</span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
