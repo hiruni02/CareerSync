@@ -124,3 +124,41 @@ textarea {
     padding: 20px;
     width: 100% !important;
 }
+
+@media (max-width: 600px) {
+    .listing_application_window {
+        width: 95%;
+        height: 90%;
+        padding: 10px;
+        margin-top: 20px;
+
+        h1 {
+            color: var(--darkpurple);
+            padding: 0px 0px 0px 0px;
+            font-family: "logo-font";
+            font-size: 2rem;
+        }
+    }
+
+    .scrollbox {
+        padding-top: 10px;
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    #listing_application_backBtn {
+        width: 70px;
+        height: 50px;
+        border-radius: 5px;
+        font-size: 1.5rem;
+
+    }
+
+    #jobDesc {
+        width: 100%;
+    }
+}
