@@ -50,16 +50,8 @@
                         ?>
                 </div>
             </section>
-            <div class="mainSearchBar">
-                <form action="POST">
-                    <input
-                        type="text"
-                        name="searchBar"
-                        placeholder="I'm looking for...   (Eg : Job title, Position, Company)">
-                    <button type="submit" class="searchBtn">Search <img src="<?= ROOT ?>assets/svg_icons/search.svg"></button>
-                </form>
-            </div>
             <?php
+            include("components/searchBar.php");
             include("components/joblist.php");
             ?>
         </div>

@@ -21,7 +21,7 @@
 
     </div>
     <div class="jobContainer">
-        <h3>Select a position:</h3>
+        <h3>Featured Jobs:</h3>
         <div class="scrollBox">
             <?php if (!empty($data['jobs'])): ?>
                 <?php foreach ($data['jobs'] as $job): ?>
