@@ -97,15 +97,24 @@ trait Model
 
         $this->query($candidate_table);
 
-        $user_table = "CREATE TABLE IF NOT EXISTS jobs (
+        $user_table = "CREATE TABLE IF NOT EXISTS jobPost (
                         job_id INT AUTO_INCREMENT PRIMARY KEY,
                         company_id INT NOT NULL,
-                        title VARCHAR(100)NOT NULL,
-                        description VARCHAR(100)NOT NULL,
-                        type ENUM('internship','fulltime'),
-                        salary INT NOT NULL,
+                        posTitle VARCHAR(100)NOT NULL,
+                        posType ENUM('intern','fullTime','partTime','freelance','contract')NOT NULL,
+                        industry VARCHAR(100)NOT NULL,
+                        exp_level ENUM('entry','mid','senior')NOT NULL,
+                        yearsOfExp VARCHAR(4)NOT NULL,
+                        qualifications VARCHAR(1000),
+                        required_skills VARCHAR(1000),
+                        salaryDetails INT NOT NULL,
+                        address VARCHAR(1000)NOT NULL,
+                        workMode ENUM('online','offline','hybrid')NOT NULL,
+                        jobDescription VARCHAR(1000)NOT NULL,
+                        vacancies INT NOT NULL,
+                        deadline date NOT NULL,
                         status ENUM('open','closed') DEFAULT 'open',
-                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (company_id) REFERENCES users(user_id)
                     )";
         $this->query($user_table);
@@ -115,7 +124,7 @@ trait Model
     {
         $query = "SELECT * FROM $this->table ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
         $result = $this->query($query);
-        show($result);
+        return $result;
     }
     public function where($data, $data_not = [])
     {

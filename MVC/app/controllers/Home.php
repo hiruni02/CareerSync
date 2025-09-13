@@ -2,6 +2,7 @@
 class Home
 {
     use Controller;
+    use Database;
     public function index()
     {
         //if not logged in the $username variable is deafulted to 'User'
@@ -14,10 +15,12 @@ class Home
                 $data['username'] = $_SESSION['USER']->hr_firstName;
             }
         }
-
         $user = new User;
         $user->CreateTables();
 
+        $jobPost = new JobPost;
+        $data['jobs'] = $jobPost->SelectAll(); 
+  
         $this->view("home", $data);
     }
 }

@@ -10,6 +10,11 @@ class Dashboard
         //with this method we could extract data from the user id across all tables
         $user = new User;
         $data['userTable'] = $user->first(['user_id' => $_SESSION['USER']->user_id]);
+
+        $isPasswordChange = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'password_change');
+        $isProfileUpdate  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'profile_change');
+        $isPostingJob  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'posting_job');
+
         switch ($_SESSION['USER']->role) {
             case 'admin':
                 //extract admin data
@@ -19,11 +24,11 @@ class Dashboard
                 $photoPath = null;
 
                 //code for updating user profile 
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($isProfileUpdate) {
                     $errors = [];
 
-                    if ($_POST['password'] !== $_POST['confirm_password']) {
-                        $errors['confirm_password'] = "Passwords do not match";
+                    if ($data['userTable']->password !== $_POST['confirm_password']) {
+                        $errors['confirm_password'] = "Incorrect password";
                     }
 
                     if (!empty($_FILES['admin_photo_path']['name'])) {
@@ -44,13 +49,6 @@ class Dashboard
                     }
 
                     if (empty($errors)) {
-                        // Prepare user update array
-                        $userUpdate = ['email' => $_POST['email']];
-                        if (!empty($_POST['password'])) {
-                            $userUpdate['password'] = $_POST['password'];
-                        }
-                        $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
-
                         // Prepare admin update array
                         $adminUpdate = [
                             'firstName' => $_POST['firstName'] ?? '',
@@ -68,7 +66,7 @@ class Dashboard
                         $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
                         $_SESSION['USER']->photo_path = $photoPath ?? $data['adminTable']->admin_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
                         //unset($_SESSION['USER']);//this loggs out after editing profile
-                        redirect('home');
+                        redirect('dashboard');
                         exit;
                     }
 
@@ -84,11 +82,11 @@ class Dashboard
                 $photoPath = null;
 
                 //code for updating user profile 
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($isProfileUpdate) {
                     $errors = [];
 
-                    if ($_POST['password'] !== $_POST['confirm_password']) {
-                        $errors['confirm_password'] = "Passwords do not match";
+                    if ($data['userTable']->password !== $_POST['confirm_password']) {
+                        $errors['confirm_password'] = "Incorrect password";
                     }
 
                     if (!empty($_FILES['candidate_photo_path']['name'])) {
@@ -110,13 +108,6 @@ class Dashboard
                     }
 
                     if (empty($errors)) {
-                        // Prepare user update array
-                        $userUpdate = ['email' => $_POST['email']];
-                        if (!empty($_POST['password'])) {
-                            $userUpdate['password'] = $_POST['password'];
-                        }
-                        $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
-
                         // Prepare candidate update array
                         $candidateUpdate = [
                             'firstName' => $_POST['firstName'] ?? '',
@@ -150,12 +141,12 @@ class Dashboard
                 $photoPath = null;
                 $certificatePath = $data['companyTable']->business_certificate ?? null;
 
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($isProfileUpdate) {
                     $errors = [];
 
                     // Password check
-                    if ($_POST['password'] !== $_POST['confirm_password']) {
-                        $errors['confirm_password'] = "Passwords do not match";
+                    if ($data['userTable']->password !== $_POST['confirm_password']) {
+                        $errors['confirm_password'] = "Incorrect password";
                     }
 
                     // Handle company logo upload
@@ -169,7 +160,7 @@ class Dashboard
                         if (!in_array($ext, $allowed)) {
                             $errors['company_photo_path'] = "Invalid file type. Only JPG, JPEG, PNG allowed.";
                         } elseif (move_uploaded_file($_FILES['company_photo_path']['tmp_name'], $target)) {
-                            $photoPath = 'assets/uploads/company_logos/' . $filename; 
+                            $photoPath = 'assets/uploads/company_logos/' . $filename;
                             $_SESSION['USER']->photo_path = $photoPath;
                         } else {
                             $errors['company_photo_path'] = "Error uploading logo.";
@@ -187,20 +178,13 @@ class Dashboard
                         if (!in_array($ext, $allowed)) {
                             $errors['business_certificate'] = "Invalid file type. Only JPG, JPEG, PNG allowed.";
                         } elseif (move_uploaded_file($_FILES['business_certificate']['tmp_name'], $certTarget)) {
-                            $certificatePath = 'assets/uploads/business_certificates/' . $certFilename; 
+                            $certificatePath = 'assets/uploads/business_certificates/' . $certFilename;
                         } else {
                             $errors['business_certificate'] = "Error uploading certificate.";
                         }
                     }
 
                     if (empty($errors)) {
-                        // Update user table
-                        $userUpdate = ['email' => $_POST['email']];
-                        if (!empty($_POST['password'])) {
-                            $userUpdate['password'] = $_POST['password'];
-                        }
-                        $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
-
                         // Update company table
                         $companyUpdate = [
                             'companyName'          => $_POST['companyName'] ?? '',
@@ -231,6 +215,27 @@ class Dashboard
 
                     $data['errors'] = $errors;
                 }
+                if($isPostingJob){
+                    $jobPost = new JobPost;
+                    $jobData = [
+                        'company_id'       => $_SESSION['USER']->user_id,
+                        'posTitle'          => $_POST['posTitle'],
+                        'posType'          => $_POST['posType'],
+                        'industry'          => $_POST['industry'],
+                        'exp_level'         => $_POST['exp_level'],
+                        'yearsOfExp'        => $_POST['yearsOfExp'],
+                        'qualifications'    => $_POST['qualifications'] ?? '',
+                        'required_skills'   => $_POST['required_skills'] ?? '',
+                        'salaryDetails'     => $_POST['salaryDetails'],
+                        'address'           => $_POST['address'],
+                        'workMode'          => $_POST['workMode'],
+                        'jobDescription'    => $_POST['jobDescription'],
+                        'vacancies'         => $_POST['vacancies'],
+                        'deadline'          => $_POST['deadline'],
+                    ];
+                    $jobPost->insert($jobData);
+                    unset($_POST);
+                }
                 break;
 
 
@@ -242,11 +247,11 @@ class Dashboard
                 $photoPath = null;
 
                 //code for updating user profile 
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($isProfileUpdate) {
                     $errors = [];
 
-                    if ($_POST['password'] !== $_POST['confirm_password']) {
-                        $errors['confirm_password'] = "Passwords do not match";
+                    if ($data['userTable']->password !== $_POST['confirm_password']) {
+                        $errors['confirm_password'] = "Incorrect password";
                     }
 
                     if (!empty($_FILES['validator_photo_path']['name'])) {
@@ -268,13 +273,6 @@ class Dashboard
                     }
 
                     if (empty($errors)) {
-                        // Prepare user update array
-                        $userUpdate = ['email' => $_POST['email']];
-                        if (!empty($_POST['password'])) {
-                            $userUpdate['password'] = $_POST['password'];
-                        }
-                        $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
-
                         // Prepare validator update array
                         $validatorUpdate = [
                             'firstName' => $_POST['firstName'] ?? '',
@@ -308,11 +306,11 @@ class Dashboard
                 $photoPath = null;
 
                 //code for updating user profile 
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if ($isProfileUpdate) {
                     $errors = [];
 
-                    if ($_POST['password'] !== $_POST['confirm_password']) {
-                        $errors['confirm_password'] = "Passwords do not match";
+                    if ($data['userTable']->password !== $_POST['confirm_password']) {
+                        $errors['confirm_password'] = "Incorrect password";
                     }
 
                     if (!empty($_FILES['counselor_photo_path']['name'])) {
@@ -334,13 +332,6 @@ class Dashboard
                     }
 
                     if (empty($errors)) {
-                        // Prepare user update array
-                        $userUpdate = ['email' => $_POST['email']];
-                        if (!empty($_POST['password'])) {
-                            $userUpdate['password'] = $_POST['password'];
-                        }
-                        $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
-
                         // Prepare counselor update array
                         $counselorUpdate = [
                             'firstName' => $_POST['firstName'] ?? '',
@@ -365,6 +356,51 @@ class Dashboard
                     $data['errors'] = $errors;
                 }
                 break;
+        }
+        if ($isPasswordChange) {
+            $pw_errors = [];
+
+            if ($data['userTable']->password !== $_POST['oldPassword']) {
+                $pw_errors['oldPassword'] = "Incorrect Password";
+            } else if ($_POST['newPassword'] !== $_POST['confirm_new_password']) {
+                $pw_errors['confirm_new_password'] = "Passwords do not match";
+            }
+
+            if (empty($pw_errors)) {
+                // Prepare user update array
+                if (!empty($_POST['newPassword'])) {
+                    $userUpdate['password'] = $_POST['newPassword'];
+                }
+                $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
+
+                $updatedUser = $user->first(['user_id' => $_SESSION['USER']->user_id]);
+                if ($updatedUser) {
+                    $_SESSION['USER'] = $updatedUser;
+                }
+                $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
+                switch ($_SESSION['USER']->role) {
+                    case 'admin':
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['adminTable']->admin_photo_path;
+                        break;
+                    case 'company':
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['companyTable']->company_photo_path;
+                        break;
+                    case 'counselor':
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['counselorTable']->counselor_photo_path;
+                        break;
+                    case 'validator':
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['validatorTable']->validator_photo_path;
+                        break;
+                    case 'candidate':
+                        $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path;
+                        break;
+                }
+                //unset($_SESSION['USER']);//this loggs out after editing profile
+                redirect('dashboard');
+                exit;
+            }
+
+            $data['errors'] = $pw_errors;
         }
 
         $this->view("dashboard", $data);  // loads dashboard.view.php

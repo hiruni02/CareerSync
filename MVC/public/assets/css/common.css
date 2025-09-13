@@ -29,11 +29,17 @@
   src: url("../fonts/Audiowide-Regular.ttf");
 }
 
+@font-face {
+  font-family: "merriweather";
+  src: url("../fonts/Merriweather.ttf");
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-size: 16px;
 }
 
 .page-wrapper {

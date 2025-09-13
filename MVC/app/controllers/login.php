@@ -39,7 +39,6 @@ class login
                         case 'company':
                             $company = new Company();
                             $extra = $company->first(['user_id' => $row->user_id]);
-                            //NEED TO ADD COMPANY LOGO TO SESSION AFTER COMPANY LOGO IS IMPLEMENTED
                             break;
                         default:
                             $extra = null;

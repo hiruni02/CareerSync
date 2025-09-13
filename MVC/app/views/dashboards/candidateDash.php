@@ -3,11 +3,12 @@
 <div class="settings_menu" id="settings_menu">
     <ul class="settings_links">
         <li><a href=""><button class="setting_btn" id="profileBtn">Your Profile</button></a></li>
-        <li><a href=""><button class="setting_btn">Change Password</button></a></li>
+        <li><a href=""><button class="setting_btn" id="passwordBtn">Change Password</button></a></li>
     </ul>
 </div>
 
 <?php
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php");
 ?>
 
@@ -28,5 +29,35 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php"
     <div class="box_segment">
         Unread messeges: <br>
         <h1>5</h1>
+    </div>
+</div>
+
+<div class="content_section">
+    <div class='sent_applications'>
+        <h1>Sent Applications</h1>
+        <div class="scrollBox">
+            <ul class="applications">
+                <li class="application_item">
+                    <div class="application-title">Position1</div>
+                    <div class="application_state"><span class="status pending">pending</span></div>
+                </li>
+                <li class="application_item">
+                    <div class="application-title">Position2</div>
+                    <div class="application_state"><span class="status accepted">accepted</span></div>
+                </li>
+                <li class="application_item">
+                    <div class="application-title">Position3</div>
+                    <div class="application_state"><span class="status rejected">rejected</span></div>
+                </li>
+                <li class="application_item">
+                    <div class="application-title">Position4</div>
+                    <div class="application_state"><span class="status accepted">accepted</span></div>
+                </li>
+                <li class="application_item">
+                    <div class="application-title">Position5</div>
+                    <div class="application_state"><span class="status rejected">rejected</span></div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
