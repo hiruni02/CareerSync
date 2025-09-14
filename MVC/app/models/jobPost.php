@@ -31,6 +31,19 @@ class JobPost
         return $this->query($query);
     }
 
+    public function jobpost_and_company($id)
+    {
+        $query = "SELECT jobPost.*, company.*
+              FROM jobPost
+              JOIN company ON jobPost.company_id = company.user_id
+              WHERE jobPost.job_id = ?
+              LIMIT 1";
+
+        $params = [$id]; // ✅ pass as array with positional param
+        $result = $this->query($query, $params);
+        return $result ? $result[0] : null;
+    }
+
     public function __construct() //overriding "protected $order_column = "user_id";" in model.php
     {
         $this->order_column = "job_id";

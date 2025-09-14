@@ -21,54 +21,57 @@
 
     </div>
     <div class="jobContainer">
-        <h3>Select a position:</h3>
+        <h3>Featured Jobs:</h3>
         <div class="scrollBox">
             <?php if (!empty($data['jobs'])): ?>
                 <?php foreach ($data['jobs'] as $job): ?>
-                    <?php 
+                    <?php
                     $deadlineDisplay = 'N/A';
                     if (!empty($job->deadline)) {
-                        try{
+                        try {
                             $today = new DateTime('today');
-                            $deadline=new DateTime($job->deadline);
-                            if($deadline < $today){
+                            $deadline = new DateTime($job->deadline);
+                            if ($deadline < $today) {
                                 $deadlineDisplay = "Closed";
-                            }else{
+                            } else {
                                 $diff = $today->diff($deadline);
                                 $days = (int)$diff->format("%a");
-                                if($diff === 0){
+                                if ($diff === 0) {
                                     $deadlineDisplay = "Today";
-                                }elseif($diff === 1){
+                                } elseif ($diff === 1) {
                                     $deadlineDisplay = "1 day left";
-                                }else{
+                                } else {
                                     $deadlineDisplay = $days . " days left";
                                 }
                             }
-                        }catch(Exception $e){
+                        } catch (Exception $e) {
                             $deadlineDisplay = htmlspecialchars($job->deadline);
                         }
-                    } 
+                    }
                     ?>
                     <div class="listItem">
-                    <div class="job-header">
-                        <img class="company-logo" src="<?= htmlspecialchars($job->company_photo_path)?>" alt="Logo">
-                        <div class="deadline-box" area-hidden="false" title="Application deadline">
-                            <img class="icon" style="margin-bottom: 7px;" src="<?=ROOT ?>assets/svg_icons/clock.svg" >
-                            <span class="deadline-text"><?= $deadlineDisplay ?></span>
-                        </div>  
-                    </div>
-                    <div class="job-content">
-                        <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?></h4>
-                        <h4 class="company-name"><?= htmlspecialchars($job->companyName) ?></h4>
-                        <div class="industry"><?= htmlspecialchars($job->industry) ?></div>
-                        <div class="meta-item">
-                            <img class="icon" src="<?=ROOT ?>assets/svg_icons/location.svg" >
-                            <span class="job-location"><?= htmlspecialchars($job->address) ?></span>
-                        </div>
-                        <div class="meta-item">
-                            <img class="icon" src="<?=ROOT ?>assets/svg_icons/briefcase.svg" >
-                            <span class="job-type"> <?= htmlspecialchars($job->posType) ?></div>
-                        </div>
+                        <a class="jobListLink" href="<?= ROOT ?>jobdetails/<?= urlencode($job->job_id) ?>">
+                            <div class="job-header">
+                                <img class="company-logo" src="<?= htmlspecialchars($job->company_photo_path) ?>" alt="Logo">
+                                <div class="deadline-box" area-hidden="false" title="Application deadline">
+                                    <img class="icon" style="margin-bottom: 7px;" src="<?= ROOT ?>assets/svg_icons/clock.svg">
+                                    <span class="deadline-text"><?= $deadlineDisplay ?></span>
+                                </div>
+                            </div>
+                            <div class="job-content">
+                                <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?></h4>
+                                <h4 class="company-name"><?= htmlspecialchars($job->companyName) ?></h4>
+                                <div class="industry"><?= htmlspecialchars($job->industry) ?></div>
+                                <div class="meta-item">
+                                    <img class="icon" src="<?= ROOT ?>assets/svg_icons/location.svg">
+                                    <span class="job-location"><?= htmlspecialchars($job->address) ?></span>
+                                </div>
+                                <div class="meta-item">
+                                    <img class="icon" src="<?= ROOT ?>assets/svg_icons/briefcase.svg">
+                                    <span class="job-type"> <?= htmlspecialchars($job->posType) ?>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
