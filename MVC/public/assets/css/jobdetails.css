@@ -1,28 +1,53 @@
-* {
-    padding: 0px;
-    margin: 0px;
+.page-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+}
+
+.heading_content {
+    background-color: var(--mid);
+    padding: 30px;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
 }
 
 .job_title {
     margin-left: 50px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .company_name {
     margin-left: 50px;
 }
 
+.job_description {
+    margin-top: 150px;
+    display: flex;
+    text-align: justify;
+    width: 65%;
+}
+
 .jobinfo_box {
-    background-color: rgb(247, 244, 244);
+    background-color: var(--lightBlue);
     width: 20%;
     height: 620px;
     box-shadow: 3px 3px grey;
-    margin-right: 20px;
-    margin-left: 1120px;
+    right: 100px;
+    top: -30;
     position: absolute;
     margin-top: 150px;
     border-radius: 8px;
+    padding: 10px;
+}
 
+.company_logo {
+    width: 80px;
+    height: auto;
+    margin: 5px;
+    border-radius: 5px;
+    border: 2px solid var(--mid);
 }
 
 .jobinfo_box h4,
@@ -48,28 +73,30 @@ h5 {
 
 }
 
+.jobinfo_box form {
+    display: flex;
+    flex-direction: column; /* stack buttons vertically */
+    align-items: center;    /* center horizontally */
+}
+
 .apply_job {
     padding: 10px 100px;
-    background-color: black;
+    background-image: var(--submit_btn_gradient);
     color: white;
     font-size: 15px;
     border-radius: 8px;
-    margin-left: 100px;
     font-weight: 30px;
     border: none;
     margin: 2px;
 }
 
-
 .save_job {
     padding: 6px 120px;
-    border: 3px solid black;
+    border: 3px solid var(--darkblue);
     color: black;
     font-size: 13px;
     font-weight: 50px;
     border-radius: 8px;
-    margin-right: 100px;
-    margin: 2px;
 }
 
 
@@ -88,26 +115,6 @@ h5 {
 .requirement {
     padding: 5px;
     margin: 5px;
-}
-
-
-.company_logo {
-    width: 80px;
-    height: auto;
-    margin: 5px;
-    border-radius: 5px;
-}
-
-.job_description {
-    margin: 50px;
-    text-align: justify;
-    margin-top: 100px;
-}
-
-.job_description_container {
-    display: flex;
-    width: 70%;
-
 }
 
 .position {
