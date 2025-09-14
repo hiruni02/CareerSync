@@ -50,6 +50,10 @@
   text-align: left;
 }
 
+.jobListLink{
+  text-decoration: none;
+}
+
 .job-content {
   padding: 10px;
   text-align: left;
