@@ -14,6 +14,7 @@ class JobPost
         'required_skills',
         'salaryDetails',
         'address',
+        'city',
         'workMode',
         'jobDescription',
         'vacancies',

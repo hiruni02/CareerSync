@@ -228,6 +228,7 @@ class Dashboard
                         'required_skills'   => $_POST['required_skills'] ?? '',
                         'salaryDetails'     => $_POST['salaryDetails'],
                         'address'           => $_POST['address'],
+                        'city'              => $_POST['city'],
                         'workMode'          => $_POST['workMode'],
                         'jobDescription'    => $_POST['jobDescription'],
                         'vacancies'         => $_POST['vacancies'],

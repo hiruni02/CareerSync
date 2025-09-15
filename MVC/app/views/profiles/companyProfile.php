@@ -54,16 +54,6 @@
                 </div>
 
                 <div class="input-field">
-                    <label for="email">Company Email Address</label>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        name="email"
-                        value="<?= $userTable->email ?>"
-                        style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
-                </div>
-
-                <div class="input-field">
                     <label for="hr_firstName"> HR First Name</label>
                     <input
                         type="text"

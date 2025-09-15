@@ -4,13 +4,13 @@
         <div class="navbar-left">
             <div class="logo">CareerSync</div>
             <ul class="navbar_links">
-                <li><a href="home"><button class="navbtn">Home</button></a></li>
-                <li><a href="about"><button class="navbtn">About</button></a></li>
-                <li><a href="contact"><button class="navbtn">Contact</button></a></li>
+                <li><a href="<?= ROOT ?>home"><button class="navbtn">Home</button></a></li>
+                <li><a href="<?= ROOT ?>about"><button class="navbtn">About</button></a></li>
+                <li><a href="<?= ROOT ?>contact"><button class="navbtn">Contact</button></a></li>
                 <?php
                 if (isset($_SESSION['USER'])) {
                 ?>
-                    <li><a href="dashboard"><button class="navbtn" style="padding: 0px;">Dashboard</button></a></li>
+                    <li><a href="<?= ROOT ?>dashboard"><button class="navbtn" style="padding: 0px;">Dashboard</button></a></li>
                 <?php
                 }
                 ?>
@@ -20,13 +20,13 @@
             <?php
             if (!isset($_SESSION['USER'])) {
             ?>
-                <li><a href="login"><button class="navbtn">Login</button></a></li>
-                <li><a href="welcome"><button class="navbtn">Register</button></a></li>
+                <li><a href="<?= ROOT ?>login"><button class="navbtn">Login</button></a></li>
+                <li><a href="<?= ROOT ?>welcome"><button class="navbtn">Register</button></a></li>
             <?php
             } else {
             ?>
-                <li class="nav_pfp"><img src=" <?= $_SESSION['USER']->photo_path ?>" alt="pfp"></li>
-                <li><a href="logout" onclick="return confirm('Are you sure you want to log out?');"><button class="navbtn">Log out</button></a></li>
+                <li class="nav_pfp"><img src="<?= ROOT.$_SESSION['USER']->photo_path ?>" alt="pfp"></li>
+                <li><a href="<?= ROOT ?>logout" onclick="return confirm('Are you sure you want to log out?');"><button class="navbtn">Log out</button></a></li>
             <?php
             }
             ?>
@@ -40,24 +40,24 @@
         </div>
         <div class="logo">CareerSync</div>
         <?php if (isset($_SESSION['USER'])) { ?>
-            <li class="nav_pfp"><img src="<?= $_SESSION['USER']->photo_path ?>" alt="pfp"></li>
+            <li class="nav_pfp"><img src="<?=ROOT.$_SESSION['USER']->photo_path ?>" alt="pfp"></li>
         <?php
         } ?>
     </nav>
 
     <div class="mobile_menu" id="mobileMenu">
         <ul class="mobile_links">
-            <li><a href="home"><button class="navbtn">Home</button></a></li>
-            <li><a href="about"><button class="navbtn">About</button></a></li>
-            <li><a href="contact"><button class="navbtn">Contact</button></a></li>
+            <li><a href="<?= ROOT ?>home"><button class="navbtn">Home</button></a></li>
+            <li><a href="<?= ROOT ?>about"><button class="navbtn">About</button></a></li>
+            <li><a href="<?= ROOT ?>contact"><button class="navbtn">Contact</button></a></li>
             <?php if (isset($_SESSION['USER'])) { ?>
-                <li><a href="dashboard"><button class="navbtn">Dashboard</button></a></li>
+                <li><a href="<?= ROOT ?>dashboard"><button class="navbtn" style="padding: 0px;">Dashboard</button></a></li>
             <?php } ?>
             <?php if (!isset($_SESSION['USER'])) { ?>
-                <li><a href="login"><button class="navbtn">Login</button></a></li>
-                <li><a href="welcome"><button class="navbtn">Register</button></a></li>
+                <li><a href="<?= ROOT ?>login"><button class="navbtn">Login</button></a></li>
+                <li><a href="<?= ROOT ?>welcome"><button class="navbtn">Register</button></a></li>
             <?php } else { ?>
-                <li><a href="logout" onclick="return confirm('Are you sure you want to log out?');"><button class="navbtn">Log out</button></a></li>
+                <li><a href="<?= ROOT ?>logout" onclick="return confirm('Are you sure you want to log out?');"><button class="navbtn">Log out</button></a></li>
             <?php } ?>
         </ul>
     </div>

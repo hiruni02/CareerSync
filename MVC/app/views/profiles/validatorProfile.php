@@ -45,19 +45,6 @@
                 </div>
 
                 <div class="input-field">
-                    <label for="email">Email Address</label>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        name="email"
-                        value="<?= $userTable->email ?>"
-                        style="<?= !empty($errors['email']) ? 'border: 2px solid red;' : '' ?>">
-                </div>
-                <?php if (!empty($errors['email'])): ?>
-                    <div style="color:red;" class="error"><?= $errors['email'] ?></div>
-                <?php endif; ?>
-
-                <div class="input-field">
                     <label for="validator_photo_path">Profile Picture</label><br>
                     <?php if (!empty($validatorTable->validator_photo_path)): ?>
                         <img src="<?= $validatorTable->validator_photo_path ?>" alt="Current Profile Picture">

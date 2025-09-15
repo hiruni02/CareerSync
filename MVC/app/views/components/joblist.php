@@ -64,9 +64,9 @@
                                 <div class="industry"><?= htmlspecialchars($job->industry) ?></div>
                                 <div class="meta-item">
                                     <img class="icon" src="<?= ROOT ?>assets/svg_icons/location.svg">
-                                    <span class="job-location"><?= htmlspecialchars($job->address) ?></span>
+                                    <span class="job-location"><?= htmlspecialchars($job->city) ?></span>
                                 </div>
-                                <div class="meta-item">
+                                <div>
                                     <img class="icon" src="<?= ROOT ?>assets/svg_icons/briefcase.svg">
                                     <span class="job-type"> <?= htmlspecialchars($job->posType) ?>
                                 </div>

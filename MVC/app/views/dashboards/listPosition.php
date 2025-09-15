@@ -104,6 +104,16 @@
                 </div>
 
                 <div class="input-field">
+                    <label for="city">City</label>
+                    <input
+                        type="text"
+                        placeholder="city"
+                        name="city"
+                        required
+                        value="<?= isset($_POST['city']) ? htmlspecialchars($_POST['city']) : '' ?>">
+                </div>
+
+                <div class="input-field">
                     <label>Work Mode</label>
                     <div id="workMode">
                         <label>

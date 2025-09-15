@@ -39,6 +39,7 @@ class login
                         case 'company':
                             $company = new Company();
                             $extra = $company->first(['user_id' => $row->user_id]);
+                            $_SESSION['USER']->photo_path = $extra->company_photo_path;
                             break;
                         default:
                             $extra = null;
@@ -49,23 +50,8 @@ class login
                         $_SESSION['USER']->user_id = $row->user_id;
                         $_SESSION['USER']->role = $row->role;
                     }
-                    switch ($row->role) {
-                        case "admin":
-                            $_SESSION['USER']->photo_path = $extra->admin_photo_path;
-                            break;
-                        case "candidate":
-                            $_SESSION['USER']->photo_path = $extra->candidate_photo_path;
-                            break;
-                        case "validator":
-                            $_SESSION['USER']->photo_path = $extra->validator_photo_path;
-                            break;
-                        case "counselor":
-                            $_SESSION['USER']->photo_path = $extra->counselor_photo_path;
-                            break;
-                        case "company":
-                            $_SESSION['USER']->photo_path = $extra->company_photo_path;
-                            $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
-                            break;
+                    if ($row->role == 'company') {
+                        $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
                     }
 
                     redirect('home');

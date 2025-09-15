@@ -13,23 +13,15 @@
         ?>
         <div class='page-content'>
             <div class="heading_content">
-                <h1 class="job_title">Outlet Manager | Colombo</h1>
-                <h3 class="company_name">ODEL PLC</h3>
+                <h1 class="job_title"><?=$data['job']->posTitle?> | <?=$data['job']->city?></h1>
+                <h3 class="company_name"><?=$data['job']->companyName?></h3>
             </div>
 
-            <p class="job_description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt possimus sint
-                magnam exercitationem quos, tempore a ipsum blanditiis hic eligendi. Sapiente distinctio doloribus ipsam
-                modi non sequi aliquam saepe iusto, dolorum cum odio possimus esse inventore in delectus voluptatum soluta,
-                commodi deserunt adipisci laboriosam perferendis. Veritatis a impedit nam porro quos ratione dolorum, saepe
-                sapiente earum odio placeat neque sunt numquam qui quia amet possimus harum tempore? Veniam similique
-                reprehenderit animi, vel repellat fugiat quas quos deserunt. Neque officia alias blanditiis error inventore
-                natus dolorem? Consectetur porro molestiae et totam officia praesentium dolorem nemo earum libero. Impedit
-                commodi illum hic?
-            </p>
+            <p class="job_description"><?=$data['job']->jobDescription?></p>
             <div class="jobinfo_box">
                 <img class="company_logo" src="<?= ROOT . $data['job']->company_photo_path ?>" alt="Company Logo">
-                <h4>Outlet Manager | Colombo</h4>
-                <h5>ODEL PLC</h5><br>
+                <h4><?=$data['job']->posTitle?> | <?=$data['job']->city?></h4>
+                <h5><?=$data['job']->companyName?></h5><br>
 
                 <?php
                 $deadlineDisplay = 'N/A';
@@ -56,28 +48,26 @@
                 }
                 ?>
 
-                <p class="short_details">Colombo</p>
+                <p class="short_details"><?=$data['job']->city?></p>
                 <p class="short_details">
                     <?php echo $deadlineDisplay ?> </p>
-                <p class="short_details">Full time</p>
+                <p class="short_details"><?=$data['job']->posType?></p>
                 <hr><br>
 
-                <p class="requirement">A degree or equivalent and minimum 3 years of experience in a similar role.Please refer
-                    to the job advert for
-                    further information.</p>
+                <p class="requirement"><?=$data['job']->required_skills?></p>
                 <div class="job-meta">
                     <table>
                         <tr>
                             <td>Education</td>
-                            <td><strong>BSC Degree</strong></td>
+                            <td><strong><?=$data['job']->qualifications?></strong></td>
                         </tr>
                         <tr>
                             <td>Experience</td>
-                            <td><strong>3–5 Years</strong></td>
+                            <td><strong><?=$data['job']->yearsOfExp?> Years</strong></td>
                         </tr>
                         <tr>
                             <td>Salary Range</td>
-                            <td><strong>Any</strong></td>
+                            <td><strong><?=$data['job']->salaryDetails?></strong></td>
                         </tr>
                     </table>
                     <hr><br><br>
