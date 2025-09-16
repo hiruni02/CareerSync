@@ -12,72 +12,88 @@
         include("components/navbar.php");
         ?>
         <div class='page-content'>
-            <div class="heading_content">
-                <h1 class="job_title"><?=$data['job']->posTitle?> | <?=$data['job']->city?></h1>
-                <h3 class="company_name"><?=$data['job']->companyName?></h3>
-            </div>
-
-            <p class="job_description"><?=$data['job']->jobDescription?></p>
-            <div class="jobinfo_box">
-                <img class="company_logo" src="<?= ROOT . $data['job']->company_photo_path ?>" alt="Company Logo">
-                <h4><?=$data['job']->posTitle?> | <?=$data['job']->city?></h4>
-                <h5><?=$data['job']->companyName?></h5><br>
-
-                <?php
-                $deadlineDisplay = 'N/A';
-                if (!empty($data['job']->deadline)) {
-                    try {
-                        $today = new DateTime('today');
-                        $deadline = new DateTime($data['job']->deadline);
-                        if ($deadline < $today) {
-                            $deadlineDisplay = "Closed";
-                        } else {
-                            $diff = $today->diff($deadline);
-                            $days = (int)$diff->format("%a");
-                            if ($diff === 0) {
-                                $deadlineDisplay = "Today";
-                            } elseif ($diff === 1) {
-                                $deadlineDisplay = "1 day left";
-                            } else {
-                                $deadlineDisplay = $days . " days left";
+            <div class="container">
+                <div class="box left">
+                    <div class="heading_content">
+                        <h1 class="job_title"><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h1>
+                        <h3 class="company_name"><?= $data['job']->companyName ?></h3>
+                    </div>
+                    <h3 class="jdTitle">About the Position: </h4><br>
+                    <p class="job_description"><?= $data['job']->jobDescription ?></p>
+                </div>
+                <div class="box right">
+                    <div class="jobinfo_box">
+                        <img class="company_logo" src="<?= ROOT . $data['job']->company_photo_path ?>" alt="Company Logo">
+                        <h4><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h4>
+                        <h5><?= $data['job']->companyName ?></h5><br>
+                        <?php
+                        $deadlineDisplay = 'N/A';
+                        if (!empty($data['job']->deadline)) {
+                            try {
+                                $today = new DateTime('today');
+                                $deadline = new DateTime($data['job']->deadline);
+                                if ($deadline < $today) {
+                                    $deadlineDisplay = "Closed";
+                                } else {
+                                    $diff = $today->diff($deadline);
+                                    $days = (int)$diff->format("%a");
+                                    if ($diff === 0) {
+                                        $deadlineDisplay = "Today";
+                                    } elseif ($diff === 1) {
+                                        $deadlineDisplay = "1 day left";
+                                    } else {
+                                        $deadlineDisplay = $days . " days left";
+                                    }
+                                }
+                            } catch (Exception $e) {
+                                $deadlineDisplay = htmlspecialchars($data['job']->deadline);
                             }
                         }
-                    } catch (Exception $e) {
-                        $deadlineDisplay = htmlspecialchars($data['job']->deadline);
-                    }
-                }
-                ?>
-
-                <p class="short_details"><?=$data['job']->city?></p>
-                <p class="short_details">
-                    <?php echo $deadlineDisplay ?> </p>
-                <p class="short_details"><?=$data['job']->posType?></p>
-                <hr><br>
-
-                <p class="requirement"><?=$data['job']->required_skills?></p>
-                <div class="job-meta">
-                    <table>
-                        <tr>
-                            <td>Education</td>
-                            <td><strong><?=$data['job']->qualifications?></strong></td>
-                        </tr>
-                        <tr>
-                            <td>Experience</td>
-                            <td><strong><?=$data['job']->yearsOfExp?> Years</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Salary Range</td>
-                            <td><strong><?=$data['job']->salaryDetails?></strong></td>
-                        </tr>
-                    </table>
-                    <hr><br><br>
-
-                    <form action="" method="GET">
-                        <button class="apply_job">Apply for a job</button><br>
-                        <button class="save_job">Save job</button>
-                    </form>
+                        ?>
+                        <p class="short_details"><?= $data['job']->city ?></p>
+                        <p class="short_details">
+                            <?php echo $deadlineDisplay ?> </p>
+                        <p class="short_details"><?= $data['job']->posType ?></p>
+                        <hr><br>
+                        <p class="requirement"><?= $data['job']->required_skills ?></p>
+                        <div class="job-meta">
+                            <table>
+                                <tr>
+                                    <td>Education</td>
+                                    <td><strong><?= $data['job']->qualifications ?></strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Experience</td>
+                                    <td><strong><?= $data['job']->yearsOfExp ?> Years</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Salary Range</td>
+                                    <td><strong><?= $data['job']->salaryDetails ?></strong></td>
+                                </tr>
+                            </table>
+                            <hr><br><br>
+                            <form action="" method="GET">
+                                <button class="apply_job">Apply</button><br>
+                                <button class="save_job">Bookmark</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+            <!-- <div class="heading_content">
+                <h1 class="job_title"><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h1>
+                <h3 class="company_name"><?= $data['job']->companyName ?></h3>
+            </div>
+
+            <p class="job_description"><?= $data['job']->jobDescription ?></p> -->
 
 
 
@@ -93,6 +109,9 @@
                 <li>Building strong relationships with customers and stakeholders</li>
             </ul> -->
         </div>
+        <?php
+        include("components/footer.php");
+        ?>
     </div>
 </body>
 
