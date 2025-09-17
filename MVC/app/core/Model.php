@@ -97,7 +97,7 @@ trait Model
 
         $this->query($candidate_table);
 
-        $user_table = "CREATE TABLE IF NOT EXISTS jobPost (
+        $jobPost_table = "CREATE TABLE IF NOT EXISTS jobPost (
                         job_id INT AUTO_INCREMENT PRIMARY KEY,
                         company_id INT NOT NULL,
                         posTitle VARCHAR(100)NOT NULL,
@@ -118,7 +118,17 @@ trait Model
                         posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (company_id) REFERENCES users(user_id)
                     )";
-        $this->query($user_table);
+        $this->query($jobPost_table);
+
+        $cv_table = "CREATE TABLE IF NOT EXISTS jobPost (
+                        job_id INT AUTO_INCREMENT PRIMARY KEY,
+                        candidate_id INT NOT NULL,
+                        cv_file_path VARCHAR(1000) NOT NULL UNIQUE,
+                        applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (job_id) REFERENCES jobPost(job_id),
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id)
+                    )";
+        $this->query($cv_table);
     }
 
     public function SelectAll()

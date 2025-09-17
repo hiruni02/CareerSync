@@ -1,11 +1,12 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/cvDropWindow.css">
 <div class="cvdw_pageCover">
     <div class="drop_window">
-        <form action="" method="POST">
+        <form method="POST">
+            <input type="hidden" name="action" value="job_apply">
             <div class="upload-box" id="uploadBox">
-                <input type="file" id="fileInput" multiple>
+                <input type="file" id="fileInput" accept=".pdf">
                 <i>📂</i>
-                <p>Drag & Drop files here</p>
+                <p>Drag & Drop a pdf of your CV here</p>
                 <p>or</p>
                 <button type="button" class="upload-btn" onclick="document.getElementById('fileInput').click()">Browse Files</button>
                 <div class="file-list" id="fileList"></div>

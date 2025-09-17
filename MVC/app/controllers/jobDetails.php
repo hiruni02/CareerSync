@@ -17,6 +17,11 @@ class JobDetails
             return;
         }
 
+        $job_apply = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'job_apply');
+        if($job_apply){
+            //code for storing CV in the database
+        }
+
         $data['job'] = $jobData;
         $this->view("jobdetails", $data);
     }
