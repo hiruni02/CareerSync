@@ -49,17 +49,17 @@ trait Model
         }
 
         $company_table = "CREATE TABLE IF NOT EXISTS company (
-                            user_id INT PRIMARY KEY,
-                            companyName VARCHAR(100) NOT NULL,
-                            contactNo VARCHAR(15) NOT NULL,
-                            hr_firstName VARCHAR(100) NOT NULL,
-                            hr_lastName VARCHAR(100) NOT NULL,
-                            hr_email VARCHAR(100) NOT NULL,
-                            hr_contactNo VARCHAR(15) NOT NULL,
-                            business_certificate VARCHAR(255) NOT NULL UNIQUE,
-                            company_photo_path VARCHAR(1000) NOT NULL UNIQUE,
-                            FOREIGN KEY (user_id) REFERENCES users(user_id)
-                        )";
+                        user_id INT PRIMARY KEY,
+                        companyName VARCHAR(100) NOT NULL,
+                        contactNo VARCHAR(15) NOT NULL,
+                        hr_firstName VARCHAR(100) NOT NULL,
+                        hr_lastName VARCHAR(100) NOT NULL,
+                        hr_email VARCHAR(100) NOT NULL,
+                        hr_contactNo VARCHAR(15) NOT NULL,
+                        business_certificate VARCHAR(255) NOT NULL UNIQUE,
+                        company_photo_path VARCHAR(1000) NOT NULL UNIQUE,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
+                    )";
         $this->query($company_table);
 
 
@@ -120,8 +120,9 @@ trait Model
                     )";
         $this->query($jobPost_table);
 
-        $cv_table = "CREATE TABLE IF NOT EXISTS jobPost (
-                        job_id INT AUTO_INCREMENT PRIMARY KEY,
+        $cv_table = "CREATE TABLE IF NOT EXISTS cvTable (
+                        cv_id INT AUTO_INCREMENT PRIMARY KEY,
+                        job_id INT,
                         candidate_id INT NOT NULL,
                         cv_file_path VARCHAR(1000) NOT NULL UNIQUE,
                         applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

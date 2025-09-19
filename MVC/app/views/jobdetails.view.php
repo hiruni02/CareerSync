@@ -84,18 +84,17 @@
                 ?>
             </div>
 
-            <!--<p class="roles">Roles and Responsibilities</p>
-            <ul class="responsibilities">
-                <li>Managing and motivating team members to achieve performance goals</li>
-                <li>Monitoring daily operations to ensure efficiency and quality standards</li>
-                <li>Analyzing sales figures and preparing performance reports</li>
-                <li>Overseeing inventory management and stock control processes</li>
-                <li>Ensuring compliance with company policies and procedures</li>
-                <li>Building strong relationships with customers and stakeholders</li>
-            </ul> -->
+            <!--
+            need to add contact information of the company here
+            also loaction maybe?
+            -->
         </div>
         <?php
         include("components/footer.php");
+        ?>
+        <?php
+        show($_SESSION);
+        show($job);
         ?>
     </div>
 </body>

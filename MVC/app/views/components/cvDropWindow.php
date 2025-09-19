@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/cvDropWindow.css">
 <div class="cvdw_pageCover">
     <div class="drop_window">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="action" value="job_apply">
             <div class="upload-box" id="uploadBox">
-                <input type="file" id="fileInput" accept=".pdf">
+                <input type="file" id="fileInput" accept=".pdf" name="cv_file_path">
                 <i>📂</i>
                 <p>Drag & Drop a pdf of your CV here</p>
                 <p>or</p>
