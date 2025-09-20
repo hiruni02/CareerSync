@@ -50,10 +50,9 @@
                             }
                         }
                         ?>
-                        <p class="short_details"><?= $data['job']->city ?></p>
-                        <p class="short_details">
-                            <?php echo $deadlineDisplay ?> </p>
-                        <p class="short_details"><?= $data['job']->posType ?></p>
+                        <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/location.svg"><?= $data['job']->city ?></p>
+                        <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/clock.svg"><?php echo $deadlineDisplay ?></p>
+                        <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/briefcase.svg"><?= $data['job']->posType ?></p>
                         <hr><br>
                         <p class="requirement"><?= $data['job']->required_skills ?></p>
                         <div class="job-meta">
@@ -83,7 +82,6 @@
                 include("components/cvDropWindow.php");
                 ?>
             </div>
-
             <!--
             need to add contact information of the company here
             also loaction maybe?
@@ -92,26 +90,11 @@
         <?php
         include("components/footer.php");
         ?>
-        <?php
-        show($_SESSION);
-        show($job);
-        ?>
     </div>
 </body>
 
 <script>
     let userSession = <?= isset($_SESSION['USER']) ? json_encode($_SESSION['USER']->role) : 'null' ?>;
-
-    function wrongUsr() {
-        const applyBtn = document.querySelector(".apply_job");
-        if (!userSession) {
-            alert("You must Log-in in order to apply for a position");
-            applyBtn.disabled = true;
-        } else if (userSession !== 'candidate') {
-            alert("You must register as a candidate in order to apply for a position");
-            applyBtn.disabled = true;
-        }
-    }
 
     document.addEventListener("DOMContentLoaded", () => {
         const ApplyBtn = document.getElementById("ApplyBtn");
@@ -120,6 +103,17 @@
 
         ApplyBtn.addEventListener("click", (e) => {
             e.preventDefault();
+
+            if (!userSession) {
+                alert("You must Log-in in order to apply for a position");
+                return;
+            }
+
+            if (userSession !== 'candidate') {
+                alert("You must register as a candidate in order to apply for a position");
+                return;
+            }
+
             cvdw_pageCover.classList.add("active");
             document.body.style.overflow = "hidden";
         });
