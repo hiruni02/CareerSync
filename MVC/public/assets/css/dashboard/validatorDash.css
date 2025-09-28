@@ -48,7 +48,7 @@
     border-radius: 12px;
     background: var(--mid);
     font-family: 'Roboto', sans-serif;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .sbContainer h3 {
@@ -71,11 +71,18 @@
     border-radius: 8px;
     background: var(--lightBlue);
     transition: 0.2s ease;
+    display: flex;
+    /* added */
+    justify-content: space-between;
+    /* pushes content and buttons apart */
+    align-items: center;
+    /* vertically center */
 }
+
 .listItem:hover {
-  transform: scale(1.04);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
-  z-index: 2;
+    transform: scale(1.04);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+    z-index: 2;
 }
 
 .itemContent .title {
@@ -91,10 +98,58 @@
     line-height: 1.4;
 }
 
+.itemContent {
+    flex: 1;
+}
+
+.formButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.itemsEmpty {
+    background-color: var(--lightBlue);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.approveBtn {
+    background: #28a745;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.rejectBtn {
+    background: #dc3545;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.approveBtn:hover {
+    background: #218838;
+}
+
+.rejectBtn:hover {
+    background: #c82333;
+}
+
 @media (max-width: 768px) {
     .sbContainer {
         display: block;
         width: 100%;
         margin: 15px auto;
+    }
+
+    .scrollBox {
+        max-height: 400px;
+        overflow-y: auto;
+        padding-right: 5px;
+        padding-left: 5px;
     }
 }

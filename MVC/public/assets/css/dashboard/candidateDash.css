@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 
-.sent_applications{
+.sent_applications {
     width: 50%;
     border-radius: 15px;
     background-color: var(--mid);
@@ -16,7 +16,8 @@
     font-size: 18px;
     display: block;
     overflow-x: auto;
-    h1{
+
+    h1 {
         font-family: 'logo-font';
         padding-bottom: 10px;
         margin-top: -10px;
@@ -97,4 +98,18 @@
 
 .status.rejected {
     background: #d9534f;
+}
+
+@media (max-width: 600px) {
+    .sent_applications {
+        width: 100%;
+        border-radius: 15px;
+        background-color: var(--mid);
+        padding: 15px 10px 5px 10px;
+        margin: 10px 0;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+
+    }
 }

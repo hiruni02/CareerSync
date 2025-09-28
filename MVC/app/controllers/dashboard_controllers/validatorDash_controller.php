@@ -55,3 +55,27 @@ if ($isProfileUpdate) {
 
     $data['errors'] = $errors;
 }
+
+$cv = new CV;
+
+$data['applications'] = $cv->SelectAll();
+
+$is_Validating_CV  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCV');
+if ($is_Validating_CV) {
+    if ($data['approval']->validator_approval === 'pending') {
+    }
+    $cv_id = $_POST['cv_id'] ?? null;
+
+    if (isset($_POST['approve'])) {
+        $status = 'approved';
+    } elseif (isset($_POST['reject'])) {
+        $status = 'rejected';
+    } else {
+        $status = null;
+    }
+
+    if ($cv_id && $status) {
+        $cv->update($cv_id, ['validator_approval' => $status], 'cv_id');
+        redirect('dashboard');
+    }
+}

@@ -108,5 +108,12 @@
     .drop_window {
         width: 95%;
         height: 80%;
+        margin-top: 0px;
+    }
+
+    .form_btns button {
+        width: 110px;
+        height: 55px;
+        font-size: 1.5rem;
     }
 }

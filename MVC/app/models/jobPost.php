@@ -40,7 +40,7 @@ class JobPost
               WHERE jobPost.job_id = ?
               LIMIT 1";
 
-        $params = [$id]; // ✅ pass as array with positional param
+        $params = [$id];
         $result = $this->query($query, $params);
         return $result ? $result[0] : null;
     }
