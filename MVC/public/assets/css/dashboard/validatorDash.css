@@ -8,35 +8,6 @@
     flex-direction: column;
 }
 
-/* Table Styling */
-.content_section table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.content_section th,
-.content_section td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.content_section th {
-    background-color: var(--mid);
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.content_section tr:hover {
-    background-color: rgba(186, 112, 255, 0.1);
-}
-
 /* for the lists */
 .sbContainer {
     display: inline-block;
@@ -72,11 +43,7 @@
     background: var(--lightBlue);
     transition: 0.2s ease;
     display: flex;
-    /* added */
     justify-content: space-between;
-    /* pushes content and buttons apart */
-    align-items: center;
-    /* vertically center */
 }
 
 .listItem:hover {
@@ -99,11 +66,15 @@
 }
 
 .itemContent {
-    flex: 1;
+    flex-grow: 1;
+    max-width: fit-content;
 }
 
 .formButtons {
+    flex: 1;
+    max-width: fit-content;
     display: flex;
+    justify-content: flex-end;
     gap: 10px;
 }
 
@@ -114,6 +85,7 @@
 }
 
 .approveBtn {
+    font-size: 1.3rem;
     background: #28a745;
     color: white;
     padding: 6px 12px;
@@ -123,6 +95,7 @@
 }
 
 .rejectBtn {
+    font-size: 1.3rem;
     background: #dc3545;
     color: white;
     padding: 6px 12px;
@@ -151,5 +124,19 @@
         overflow-y: auto;
         padding-right: 5px;
         padding-left: 5px;
+    }
+
+    .formButtons {
+        flex-direction: column;
+    }
+
+    .approveBtn {
+        font-size: 1rem;
+
+    }
+
+    .rejectBtn {
+        font-size: 1rem;
+
     }
 }

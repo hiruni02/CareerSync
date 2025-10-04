@@ -43,6 +43,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>
+                <form method="post" class="formButtons">
+                    <input type="hidden" name="action" value="validateCompany">
+                    <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
+                    <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
+                </form>
             </div>
         <?php
         }
@@ -66,6 +71,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
                         AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
                     </div>
                 </div>
+                <form method="post" class="formButtons">
+                    <input type="hidden" name="action" value="validateCandidate">
+                    <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
+                    <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
+                </form>
             </div>
         <?php
         }
@@ -94,13 +104,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
                             Company: <?= htmlspecialchars($cvs->companyName) ?><br>
                             CV: <a href="<?= ROOT . $cvs->cv_file_path ?>" target="_blank">View CV</a>
                         </div>
-                        <form method="post" class="formButtons">
-                            <input type="hidden" name="action" value="validateCV">
-                            <input type="hidden" name="cv_id" value="<?= $cvs->cv_id ?>">
-                            <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
-                            <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
-                        </form>
                     </div>
+                    <form method="post" class="formButtons">
+                        <input type="hidden" name="action" value="validateCV">
+                        <input type="hidden" name="cv_id" value="<?= $cvs->cv_id ?>">
+                        <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
+                        <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
+                    </form>
+
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
