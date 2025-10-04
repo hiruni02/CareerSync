@@ -47,42 +47,31 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/dashboards/listPosition.php");
 ?>
 
 <div class="content_section">
-    <section>
-        <!-- <table>
-            <thead>
-                <tr>
-                    <th>Job Title</th>
-                    <th>Candidate</th>
-                    <th>Status</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td data-label="Job Title">Software Engineer</td>
-                    <td data-label="Candidate">John Doe</td>
-                    <td data-label="Status">Pending Interview</td>
-                    <td data-label="Email">johndoe@gmail.com</td>
-                </tr>
-                <tr>
-                    <td data-label="Job Title">UI/UX Designer</td>
-                    <td data-label="Candidate">Jane Smith</td>
-                    <td data-label="Status">Shortlisted</td>
-                    <td data-label="Email">jane@gmail.com</td>
-                </tr>
-                <tr>
-                    <td data-label="Job Title">Data Analyst</td>
-                    <td data-label="Candidate">Michael Lee</td>
-                    <td data-label="Status">Application Received</td>
-                    <td data-label="Email">mlee@gmail.com</td>
-                </tr>
-                <tr>
-                    <td data-label="Job Title">HR Manager</td>
-                    <td data-label="Candidate">Emily Davis</td>
-                    <td data-label="Status">Pending Interview</td>
-                    <td data-label="Email">emilyd@gmail.com</td>
-                </tr>
-            </tbody>
-        </table> -->
-    </section>
+    <div class='sent_applications'>
+        <h1>Your Job Posts</h1>
+        <div class="scrollBox">
+            <ul class="applications">
+                <?php if (!empty($jobPosts)): ?>
+                    <?php foreach ($jobPosts as $job): ?>
+                        <li class="application_item">
+                            <div class="application-title">
+                                <?= htmlspecialchars($job->posTitle) ?>
+                            </div>
+                            <div class="application_count">
+                                Vacancies: <?= htmlspecialchars($job->vacancies) ?>
+                            </div>
+                            <div class="application_meta">
+                                <small>Location: <?= htmlspecialchars($job->city) ?></small><br>
+                                <small>Deadline: <?= htmlspecialchars($job->deadline) ?></small>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <li class="application_item">
+                        <div class="application-title">No job posts yet.</div>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
 </div>

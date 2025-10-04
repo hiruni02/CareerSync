@@ -8,35 +8,6 @@
     flex-direction: column;
 }
 
-/* Table Styling */
-.content_section table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 1rem;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.content_section th,
-.content_section td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.content_section th {
-    background-color: var(--mid);
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.content_section tr:hover {
-    background-color: rgba(186, 112, 255, 0.1);
-}
-
 /* for the lists */
 .sbContainer {
     display: inline-block;
@@ -103,12 +74,14 @@
     flex-wrap: wrap;
     margin-top: 20px;
 }
-.list_pos_box label{
+
+.list_pos_box label {
     font-size: 2.1875rem;
     font-weight: bold;
     font-family: "merriweather";
 }
-.list_pos_box button{
+
+.list_pos_box button {
     font-size: 2.1875rem;
     font-weight: bold;
     color: white;
@@ -121,9 +94,98 @@
     border-radius: 15px;
     transition: 0.2s ease;
 }
-.list_pos_box button:hover{
+
+.list_pos_box button:hover {
     transform: scale(1.15);
     z-index: 1;
+}
+
+.sent_applications {
+    width: 50%;
+    border-radius: 15px;
+    background-color: var(--mid);
+    padding: 20px;
+    margin: 10px 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    overflow-x: auto;
+}
+
+.sent_applications h1 {
+    font-family: 'logo-font';
+    padding-bottom: 10px;
+    margin-top: -10px;
+}
+
+.applications {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.application_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: var(--lightBlue);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: ease 0.3s;
+}
+
+.application-title {
+    color: #222;
+    font-weight: 600;
+    margin-right: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 150px);
+}
+
+.application_item:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+    z-index: 2;
+}
+
+.application_count {
+    width: 35px;
+    height: 35px;
+    background: #007bff;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    flex: 0 0 auto;
+}
+
+.sent_applications {
+    width: 50%;
+    border-radius: 15px;
+    background-color: var(--mid);
+    padding: 20px;
+    margin: 10px 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    overflow-x: auto;
+}
+
+.sent_applications h1 {
+    font-family: 'logo-font';
+    padding-bottom: 10px;
+    margin-top: -10px;
 }
 
 @media (max-width: 768px) {
