@@ -31,96 +31,27 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 <div class="sbContainer">
     <h3> Pending Company registration requests:</h3>
     <div class="scrollBox">
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+        <?php
+        for ($x = 0; $x <= 10; $x++) {
+        ?>
+            <div class="listItem">
+                <div class="itemContent">
+                    <div class="title">Company Name</div>
+                    <div class="description">
+                        THE DESCRIPTION GOES HERE.
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                    </div>
                 </div>
+                <form method="post" class="formButtons">
+                    <input type="hidden" name="action" value="validateCompany">
+                    <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
+                    <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
+                </form>
             </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Company Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
+        <?php
+        }
+        ?>
     </div>
 </div>
 
@@ -128,85 +59,63 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 <div class="sbContainer">
     <h3> Pending Student registration requests:</h3>
     <div class="scrollBox">
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Student Application Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+        <?php
+        for ($x = 0; $x <= 10; $x++) {
+        ?>
+            <div class="listItem">
+                <div class="itemContent">
+                    <div class="title">Student Application Name</div>
+                    <div class="description">
+                        THE DESCRIPTION GOES HERE.
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                    </div>
                 </div>
+                <form method="post" class="formButtons">
+                    <input type="hidden" name="action" value="validateCandidate">
+                    <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
+                    <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
+                </form>
             </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Student Application Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+        <?php
+        }
+        ?>
+    </div>
+</div>
+
+<div class="sbContainer">
+    <h3> Pending Student Application:</h3>
+    <div class="scrollBox">
+        <?php
+        // filter pending applications
+        $pendingCvs = array_filter($data['applications'], function ($cvs) {
+            return $cvs->validator_approval === 'pending';
+        });
+        ?>
+
+        <?php if (!empty($pendingCvs)): ?>
+            <?php foreach ($pendingCvs as $cvs): ?>
+                <div class="listItem">
+                    <div class="itemContent">
+                        <div class="title">
+                            <?= htmlspecialchars($cvs->firstName . ' ' . $cvs->lastName) ?>
+                        </div>
+                        <div class="description">
+                            Company: <?= htmlspecialchars($cvs->companyName) ?><br>
+                            CV: <a href="<?= ROOT . $cvs->cv_file_path ?>" target="_blank">View CV</a>
+                        </div>
+                    </div>
+                    <form method="post" class="formButtons">
+                        <input type="hidden" name="action" value="validateCV">
+                        <input type="hidden" name="cv_id" value="<?= $cvs->cv_id ?>">
+                        <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
+                        <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
+                    </form>
+
                 </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Student Application Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Student Application Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Student Application Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Student Application Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Student Application Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-        <div class="listItem">
-            <div class="itemContent">
-                <div class="title">Student Application Name</div>
-                <div class="description">
-                    THE DESCRIPTION GOES HERE.
-                    YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                    AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                </div>
-            </div>
-        </div>
-    </div> 
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No pending applications available.</p>
+        <?php endif; ?>
+    </div>
 </div>

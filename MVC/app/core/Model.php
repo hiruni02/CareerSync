@@ -49,17 +49,17 @@ trait Model
         }
 
         $company_table = "CREATE TABLE IF NOT EXISTS company (
-                            user_id INT PRIMARY KEY,
-                            companyName VARCHAR(100) NOT NULL,
-                            contactNo VARCHAR(15) NOT NULL,
-                            hr_firstName VARCHAR(100) NOT NULL,
-                            hr_lastName VARCHAR(100) NOT NULL,
-                            hr_email VARCHAR(100) NOT NULL,
-                            hr_contactNo VARCHAR(15) NOT NULL,
-                            business_certificate VARCHAR(255) NOT NULL UNIQUE,
-                            company_photo_path VARCHAR(1000) NOT NULL UNIQUE,
-                            FOREIGN KEY (user_id) REFERENCES users(user_id)
-                        )";
+                        user_id INT PRIMARY KEY,
+                        companyName VARCHAR(100) NOT NULL,
+                        contactNo VARCHAR(15) NOT NULL,
+                        hr_firstName VARCHAR(100) NOT NULL,
+                        hr_lastName VARCHAR(100) NOT NULL,
+                        hr_email VARCHAR(100) NOT NULL,
+                        hr_contactNo VARCHAR(15) NOT NULL,
+                        business_certificate VARCHAR(255) NOT NULL UNIQUE,
+                        company_photo_path VARCHAR(1000) NOT NULL UNIQUE,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id)
+                    )";
         $this->query($company_table);
 
 
@@ -97,7 +97,7 @@ trait Model
 
         $this->query($candidate_table);
 
-        $user_table = "CREATE TABLE IF NOT EXISTS jobPost (
+        $jobPost_table = "CREATE TABLE IF NOT EXISTS jobPost (
                         job_id INT AUTO_INCREMENT PRIMARY KEY,
                         company_id INT NOT NULL,
                         posTitle VARCHAR(100)NOT NULL,
@@ -118,7 +118,19 @@ trait Model
                         posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (company_id) REFERENCES users(user_id)
                     )";
-        $this->query($user_table);
+        $this->query($jobPost_table);
+
+        $cv_table = "CREATE TABLE IF NOT EXISTS cvTable (
+                        cv_id INT AUTO_INCREMENT PRIMARY KEY,
+                        job_id INT,
+                        candidate_id INT NOT NULL,
+                        cv_file_path VARCHAR(1000) NOT NULL UNIQUE,
+                        applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        validator_approval ENUM('approved', 'pending', 'rejected') DEFAULT 'pending',
+                        FOREIGN KEY (job_id) REFERENCES jobPost(job_id),
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id)
+                    )";
+        $this->query($cv_table);
     }
 
     public function SelectAll()

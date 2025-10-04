@@ -71,12 +71,12 @@
 }
 
 @media (max-width: 600px) {
+    .intro {
+        padding: 20px;
+    }
+
     .intro-content h1 {
-        font-family: 'Poppins', sans-serif;
         font-size: 35px;
-        color: #1e1f4b;
-        margin-bottom: 20px;
-        font-weight: 800;
     }
 
     .intro-buttons {
@@ -87,5 +87,9 @@
     .intro-buttons p {
         padding: 0px;
         margin: 0px;
+    }
+
+    .page-content {
+        padding-top: 10px;
     }
 }

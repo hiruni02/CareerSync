@@ -19,7 +19,7 @@
                         <h3 class="company_name"><?= $data['job']->companyName ?></h3>
                     </div>
                     <h3 class="jdTitle">About the Position: </h4><br>
-                    <p class="job_description"><?= $data['job']->jobDescription ?></p>
+                        <p class="job_description"><?= $data['job']->jobDescription ?></p>
                 </div>
                 <div class="box right">
                     <div class="jobinfo_box">
@@ -50,10 +50,9 @@
                             }
                         }
                         ?>
-                        <p class="short_details"><?= $data['job']->city ?></p>
-                        <p class="short_details">
-                            <?php echo $deadlineDisplay ?> </p>
-                        <p class="short_details"><?= $data['job']->posType ?></p>
+                        <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/location.svg"><?= $data['job']->city ?></p>
+                        <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/clock.svg"><?php echo $deadlineDisplay ?></p>
+                        <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/briefcase.svg"><?= $data['job']->posType ?></p>
                         <hr><br>
                         <p class="requirement"><?= $data['job']->required_skills ?></p>
                         <div class="job-meta">
@@ -72,47 +71,58 @@
                                 </tr>
                             </table>
                             <hr><br><br>
-                            <form action="" method="GET">
-                                <button class="apply_job">Apply</button><br>
-                                <button class="save_job">Bookmark</button>
-                            </form>
+                            <div>
+                                <button class="apply_job" onclick="wrongUsr()" id="ApplyBtn">Apply</button><br>
+                                <button class="save_job" id="backBtn">Bookmark</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <?php
+                include("components/cvDropWindow.php");
+                ?>
             </div>
-
-
-
-
-
-
-
-
-            <!-- <div class="heading_content">
-                <h1 class="job_title"><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h1>
-                <h3 class="company_name"><?= $data['job']->companyName ?></h3>
-            </div>
-
-            <p class="job_description"><?= $data['job']->jobDescription ?></p> -->
-
-
-
-            <!-- <h2 class="position">Outlet Manager | Colombo</h2>
-
-            <p class="roles">Roles and Responsibilities</p>
-            <ul class="responsibilities">
-                <li>Managing and motivating team members to achieve performance goals</li>
-                <li>Monitoring daily operations to ensure efficiency and quality standards</li>
-                <li>Analyzing sales figures and preparing performance reports</li>
-                <li>Overseeing inventory management and stock control processes</li>
-                <li>Ensuring compliance with company policies and procedures</li>
-                <li>Building strong relationships with customers and stakeholders</li>
-            </ul> -->
+            <!--
+            need to add contact information of the company here
+            also loaction maybe?
+            -->
         </div>
         <?php
         include("components/footer.php");
         ?>
     </div>
 </body>
+
+<script>
+    let userSession = <?= isset($_SESSION['USER']) ? json_encode($_SESSION['USER']->role) : 'null' ?>;
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const ApplyBtn = document.getElementById("ApplyBtn");
+        const backBtn = document.getElementById("backBtn");
+        const cvdw_pageCover = document.querySelector(".cvdw_pageCover");
+
+        ApplyBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if (!userSession) {
+                alert("You must Log-in in order to apply for a position");
+                return;
+            }
+
+            if (userSession !== 'candidate') {
+                alert("You must register as a candidate in order to apply for a position");
+                return;
+            }
+
+            cvdw_pageCover.classList.add("active");
+            document.body.style.overflow = "hidden";
+        });
+
+        backBtn.addEventListener("click", () => {
+            cvdw_pageCover.classList.remove("active");
+            document.body.style.overflow = "auto";
+        });
+    });
+</script>
 
 </html>

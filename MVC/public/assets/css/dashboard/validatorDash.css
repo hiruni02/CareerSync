@@ -8,35 +8,6 @@
     flex-direction: column;
 }
 
-/* Table Styling */
-.content_section table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.content_section th,
-.content_section td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.content_section th {
-    background-color: var(--mid);
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.content_section tr:hover {
-    background-color: rgba(186, 112, 255, 0.1);
-}
-
 /* for the lists */
 .sbContainer {
     display: inline-block;
@@ -48,7 +19,7 @@
     border-radius: 12px;
     background: var(--mid);
     font-family: 'Roboto', sans-serif;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .sbContainer h3 {
@@ -71,11 +42,14 @@
     border-radius: 8px;
     background: var(--lightBlue);
     transition: 0.2s ease;
+    display: flex;
+    justify-content: space-between;
 }
+
 .listItem:hover {
-  transform: scale(1.04);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
-  z-index: 2;
+    transform: scale(1.04);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+    z-index: 2;
 }
 
 .itemContent .title {
@@ -91,10 +65,78 @@
     line-height: 1.4;
 }
 
+.itemContent {
+    flex-grow: 1;
+    max-width: fit-content;
+}
+
+.formButtons {
+    flex: 1;
+    max-width: fit-content;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.itemsEmpty {
+    background-color: var(--lightBlue);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.approveBtn {
+    font-size: 1.3rem;
+    background: #28a745;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.rejectBtn {
+    font-size: 1.3rem;
+    background: #dc3545;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.approveBtn:hover {
+    background: #218838;
+}
+
+.rejectBtn:hover {
+    background: #c82333;
+}
+
 @media (max-width: 768px) {
     .sbContainer {
         display: block;
         width: 100%;
         margin: 15px auto;
+    }
+
+    .scrollBox {
+        max-height: 400px;
+        overflow-y: auto;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .formButtons {
+        flex-direction: column;
+    }
+
+    .approveBtn {
+        font-size: 1rem;
+
+    }
+
+    .rejectBtn {
+        font-size: 1rem;
+
     }
 }
