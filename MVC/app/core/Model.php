@@ -48,7 +48,7 @@ trait Model
             $this->query($insert_admin, [$user_id]);
         }
 
-        $company_table = "CREATE TABLE IF NOT EXISTS company (
+        $company_table = "CREATE TABLE IF NOT EXISTS company(
                         user_id INT PRIMARY KEY,
                         companyName VARCHAR(100) NOT NULL,
                         contactNo VARCHAR(15) NOT NULL,
@@ -131,6 +131,26 @@ trait Model
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id)
                     )";
         $this->query($cv_table);
+
+        $interviews_table = "CREATE TABLE interviews (
+                        interview_id INT AUTO_INCREMENT PRIMARY KEY,
+                        candidate_id INT,
+                        company_id INT,
+                        mode ENUM('online','offline'),
+                        address_link VARCHAR(255),
+                        extra_details TEXT,
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
+                        FOREIGN KEY (company_id) REFERENCES company(user_id)
+                    )";
+        $this->query($interviews_table);
+
+        $interview_slot_table = "CREATE TABLE interview_slots (
+                        slot_id INT AUTO_INCREMENT PRIMARY KEY,
+                        interview_id INT,
+                        slot_datetime DATETIME,
+                        FOREIGN KEY (interview_id) REFERENCES interviews(interview_id)
+                        )";
+        $this->query($interview_slot_table);
     }
 
     public function SelectAll()
