@@ -56,7 +56,6 @@
     margin: 6px 0;
 }
 
-/* Input field same as company side */
 .input-field {
     display: flex;
     flex-direction: column;
@@ -84,7 +83,6 @@
     outline: none;
 }
 
-/* Buttons consistent with company side */
 .form_btns {
     display: flex;
     justify-content: space-between;
@@ -123,10 +121,6 @@
 .send-btn:hover {
     background-color: #94f26b;
 }
-
-/* ======================
-   Candidate Scheduler Styling
-   ====================== */
 
 .scheduler_bg {
     background-color: rgba(255, 255, 255, 0);
