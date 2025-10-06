@@ -10,6 +10,7 @@
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php");
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideScheduler.php");
 ?>
 
 <h1 class="dashboard_tag">Candidate Dash Board</h1>

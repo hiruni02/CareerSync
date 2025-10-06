@@ -132,19 +132,19 @@ trait Model
                     )";
         $this->query($cv_table);
 
-        $interviews_table = "CREATE TABLE interviews (
+        $interviews_table = "CREATE TABLE IF NOT EXISTS interviews (
                         interview_id INT AUTO_INCREMENT PRIMARY KEY,
                         candidate_id INT,
                         company_id INT,
-                        mode ENUM('online','offline'),
-                        address_link VARCHAR(255),
+                        mode ENUM('online','offline') NOT NULL,
+                        address_link VARCHAR(255) NOT NULL,
                         extra_details TEXT,
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
                         FOREIGN KEY (company_id) REFERENCES company(user_id)
                     )";
         $this->query($interviews_table);
 
-        $interview_slot_table = "CREATE TABLE interview_slots (
+        $interview_slot_table = "CREATE TABLE IF NOT EXISTS interview_slots (
                         slot_id INT AUTO_INCREMENT PRIMARY KEY,
                         interview_id INT,
                         slot_datetime DATETIME,
