@@ -16,6 +16,9 @@
             <div class="settings_btn" onclick="toggleSettings()">
                 <img src="<?= ROOT ?>assets/images/settings_icon.png" alt="settings_btn">
             </div>
+            <div class="messeges_btn" onclick="toggleMesseges()">
+                <img src="<?= ROOT ?>assets/images/messeges_icon.png" alt="messeges_btn">
+            </div>
             <?php
             switch ($_SESSION['USER']->role) {
                 case 'admin':
@@ -39,8 +42,17 @@
     </div>
     <script>
         function toggleSettings() {
-            const menu = document.getElementById('settings_menu');
-            menu.classList.toggle('active');
+            const settings_menu = document.getElementById('settings_menu');
+            const messege_menu = document.getElementById('messege_menu');
+            settings_menu.classList.toggle('active');
+            messege_menu.classList.remove('active');
+        }
+
+        function toggleMesseges() {
+            const messege_menu = document.getElementById('messege_menu');
+            const settings_menu = document.getElementById('settings_menu');
+            messege_menu.classList.toggle('active');
+            settings_menu.classList.remove('active');
         }
 
         document.addEventListener("DOMContentLoaded", () => {

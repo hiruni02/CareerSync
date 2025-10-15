@@ -6,6 +6,16 @@
         <li><a href=""><button class="setting_btn" id="passwordBtn">Change Password</button></a></li>
     </ul>
 </div>
+
+<div class="messege_menu" id="messege_menu">
+    <ul class="messege_list">
+        <li class="messege">messege 1: This is a test messege</li>
+        <li class="messege">messege 2: This is a test messege</li>
+        <li class="messege">messege 3: This is a test messege</li>
+        <li class="messege">messege 4: This is a test messege</li>
+    </ul>
+</div>
+
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
