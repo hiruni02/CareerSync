@@ -47,7 +47,7 @@
 
             <div class="form_btns">
                 <button type="submit">Send Dates</button>
-                <button id="pwBackBtn">Back</button>
+                <button id="schedulerBackBtn">Back</button>
             </div>
         </form>
     </div>

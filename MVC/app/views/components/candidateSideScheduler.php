@@ -27,7 +27,7 @@
 
             <!-- Buttons -->
             <div class="form_btns">
-                <button type="button" id="pwBackBtn" class="back-btn">Back</button>
+                <button type="button" id="schedulerBackBtn" class="back-btn">Back</button>
                 <button type="submit" class="send-btn">Confirm Date</button>
             </div>
         </form>

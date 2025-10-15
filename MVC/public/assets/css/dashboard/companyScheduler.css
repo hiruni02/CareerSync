@@ -9,7 +9,7 @@
     z-index: 40;
     justify-content: center;
     align-items: center;
-    display: flex;
+    display: none;
     /*change to none once JS in implemented*/
 }
 

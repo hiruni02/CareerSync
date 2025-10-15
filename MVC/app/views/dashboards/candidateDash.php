@@ -39,26 +39,53 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideSchedu
         <div class="scrollBox">
             <ul class="applications">
                 <li class="application_item">
-                    <div class="application-title">Position1</div>
+                    <div class="application-title">Dialog: business manager</div>
                     <div class="application_state"><span class="status pending">pending</span></div>
                 </li>
                 <li class="application_item">
-                    <div class="application-title">Position2</div>
+                    <div class="application-title">ODEL: Performance Marketing & Brand Lead</div>
                     <div class="application_state"><span class="status accepted">accepted</span></div>
                 </li>
                 <li class="application_item">
-                    <div class="application-title">Position3</div>
+                    <div class="application-title">Singer: sales manager</div>
                     <div class="application_state"><span class="status rejected">rejected</span></div>
                 </li>
                 <li class="application_item">
-                    <div class="application-title">Position4</div>
-                    <div class="application_state"><span class="status accepted">accepted</span></div>
+                    <div class="application-title">Abans: UI designer</div>
+                    <div class="application_state"><span class="status pending">pending</span></div>
                 </li>
                 <li class="application_item">
-                    <div class="application-title">Position5</div>
+                    <div class="application-title">LG : backend developer</div>
                     <div class="application_state"><span class="status rejected">rejected</span></div>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const schedulerBg = document.querySelector(".scheduler_bg");
+    const backBtn = document.getElementById("schedulerBackBtn");
+
+    // Select all application items
+    const appItems = document.querySelectorAll(".application_item");
+
+    appItems.forEach(item => {
+        // Find the status inside each application
+        const status = item.querySelector(".status");
+
+        // If the status exists and is "accepted"
+        if (status && status.classList.contains("accepted")) {
+            item.addEventListener("click", () => {
+                schedulerBg.classList.add("active");
+            });
+        }
+    });
+
+    // Close scheduler when Back is clicked
+    backBtn.addEventListener("click", () => {
+        schedulerBg.classList.remove("active");
+    });
+});
+</script>
