@@ -1,0 +1,181 @@
+.scheduler_bg {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    /*change to none once JS in implemented*/
+}
+
+.scheduler_bg.active {
+    display: flex;
+}
+
+.scheduler_window {
+    width: 40%;
+    max-height: 80%;
+    background: #e8f2ff;
+    border: 3px solid var(--mid, #6a78d1);
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    overflow-y: scroll;
+}
+
+.scheduler_window h1 {
+    color: var(--darkpurple, #443a77);
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-field label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Inputs, selects, and textareas*/
+input[type="text"],
+input[type="datetime-local"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #b5b5b5;
+    background-color: #fff;
+    font-size: 14px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #6a78d1;
+    box-shadow: 0 0 5px rgba(106, 120, 209, 0.4);
+    outline: none;
+}
+
+/*Slots Container Styling*/
+#slots-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.slot-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.slot-input input[type="datetime-local"] {
+    flex: 1;
+}
+
+.slot-input .remove-slot {
+    background: #ff5757;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.slot-input .remove-slot:hover {
+    background: #ff2f2f;
+}
+
+/* Add-slot button */
+#add-slot {
+    background: #d8ebff;
+    border: 1.5px dashed #6a78d1;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #444;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+#add-slot:hover {
+    background: #c9e2ff;
+}
+
+.form_btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -2 0px;
+    gap: 10px;
+}
+
+.form_btns button {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.form_btns button[type="submit"] {
+    background-color: #a9ff7d;
+    color: #ffffff;
+}
+
+.form_btns button[type="submit"]:hover {
+    background-color: #94f26b;
+}
+
+#pwBackBtn {
+    background-color: #ff5e5e;
+    color: white;
+}
+
+#pwBackBtn:hover {
+    background-color: #ff3838;
+}
+
+@media (max-width: 600px) {
+    .scheduler_window {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .form_btns {
+        flex-direction: column;
+    }
+
+    .form_btns button {
+        width: 100%;
+    }
+}

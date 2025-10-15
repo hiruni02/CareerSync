@@ -46,6 +46,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/dashboards/listPosition.php");
 ?>
 
+<!--need to bind this code to the backend -->
+<?php
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideScheduler.php");
+?>
+
 <div class="content_section">
     <div class='sent_applications'>
         <h1>Your Job Posts</h1>
