@@ -61,7 +61,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
 ?>
 
 <div class="content_section">
-    <div class='sent_applications'>
+    <div class='job_posts'>
         <h1>Your Job Posts</h1>
         <div class="scrollBox">
             <ul class="applications">

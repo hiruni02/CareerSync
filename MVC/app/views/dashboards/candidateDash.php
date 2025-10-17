@@ -42,6 +42,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideSchedu
     </div>
 </div>
 
+<div class="contact_counselor_section">
+    <label>Unsure about your next step?<br> Reach out to one of our counselors for personalized guidance.</label>
+    <button id="select_counselor">Contact a Counselor</button>
+</div>
+
 <div class="content_section">
     <div class='sent_applications'>
         <h1>Sent Applications</h1>
