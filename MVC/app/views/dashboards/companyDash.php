@@ -51,35 +51,34 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/dashboards/listPosition.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideScheduler.php");
 ?>
 
-<div class="content_section">
-    <div class='sent_applications'>
-        <h1>Your Job Posts</h1>
-        <div class="scrollBox">
-            <ul class="applications">
-                <li class="application_item">
-                    <div class="candidateCard">
-                        <div class="cc-row">
-                            <span class="cc-label">Position:</span>
-                            <span class="cc-value">Front-End Developer</span>
-                        </div>
-                        <div class="cc-row">
-                            <span class="cc-label">Candidate Name:</span>
-                            <span class="cc-value">John Doe</span>
-                        </div>
-                        <div class="cc-row cc-cv">
-                            <span class="cc-label">Candidate CV:</span>
-                            <a href="javascript:void(0)" class="cvBtn">View CV</a>
-                        </div>
-                        <div class="cc-actions">
-                            <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                            <button type="button" class="rejectBtn">Reject candidate</button>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<?php if (!empty($jobPosts)): ?>
+    <?php foreach ($jobPosts as $job): ?>
+        <li class="application_item">
+            <div class="candidateCard">
+                <div class="cc-row">
+                    <span class="cc-label">Position:</span>
+                    <span class="cc-value"><?= htmlspecialchars($job->posTitle) ?></span>
+                </div>
+                <div class="cc-row">
+                    <span class="cc-label">Candidate Name:</span>
+                    <span class="cc-value"><?= htmlspecialchars($job->candidateName) ?></span>
+                </div>
+                <div class="cc-row cc-cv">
+                    <span class="cc-label">Candidate CV:</span>
+                    <a href="<?= htmlspecialchars($job->cvLink) ?>" class="cvBtn" target="_blank">View CV</a>
+                </div>
+                <div class="cc-actions">
+                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                    <button type="button" class="rejectBtn">Reject candidate</button>
+                </div>
+            </div>
+        </li>
+    <?php endforeach; ?>
+<?php else: ?>
+    <li class="application_item">
+        <div class="application-title">No job posts yet.</div>
+    </li>
+<?php endif; ?>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
