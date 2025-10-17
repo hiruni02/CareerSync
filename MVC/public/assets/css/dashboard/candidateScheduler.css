@@ -10,7 +10,6 @@
     justify-content: center;
     align-items: center;
     display: none;
-    /*change to none once JS in implemented*/
 }
 
 .scheduler_bg.active {
