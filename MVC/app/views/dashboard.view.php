@@ -56,6 +56,28 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            const settings_menu = document.getElementById("settings_menu");
+            const messege_menu = document.getElementById("messege_menu");
+            const settingsBtn = document.querySelector(".settings_btn");
+            const messegesBtn = document.querySelector(".messeges_btn");
+
+            document.addEventListener("click", (e) => {
+                const clickedInsideMenu =
+                    settings_menu.contains(e.target) ||
+                    messege_menu.contains(e.target);
+
+                const clickedOnToggle =
+                    settingsBtn.contains(e.target) ||
+                    messegesBtn.contains(e.target);
+
+                if (!clickedInsideMenu && !clickedOnToggle) {
+                    settings_menu.classList.remove("active");
+                    messege_menu.classList.remove("active");
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
             const profileBtn = document.getElementById("profileBtn");
             const backBtn = document.getElementById("backBtn");
             const profileDisplay = document.querySelector(".profile_display");
@@ -127,7 +149,7 @@
     </script>
     <?php if (!empty($errors)): ?>
         <!-- error handling for edit profile and edit password -->
-        <script> 
+        <script>
             document.addEventListener("DOMContentLoaded", () => {
                 <?php if (isset($errors['email']) || isset($errors['admin_photo_path']) || isset($errors['confirm_password'])): ?>
                     document.querySelector(".profile_display").classList.add("active");
