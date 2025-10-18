@@ -126,49 +126,7 @@
     background-color: #A9CFF5;
 }
 
-/* #popup-overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-.popup-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 600px;
-    width: 400px;
-    margin:2% auto;
-    background-color:var(--mid);
-    position: relative;
-}
 
-#popup-content {
-    background-color: var(--mid);
-    padding: 10px;
-    border-radius: 8px;
-    width: 400px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-#popup-content h2 {
-    margin-top: 0;
-    font-family: 'logo-font';
-    text-align: center;
-}
-#popup-content label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    margin-top: 10px;
-
-} */
 
 :root {
             --mid: #f5f5f5;
@@ -194,16 +152,15 @@
         .popup-box {
             background-color: #D3E7FF;
             border-radius: 8px;
-            width: 500px;
+            width: 450px;
             max-width: 90%;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            border:2px solid #1F1F4B;
+            border:2px solid #C1A3FF;
         }
 
         .popup-header {
-            background-color: var(--accent);
-            color: white;
+            color: #56007d;
             padding: 20px;
             text-align: center;
         }
@@ -254,13 +211,15 @@
 
         .input-group {
             margin-bottom: 15px;
+            
         }
 
         .input-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--dark);
+            color: black;
+            
         }
 
         .input-group input,
@@ -270,6 +229,7 @@
             border: 1px solid var(--border);
             border-radius: 4px;
             font-size: 1rem;
+            border: 1px solid #B586E0;
         }
 
         .input-group textarea {
@@ -318,6 +278,18 @@
             margin-top: 25px;
         }
 
+        .remove-date-btn{
+            border: none;
+            border-radius: 7px;
+            padding:5px 10px;
+            background-color: rgb(234, 187, 187);
+        }
+
+        .remove-date-btn:hover{
+            background-color: rgb(246, 139, 139);
+            cursor: pointer;
+        }
+
         .btn {
             padding: 10px 20px;
             border: none;
@@ -328,8 +300,10 @@
         }
 
         .btn-back {
-            background-color: var(--mid);
-            color: var(--dark);
+            background: linear-gradient(to right, #00003F, #72029D);
+            color: white;
+            padding:20px 60px;
+            font-size: 15px;
         }
 
         .btn-back:hover {
@@ -337,8 +311,10 @@
         }
 
         .btn-send {
-            background-color: var(--accent);
+            background: linear-gradient(to right, #00003F, #72029D);
             color: white;
+            padding:20px 60px;
+            font-size: 15px;
         }
 
         .btn-send:hover {

@@ -125,6 +125,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/counselorProfile.php"
                             </div>
                             <div class="date-time-item">
                                 <input type="datetime-local" value="2023-11-16T14:00">
+                            <button type="button" class="remove-date-btn">❌</button>
                             </div>
                         </div>
                         <button type="button" class="add-date-btn">
