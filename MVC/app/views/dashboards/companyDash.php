@@ -7,6 +7,15 @@
     </ul>
 </div>
 
+<div class="messege_menu" id="messege_menu">
+    <ul class="messege_list">
+        <li class="messege">messege 1: This is a test messege</li>
+        <li class="messege">messege 2: This is a test messege</li>
+        <li class="messege">messege 3: This is a test messege</li>
+        <li class="messege">messege 4: This is a test messege</li>
+    </ul>
+</div>
+
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
@@ -52,7 +61,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
 ?>
 
 <div class="content_section">
-    <div class='sent_applications'>
+    <div class='job_posts'>
         <h1>Your Job Posts</h1>
         <div class="scrollBox">
             <ul class="applications">

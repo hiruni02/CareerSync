@@ -6,6 +6,16 @@
         <li><a href=""><button class="setting_btn" id="passwordBtn">Change Password</button></a></li>
     </ul>
 </div>
+
+<div class="messege_menu" id="messege_menu">
+    <ul class="messege_list">
+        <li class="messege">messege 1: This is a test messege</li>
+        <li class="messege">messege 2: This is a test messege</li>
+        <li class="messege">messege 3: This is a test messege</li>
+        <li class="messege">messege 4: This is a test messege</li>
+    </ul>
+</div>
+
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
@@ -34,38 +44,50 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         <h1>2</h1>
     </div>
 </div>
-<div class="content_section">
-    <section>
-        <table>
-            <thead>
-                <tr>
-                    <th>Request Type</th>
-                    <th>User</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td data-label="Request Type">pending</td>
-                    <td data-label="User">Anuk</td>
-                    <td data-label="Email">anuk@gmail.com</td>
-                </tr>
-                <tr>
-                    <td data-label="Request Type">pending</td>
-                    <td data-label="User">Anuk</td>
-                    <td data-label="Email">anuk@gmail.com</td>
-                </tr>
-                <tr>
-                    <td data-label="Request Type">pending</td>
-                    <td data-label="User">Anuk</td>
-                    <td data-label="Email">anuk@gmail.com</td>
-                </tr>
-                <tr>
-                    <td data-label="Request Type">pending</td>
-                    <td data-label="User">Anuk</td>
-                    <td data-label="Email">anuk@gmail.com</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+<div class="sbContainer">
+    <h3>User Feedback</h3>
+    <div class="scrollBox">
+        <?php
+        for ($x = 0; $x <= 10; $x++) {
+        ?>
+            <div class="listItem">
+                <div class="itemContent">
+                    <div class="title">User ID: 1414</div>
+                    <div class="title">User Name: Anuk Thotawatta</div>
+                    <div class="description">
+                        THE DESCRIPTION GOES HERE.
+                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
+                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+<div class="sbContainer">
+    <h3>View Monthly Reports</h3>
+    <div class="scrollBox">
+        <?php
+        for ($x = 0; $x <= 10; $x++) {
+        ?>
+            <div class="listItem">
+                <div class="itemContent">
+                    <div class="title">Report No: 12</div>
+                    <div class="title">Date: 2025-05-07</div>
+                    <div class="description">
+                        click to download report
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+
+<div class="genReport">
+    <label>Generate a report for the last 30 Days :</label>
+    <button id="generate">Generate</button>
 </div>

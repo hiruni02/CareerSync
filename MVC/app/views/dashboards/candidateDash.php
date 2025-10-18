@@ -7,10 +7,20 @@
     </ul>
 </div>
 
+<div class="messege_menu" id="messege_menu">
+    <ul class="messege_list">
+        <li class="messege">messege 1: This is a test messege</li>
+        <li class="messege">messege 2: This is a test messege</li>
+        <li class="messege">messege 3: This is a test messege</li>
+        <li class="messege">messege 4: This is a test messege</li>
+    </ul>
+</div>
+
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideScheduler.php");
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.php");
 ?>
 
 <h1 class="dashboard_tag">Candidate Dash Board</h1>
@@ -31,6 +41,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideSchedu
         Unread messeges: <br>
         <h1>5</h1>
     </div>
+</div>
+
+<div class="contact_counselor_section">
+    <label>Unsure about your next step?<br> Reach out to one of our counselors for personalized guidance.</label>
+    <button id="select_counselor">Contact a Counselor</button>
 </div>
 
 <div class="content_section">
@@ -64,28 +79,41 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideSchedu
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const schedulerBg = document.querySelector(".scheduler_bg");
-    const backBtn = document.getElementById("schedulerBackBtn");
+    document.addEventListener("DOMContentLoaded", function() {
+        const schedulerBg = document.querySelector(".scheduler_bg");
+        const schedulerbackBtn = document.getElementById("schedulerBackBtn");
+        const selectCounselorBtn = document.getElementById("select_counselor");
+        const counselorSelector = document.querySelector(".selector_bg");
+        const counselorSelectBackBtn = document.getElementById("counselor_selector_backBtn");
 
-    // Select all application items
-    const appItems = document.querySelectorAll(".application_item");
+        // Select all application items
+        const appItems = document.querySelectorAll(".application_item");
 
-    appItems.forEach(item => {
-        // Find the status inside each application
-        const status = item.querySelector(".status");
+        appItems.forEach(item => {
+            // Find the status inside each application
+            const status = item.querySelector(".status");
 
-        // If the status exists and is "accepted"
-        if (status && status.classList.contains("accepted")) {
-            item.addEventListener("click", () => {
-                schedulerBg.classList.add("active");
-            });
-        }
+            // If the status exists and is "accepted"
+            if (status && status.classList.contains("accepted")) {
+                item.addEventListener("click", () => {
+                    schedulerBg.classList.add("active");
+                });
+            }
+        });
+
+        // Close scheduler when Back is clicked
+        schedulerbackBtn.addEventListener("click", () => {
+            schedulerBg.classList.remove("active");
+        });
+
+        // Open counselor selector
+        selectCounselorBtn.addEventListener("click", () => {
+            counselorSelector.style.display = "flex";
+        });
+
+        // Close counselor selector when back button is clicked
+        counselorSelectBackBtn.addEventListener("click", () => {
+            counselorSelector.style.display = "none";
+        });
     });
-
-    // Close scheduler when Back is clicked
-    backBtn.addEventListener("click", () => {
-        schedulerBg.classList.remove("active");
-    });
-});
 </script>

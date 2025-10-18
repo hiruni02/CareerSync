@@ -24,6 +24,45 @@
     }
 }
 
+.contact_counselor_section {
+    width: 40%;
+    height: fit-content;
+    background-color: var(--mid);
+    border-radius: 15px;
+    align-items: justify;
+    display: flex;
+    padding: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.contact_counselor_section label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "merriweather";
+    padding-bottom: 10px;
+}
+
+.contact_counselor_section button {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    font-family: "logo-font";
+    background-image: var(--submit_btn_gradient);
+    height: fit-content;
+    width: fit-content;
+    border: none;
+    border-radius: 15px;
+    transition: 0.2s ease;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.contact_counselor_section button:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
 
 .scrollBox {
     max-height: 260px;
@@ -111,5 +150,16 @@
         font-weight: bold;
         font-size: 1rem;
 
+    }
+
+    .contact_counselor_section {
+        width: fit-content;
+    }
+
+    .contact_counselor_section label {
+        font-size: 1.4rem;
+        font-weight: bold;
+        font-family: "merriweather";
+        padding-bottom: 10px;
     }
 }

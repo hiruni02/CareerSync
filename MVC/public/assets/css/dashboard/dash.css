@@ -69,6 +69,66 @@
     transform: scale(1.05);
 }
 
+.messeges_btn {
+    position: fixed;
+    cursor: pointer;
+    transition: 0.3s ease;
+    position: absolute;
+    top: 100px;
+    right: 110px;
+    z-index: 30;
+}
+
+.messeges_btn img {
+    width: 70px;
+    height: 70px;
+}
+
+.messeges_btn:hover {
+    transform: scale(1.2);
+}
+
+.messege_menu {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100%;
+    background: var(--navbar_gradient);
+    padding: 20px;
+    transition: right 0.3s ease;
+    z-index: 20;
+}
+
+.messege_menu.active {
+    right: 0;
+    padding-top: 50px;
+}
+
+.messege_menu .messege_list {
+    list-style: none;
+    padding: 0;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.messeges_btn:hover {
+    transform: scale(1.16);
+}
+
+.messege{
+    background-color: var(--lightBlue);
+    border-radius: 10px;
+    padding: 5px;
+    transition: 0.3s ease;;
+}
+
+.messege:hover{
+    transform: scale(1.05);
+}
+
 .counting_boxes {
     width: fit-content;
     height: fit-content;
@@ -117,6 +177,35 @@
     }
 
     .settings_menu {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 250px;
+        height: 100%;
+        background: var(--navbar_gradient);
+        padding: 20px;
+        transition: right 0.3s ease;
+        z-index: 20;
+    }
+
+    .messeges_btn {
+        position: fixed;
+        cursor: pointer;
+        transition: 0.3s ease;
+        top: 130px;
+        right: 10px;
+    }
+
+    .messeges_btn img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .messeges_btn:hover {
+        transform: none;
+    }
+
+    .messege_menu {
         position: fixed;
         top: 0;
         right: -250px;
