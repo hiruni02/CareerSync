@@ -60,53 +60,188 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/dashboards/listPosition.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideScheduler.php");
 ?>
 
-<?php if (!empty($jobPosts)): ?>
-    <?php foreach ($jobPosts as $job): ?>
-        <li class="application_item">
-            <div class="candidateCard">
-                <div class="cc-row">
-                    <span class="cc-label">Position:</span>
-                    <span class="cc-value"><?= htmlspecialchars($job->posTitle) ?></span>
+<div class="content_wrapper">
+    <div class="content_section">
+        <h3>Applied Candidates</h3>
+        <div class="scScrollbox">
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">Software Engineer Intern</span>
                 </div>
-                <div class="cc-row">
-                    <span class="cc-label">Candidate Name:</span>
-                    <span class="cc-value"><?= htmlspecialchars($job->candidateName) ?></span>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">John Silva</span>
                 </div>
-                <div class="cc-row cc-cv">
-                    <span class="cc-label">Candidate CV:</span>
-                    <a href="<?= htmlspecialchars($job->cvLink) ?>" class="cvBtn" target="_blank">View CV</a>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="#" class="cvBtn" target="_blank">View CV</a>
                 </div>
-                <div class="cc-actions">
+                <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
                     <button type="button" class="rejectBtn">Reject candidate</button>
                 </div>
             </div>
-        </li>
-    <?php endforeach; ?>
-<?php else: ?>
-    <li class="application_item">
-        <div class="application-title">No job posts yet.</div>
-    </li>
-<?php endif; ?>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">UI/UX Designer</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">Ayesha Fernando</span>
+                </div>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                </div>
+                <div class="li-actions">
+                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                    <button type="button" class="rejectBtn">Reject candidate</button>
+                </div>
+            </div>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">Data Analyst</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">Kasun Perera</span>
+                </div>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                </div>
+                <div class="li-actions">
+                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                    <button type="button" class="rejectBtn">Reject candidate</button>
+                </div>
+            </div>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">Marketing Coordinator</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">Rashmi De Alwis</span>
+                </div>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                </div>
+                <div class="li-actions">
+                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                    <button type="button" class="rejectBtn">Reject candidate</button>
+                </div>
+            </div>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">Project Manager Trainee</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">Tharindu Wijesinghe</span>
+                </div>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                </div>
+                <div class="li-actions">
+                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                    <button type="button" class="rejectBtn">Reject candidate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content_section">
+        <h3>Posted Jobs</h3>
+        <div class="scScrollbox">
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">Software Engineer</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Posted On:</span>
+                    <span class="li-value">2025-10-01</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Deadline:</span>
+                    <span class="li-value">2025-11-10</span>
+                </div>
+                <div class="li-actions">
+                    <button type="button" class="extendBtn">Extend Deadline</button>
+                    <button type="button" class="deleteBtn">Delete</button>
+                </div>
+            </div>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">UI/UX Designer</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Posted On:</span>
+                    <span class="li-value">2025-09-25</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Deadline:</span>
+                    <span class="li-value">2025-10-30</span>
+                </div>
+                <div class="li-actions">
+                    <button type="button" class="extendBtn">Extend Deadline</button>
+                    <button type="button" class="deleteBtn">Delete</button>
+                </div>
+            </div>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">QA Tester</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Posted On:</span>
+                    <span class="li-value">2025-10-05</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Deadline:</span>
+                    <span class="li-value">2025-11-05</span>
+                </div>
+                <div class="li-actions">
+                    <button type="button" class="extendBtn">Extend Deadline</button>
+                    <button type="button" class="deleteBtn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const schedulerBg = document.querySelector(".scheduler_bg");
-    const backBtn = document.getElementById("schedulerBackBtn");
-    const openBtns = document.querySelectorAll(".acceptBtn");
+    document.addEventListener("DOMContentLoaded", function() {
+        const schedulerBg = document.querySelector(".scheduler_bg");
+        const backBtn = document.getElementById("schedulerBackBtn");
+        const openBtns = document.querySelectorAll(".acceptBtn");
 
-    openBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (schedulerBg) {
-                schedulerBg.classList.add("active");
-            }
+        openBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                if (schedulerBg) {
+                    schedulerBg.classList.add("active");
+                }
+            });
         });
+
+        if (backBtn) {
+            backBtn.addEventListener("click", () => {
+                schedulerBg.classList.remove("active");
+            });
+        }
     });
-
-    if (backBtn) {
-        backBtn.addEventListener("click", () => {
-            schedulerBg.classList.remove("active");
-        });
-    }
-});
 </script>
