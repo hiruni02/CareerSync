@@ -7,14 +7,12 @@
         <form method="POST">
             <input type="hidden" name="action" value="candidate_scheduler">
 
-            <!-- Display company-sent details -->
             <div class="interview-details">
                 <p><strong>Mode:</strong> Online</p>
                 <p><strong>Address/Link:</strong> https://zoom.us/j/123456789</p>
                 <p><strong>Extra Details:</strong> Please be ready 5 minutes early and ensure your camera is on.</p>
             </div>
 
-            <!-- Date selection dropdown -->
             <div class="input-field">
                 <label for="selected_date">Pick a comfortable date:</label>
                 <select name="selected_date" id="selected_date" required>
@@ -25,7 +23,6 @@
                 </select>
             </div>
 
-            <!-- Buttons -->
             <div class="form_btns">
                 <button type="button" id="schedulerBackBtn" class="back-btn">Back</button>
                 <button type="submit" class="send-btn">Confirm Date</button>

@@ -20,7 +20,7 @@
 .scheduler_window {
     width: 40%;
     max-height: 80%;
-    background: #e8f2ff;
+    background: var(--lightBlue);
     border: 3px solid var(--mid, #6a78d1);
     border-radius: 15px;
     padding: 30px 40px;
