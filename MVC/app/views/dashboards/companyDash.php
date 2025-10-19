@@ -200,8 +200,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     </div>
 </div>
 
-<?php show($data); ?>
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const schedulerBg = document.querySelector(".scheduler_bg");
