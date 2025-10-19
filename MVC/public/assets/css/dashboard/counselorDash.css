@@ -5,311 +5,93 @@
     flex-direction: column;
 }
 
-.Clients{
-    width: 100%;
-    border-radius: 15px;
-    background-color: var(--mid);
+.meeting-requests {
+    background: var(--mid);
     padding: 20px;
-    margin: 10px 0;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 18px;
-    display: block;
-    overflow-x: auto;
-    h1{
-        font-family: 'logo-font';
-        padding-bottom: 10px;
-        margin-top: -10px;
-    }
+    border-radius: 12px;
+    width: 60%;
 }
 
+.meeting-requests h1 {
+    font-size: 1.8rem;
+    padding-bottom: 10px;
+}
 
 .scrollBox {
-    max-height: 260px;
-    overflow-x: hidden;
+    max-height: 400px;
     overflow-y: auto;
-    border-radius: 6px;
-    background-color: var(--mid);
-    border: 0px;
-    padding: 8px;
 }
 
-.applications {
-    margin: 0;
-    padding: 0;
+.request-card {
+    background: var(--lightBlue);
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.application_item {
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: linear-gradient#f9f9f9;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    background-color: var(--lightBlue);
-    transition: ease 0.3s;
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    width: 99%;
 }
 
-.application-title {
-    color: #222;
-    font-weight: 600;
-    margin-right: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: calc(100% - 150px);
+.candidate_photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #a56ff0;
+    margin-bottom: 10px;
+    margin-right: 20px;
 }
 
-.application_item:hover {
-    transform: scale(1.01);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
-    z-index: 2;
+.candidate-name {
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-.application_state {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex: 0 0 auto;
-}
-
-.status {
-    padding: 6px 10px;
-    border-radius: 999px;
-    color: white;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: capitalize;
-}
-
-.status.requested {
-    background: #f0ad4e;
-}
-
-.status.completed {
-    background: #5cb85c;
-}
-
-.status.pending {
-    background: #d9534f;
-}
-
- .schedule_session {
-    display: flex;
-    width:500px;
-    height:120px;
-    background-color:var(--mid);
-    justify-content: left;
-    margin-top: 50px;
-    border-radius: 4px;
-}
-.schedule_btn {
-    background-color:var(--lightBlue);
-    color: black;
+.schedule-btn {
+    background: #2ebd59;
     border: none;
-    padding: 12px 24px;
-    margin: 20px 68px;
+    padding: 10px 15px;
     border-radius: 8px;
-    width:350px;
-    height:80px;
-    font-size: 25px;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-} 
-
-.schedule_btn:hover {
-    background-color: #A9CFF5;
+    height: 90px;
+    width: fit-content;
+    font-size: 1.8rem;
+    font-weight: bold;
+    transition: 0.3s ease;
 }
 
+.schedule-btn:hover {
+    transform: scale(1.05);
+}
 
+@media (max-width: 900px) {
+    .meeting-requests {
+        width: 100%;
+        padding: 20px;
+    }
 
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+    .request-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
-        .popup-box {
-            background-color: #D3E7FF;
-            border-radius: 8px;
-            width: 450px;
-            max-width: 90%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            border:2px solid #C1A3FF;
-        }
+    .candidate_photo {
+        margin: 0 0 10px 0;
+    }
 
-        .popup-header {
-            color: #56007d;
-            padding: 20px;
-            text-align: center;
-        }
+    .candidate-name {
+        margin-bottom: 10px;
+    }
 
-        .popup-header h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .popup-content {
-            padding: 25px;
-        }
-
-        .form-section {
-            margin-bottom: 25px;
-        }
-
-        .form-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 10px;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .radio-option input {
-            margin: 0;
-        }
-
-        .divider {
-            height: 1px;
-            margin: 15px 0;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-            
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: black;
-            
-        }
-
-        .input-group input,
-        .input-group textarea {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            font-size: 1rem;
-            border: 1px solid var(--mid);
-        }
-
-        .input-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .date-time-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .date-time-item {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .date-time-item input {
-            flex: 1;
-            padding: 8px 10px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-        }
-
-        .add-date-btn {
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 5px;
-            font-weight: 500;
-        }
-
-        .add-date-btn:hover {
-            text-decoration: underline;
-        }
-
-        .button-group {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-        }
-
-        .remove-date-btn{
-            border: none;
-            border-radius: 7px;
-            padding:5px 10px;
-            background-color: rgb(234, 187, 187);
-        }
-
-        .remove-date-btn:hover{
-            background-color: rgb(246, 139, 139);
-            cursor: pointer;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn-back {
-            background:var(--submit_btn_gradient);
-            color: white;
-            padding:20px 60px;
-            font-size: 15px;
-        }
-
-        .btn-back:hover {
-            background-color: #e0e0e0;
-        }
-
-        .btn-send {
-            background:var(--submit_btn_gradient);
-            color: white;
-            padding:20px 60px;
-            font-size: 15px;
-        }
-
-        .btn-send:hover {
-            background-color: #3a5a8a;
-        }
-         
-             
+    .schedule-btn {
+        width: 100%;
+        height: auto;
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+}

@@ -1,4 +1,4 @@
-.scheduler_bg {
+.popup-overlay {
     background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(7px);
     position: fixed;
@@ -13,11 +13,11 @@
     /*change to none once JS in implemented*/
 }
 
-.scheduler_bg.active {
+.popup-overlay.active {
     display: flex;
 }
 
-.scheduler_window {
+.popup-window {
     width: 30%;
     max-height: 80%;
     background: var(--lightBlue);
@@ -32,7 +32,7 @@
     overflow-y: scroll;
 }
 
-.scheduler_window h1 {
+.popup-window h1 {
     color: var(--darkpurple, #443a77);
     text-align: center;
     font-size: 1.6rem;
@@ -166,7 +166,7 @@ textarea:focus {
 }
 
 @media (max-width: 600px) {
-    .scheduler_window {
+    .popup-window {
         width: 95%;
         padding: 20px;
     }
