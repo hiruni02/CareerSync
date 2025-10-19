@@ -35,6 +35,7 @@
     uploadBox.addEventListener("drop", (e) => {
         e.preventDefault();
         uploadBox.classList.remove("dragover");
+        fileInput.files = e.dataTransfer.files;
         handleFiles(e.dataTransfer.files);
     });
 
