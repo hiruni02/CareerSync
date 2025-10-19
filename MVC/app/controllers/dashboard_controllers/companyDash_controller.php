@@ -3,8 +3,16 @@
 $company = new Company;
 $data['companyTable'] = $company->first(['user_id' => $_SESSION['USER']->user_id]);
 
+//fetching posted jobs
+$jobPost = new JobPost;
+$data['postedJobs'] = $jobPost->where(['company_id' => $_SESSION['USER']->user_id]);
+
 $photoPath = null;
 $certificatePath = $data['companyTable']->business_certificate ?? null;
+
+$isPostingJob = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'posting_job');
+$isExtendingDeadline = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'postedJobActions' && $_POST['btn'] === 'Extend Deadline');
+$isDeletingJob = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'postedJobActions' && $_POST['btn'] === 'Delete');
 
 if ($isProfileUpdate) {
     $errors = [];
@@ -101,4 +109,30 @@ if ($isPostingJob) {
     ];
     $jobPost->insert($jobData);
     unset($_POST);
+}
+
+//do this later
+if ($isExtendingDeadline) {
+
+}
+
+if ($isDeletingJob) {
+    $job_id = $_POST['job_id'] ?? null;
+
+    if ($job_id) {
+        $jobPost = new JobPost;
+
+        try {
+            $jobPost->query("DELETE FROM interview_slots WHERE interview_id IN (SELECT interview_id FROM interviews WHERE candidate_id IN (SELECT candidate_id FROM cvTable WHERE job_id = ?))", [$job_id]);
+            $jobPost->query("DELETE FROM interviews WHERE candidate_id IN (SELECT candidate_id FROM cvTable WHERE job_id = ?)", [$job_id]);
+            $jobPost->query("DELETE FROM cvTable WHERE job_id = ?", [$job_id]);
+            $jobPost->query("DELETE FROM jobPost WHERE job_id = ?", [$job_id]);
+
+            $_SESSION['flash_message'] = "Job and related data deleted successfully.";
+            redirect("dashboard/companyDash");
+            exit;
+        } catch (Exception $e) {
+            $_SESSION['pjDeletion_error_message'] = "Error deleting job: " . $e->getMessage();
+        }
+    }
 }

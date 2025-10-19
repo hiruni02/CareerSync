@@ -129,13 +129,6 @@
   background: #1084cc;
 }
 
-.li-actions {
-  display: flex;
-  gap: 14px;
-  margin-top: 12px;
-  flex-wrap: wrap;
-}
-
 .acceptBtn,
 .rejectBtn {
   border: none;
@@ -147,7 +140,6 @@
   cursor: pointer;
   transition: transform .15s ease, box-shadow .2s ease;
   flex: 1;
-  /* makes buttons take equal width on small screens */
   text-align: center;
 }
 
@@ -170,6 +162,19 @@
   color: #000000;
   font-size: 22px;
   font-weight: bold;
+}
+
+.li-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pj_form{
+  display: flex;
+  flex-direction: row;
 }
 
 .extendBtn {
@@ -206,6 +211,13 @@
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
   background: #c62828;
+}
+
+.itemsEmpty {
+  background-color: var(--lightBlue);
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
 }
 
 @media (max-width: 900px) {

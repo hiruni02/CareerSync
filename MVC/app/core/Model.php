@@ -171,7 +171,7 @@ trait Model
             $query .= $key . "!=? AND ";
         }
         $query = rtrim($query, " AND ");
-        $query .= "ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
+        $query .= " ORDER BY $this->order_column $this->order_type LIMIT $this->limit OFFSET $this->offset";
         $data = array_merge($data, $data_not);
         return $this->query($query, $data);
     }
