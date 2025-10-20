@@ -18,7 +18,7 @@
                         <h1 class="job_title"><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h1>
                         <h3 class="company_name"><?= $data['job']->companyName ?></h3>
                     </div>
-                    <h3 class="jdTitle">About the Position: </h4><br>
+                    <h3 class="jdTitle"><?= $data['job']->posTitle ?></h4><br>
                         <p class="job_description"><?= $data['job']->jobDescription ?></p>
                 </div>
                 <div class="box right">
