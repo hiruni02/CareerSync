@@ -163,66 +163,42 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     <div class="content_section">
         <h3>Posted Jobs</h3>
         <div class="scScrollbox">
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Software Engineer</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Posted On:</span>
-                    <span class="li-value">2025-10-01</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Deadline:</span>
-                    <span class="li-value">2025-11-10</span>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="extendBtn">Extend Deadline</button>
-                    <button type="button" class="deleteBtn">Delete</button>
-                </div>
-            </div>
 
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">UI/UX Designer</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Posted On:</span>
-                    <span class="li-value">2025-09-25</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Deadline:</span>
-                    <span class="li-value">2025-10-30</span>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="extendBtn">Extend Deadline</button>
-                    <button type="button" class="deleteBtn">Delete</button>
-                </div>
-            </div>
+            <?php
+            $postedJobs = $data['postedJobs'];
+            ?>
 
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">QA Tester</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Posted On:</span>
-                    <span class="li-value">2025-10-05</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Deadline:</span>
-                    <span class="li-value">2025-11-05</span>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="extendBtn">Extend Deadline</button>
-                    <button type="button" class="deleteBtn">Delete</button>
-                </div>
-            </div>
+            <?php if (!empty($postedJobs)): ?>
+                <?php foreach ($postedJobs as $pj): ?>
+                    <div class="listItem">
+                        <div class="li-row">
+                            <span class="li-label">Position:</span>
+                            <span class="li-value"><?= htmlspecialchars($pj->posTitle) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Posted On:</span>
+                            <span class="li-value"><?= htmlspecialchars($pj->posted_at) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Deadline:</span>
+                            <span class="li-value"><?= htmlspecialchars($pj->deadline) ?></span>
+                        </div>
+                        <div class="li-actions">
+                            <form method="post" class="pj_form">
+                                <input type="hidden" name="action" value="postedJobActions">
+                                <input type="hidden" name="job_id" value="<?= $pj->job_id ?>">
+                                <input type="submit" name="btn" class="extendBtn" value="Extend Deadline">
+                                <input type="submit" name="btn" class="deleteBtn" onclick="return confirm('Are you sure you want to delete this job post?');" value="Delete">
+                            </form>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class='itemsEmpty'>No jobs posted yet.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

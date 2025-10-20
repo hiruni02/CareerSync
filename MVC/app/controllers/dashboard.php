@@ -13,7 +13,6 @@ class Dashboard
 
         $isPasswordChange = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'password_change');
         $isProfileUpdate  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'profile_change');
-        $isPostingJob  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'posting_job');
 
         switch ($_SESSION['USER']->role) {
             case 'admin':
