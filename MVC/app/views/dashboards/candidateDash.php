@@ -23,7 +23,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideSchedu
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.php");
 ?>
 
-<h1 class="dashboard_tag">Candidate Dash Board</h1>
+<h1 class="dashboard_tag">Welcome back <?php echo $candidateTable->firstName; ?> !</h1>
 <div class="counting_boxes">
     <div class="box_segment">
         Pending applications:<br>
