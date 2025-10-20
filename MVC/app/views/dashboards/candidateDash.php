@@ -27,19 +27,19 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
 <div class="counting_boxes">
     <div class="box_segment">
         Pending applications:<br>
-        <h1>23</h1>
-    </div>
-    <div class="box_segment">
-        Accepted applications: <br>
         <h1>2</h1>
     </div>
     <div class="box_segment">
+        Accepted applications: <br>
+        <h1>1</h1>
+    </div>
+    <div class="box_segment">
         Rejected applications: <br>
-        <h1>45</h1>
+        <h1>2</h1>
     </div>
     <div class="box_segment">
         Unread messeges: <br>
-        <h1>5</h1>
+        <h1>4</h1>
     </div>
 </div>
 

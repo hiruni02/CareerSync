@@ -21,7 +21,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php"
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/counselorProfile.php");
 ?>
 
-<h1 class="dashboard_tag">Counselor Dashboard</h1>
+<h1 class="dashboard_tag">Welcome back <?php echo $counselorTable->firstName; ?> !</h1>
 
 <div class="counting_boxes">
     <div class="box_segment">

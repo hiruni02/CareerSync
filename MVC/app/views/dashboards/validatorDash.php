@@ -21,7 +21,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php"
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php");
 ?>
 
-<h1 class="dashboard_tag">Validator Dash Board</h1>
+<h1 class="dashboard_tag">Welcome back <?php echo $validatorTable->firstName; ?> !</h1>
 <div class="counting_boxes">
     <div class="box_segment">
         Companies to validate:<br>
@@ -65,7 +65,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 </div>
 
 
-<div class="sbContainer">
+<!-- <div class="sbContainer">
     <h3> Pending Student registration requests:</h3>
     <div class="scrollBox">
         <?php
@@ -90,7 +90,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
         }
         ?>
     </div>
-</div>
+</div> -->
 
 <div class="sbContainer">
     <h3> Pending Student Application:</h3>

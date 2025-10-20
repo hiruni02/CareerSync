@@ -94,7 +94,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                    <a href="" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
@@ -113,7 +113,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                    <a href="" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
@@ -132,7 +132,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                    <a href="" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
@@ -151,7 +151,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                    <a href="" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>

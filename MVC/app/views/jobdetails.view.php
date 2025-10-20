@@ -15,7 +15,10 @@
             <div class="container">
                 <div class="box left">
                     <div class="heading_content">
-                        <h1 class="job_title"><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h1>
+                        <div class="job_heading">
+                            <a href="<?= ROOT ?>home"><img src="<?= ROOT ?>assets/svg_icons/backBtn.svg" alt="back button" class="backicon"></a>
+                            <h1 class="job_title"><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h1>
+                        </div>
                         <h3 class="company_name"><?= $data['job']->companyName ?></h3>
                     </div>
                     <h3 class="jdTitle"><?= $data['job']->posTitle ?></h4><br>

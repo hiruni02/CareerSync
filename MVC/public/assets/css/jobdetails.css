@@ -41,11 +41,33 @@
     left: 0;
     right: 0;
 }
-
-.job_title {
-    margin-left: 50px;
-    margin-top: 10px;
+.heading_content img{
+    width: 70px;
+    height: 70px;
+    transition: 0.3s ease;
 }
+
+.heading_content img:hover{
+    transform: scale(1.05);
+}
+
+.job_heading {
+    display: flex;
+    align-items: center;  
+    gap: 10px;           
+}
+
+.job_heading img {
+    width: 60px;   
+    height: 60px;
+    cursor: pointer;
+}
+
+.heading_content h3{
+    margin-left: 70px;
+}
+
+
 
 .company_name {
     margin-left: 50px;
