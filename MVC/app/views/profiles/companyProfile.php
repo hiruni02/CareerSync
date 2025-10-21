@@ -8,7 +8,7 @@
                 <div class="value"><?php echo $companyTable->companyName; ?></div>
             </div>
             <div class="info_segment"><label>Company Contact Number</label>
-                <div class="value"><?php echo $companyTable->hr_firstName; ?></div>
+                <div class="value"><?php echo $companyTable->contactNo; ?></div>
             </div>
             <div class="info_segment"><label>Company Email</label>
                 <div class="value"><?php echo $userTable->email; ?></div>
@@ -50,7 +50,7 @@
                         type="text"
                         placeholder="Contact number ex: 071 xxx xxxx"
                         name="contactNo"
-                        value="<?= $companyTable->hr_firstName ?>">
+                        value="<?= $companyTable->contactNo ?>">
                 </div>
 
                 <div class="input-field">
