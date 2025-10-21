@@ -125,7 +125,7 @@
                 <?php endif; ?>
 
                 <div class="input-field">
-                    <label for="confirm_password">Pasword</label>
+                    <label for="confirm_password">Password</label>
                     <input
                         type="password"
                         id="confirm_pass_in_profile"
@@ -141,7 +141,7 @@
 
                 <div class="form_btns">
                     <button type="submit">Save Changes</button>
-                    <button id="edit_backBtn">Back</button>
+                    <button type="button" id="edit_backBtn">Back</button>
                 </div>
             </form>
 
