@@ -128,12 +128,12 @@
                     <label for="confirm_password">Pasword</label>
                     <input
                         type="password"
-                        id="confirm_pass"
+                        id="confirm_pass_in_profile"
                         placeholder="Enter Password to confirm"
                         name="confirm_password"
                         required
                         style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;' : '' ?>">
-                    <button onclick="show_confirm_password()" class="eye" type="button" id="eye2"></button>
+                    <button onclick="show_confirm_password_in_profile()" class="eye" type="button" id="eye3"></button>
                 </div>
                 <?php if (!empty($errors['confirm_password'])): ?>
                     <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['confirm_password'] ?></div>

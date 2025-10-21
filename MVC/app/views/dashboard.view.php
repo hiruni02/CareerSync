@@ -108,47 +108,40 @@
             });
         });
 
-        function show_password() {
-            console.log(document.getElementById("pass").type);
-            var x = document.getElementById("pass");
-            if (x.type === "password") {
-                x.type = "text";
-                document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
-            } else {
-                x.type = "password";
-                document.getElementById("eye1").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+        const rootPath = "<?= ROOT ?>assets/svg_icons/";
 
+        function togglePassword(inputId, eyeId) {
+            const input = document.getElementById(inputId);
+            const eye = document.getElementById(eyeId);
+
+            if (!input || !eye) return;
+
+            if (input.type === "password") {
+                input.type = "text";
+                eye.style.backgroundImage = `url(${rootPath}eye_close.svg)`;
+            } else {
+                input.type = "password";
+                eye.style.backgroundImage = `url(${rootPath}eye_open.svg)`;
             }
+        }
+
+        function show_password() {
+            togglePassword("pass", "eye1");
         }
 
         function show_confirm_password() {
-            console.log(document.getElementById("confirm_pass").type);
-            var x = document.getElementById("confirm_pass");
-            if (x.type === "password") {
-                x.type = "text";
-                document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
-            } else {
-                x.type = "password";
-                document.getElementById("eye2").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
+            togglePassword("confirm_pass", "eye2");
+        }
 
-            }
+        function show_confirm_password_in_profile() {
+            togglePassword("confirm_pass_in_profile", "eye3");
         }
 
         function show_old_password() {
-            console.log(document.getElementById("oldPass").type);
-            var x = document.getElementById("oldPass");
-            if (x.type === "password") {
-                x.type = "text";
-                document.getElementById("eye0").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_close.svg)";
-            } else {
-                x.type = "password";
-                document.getElementById("eye0").style.backgroundImage = "url(<?= ROOT ?>assets/svg_icons/eye_open.svg)";
-
-            }
+            togglePassword("oldPass", "eye0");
         }
     </script>
     <?php if (!empty($errors)): ?>
-        <!-- error handling for edit profile and edit password -->
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 <?php if (isset($errors['email']) || isset($errors['admin_photo_path']) || isset($errors['confirm_password'])): ?>

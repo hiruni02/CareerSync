@@ -47,7 +47,7 @@
 
             <div class="form_btns">
                 <button type="submit">Save Changes</button>
-                <button id="pwBackBtn">Back</button>
+                <button type="button" id="pwBackBtn">Back</button>
             </div>
         </form>
 
