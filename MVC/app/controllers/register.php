@@ -118,7 +118,7 @@ class register
                             $user->insert($userTableData);
                             $newUser = $user->first(['email' => $_POST['email']]);
 
-                            // Insert into career_counselors table
+                             // Insert into career_counselors table
                             $counselorData = [
                                 'user_id'               => $newUser->user_id,
                                 'firstName'             => $_POST['firstName'],

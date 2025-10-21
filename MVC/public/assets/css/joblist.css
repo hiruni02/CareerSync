@@ -66,6 +66,18 @@
   color: #1e1f4b;
 }
 
+.BM-button {
+  background: none;
+  border: none;
+  gap: 0;
+  cursor: pointer;
+  align-items: center;
+}
+
+.BM-button:hover {
+  transform: scale(1.2);
+}
+
 .job-header {
   display: flex;
   justify-content: space-between;

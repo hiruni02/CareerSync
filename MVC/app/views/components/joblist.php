@@ -59,7 +59,11 @@
                                 </div>
                             </div>
                             <div class="job-content">
-                                <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?></h4>
+                                <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?>
+                                    <button type="button" class="BM-button" >
+                                    <img class="icon" src="<?= ROOT ?>assets/svg_icons/add_bm.svg">
+                                    </button>
+                                </h4>
                                 <h4 class="company-name"><?= htmlspecialchars($job->companyName) ?></h4>
                                 <div class="industry"><?= htmlspecialchars($job->industry) ?></div>
                                 <div class="meta-item">
