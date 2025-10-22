@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/companyProfileDisplay.css">
 <div class="profile_display">
     <div class="pd_content">
-        <h1>user profile</h1>
+        <h1>User Profile</h1>
         <div class="user_data">
             <div class="profile_picture"><img src="<?= $companyTable->company_photo_path ?>" alt="company photo"></div>
             <div class="info_segment"><label>Company Name</label>
@@ -13,16 +13,16 @@
             <div class="info_segment"><label>Company Email</label>
                 <div class="value"><?php echo $userTable->email; ?></div>
             </div>
-            <div class="info_segment"><label>HR First name</label>
+            <div class="info_segment"><label>HR First Name</label>
                 <div class="value"><?php echo $companyTable->hr_firstName; ?></div>
             </div>
-            <div class="info_segment"><label> HR Last name</label>
+            <div class="info_segment"><label> HR Last Name</label>
                 <div class="value"><?php echo $companyTable->hr_lastName; ?></div>
             </div>
-            <div class="info_segment"><label>HR Contact number</label>
+            <div class="info_segment"><label>HR Contact Number</label>
                 <div class="value"><?php echo $companyTable->hr_contactNo; ?></div>
             </div>
-            <div class="info_segment"><label>HR email address</label>
+            <div class="info_segment"><label>HR Email Address</label>
                 <div class="value"><?php echo $companyTable->hr_email; ?></div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="input-field">
-                    <label for="contactNo"> Compnay Contact Number</label>
+                    <label for="contactNo"> Company Contact Number</label>
                     <input
                         type="text"
                         placeholder="Contact number ex: 071 xxx xxxx"

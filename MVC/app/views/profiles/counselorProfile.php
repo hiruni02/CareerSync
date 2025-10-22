@@ -2,25 +2,25 @@
 
 <div class="profile_display">
     <div class="pd_content">
-        <h1>Counselor Profile</h1>
+        <h1>User Profile</h1>
         <div class="user_data">
             <div class="profile_picture">
                 <img src="<?= ROOT . $counselorTable->counselor_photo_path ?>" alt="counselor photo">
             </div>
 
-            <div class="info_segment"><label>First name</label>
+            <div class="info_segment"><label>First Name</label>
                 <div class="value"><?php echo $counselorTable->firstName; ?></div>
             </div>
 
-            <div class="info_segment"><label>Last name</label>
+            <div class="info_segment"><label>Last Name</label>
                 <div class="value"><?php echo $counselorTable->lastName; ?></div>
             </div>
 
-            <div class="info_segment"><label>Contact number</label>
+            <div class="info_segment"><label>Contact Number</label>
                 <div class="value"><?php echo $counselorTable->contactNo; ?></div>
             </div>
 
-            <div class="info_segment"><label>Email address</label>
+            <div class="info_segment"><label>Email Address</label>
                 <div class="value"><?php echo $userTable->email; ?></div>
             </div>
         </div>

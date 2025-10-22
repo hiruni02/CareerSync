@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/validatorProfileDisplay.css">
 <div class="profile_display">
     <div class="pd_content">
-        <h1>user profile</h1>
+        <h1>User Profile</h1>
         <div class="user_data">
             <div class="profile_picture"><img src="<?= $validatorTable->validator_photo_path ?>" alt="validator photo"></div>
             <div class="info_segment"><label>First name</label>
@@ -13,7 +13,7 @@
             <div class="info_segment"><label>Contact number</label>
                 <div class="value"><?php echo $validatorTable->contactNo; ?></div>
             </div>
-            <div class="info_segment"><label>email address</label>
+            <div class="info_segment"><label>Email Address</label>
                 <div class="value"><?php echo $userTable->email; ?></div>
             </div>
         </div>
