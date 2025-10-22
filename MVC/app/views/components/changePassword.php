@@ -31,7 +31,7 @@
             </div>
 
             <div class="input-field">
-                <label for="confirm_new_password">Re-enter New Pasword</label>
+                <label for="confirm_new_password">Re-enter New Password</label>
                 <input
                     type="password"
                     id="confirm_pass"
