@@ -108,6 +108,7 @@ if ($isPostingJob) {
         'deadline'          => $_POST['deadline'],
     ];
     $jobPost->insert($jobData);
+    redirect("dashboard/companyDash");
     unset($_POST);
 }
 
