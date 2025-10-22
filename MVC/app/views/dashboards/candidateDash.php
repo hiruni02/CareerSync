@@ -99,6 +99,15 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
                     schedulerBg.classList.add("active");
                 });
             }
+            else if (status && status.classList.contains("rejected")) {
+            item.addEventListener("click", () => {
+                const confirmDelete = confirm("This application was rejected. Do you want to delete it?");
+                if (confirmDelete) {
+                    item.remove();
+                }
+            });
+        }
+        
         });
 
         // Close scheduler when Back is clicked

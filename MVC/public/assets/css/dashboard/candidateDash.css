@@ -139,6 +139,15 @@
     background: #d9534f;
 }
 
+.deleteBtn{
+    background: none;
+    border: none;
+    color: #d9534f;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    border-radius: 5px;
+}
+
 @media (max-width: 600px) {
     .sent_applications {
         width: 100%;
