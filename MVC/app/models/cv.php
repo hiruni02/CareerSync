@@ -21,6 +21,7 @@ class CV
                     JOIN jobPost ON cvTable.job_id = jobPost.job_id
                     JOIN company ON jobPost.company_id = company.user_id";
 
-        return $this->query($query);
+        $result = $this->query($query);
+        return $result ?: [];
     }
 }
