@@ -19,8 +19,8 @@
 
     h1 {
         padding-bottom: 10px;
-        margin-top: -10px;
-        font-size: 1.8rem;
+        margin-top: 0px;
+        font-size: 22px;
     }
 }
 
@@ -139,7 +139,7 @@
     background: #d9534f;
 }
 
-.deleteBtn{
+.deleteBtn {
     background: none;
     border: none;
     color: #d9534f;
@@ -148,7 +148,94 @@
     border-radius: 5px;
 }
 
-@media (max-width: 600px) {
+.interview-section {
+    width: 50%;
+    background-color: var(--mid);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 200px;
+}
+
+.interview-scrollbox {
+    padding: 10px 4%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: var(--mid);
+    width: 100%;
+    border-radius: 10px;
+    max-height: 500px;
+}
+
+.interview-item {
+    width: 100%;
+    background: var(--lightBlue);
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    padding: 16px 18px;
+    font-weight: 600;
+    color: #222;
+    transition: transform .2s ease, box-shadow .2s ease;
+    margin-bottom: 16px;
+}
+
+.interview-item:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .219);
+    z-index: 2;
+}
+
+.interview-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 8px 0;
+    flex-wrap: wrap;
+}
+
+.interview-label {
+    color: #333;
+    text-transform: lowercase;
+    font-weight: 600;
+}
+
+.interview-value {
+    color: #000;
+    font-family: "consolas";
+    font-weight: normal;
+}
+
+.interview-cvBtn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #1e9bf0;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.interview-cvBtn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+    background: #1084cc;
+}
+
+.interview-section h3 {
+    margin-bottom: 10px;
+    color: #000000;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+@media (max-width: 900px) {
     .sent_applications {
         width: 100%;
         border-radius: 15px;
@@ -171,4 +258,32 @@
         font-family: "merriweather";
         padding-bottom: 10px;
     }
+
+    .interview-section {
+        width: 95%;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
+    .interview-item {
+        width: 100%;
+        padding: 14px 16px;
+    }
+
+    .interview-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .interview-cvBtn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .interview-section h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+
 }

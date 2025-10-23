@@ -78,6 +78,94 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
     </div>
 </div>
 
+<div class="interview-section">
+    <h3>Upcoming Interviews</h3>
+    <div class="interview-scrollbox">
+
+        <div class="interview-item">
+            <div class="interview-row">
+                <span class="interview-label">Position:</span>
+                <span class="interview-value">Software Engineer Intern</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Company:</span>
+                <span class="interview-value">TechNova Solutions</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Interview Date:</span>
+                <span class="interview-value">2025-06-09</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Method:</span>
+                <span class="interview-value">Online</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Address:</span>
+                <span class="interview-value">https://app.zoom.us/wc/8863638238/join?fromPWA=1</span>
+            </div>
+            <div class="interview-row interview-cv">
+                <span class="interview-label">Candidate CV:</span>
+                <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="interview-cvBtn" target="_blank">View CV</a>
+            </div>
+        </div>
+
+        <div class="interview-item">
+            <div class="interview-row">
+                <span class="interview-label">Position:</span>
+                <span class="interview-value">UI/UX Designer</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Company:</span>
+                <span class="interview-value">PixelWorks Studio</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Interview Date:</span>
+                <span class="interview-value">2025-06-11</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Method:</span>
+                <span class="interview-value">Physical</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Address:</span>
+                <span class="interview-value">123 Tech Park, Silicon Avenue, CA</span>
+            </div>
+            <div class="interview-row interview-cv">
+                <span class="interview-label">Candidate CV:</span>
+                <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="interview-cvBtn" target="_blank">View CV</a>
+            </div>
+        </div>
+
+        <div class="interview-item">
+            <div class="interview-row">
+                <span class="interview-label">Position:</span>
+                <span class="interview-value">Data Analyst Intern</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Company:</span>
+                <span class="interview-value">DataWave Analytics</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Interview Date:</span>
+                <span class="interview-value">2025-06-13</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Method:</span>
+                <span class="interview-value">Online</span>
+            </div>
+            <div class="interview-row">
+                <span class="interview-label">Address:</span>
+                <span class="interview-value">https://example.com/zoom-meeting/FAKE-56327</span>
+            </div>
+            <div class="interview-row interview-cv">
+                <span class="interview-label">Candidate CV:</span>
+                <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="interview-cvBtn" target="_blank">View CV</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const schedulerBg = document.querySelector(".scheduler_bg");
@@ -98,16 +186,15 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
                 item.addEventListener("click", () => {
                     schedulerBg.classList.add("active");
                 });
+            } else if (status && status.classList.contains("rejected")) {
+                item.addEventListener("click", () => {
+                    const confirmDelete = confirm("This application was rejected. Do you want to delete it?");
+                    if (confirmDelete) {
+                        item.remove();
+                    }
+                });
             }
-            else if (status && status.classList.contains("rejected")) {
-            item.addEventListener("click", () => {
-                const confirmDelete = confirm("This application was rejected. Do you want to delete it?");
-                if (confirmDelete) {
-                    item.remove();
-                }
-            });
-        }
-        
+
         });
 
         // Close scheduler when Back is clicked
