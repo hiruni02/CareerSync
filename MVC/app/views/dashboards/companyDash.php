@@ -75,7 +75,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="#" class="cvBtn" target="_blank">View CV</a>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
@@ -94,7 +94,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="" class="cvBtn" target="_blank">View CV</a>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
@@ -113,7 +113,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="" class="cvBtn" target="_blank">View CV</a>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
@@ -132,7 +132,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="" class="cvBtn" target="_blank">View CV</a>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
@@ -151,7 +151,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>
-                    <a href="" class="cvBtn" target="_blank">View CV</a>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
                 </div>
                 <div class="li-actions">
                     <button type="button" class="acceptBtn">Accept and schedule interview</button>
@@ -196,6 +196,120 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
             <?php else: ?>
                 <p class='itemsEmpty'>No jobs posted yet.</p>
             <?php endif; ?>
+        </div>
+    </div>
+</div>
+<div class="content-wrapper">
+    <div class="content_section">
+        <h3>Upcoming interviews</h3>
+        <div class="scScrollbox">
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">Software Engineer Intern</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">John Silva</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Interview Date:</span>
+                    <span class="li-value">2025-06-09</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Method:</span>
+                    <span class="li-value">Online</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Address:</span>
+                    <span class="li-value">https://app.zoom.us/wc/8863638238/join?fromPWA=1</span>
+                </div>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
+                </div>
+            </div>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">UI/UX Designer</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">Emma Rodriguez</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Interview Date:</span>
+                    <span class="li-value">2025-06-11</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Method:</span>
+                    <span class="li-value">Physical</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Address:</span>
+                    <span class="li-value">123 Tech Park, Silicon Avenue, CA</span>
+                </div>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
+                </div>
+            </div>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">Data Analyst Intern</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">Kavindu Perera</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Interview Date:</span>
+                    <span class="li-value">2025-06-13</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Method:</span>
+                    <span class="li-value">Online</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Address:</span>
+                    <span class="li-value">https://example.com/zoom-meeting/FAKE-56327</span>
+                </div>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
+                </div>
+            </div>
+
+            <div class="listItem">
+                <div class="li-row">
+                    <span class="li-label">Position:</span>
+                    <span class="li-value">Marketing Assistant</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Candidate Name:</span>
+                    <span class="li-value">Sarah Johnson</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Interview Date:</span>
+                    <span class="li-value">2025-06-15</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Method:</span>
+                    <span class="li-value">Online</span>
+                </div>
+                <div class="li-row">
+                    <span class="li-label">Address:</span>
+                    <span class="li-value">https://example.com/zoom-meeting/FAKE-94822</span>
+                </div>
+                <div class="li-row li-cv">
+                    <span class="li-label">Candidate CV:</span>
+                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
