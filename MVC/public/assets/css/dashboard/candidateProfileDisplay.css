@@ -151,6 +151,8 @@
 
 .input-field label {
     align-content: center;
+    font-weight: bold;
+    padding-bottom: 5px;
 }
 
 .input-field img {
@@ -162,7 +164,7 @@
 
 .input-field .eye {
     position: absolute;
-    top: 0.7rem;
+    top: 2.45rem;
     right: 0.8rem;
     width: 25px !important;
     height: 25px !important;
@@ -185,12 +187,12 @@ input {
 .form_btns {
     display: flex;
     justify-content: center;
-    gap: 200px;
+    gap: 20px;
     margin-top: 20px;
 }
 
 .form_btns button {
-    width: 120px;
+    width: 100%;
     height: 55px;
     padding: 10px 20px;
     font-size: 16px;
@@ -316,6 +318,7 @@ input {
     }
 
     .form_btns {
-        gap: 70px;
+        gap: 10px;
+        flex-direction: column;
     }
 }
