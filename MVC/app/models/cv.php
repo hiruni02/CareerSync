@@ -24,4 +24,27 @@ class CV
         $result = $this->query($query);
         return $result ?: [];
     }
+
+    public function getApprovedCVsByCompany($company_id)
+    {
+        $query = "SELECT 
+                cvTable.cv_id,
+                cvTable.cv_file_path,
+                cvTable.applied_at,
+                cvTable.validator_approval,
+                candidate.firstName,
+                candidate.lastName,
+                CONCAT(candidate.firstName, ' ', candidate.lastName) AS candidateName,
+                company.companyName,
+                jobPost.posTitle
+            FROM cvTable
+            JOIN candidate ON cvTable.candidate_id = candidate.user_id
+            JOIN jobPost ON cvTable.job_id = jobPost.job_id
+            JOIN company ON jobPost.company_id = company.user_id
+            WHERE cvTable.validator_approval = 'approved'
+              AND company.user_id = ?";
+
+        $result = $this->query($query, [$company_id]);
+        return $result ?: [];
+    }
 }

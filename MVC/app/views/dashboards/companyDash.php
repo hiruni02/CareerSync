@@ -64,110 +64,41 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     <div class="content_section">
         <h3>Applied Candidates</h3>
         <div class="scScrollbox">
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Software Engineer Intern</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">John Silva</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">UI/UX Designer</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Ayesha Fernando</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Data Analyst</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Kasun Perera</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Marketing Coordinator</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Rashmi De Alwis</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Project Manager Trainee</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Tharindu Wijesinghe</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
+            <?php
+            $approvedCvs = $data['cv'];
+            ?>
+            <?php if (!empty($approvedCvs)): ?>
+                <?php foreach ($approvedCvs as $cv): ?>
+                    <div class="listItem">
+                        <div class="li-row">
+                            <span class="li-label">Position:</span>
+                            <span class="li-value"><?= htmlspecialchars($cv->posTitle) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Candidate Name:</span>
+                            <span class="li-value"><?= htmlspecialchars($cv->candidateName) ?></span>
+                        </div>
+                        <div class="li-row li-cv">
+                            <span class="li-label">Candidate CV:</span>
+                            <a href="<?= ROOT ?><?= htmlspecialchars($cv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
+                        </div>
+                        <div class="li-actions">
+                            <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                            <button type="button" class="rejectBtn">Reject candidate</button>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class='itemsEmpty'>No candidates applied yet</p>
+            <?php endif; ?>
         </div>
     </div>
     <div class="content_section">
         <h3>Posted Jobs</h3>
         <div class="scScrollbox">
-
             <?php
             $postedJobs = $data['postedJobs'];
             ?>
-
             <?php if (!empty($postedJobs)): ?>
                 <?php foreach ($postedJobs as $pj): ?>
                     <div class="listItem">

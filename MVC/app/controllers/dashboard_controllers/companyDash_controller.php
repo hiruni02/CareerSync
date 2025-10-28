@@ -7,6 +7,10 @@ $data['companyTable'] = $company->first(['user_id' => $_SESSION['USER']->user_id
 $jobPost = new JobPost;
 $data['postedJobs'] = $jobPost->where(['company_id' => $_SESSION['USER']->user_id]);
 
+//fetching valid CV's
+$cv = new CV;
+$data['cv'] = $cv->getApprovedCVsByCompany($_SESSION['USER']->user_id);
+
 $photoPath = null;
 $certificatePath = $data['companyTable']->business_certificate ?? null;
 
