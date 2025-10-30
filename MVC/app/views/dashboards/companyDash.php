@@ -82,10 +82,13 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                             <span class="li-label">Candidate CV:</span>
                             <a href="<?= ROOT ?><?= htmlspecialchars($cv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
                         </div>
-                        <div class="li-actions">
+                        <form method="POST" class="li-actions">
+                            <input type="hidden" name="action" value="company_scheduler">
+                            <input type="hidden" name="candidate_id" value="<?= $cv->candidate_id ?>">
+                            <input type="hidden" name="job_id" value="<?= $cv->job_id ?>">
                             <button type="button" class="acceptBtn">Accept and schedule interview</button>
                             <button type="button" class="rejectBtn">Reject candidate</button>
-                        </div>
+                        </form>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -118,6 +121,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                             <form method="post" class="pj_form">
                                 <input type="hidden" name="action" value="postedJobActions">
                                 <input type="hidden" name="job_id" value="<?= $pj->job_id ?>">
+                                <input type="date" name="new_deadline" required>
                                 <input type="submit" name="btn" class="extendBtn" value="Extend Deadline">
                                 <input type="submit" name="btn" class="deleteBtn" onclick="return confirm('Are you sure you want to delete this job post?');" value="Delete">
                             </form>
@@ -154,87 +158,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 <div class="li-row">
                     <span class="li-label">Address:</span>
                     <span class="li-value">https://app.zoom.us/wc/8863638238/join?fromPWA=1</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">UI/UX Designer</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Emma Rodriguez</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Interview Date:</span>
-                    <span class="li-value">2025-06-11</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Method:</span>
-                    <span class="li-value">Physical</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Address:</span>
-                    <span class="li-value">123 Tech Park, Silicon Avenue, CA</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Data Analyst Intern</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Kavindu Perera</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Interview Date:</span>
-                    <span class="li-value">2025-06-13</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Method:</span>
-                    <span class="li-value">Online</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Address:</span>
-                    <span class="li-value">https://example.com/zoom-meeting/FAKE-56327</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Marketing Assistant</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Sarah Johnson</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Interview Date:</span>
-                    <span class="li-value">2025-06-15</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Method:</span>
-                    <span class="li-value">Online</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Address:</span>
-                    <span class="li-value">https://example.com/zoom-meeting/FAKE-94822</span>
                 </div>
                 <div class="li-row li-cv">
                     <span class="li-label">Candidate CV:</span>

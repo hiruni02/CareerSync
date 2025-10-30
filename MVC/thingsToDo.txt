@@ -4,3 +4,5 @@ make the color scheme better
 
 add filters to the CV's for the company
 
+email verification
+

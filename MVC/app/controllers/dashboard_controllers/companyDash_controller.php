@@ -116,9 +116,20 @@ if ($isPostingJob) {
     unset($_POST);
 }
 
-//do this later
 if ($isExtendingDeadline) {
+    $job_id = $_POST['job_id'] ?? null;
+    $new_deadline = $_POST['new_deadline'] ?? null;
 
+    if ($job_id && $new_deadline) {
+        $jobPost = new JobPost;
+        $jobPost->update($job_id, ['deadline' => $new_deadline], 'job_id');
+        $_SESSION['flash_message'] = "Deadline updated to $new_deadline successfully.";
+    } else {
+        $_SESSION['pjExtend_error_message'] = "Missing job ID or new deadline.";
+    }
+
+    redirect("dashboard/companyDash");
+    exit;
 }
 
 if ($isDeletingJob) {

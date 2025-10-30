@@ -30,6 +30,8 @@ class CV
         $query = "SELECT 
                 cvTable.cv_id,
                 cvTable.cv_file_path,
+                cvTable.candidate_id,
+                cvTable.job_id,
                 cvTable.applied_at,
                 cvTable.validator_approval,
                 candidate.firstName,
