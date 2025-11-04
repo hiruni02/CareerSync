@@ -189,3 +189,56 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
         }
     });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const schedulerBg = document.querySelector(".scheduler_bg");
+        const backBtn = document.getElementById("schedulerBackBtn");
+        const openBtns = document.querySelectorAll(".acceptBtn");
+
+        openBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                if (schedulerBg) schedulerBg.classList.add("active");
+            });
+        });
+
+        if (backBtn) {
+            backBtn.addEventListener("click", () => schedulerBg.classList.remove("active"));
+        }
+
+        const deleteBtns = document.querySelectorAll(".deleteBtn");
+        deleteBtns.forEach(btn => {
+            btn.addEventListener("click", function(event) {
+                const form = btn.closest("form");
+                const dateInput = form.querySelector("input[name='new_deadline']");
+                if (dateInput) dateInput.removeAttribute("required");
+            });
+        });
+    });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const schedulerBg = document.querySelector(".scheduler_bg");
+    const backBtn = document.getElementById("schedulerBackBtn");
+    const openBtns = document.querySelectorAll(".acceptBtn");
+    const candidateInput = document.getElementById("schedulerCandidateId");
+    const jobInput = document.getElementById("schedulerJobId");
+
+    openBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const form = btn.closest("form");
+            const candidateId = form.querySelector("input[name='candidate_id']").value;
+            const jobId = form.querySelector("input[name='job_id']").value;
+
+            candidateInput.value = candidateId;
+            jobInput.value = jobId;
+
+            schedulerBg.classList.add("active");
+        });
+    });
+
+    backBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        schedulerBg.classList.remove("active");
+    });
+});
+</script>

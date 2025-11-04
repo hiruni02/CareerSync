@@ -136,7 +136,7 @@ trait Model
                         interview_id INT AUTO_INCREMENT PRIMARY KEY,
                         candidate_id INT,
                         company_id INT,
-                        mode ENUM('online','offline') NOT NULL,
+                        mode ENUM('online','physical') NOT NULL,
                         address_link VARCHAR(255) NOT NULL,
                         extra_details TEXT,
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),

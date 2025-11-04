@@ -17,6 +17,7 @@ $certificatePath = $data['companyTable']->business_certificate ?? null;
 $isPostingJob = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'posting_job');
 $isExtendingDeadline = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'postedJobActions' && $_POST['btn'] === 'Extend Deadline');
 $isDeletingJob = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'postedJobActions' && $_POST['btn'] === 'Delete');
+$isSchedulingInterview = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'company_scheduler');
 
 if ($isProfileUpdate) {
     $errors = [];
@@ -150,5 +151,32 @@ if ($isDeletingJob) {
         } catch (Exception $e) {
             $_SESSION['pjDeletion_error_message'] = "Error deleting job: " . $e->getMessage();
         }
+    }
+}
+
+if ($isSchedulingInterview) {
+    $candidate_id = $_POST['candidate_id'];
+    $company_id = $_SESSION['USER']->user_id;
+    $mode = $_POST['medium'];
+    $address = $_POST['address'] ?? null;
+    $details = $_POST['details'] ?? '';
+    $slots = $_POST['slots'] ?? [];
+
+    if ($candidate_id && $company_id && $mode && $address && !empty($slots)) {
+        $interviewModel = new Interview();
+
+        $interviewModel->createInterview([
+            'candidate_id' => $candidate_id,
+            'company_id'   => $company_id,
+            'mode'         => $mode,
+            'address_link' => $address,
+            'extra_details' => $details
+        ], $slots);
+
+        $_SESSION['success'] = "Interview schedule created successfully.";
+        header("Location: " . ROOT . "dashboard/companyDash");
+        exit;
+    } else {
+        $_SESSION['error'] = "Please fill in all required fields.";
     }
 }
