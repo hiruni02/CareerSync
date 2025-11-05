@@ -17,9 +17,9 @@
                 <label for="selected_date">Pick a comfortable date:</label>
                 <select name="selected_date" id="selected_date" required>
                     <option value="" disabled selected hidden>Select a date</option>
-                    <option value="2025-10-07T10:00">October 7, 2025 – 10:00 AM</option>
-                    <option value="2025-10-07T15:30">October 7, 2025 – 3:30 PM</option>
-                    <option value="2025-10-08T09:00">October 8, 2025 – 9:00 AM</option>
+                    <option value="2025-10-07T10:00">October 7, 2025 - 10:00 AM</option>
+                    <option value="2025-10-07T15:30">October 7, 2025 - 3:30 PM</option>
+                    <option value="2025-10-08T09:00">October 8, 2025 - 9:00 AM</option>
                 </select>
             </div>
 

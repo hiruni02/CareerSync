@@ -53,26 +53,39 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
         <h1>Sent Applications</h1>
         <div class="scrollBox">
             <ul class="applications">
-                <li class="application_item">
-                    <div class="application-title">Dialog: business manager</div>
-                    <div class="application_state"><span class="status pending">pending</span></div>
-                </li>
-                <li class="application_item">
-                    <div class="application-title">ODEL: Performance Marketing & Brand Lead</div>
-                    <div class="application_state"><span class="status accepted">accepted</span></div>
-                </li>
-                <li class="application_item">
-                    <div class="application-title">Singer: sales manager</div>
-                    <div class="application_state"><span class="status rejected">rejected</span></div>
-                </li>
-                <li class="application_item">
-                    <div class="application-title">Abans: UI designer</div>
-                    <div class="application_state"><span class="status pending">pending</span></div>
-                </li>
-                <li class="application_item">
-                    <div class="application-title">LG : backend developer</div>
-                    <div class="application_state"><span class="status rejected">rejected</span></div>
-                </li>
+                <?php
+                $sent_cv = $data['cv'];
+                ?>
+                <?php if (!empty($sent_cv)): ?>
+                    <?php foreach ($sent_cv as $cv): ?>
+                        <li class="application_item">
+                            <div class="application-title"><?= htmlspecialchars($cv->posTitle) ?></div>
+                            <div class="application_state">
+                                    <?php
+                                    switch ($cv->company_approval) {
+                                        case 'pending':
+                                    ?>
+                                            <span class="status pending">Pending</span>
+                                        <?php
+                                            break;
+                                        case 'rejected':
+                                        ?>
+                                            <span class="status rejected">Rejected</span>
+                                        <?php
+                                            break;
+                                        case 'accepted':
+                                        ?>
+                                            <span class="status accepted">accepted</span>
+                                    <?php
+                                            break;
+                                    }
+                                    ?>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class='itemsEmpty'>No CV's sent yet</p>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

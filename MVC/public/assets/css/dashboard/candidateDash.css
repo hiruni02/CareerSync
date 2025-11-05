@@ -74,6 +74,14 @@
     padding: 8px;
 }
 
+.itemsEmpty {
+    background-color: var(--lightBlue);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: normal;
+}
+
 .applications {
     margin: 0;
     padding: 0;

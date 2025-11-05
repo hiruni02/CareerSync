@@ -3,6 +3,10 @@
 $candidate = new Candidate;
 $data['candidateTable'] = $candidate->first(['user_id' => $_SESSION['USER']->user_id]);
 
+//extract the CV's sent by the candidate
+$cv = new CV;
+$data['cv'] = $cv->getSentCVsByCandidate($_SESSION['USER']->user_id);
+
 $photoPath = null;
 
 //code for updating user profile 
