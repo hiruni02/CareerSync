@@ -155,28 +155,53 @@ if ($isDeletingJob) {
 }
 
 if ($isSchedulingInterview) {
-    $candidate_id = $_POST['candidate_id'];
+    $candidate_id = $_POST['candidate_id'] ?? null;
+    $job_id = $_POST['job_id'] ?? null;
     $company_id = $_SESSION['USER']->user_id;
-    $mode = $_POST['medium'];
+    $mode = $_POST['medium'] ?? null;
     $address = $_POST['address'] ?? null;
     $details = $_POST['details'] ?? '';
     $slots = $_POST['slots'] ?? [];
+    $actionType = $_POST['decision'] ?? 'accept';
 
-    if ($candidate_id && $company_id && $mode && $address && !empty($slots)) {
-        $interviewModel = new Interview();
+    $cv = new CV;
+    $cvRecord = $cv->first(['candidate_id' => $candidate_id, 'job_id' => $job_id]);
 
-        $interviewModel->createInterview([
-            'candidate_id' => $candidate_id,
-            'company_id'   => $company_id,
-            'mode'         => $mode,
-            'address_link' => $address,
-            'extra_details' => $details
-        ], $slots);
-
-        $_SESSION['success'] = "Interview schedule created successfully.";
-        header("Location: " . ROOT . "dashboard/companyDash");
+    if (!$cvRecord) {
+        $_SESSION['error'] = "No matching CV found for this candidate.";
+        redirect("dashboard/companyDash");
         exit;
-    } else {
-        $_SESSION['error'] = "Please fill in all required fields.";
+    }
+
+    // REJECT CASE
+    if ($actionType === 'reject') {
+        $cv->update($cvRecord->cv_id, ['company_approval' => 'rejected'], 'cv_id');
+        $_SESSION['success'] = "Candidate rejected successfully.";
+        redirect("dashboard/companyDash");
+        exit;
+    }
+
+    // ACCEPT CASE
+    if ($actionType === 'accept') {
+        if ($candidate_id && $company_id && $mode && $address && !empty($slots)) {
+            // Update approval status
+            $cv->update($cvRecord->cv_id, ['company_approval' => 'approved'], 'cv_id');
+
+            // Create interview entry
+            $interviewModel = new Interview();
+            $interviewModel->createInterview([
+                'candidate_id'  => $candidate_id,
+                'company_id'    => $company_id,
+                'mode'          => $mode,
+                'address_link'  => $address,
+                'extra_details' => $details
+            ], $slots);
+
+            $_SESSION['success'] = "Candidate accepted and interview scheduled.";
+            redirect("dashboard/companyDash");
+            exit;
+        } else {
+            $_SESSION['error'] = "Please fill in all required fields.";
+        }
     }
 }

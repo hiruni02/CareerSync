@@ -72,6 +72,7 @@ class CV
                 cvTable.job_id,
                 cvTable.applied_at,
                 cvTable.validator_approval,
+                cvTable.company_approval,
                 candidate.firstName,
                 candidate.lastName,
                 CONCAT(candidate.firstName, ' ', candidate.lastName) AS candidateName,

@@ -6,6 +6,8 @@
             <input type="hidden" name="candidate_id" id="schedulerCandidateId">
             <input type="hidden" name="job_id" id="schedulerJobId">
             <input type="hidden" name="action" value="company_scheduler">
+            <input type="hidden" name="decision" value="accept">
+
             <div class="input-field">
                 <label for="medium">Online or Physical</label>
                 <select name="medium" required>

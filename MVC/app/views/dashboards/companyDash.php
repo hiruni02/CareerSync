@@ -69,30 +69,33 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
             ?>
             <?php if (!empty($approvedCvs)): ?>
                 <?php foreach ($approvedCvs as $cv): ?>
-                    <div class="listItem">
-                        <div class="li-row">
-                            <span class="li-label">Position:</span>
-                            <span class="li-value"><?= htmlspecialchars($cv->posTitle) ?></span>
+                    <?php if ($cv->company_approval === 'pending') { ?>
+                        <div class="listItem">
+                            <div class="li-row">
+                                <span class="li-label">Position:</span>
+                                <span class="li-value"><?= htmlspecialchars($cv->posTitle) ?></span>
+                            </div>
+                            <div class="li-row">
+                                <span class="li-label">Candidate Name:</span>
+                                <span class="li-value"><?= htmlspecialchars($cv->candidateName) ?></span>
+                            </div>
+                            <div class="li-row li-cv">
+                                <span class="li-label">Candidate CV:</span>
+                                <a href="<?= ROOT ?><?= htmlspecialchars($cv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
+                            </div>
+                            <form method="POST" class="li-actions">
+                                <input type="hidden" name="action" value="company_scheduler">
+                                <input type="hidden" name="candidate_id" value="<?= $cv->candidate_id ?>">
+                                <input type="hidden" name="job_id" value="<?= $cv->job_id ?>">
+                                <input type="hidden" name="decision" value="">
+                                <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                                <button type="submit" class="rejectBtn">Reject candidate</button>
+                            </form>
                         </div>
-                        <div class="li-row">
-                            <span class="li-label">Candidate Name:</span>
-                            <span class="li-value"><?= htmlspecialchars($cv->candidateName) ?></span>
-                        </div>
-                        <div class="li-row li-cv">
-                            <span class="li-label">Candidate CV:</span>
-                            <a href="<?= ROOT ?><?= htmlspecialchars($cv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
-                        </div>
-                        <form method="POST" class="li-actions">
-                            <input type="hidden" name="action" value="company_scheduler">
-                            <input type="hidden" name="candidate_id" value="<?= $cv->candidate_id ?>">
-                            <input type="hidden" name="job_id" value="<?= $cv->job_id ?>">
-                            <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                            <button type="button" class="rejectBtn">Reject candidate</button>
-                        </form>
-                    </div>
+                    <?php } else {
+                    ?><p class='itemsEmpty'>No candidates applied yet</p>
+                    <?php } ?>
                 <?php endforeach; ?>
-            <?php else: ?>
-                <p class='itemsEmpty'>No candidates applied yet</p>
             <?php endif; ?>
         </div>
     </div>
@@ -216,29 +219,44 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const schedulerBg = document.querySelector(".scheduler_bg");
-    const backBtn = document.getElementById("schedulerBackBtn");
-    const openBtns = document.querySelectorAll(".acceptBtn");
-    const candidateInput = document.getElementById("schedulerCandidateId");
-    const jobInput = document.getElementById("schedulerJobId");
+    document.addEventListener("DOMContentLoaded", function() {
+        const schedulerBg = document.querySelector(".scheduler_bg");
+        const backBtn = document.getElementById("schedulerBackBtn");
+        const openBtns = document.querySelectorAll(".acceptBtn");
+        const rejectBtns = document.querySelectorAll(".rejectBtn");
+        const candidateInput = document.getElementById("schedulerCandidateId");
+        const jobInput = document.getElementById("schedulerJobId");
 
-    openBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const form = btn.closest("form");
-            const candidateId = form.querySelector("input[name='candidate_id']").value;
-            const jobId = form.querySelector("input[name='job_id']").value;
+        // Open scheduler for accepting
+        openBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const form = btn.closest("form");
+                const candidateId = form.querySelector("input[name='candidate_id']").value;
+                const jobId = form.querySelector("input[name='job_id']").value;
+                const decisionInput = form.querySelector("input[name='decision']");
 
-            candidateInput.value = candidateId;
-            jobInput.value = jobId;
+                decisionInput.value = "accept"; // set decision type
 
-            schedulerBg.classList.add("active");
+                candidateInput.value = candidateId;
+                jobInput.value = jobId;
+
+                schedulerBg.classList.add("active");
+            });
+        });
+
+        // Reject directly (submits form)
+        rejectBtns.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const form = btn.closest("form");
+                const decisionInput = form.querySelector("input[name='decision']");
+                decisionInput.value = "reject"; // mark as rejected
+                form.submit();
+            });
+        });
+
+        backBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            schedulerBg.classList.remove("active");
         });
     });
-
-    backBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        schedulerBg.classList.remove("active");
-    });
-});
 </script>

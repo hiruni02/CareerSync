@@ -61,25 +61,25 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
                         <li class="application_item">
                             <div class="application-title"><?= htmlspecialchars($cv->posTitle) ?></div>
                             <div class="application_state">
+                                <?php
+                                switch ($cv->company_approval) {
+                                    case 'pending':
+                                ?>
+                                        <span class="status pending">Pending</span>
                                     <?php
-                                    switch ($cv->company_approval) {
-                                        case 'pending':
+                                        break;
+                                    case 'rejected':
                                     ?>
-                                            <span class="status pending">Pending</span>
-                                        <?php
-                                            break;
-                                        case 'rejected':
-                                        ?>
-                                            <span class="status rejected">Rejected</span>
-                                        <?php
-                                            break;
-                                        case 'accepted':
-                                        ?>
-                                            <span class="status accepted">accepted</span>
+                                        <span class="status rejected">Rejected</span>
                                     <?php
-                                            break;
-                                    }
+                                        break;
+                                    case 'accepted':
                                     ?>
+                                        <span class="status accepted">Accepted</span>
+                                <?php
+                                        break;
+                                }
+                                ?>
                             </div>
                         </li>
                     <?php endforeach; ?>
