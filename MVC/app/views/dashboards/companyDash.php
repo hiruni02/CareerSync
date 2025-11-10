@@ -64,41 +64,44 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     <div class="content_section">
         <h3>Applied Candidates</h3>
         <div class="scScrollbox">
+            <?php $approvedCvs = $data['cv'] ?? []; ?>
+
             <?php
-            $approvedCvs = $data['cv'];
+            $pendingCvs = array_filter($approvedCvs, fn($cv) => $cv->company_approval === 'pending');
             ?>
-            <?php if (!empty($approvedCvs)): ?>
-                <?php foreach ($approvedCvs as $cv): ?>
-                    <?php if ($cv->company_approval === 'pending') { ?>
-                        <div class="listItem">
-                            <div class="li-row">
-                                <span class="li-label">Position:</span>
-                                <span class="li-value"><?= htmlspecialchars($cv->posTitle) ?></span>
-                            </div>
-                            <div class="li-row">
-                                <span class="li-label">Candidate Name:</span>
-                                <span class="li-value"><?= htmlspecialchars($cv->candidateName) ?></span>
-                            </div>
-                            <div class="li-row li-cv">
-                                <span class="li-label">Candidate CV:</span>
-                                <a href="<?= ROOT ?><?= htmlspecialchars($cv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
-                            </div>
-                            <form method="POST" class="li-actions">
-                                <input type="hidden" name="action" value="company_scheduler">
-                                <input type="hidden" name="candidate_id" value="<?= $cv->candidate_id ?>">
-                                <input type="hidden" name="job_id" value="<?= $cv->job_id ?>">
-                                <input type="hidden" name="decision" value="">
-                                <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                                <button type="submit" class="rejectBtn">Reject candidate</button>
-                            </form>
+
+            <?php if (!empty($pendingCvs)): ?>
+                <?php foreach ($pendingCvs as $cv): ?>
+                    <div class="listItem">
+                        <div class="li-row">
+                            <span class="li-label">Position:</span>
+                            <span class="li-value"><?= htmlspecialchars($cv->posTitle) ?></span>
                         </div>
-                    <?php } else {
-                    ?><p class='itemsEmpty'>No candidates applied yet</p>
-                    <?php } ?>
+                        <div class="li-row">
+                            <span class="li-label">Candidate Name:</span>
+                            <span class="li-value"><?= htmlspecialchars($cv->candidateName) ?></span>
+                        </div>
+                        <div class="li-row li-cv">
+                            <span class="li-label">Candidate CV:</span>
+                            <a href="<?= ROOT ?><?= htmlspecialchars($cv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
+                        </div>
+                        <form method="POST" class="li-actions">
+                            <input type="hidden" name="action" value="company_scheduler">
+                            <input type="hidden" name="candidate_id" value="<?= $cv->candidate_id ?>">
+                            <input type="hidden" name="job_id" value="<?= $cv->job_id ?>">
+                            <input type="hidden" name="cv_id" value="<?= $cv->cv_id ?>">
+                            <input type="hidden" name="decision" value="">
+                            <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                            <button type="submit" class="rejectBtn">Reject candidate</button>
+                        </form>
+                    </div>
                 <?php endforeach; ?>
+            <?php else: ?>
+                <p class='itemsEmpty'>No candidates applied yet.</p>
             <?php endif; ?>
         </div>
     </div>
+
     <div class="content_section">
         <h3>Posted Jobs</h3>
         <div class="scScrollbox">

@@ -73,7 +73,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
                                         <span class="status rejected">Rejected</span>
                                     <?php
                                         break;
-                                    case 'accepted':
+                                    case 'approved':
                                     ?>
                                         <span class="status accepted">Accepted</span>
                                 <?php

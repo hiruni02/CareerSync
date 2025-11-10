@@ -7,6 +7,10 @@ $data['candidateTable'] = $candidate->first(['user_id' => $_SESSION['USER']->use
 $cv = new CV;
 $data['cv'] = $cv->getSentCVsByCandidate($_SESSION['USER']->user_id);
 
+//extracting interview details
+$interview = new Interview;
+$data['interview'] = $interview->getCandidateInterview($_SESSION['USER']->user_id);
+
 $photoPath = null;
 
 //code for updating user profile 
