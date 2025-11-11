@@ -13,6 +13,8 @@ $data['interview'] = $interview->getCandidateInterview($_SESSION['USER']->user_i
 
 $photoPath = null;
 
+$isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
+
 //code for updating user profile 
 if ($isProfileUpdate) {
     $errors = [];
@@ -54,12 +56,30 @@ if ($isProfileUpdate) {
         if ($updatedUser) {
             $_SESSION['USER'] = $updatedUser;
         }
-        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-        $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
-        //unset($_SESSION['USER']);//this loggs out after editing profile
+        $_SESSION['USER']->firstName = $_POST['firstName'];
+        $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path;
         redirect('home');
         exit;
     }
 
     $data['errors'] = $errors;
+}
+
+
+/*
+    change dateConfirmed field from unconfirmed to confirmed
+    delete time slots that isnt the confirmed slot by the candidate
+*/
+
+
+if ($isConfirmingInterviewDate) {
+    $interview_id = $_POST['interview_id'];
+    $selected_date = $_POST['selected_date'];
+
+    $interview = new Interview;
+    $interviewRecord = $interview->first(['candidate_id' => $_SESSION['USER']->user_id, 'interview_id' => $interview_id]);
+
+    //confirming
+    $interview->update($interviewRecord->interview_id, ['dateConfirmed' => 'confirmed'], 'interview_id');
+    redirect('dashboard');
 }

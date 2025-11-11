@@ -6,7 +6,6 @@
 
         <form method="POST">
             <input type="hidden" name="action" value="candidate_scheduler">
-
             <div class="interview-details">
                 <?php
                 $interData = $data['interview']['interviewData'];
@@ -15,6 +14,8 @@
                 <p><strong>Address/Link:</strong> <?= htmlspecialchars($interData->address_link) ?></p>
                 <p><strong>Extra Details:</strong> <?= htmlspecialchars($interData->extra_details) ?></p>
             </div>
+
+            <input type="hidden" name="interview_id" value="<?= $interData->interview_id ?>">
 
             <div class="input-field">
                 <label for="selected_date">Pick a comfortable date:</label>

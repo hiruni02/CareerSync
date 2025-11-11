@@ -8,7 +8,8 @@ class Interview
         'company_id',
         'mode',
         'address_link',
-        'extra_details'
+        'extra_details',
+        'dateConfirmed',
     ];
 
     public function getCandidateInterview($candidate_id)

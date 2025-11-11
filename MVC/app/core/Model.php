@@ -140,6 +140,7 @@ trait Model
                         mode ENUM('online','physical') NOT NULL,
                         address_link VARCHAR(255) NOT NULL,
                         extra_details TEXT,
+                        dateConfirmed ENUM('confirmed','unconfirmed') DEFAULT 'unconfirmed',
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
                         FOREIGN KEY (company_id) REFERENCES company(user_id)
                     )";
@@ -217,7 +218,7 @@ trait Model
     public function update($id, $data, $id_column = 'id')
     {
         if (!empty($this->allowedColumns)) { //remove unwanted data
-            foreach ($this->data as $key => $value) {
+                foreach ($data as $key => $value) { //foreach ($this->data as $key => $value) {
                 if (!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);
                 }

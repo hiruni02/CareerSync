@@ -44,7 +44,8 @@ class CV
                 interviews.company_id,
                 interviews.mode,
                 interviews.address_link,
-                interviews.extra_details
+                interviews.extra_details,
+                interviews.dateConfirmed
             FROM cvTable
             JOIN candidate 
                 ON cvTable.candidate_id = candidate.user_id
@@ -52,15 +53,17 @@ class CV
                 ON cvTable.job_id = jobPost.job_id
             JOIN company 
                 ON jobPost.company_id = company.user_id
-            LEFT JOIN interviews 
+            INNER JOIN interviews 
                 ON interviews.candidate_id = cvTable.candidate_id 
                 AND interviews.company_id = company.user_id
+                AND interviews.dateConfirmed = 'unconfirmed'
             WHERE cvTable.candidate_id = ?
             ORDER BY cvTable.applied_at DESC";
 
         $result = $this->query($query, [$candidate_id]);
         return $result ?: [];
     }
+
 
 
     public function getApprovedCVsByCompany($company_id)
