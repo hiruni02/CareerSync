@@ -144,32 +144,41 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     <div class="content_section">
         <h3>Upcoming interviews</h3>
         <div class="scScrollbox">
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Software Engineer Intern</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">John Silva</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Interview Date:</span>
-                    <span class="li-value">2025-06-09</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Method:</span>
-                    <span class="li-value">Online</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Address:</span>
-                    <span class="li-value">https://app.zoom.us/wc/8863638238/join?fromPWA=1</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-            </div>
+            <?php $confirmedInterviews = $data['confirmedInterviews'] ?? []; ?>
+            <?php if (!empty($confirmedInterviews)): ?>
+                <?php foreach ($confirmedInterviews as $iv): ?>
+                    <div class="listItem">
+                        <div class="li-row">
+                            <span class="li-label">Position:</span>
+                            <span class="li-value"><?= htmlspecialchars($iv->posTitle) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Candidate Name:</span>
+                            <span class="li-value"><?= htmlspecialchars($iv->candidateName) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Interview Date:</span>
+                            <span class="li-value"><?= htmlspecialchars($iv->slot_datetime) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Method:</span>
+                            <span class="li-value"><?= htmlspecialchars($iv->mode) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Address:</span>
+                            <a href="<?= htmlspecialchars($iv->address_link) ?>" target="_blank" class="li-value link">
+                                <?= htmlspecialchars($iv->address_link) ?>
+                            </a>
+                        </div>
+                        <div class="li-row li-cv">
+                            <span class="li-label">Candidate CV:</span>
+                            <a href="<?= ROOT ?><?= htmlspecialchars($iv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="itemsEmpty">No upcoming interviews scheduled.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>

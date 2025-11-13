@@ -44,11 +44,11 @@ class Interview
 
         $result = $this->query(
             "SELECT interview_id 
-         FROM interviews 
-         WHERE candidate_id = ? 
-           AND company_id = ? 
-         ORDER BY interview_id DESC 
-         LIMIT 1",
+            FROM interviews 
+            WHERE candidate_id = ? 
+            AND company_id = ? 
+            ORDER BY interview_id DESC 
+            LIMIT 1",
             [$data['candidate_id'], $data['company_id']]
         );
 
@@ -67,5 +67,55 @@ class Interview
         }
 
         return true;
+    }
+
+    public function getInterviewsByCandidate($candidate_id)
+    {
+        $query = "SELECT 
+                jobPost.posTitle,
+                company.companyName,
+                interview_slots.slot_datetime,
+                interviews.mode,
+                interviews.address_link,
+                cvTable.cv_file_path
+            FROM interviews
+            INNER JOIN interview_slots 
+                ON interviews.interview_id = interview_slots.interview_id
+            INNER JOIN company 
+                ON interviews.company_id = company.user_id
+            INNER JOIN cvTable 
+                ON interviews.candidate_id = cvTable.candidate_id
+            INNER JOIN jobPost 
+                ON cvTable.job_id = jobPost.job_id
+            WHERE interviews.candidate_id = ?
+              AND interviews.dateConfirmed = 'confirmed'";
+
+        return $this->query($query, [$candidate_id]);
+    }
+
+    public function getInterviewsByCompany($company_id)
+    {
+        $query = "SELECT 
+                jobPost.posTitle,
+                CONCAT(candidate.firstName, ' ', candidate.lastName) AS candidateName,
+                interview_slots.slot_datetime,
+                interviews.mode,
+                interviews.address_link,
+                cvTable.cv_file_path
+            FROM interviews
+            INNER JOIN interview_slots 
+                ON interviews.interview_id = interview_slots.interview_id
+            INNER JOIN candidate 
+                ON interviews.candidate_id = candidate.user_id
+            INNER JOIN cvTable 
+                ON interviews.candidate_id = cvTable.candidate_id
+            INNER JOIN jobPost 
+                ON cvTable.job_id = jobPost.job_id
+            WHERE interviews.company_id = ?
+              AND jobPost.company_id = ?
+              AND interviews.dateConfirmed = 'confirmed'
+            ORDER BY interview_slots.slot_datetime ASC";
+
+        return $this->query($query, [$company_id, $company_id]);
     }
 }

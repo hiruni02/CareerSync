@@ -11,6 +11,9 @@ $data['cv'] = $cv->getSentCVsByCandidate($_SESSION['USER']->user_id);
 $interview = new Interview;
 $data['interview'] = $interview->getCandidateInterview($_SESSION['USER']->user_id);
 
+$confirmedInterview = new Interview;
+$data['confirmedInterview'] = $confirmedInterview->getInterviewsByCandidate($_SESSION['USER']->user_id);
+
 $photoPath = null;
 
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
@@ -65,21 +68,36 @@ if ($isProfileUpdate) {
     $data['errors'] = $errors;
 }
 
-
-/*
-    change dateConfirmed field from unconfirmed to confirmed
-    delete time slots that isnt the confirmed slot by the candidate
-*/
-
-
 if ($isConfirmingInterviewDate) {
     $interview_id = $_POST['interview_id'];
     $selected_date = $_POST['selected_date'];
 
     $interview = new Interview;
-    $interviewRecord = $interview->first(['candidate_id' => $_SESSION['USER']->user_id, 'interview_id' => $interview_id]);
+    $slot = new InterviewSlot;
 
-    //confirming
-    $interview->update($interviewRecord->interview_id, ['dateConfirmed' => 'confirmed'], 'interview_id');
-    redirect('dashboard');
+    // fetch interview record
+    $interviewRecord = $interview->first([
+        'candidate_id' => $_SESSION['USER']->user_id,
+        'interview_id' => $interview_id
+    ]);
+
+    if ($interviewRecord) {
+        $interview->update(
+            $interviewRecord->interview_id,
+            ['dateConfirmed' => 'confirmed'],
+            'interview_id'
+        );
+
+        $allSlots = $slot->where(['interview_id' => $interview_id]);
+
+        if (!empty($allSlots)) {
+            foreach ($allSlots as $s) {
+                if ($s->slot_datetime !== $selected_date) {
+                    $slot->delete($s->slot_id, 'slot_id');
+                }
+            }
+        }
+        redirect('dashboard');
+        exit;
+    }
 }

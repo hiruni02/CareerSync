@@ -94,90 +94,40 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
 <div class="interview-section">
     <h3>Upcoming Interviews</h3>
     <div class="interview-scrollbox">
-
-        <div class="interview-item">
-            <div class="interview-row">
-                <span class="interview-label">Position:</span>
-                <span class="interview-value">Software Engineer Intern</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Company:</span>
-                <span class="interview-value">TechNova Solutions</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Interview Date:</span>
-                <span class="interview-value">2025-06-09</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Method:</span>
-                <span class="interview-value">Online</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Address:</span>
-                <span class="interview-value">https://app.zoom.us/wc/8863638238/join?fromPWA=1</span>
-            </div>
-            <div class="interview-row interview-cv">
-                <span class="interview-label">Candidate CV:</span>
-                <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="interview-cvBtn" target="_blank">View CV</a>
-            </div>
-        </div>
-
-        <div class="interview-item">
-            <div class="interview-row">
-                <span class="interview-label">Position:</span>
-                <span class="interview-value">UI/UX Designer</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Company:</span>
-                <span class="interview-value">PixelWorks Studio</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Interview Date:</span>
-                <span class="interview-value">2025-06-11</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Method:</span>
-                <span class="interview-value">Physical</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Address:</span>
-                <span class="interview-value">123 Tech Park, Silicon Avenue, CA</span>
-            </div>
-            <div class="interview-row interview-cv">
-                <span class="interview-label">Candidate CV:</span>
-                <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="interview-cvBtn" target="_blank">View CV</a>
-            </div>
-        </div>
-
-        <div class="interview-item">
-            <div class="interview-row">
-                <span class="interview-label">Position:</span>
-                <span class="interview-value">Data Analyst Intern</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Company:</span>
-                <span class="interview-value">DataWave Analytics</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Interview Date:</span>
-                <span class="interview-value">2025-06-13</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Method:</span>
-                <span class="interview-value">Online</span>
-            </div>
-            <div class="interview-row">
-                <span class="interview-label">Address:</span>
-                <span class="interview-value">https://example.com/zoom-meeting/FAKE-56327</span>
-            </div>
-            <div class="interview-row interview-cv">
-                <span class="interview-label">Candidate CV:</span>
-                <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="interview-cvBtn" target="_blank">View CV</a>
-            </div>
-        </div>
+        <?php if (!empty($data['confirmedInterview'])): ?>
+            <?php foreach ($data['confirmedInterview'] as $iv): ?>
+                <div class="interview-item">
+                    <div class="interview-row">
+                        <span class="interview-label">Position:</span>
+                        <span class="interview-value"><?= htmlspecialchars($iv->posTitle) ?></span>
+                    </div>
+                    <div class="interview-row">
+                        <span class="interview-label">Company:</span>
+                        <span class="interview-value"><?= htmlspecialchars($iv->companyName) ?></span>
+                    </div>
+                    <div class="interview-row">
+                        <span class="interview-label">Interview Date:</span>
+                        <span class="interview-value"><?= htmlspecialchars($iv->slot_datetime) ?></span>
+                    </div>
+                    <div class="interview-row">
+                        <span class="interview-label">Method:</span>
+                        <span class="interview-value"><?= htmlspecialchars(ucfirst($iv->mode)) ?></span>
+                    </div>
+                    <div class="interview-row">
+                        <span class="interview-label">Address:</span>
+                        <a href="<?= htmlspecialchars($iv->address_link) ?>" target="_blank" class="interview-value"><?= htmlspecialchars($iv->address_link) ?></a>
+                    </div>
+                    <div class="interview-row interview-cv">
+                        <span class="interview-label">Candidate CV:</span>
+                        <a href="<?= ROOT . htmlspecialchars($iv->cv_file_path) ?>" class="interview-cvBtn" target="_blank">View CV</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="itemsEmpty">No upcoming interviews</p>
+        <?php endif; ?>
     </div>
 </div>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
