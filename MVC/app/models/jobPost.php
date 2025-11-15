@@ -49,4 +49,46 @@ class JobPost
     {
         $this->order_column = "job_id";
     }
+
+    public function getFilteredJobs($salary, $sort)
+    {
+        $query = "SELECT jobPost.*, company.company_photo_path, company.companyName
+              FROM jobPost
+              JOIN company ON jobPost.company_id = company.user_id
+              WHERE 1";
+
+        $params = [];
+
+        // Salary filter
+        if (!empty($salary)) {
+            $query .= " AND jobPost.salaryDetails >= ?";
+            $params[] = $salary;
+        }
+
+        // Sorting
+        switch ($sort) {
+            case 'asc':
+                $query .= " ORDER BY jobPost.posTitle ASC";
+                break;
+
+            case 'desc':
+                $query .= " ORDER BY jobPost.posTitle DESC";
+                break;
+
+            case 'highsalary':
+                $query .= " ORDER BY jobPost.salaryDetails DESC";
+                break;
+
+            case 'lowsalary':
+                $query .= " ORDER BY jobPost.salaryDetails ASC";
+                break;
+
+            default:
+                $query .= " ORDER BY jobPost.job_id DESC"; // default listing
+                break;
+        }
+
+        // Execute with MySQLi wrapper
+        return $this->query($query, $params);
+    }
 }

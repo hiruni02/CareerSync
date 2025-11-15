@@ -10,16 +10,16 @@
         <div class="filterTypeBox ">
             <label>Sort by:</label><br>
             <ul class="radioList">
-                <li><label><input type="radio" name="filter" checked> No filter</label></li>
-                <li><label><input type="radio" name="filter"> Ascending order</label></li>
-                <li><label><input type="radio" name="filter"> Descending order</label></li>
-                <li><label><input type="radio" name="filter"> Highest Salary</label></li>
-                <li><label><input type="radio" name="filter"> Lowest Salary</label></li>
+                <li><label><input type="radio" name="filter" value="none" checked> No filter</label></li>
+                <li><label><input type="radio" name="filter" value="asc"> Ascending order</label></li>
+                <li><label><input type="radio" name="filter" value="desc"> Descending order</label></li>
+                <li><label><input type="radio" name="filter" value="highsal"> Highest Salary</label></li>
+                <li><label><input type="radio" name="filter" value="lowsal"> Lowest Salary</label></li>
             </ul>
         </div>
-
-
+        <button id="applyFilters" class="apply-filter-btn">Apply Filters</button>
     </div>
+
     <div class="jobContainer">
         <h3>Featured Jobs:</h3>
         <div class="scrollBox">
@@ -60,8 +60,8 @@
                             </div>
                             <div class="job-content">
                                 <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?>
-                                    <button type="button" class="BM-button" >
-                                    <!-- <img class="icon" src="<?= ROOT ?>assets/svg_icons/add_bm.svg"> -->
+                                    <button type="button" class="BM-button">
+                                        <!-- <img class="icon" src="<?= ROOT ?>assets/svg_icons/add_bm.svg"> -->
                                     </button>
                                 </h4>
                                 <h4 class="company-name"><?= htmlspecialchars($job->companyName) ?></h4>
@@ -84,3 +84,15 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.getElementById("applyFilters").addEventListener("click", function(){
+        const salary = document.getElementById("salRange").value;
+        const sort = document.querySelector('input[name="filter"]:checked').value;
+        window.location.href = "<?= ROOT ?>home?salary=" + salary + "&sort=" + sort;
+    });
+
+    document.getElementById("salRange").addEventListener("input", function(){
+        document.getElementById("salValue").textContent = this.value;
+    });
+</script>
