@@ -1,23 +1,84 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/joblist.css">
 <section class="job-section">
     <div class="filtersContainer">
-        <div class="filterTypeBox ">
-            <h2>Filters :</h1>
-                <label for="salRange">Salary Range:</label><br>
-                <input type="range" id="salRange" name="salRange" min="21000" max="10000000" value="210000">
-                <div id="salValue">21000</div>
+        <button id="applyFilters" class="apply-filter-btn">Apply Filters</button><br><br>
+
+        <!-- Salary Range -->
+        <div class="filterTypeBox">
+            <label>Salary Range:</label>
+
+            <div class="salary-inputs">
+                <div class="salary-box">
+                    <label for="minSalary">Min:</label>
+                    <input type="number" id="minSalary" name="minSalary" placeholder="21000">
+                </div>
+
+                <div class="salary-box">
+                    <label for="maxSalary">Max:</label>
+                    <input type="number" id="maxSalary" name="maxSalary" placeholder="10000000">
+                </div>
+            </div>
         </div>
-        <div class="filterTypeBox ">
-            <label>Sort by:</label><br>
-            <ul class="radioList">
-                <li><label><input type="radio" name="filter" value="none" checked> No filter</label></li>
-                <li><label><input type="radio" name="filter" value="asc"> Ascending order</label></li>
-                <li><label><input type="radio" name="filter" value="desc"> Descending order</label></li>
-                <li><label><input type="radio" name="filter" value="highsal"> Highest Salary</label></li>
-                <li><label><input type="radio" name="filter" value="lowsal"> Lowest Salary</label></li>
-            </ul>
+
+        <!-- Sort Dropdown -->
+        <div class="filterTypeBox">
+            <label for="sortBy">Sort by:</label>
+            <select id="sortBy" name="sortBy" class="filter-dropdown">
+                <option value="none">No filter</option>
+                <option value="asc">Ascending order</option>
+                <option value="desc">Descending order</option>
+                <option value="highsal">Highest Salary</option>
+                <option value="lowsal">Lowest Salary</option>
+            </select>
         </div>
-        <button id="applyFilters" class="apply-filter-btn">Apply Filters</button>
+
+        <!-- City Dropdown -->
+        <div class="filterTypeBox">
+            <label for="city">City:</label>
+            <select id="city" name="city" class="filter-dropdown">
+                <option value="">All</option>
+                <option value="Colombo">Colombo</option>
+                <option value="Kandy">Kandy</option>
+                <option value="Galle">Galle</option>
+                <option value="Jaffna">Jaffna</option>
+                <option value="Matara">Matara</option>
+            </select>
+        </div>
+
+        <!-- Work Mode Dropdown -->
+        <div class="filterTypeBox">
+            <label for="workMode">Work Mode:</label>
+            <select id="workMode" name="workMode" class="filter-dropdown">
+                <option value="">All</option>
+                <option value="remote">Remote</option>
+                <option value="onsite">On-site</option>
+                <option value="hybrid">Hybrid</option>
+            </select>
+        </div>
+
+        <!-- Job Type Dropdown -->
+        <div class="filterTypeBox">
+            <label for="jobType">Job Type:</label>
+            <select id="jobType" name="jobType" class="filter-dropdown">
+                <option value="">All</option>
+                <option value="intern">Intern</option>
+                <option value="fullTime">Full-Time</option>
+                <option value="partTime">Part-Time</option>
+                <option value="freelance">Freelance</option>
+                <option value="contract">Contract</option>
+            </select>
+        </div>
+
+        <!-- Experience Level Dropdown -->
+        <div class="filterTypeBox">
+            <label for="experience">Experience Level:</label>
+            <select id="experience" name="experience" class="filter-dropdown">
+                <option value="">All</option>
+                <option value="entry">Entry</option>
+                <option value="mid">Mid</option>
+                <option value="senior">Senior</option>
+            </select>
+        </div>
     </div>
 
     <div class="jobContainer">
@@ -86,13 +147,13 @@
 </section>
 
 <script>
-    document.getElementById("applyFilters").addEventListener("click", function(){
+    document.getElementById("applyFilters").addEventListener("click", function() {
         const salary = document.getElementById("salRange").value;
         const sort = document.querySelector('input[name="filter"]:checked').value;
         window.location.href = "<?= ROOT ?>home?salary=" + salary + "&sort=" + sort;
     });
 
-    document.getElementById("salRange").addEventListener("input", function(){
+    document.getElementById("salRange").addEventListener("input", function() {
         document.getElementById("salValue").textContent = this.value;
     });
 </script>
