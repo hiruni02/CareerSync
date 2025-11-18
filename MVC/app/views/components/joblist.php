@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/joblist.css">
 <section class="job-section">
     <div class="filtersContainer">
-        <button id="applyFilters" class="apply-filter-btn">Apply Filters</button><br><br>
+        <button id="search" class="apply-filter-btn">Search</button><br><br>
 
         <!-- Salary Range -->
         <div class="filterTypeBox">
@@ -147,13 +147,25 @@
 </section>
 
 <script>
-    document.getElementById("applyFilters").addEventListener("click", function() {
-        const salary = document.getElementById("salRange").value;
-        const sort = document.querySelector('input[name="filter"]:checked').value;
-        window.location.href = "<?= ROOT ?>home?salary=" + salary + "&sort=" + sort;
-    });
+    document.getElementById("search").addEventListener("click", function() {
+        const minSalary = document.getElementById("minSalary").value;
+        const maxSalary = document.getElementById("maxSalary").value;
+        const sortBy = document.getElementById("sortBy").value;
+        const city = document.getElementById("city").value;
+        const workMode = document.getElementById("workMode").value;
+        const jobType = document.getElementById("jobType").value;
+        const experience = document.getElementById("experience").value;
 
-    document.getElementById("salRange").addEventListener("input", function() {
-        document.getElementById("salValue").textContent = this.value;
+        const params = new URLSearchParams();
+
+        if (minSalary) params.append("minSalary", minSalary);
+        if (maxSalary) params.append("maxSalary", maxSalary);
+        if (sortBy) params.append("sortBy", sortBy);
+        if (city) params.append("city", city);
+        if (workMode) params.append("workMode", workMode);
+        if (jobType) params.append("jobType", jobType);
+        if (experience) params.append("experience", experience);
+
+        window.location.href = "<?= ROOT ?>home?" + params.toString();
     });
 </script>

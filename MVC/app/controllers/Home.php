@@ -21,12 +21,19 @@ class Home
         $jobPost = new JobPost;
         $data['jobs'] = $jobPost->SelectAll();
 
-        //for job filtering 
-        $salary = $_GET['salary'] ?? null;
-        $sort = $_GET['sort'] ?? 'none';
+        $job = new JobPost;
 
-        $jobModel = new JobPost();
-        $data['jobs'] = $jobModel->getFilteredJobs($salary, $sort);
+        $filters = [
+            'minSalary'  => $_GET['minSalary'] ?? null,
+            'maxSalary'  => $_GET['maxSalary'] ?? null,
+            'sortBy'     => $_GET['sortBy'] ?? null,
+            'city'       => $_GET['city'] ?? null,
+            'workMode'   => $_GET['workMode'] ?? null,
+            'jobType'    => $_GET['jobType'] ?? null,
+            'experience' => $_GET['experience'] ?? null,
+        ];
+
+        $data['jobs'] = $job->getFilteredJobs($filters);
 
         $this->view("home", $data);
     }
