@@ -3,21 +3,22 @@
     <div class="selector_window">
         <h1>Select a Counselor</h1>
         <div class="scrollbox">
-            <?php
-            for ($x = 0; $x <= 10; $x++) {
-            ?>
-                <div class="listItem">
-                    <div class="itemContent">
-                        <div class="title">Dr john doe</div>
-                        <img src="<?= ROOT ?>assets/images/default.png" alt="Counselor photo" class="counselor_photo">
-                        <div class="description">
-                            This description is about the counselor and what areas he/she specializes in
+            <?php if (!empty($data['counselors'])): ?>
+                <?php foreach ($data['counselors'] as $counsleor): ?>
+                    <div class="listItem">
+                        <div class="itemContent">
+                            <div class="title"><?= htmlspecialchars($counsleor->firstName) ?> <?= htmlspecialchars($counsleor->lastName) ?></div>
+                            <img src="<?= ROOT . htmlspecialchars($counsleor->counselor_photo_path) ?>" alt="Counselor photo" class="counselor_photo">
+                            <div class="description">
+                                This description is about the counselor and what areas he/she specializes in
+                            </div>
+                            <a href="<?= ROOT . htmlspecialchars($counsleor->certificate_path) ?>" class="interview-cvBtn" target="_blank">View CV</a>
                         </div>
                     </div>
-                </div>
-            <?php
-            }
-            ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="itemsEmpty">No Counselors Available</p>
+            <?php endif; ?>
         </div>
         <button id="counselor_selector_backBtn">Back</button>
     </div>

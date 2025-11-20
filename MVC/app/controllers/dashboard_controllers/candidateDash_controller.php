@@ -14,6 +14,10 @@ $data['interview'] = $interview->getCandidateInterview($_SESSION['USER']->user_i
 $confirmedInterview = new Interview;
 $data['confirmedInterview'] = $confirmedInterview->getInterviewsByCandidate($_SESSION['USER']->user_id);
 
+//for the counselor selector
+$counselors = new Counselor;
+$data['counselors'] = $counselors->SelectAll();
+
 $photoPath = null;
 
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
