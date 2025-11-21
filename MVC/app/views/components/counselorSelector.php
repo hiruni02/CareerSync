@@ -12,7 +12,10 @@
                             <div class="description">
                                 This description is about the counselor and what areas he/she specializes in
                             </div>
-                            <a href="<?= ROOT . htmlspecialchars($counsleor->certificate_path) ?>" class="interview-cvBtn" target="_blank">View CV</a>
+                            <a href="<?= ROOT . htmlspecialchars($counsleor->certificate_path) ?>" class="interview-cvBtn" target="_blank">View Certificate</a>
+                            <form method="POST">
+                                <button type="submit" class="request_meeting_btn" >Send Meeting Request</button>
+                            </form>
                         </div>
                     </div>
                 <?php endforeach; ?>
