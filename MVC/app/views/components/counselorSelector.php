@@ -14,6 +14,8 @@
                             </div>
                             <a href="<?= ROOT . htmlspecialchars($counsleor->certificate_path) ?>" class="interview-cvBtn" target="_blank">View Certificate</a>
                             <form method="POST">
+                                <input type="hidden" name="action" value="send_meeting_request">
+                                <input type="hidden" name="counselor_id" value="<?= $counsleor->user_id ?>">
                                 <button type="submit" class="request_meeting_btn" >Send Meeting Request</button>
                             </form>
                         </div>

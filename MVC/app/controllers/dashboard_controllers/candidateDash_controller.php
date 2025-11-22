@@ -18,11 +18,11 @@ $data['confirmedInterview'] = $confirmedInterview->getInterviewsByCandidate($_SE
 $counselors = new Counselor;
 $data['counselors'] = $counselors->SelectAll();
 
-$photoPath = null;
-
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
+$requestMeetingWithCounselor = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'send_meeting_request');
 
 //code for updating user profile 
+$photoPath = null;
 if ($isProfileUpdate) {
     $errors = [];
 
@@ -104,4 +104,14 @@ if ($isConfirmingInterviewDate) {
         redirect('dashboard');
         exit;
     }
+}
+
+if ($requestMeetingWithCounselor) {
+    $counselorRequest = new CounselorRequest;
+    $newRequest = [
+        'counselor_id'       => $_POST['counselor_id'],
+        'candidate_id'       => $_SESSION['USER']->user_id,
+    ];
+    $counselorRequest->insert($newRequest);
+    unset($_POST);
 }
