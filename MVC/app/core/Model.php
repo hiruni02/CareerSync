@@ -153,6 +153,38 @@ trait Model
                         FOREIGN KEY (interview_id) REFERENCES interviews(interview_id)
                         )";
         $this->query($interview_slot_table);
+
+        $counselor_meeting_request_table = "CREATE TABLE IF NOT EXISTS counselor_requests (
+                        request_id INT AUTO_INCREMENT PRIMARY KEY,
+                        candidate_id INT,
+                        counselor_id INT,
+                        counselor_acceptance ENUM('accept', 'pending') DEFAULT 'pending',
+                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
+                        FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
+                        )";
+        $this->query($counselor_meeting_request_table);
+
+        $counselor_meeting_table = "CREATE TABLE IF NOT EXISTS counselorMeetings (
+                        meeting_id INT AUTO_INCREMENT PRIMARY KEY,
+                        candidate_id INT,
+                        counselor_id INT,
+                        mode ENUM('online','physical') NOT NULL,
+                        address_link VARCHAR(255) NOT NULL,
+                        extra_details TEXT,
+                        dateConfirmed ENUM('confirmed','unconfirmed') DEFAULT 'unconfirmed',
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
+                        FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
+                    )";
+        $this->query($counselor_meeting_table);
+
+        $counselor_meeting_slot_table = "CREATE TABLE IF NOT EXISTS counselorMeeting_slots (
+                        slot_id INT AUTO_INCREMENT PRIMARY KEY,
+                        meeting_id INT,
+                        slot_datetime DATETIME,
+                        FOREIGN KEY (meeting_id) REFERENCES counselorMeetings(meeting_id)
+                        )";
+        $this->query($counselor_meeting_slot_table);
     }
 
     public function SelectAll()
@@ -218,7 +250,7 @@ trait Model
     public function update($id, $data, $id_column = 'id')
     {
         if (!empty($this->allowedColumns)) { //remove unwanted data
-                foreach ($data as $key => $value) { //foreach ($this->data as $key => $value) {
+            foreach ($data as $key => $value) { //foreach ($this->data as $key => $value) {
                 if (!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);
                 }
