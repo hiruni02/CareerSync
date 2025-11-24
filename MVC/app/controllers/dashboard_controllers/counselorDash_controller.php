@@ -3,6 +3,10 @@
 $counselor = new Counselor;
 $data['counselorTable'] = $counselor->first(['user_id' => $_SESSION['USER']->user_id]);
 
+//extract meting requests made by candidates
+$request = new CounselorRequest;
+$data['request'] = $request->getMeetingRequest($_SESSION['USER']->user_id);
+
 $photoPath = null;
 
 //code for updating user profile 

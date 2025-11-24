@@ -9,7 +9,7 @@
     background: var(--mid);
     padding: 20px;
     border-radius: 12px;
-    width: 60%;
+    width: 50%;
 }
 
 .meeting-requests h1 {
@@ -45,8 +45,16 @@
 
 .candidate-name {
     flex-grow: 1;
-    font-size: 16px;
+    font-size: 1.4rem;
     font-weight: bold;
+}
+
+.itemsEmpty {
+    background-color: var(--lightBlue);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: normal;
 }
 
 .schedule-btn {

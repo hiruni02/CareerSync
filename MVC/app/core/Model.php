@@ -158,7 +158,7 @@ trait Model
                         request_id INT AUTO_INCREMENT PRIMARY KEY,
                         candidate_id INT,
                         counselor_id INT,
-                        counselor_acceptance ENUM('accept', 'pending') DEFAULT 'pending',
+                        counselor_acceptance ENUM('accepted', 'pending') DEFAULT 'pending',
                         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
                         FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)

@@ -54,39 +54,27 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSideSchdeu
     <div class="meeting-requests">
         <h1>Meeting requests</h1>
         <div class="scrollBox">
-            <div class="request-card">
-                <img src="<?= ROOT ?>assets/images/default.png" alt="Counselor photo" class="candidate_photo">
-                <div class="candidate-name">Kavi Perera</div>
-                <button class="schedule-btn">Schedule Meeting</button>
-            </div>
-
-            <div class="request-card">
-                <img src="<?= ROOT ?>assets/images/default.png" alt="Counselor photo" class="candidate_photo">
-                <div class="candidate-name">Suman Fernando</div>
-                <button class="schedule-btn">Schedule Meeting</button>
-            </div>
-
-            <div class="request-card">
-                <img src="<?= ROOT ?>assets/images/default.png" alt="Counselor photo" class="candidate_photo">
-                <div class="candidate-name">Lisa Matthews</div>
-                <button class="schedule-btn">Schedule Meeting</button>
-            </div>
-
-            <div class="request-card">
-                <img src="<?= ROOT ?>assets/images/default.png" alt="Counselor photo" class="candidate_photo">
-                <div class="candidate-name">Rahul Singh</div>
-                <button class="schedule-btn">Schedule Meeting</button>
-            </div>
-
-            <div class="request-card">
-                <img src="<?= ROOT ?>assets/images/default.png" alt="Counselor photo" class="candidate_photo">
-                <div class="candidate-name">Yohan Silva</div>
-                <button class="schedule-btn">Schedule Meeting</button>
-            </div>
+            <?php
+            $pendingRequests = array_filter($data['request'] ?: [], function ($req) {
+                return $req->counselor_acceptance === "pending";
+            });
+            ?>
+            <?php if (!empty($pendingRequests)): ?>
+                <?php foreach ($pendingRequests as $req): ?>
+                    <div class="request-card">
+                        <img src="<?= ROOT . htmlspecialchars($req->candidate_photo_path) ?>" alt="candidate photo" class="candidate_photo">
+                        <div class="candidate-name"><?= htmlspecialchars($req->candidate_firstName . " " . $req->candidate_lastName) ?></div>
+                        <button class="schedule-btn">Schedule Meeting</button>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class='itemsEmpty'>No Meeting Requests Received Yet </p>
+            <?php endif; ?>
 
         </div>
     </div>
 </div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const schedulerBg = document.querySelector(".popup-overlay");
