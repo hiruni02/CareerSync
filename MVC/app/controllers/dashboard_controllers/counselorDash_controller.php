@@ -7,6 +7,8 @@ $data['counselorTable'] = $counselor->first(['user_id' => $_SESSION['USER']->use
 $request = new CounselorRequest;
 $data['request'] = $request->getMeetingRequest($_SESSION['USER']->user_id);
 
+$isSchedulingMeeting = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'counselor_scheduler');
+
 $photoPath = null;
 
 //code for updating user profile 
@@ -58,4 +60,50 @@ if ($isProfileUpdate) {
     }
 
     $data['errors'] = $errors;
+}
+
+if ($isSchedulingMeeting) {
+
+    $candidate_id = $_POST['candidate_id'] ?? null;
+    $counselor_id = $_SESSION['USER']->user_id;
+    $mode = $_POST['medium'] ?? null;
+    $address = $_POST['address'] ?? null;
+    $details = $_POST['details'] ?? '';
+    $slots = $_POST['slots'] ?? [];
+
+    $reqModel = new CounselorRequest();
+    $reqRecord = $reqModel->first([
+        'candidate_id' => $candidate_id,
+        'counselor_id' => $counselor_id
+    ]);
+
+    if (!$reqRecord) {
+        $_SESSION['error'] = "Meeting request not found.";
+        redirect("dashboard/counselorDash");
+        exit;
+    }
+
+    if (!$candidate_id || !$mode || !$address || empty($slots)) {
+        $_SESSION['error'] = "Please fill in all required fields.";
+        redirect("dashboard/counselorDash");
+        exit;
+    }
+
+    $reqModel->update($reqRecord->request_id, [
+        'counselor_acceptance' => 'accepted'
+    ], 'request_id');
+
+
+    $meetingModel = new CounselorMeeting();
+    $meeting_id = $meetingModel->createMeeting([
+        'candidate_id' => $candidate_id,
+        'counselor_id' => $counselor_id,
+        'mode'          => $mode,
+        'address_link'  => $address,
+        'extra_details' => $details
+    ], $slots);
+
+    $_SESSION['success'] = "Meeting scheduled. Waiting for candidate to confirm.";
+    redirect("dashboard/counselorDash");
+    exit;
 }

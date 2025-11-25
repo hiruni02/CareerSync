@@ -13,15 +13,14 @@ class CounselorRequest
 
     public function getMeetingRequest($counselor_id)
     {
-        $query = "SELECT 
-                cr.*, 
-                c.firstName AS candidate_firstName,
-                c.lastName AS candidate_lastName,
-                c.candidate_photo_path
-              FROM counselor_requests cr
-              INNER JOIN candidate c ON cr.candidate_id = c.user_id
-              WHERE cr.counselor_id = ?
-              ORDER BY cr.request_id DESC";
+        $query =
+            "SELECT cr.*, 
+                    c.firstName AS candidate_firstName,
+                    c.lastName AS candidate_lastName,
+                    c.candidate_photo_path
+             FROM counselor_requests cr
+             JOIN candidate c ON c.user_id = cr.candidate_id
+             WHERE cr.counselor_id = ?";
 
         return $this->query($query, [$counselor_id]);
     }

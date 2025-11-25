@@ -1,5 +1,5 @@
 <?php
-class CounselorMeetingSlots
+class CounselorMeetingSlot
 {
     use Model;
     protected $table = 'counselorMeeting_slots';

@@ -64,7 +64,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSideSchdeu
                     <div class="request-card">
                         <img src="<?= ROOT . htmlspecialchars($req->candidate_photo_path) ?>" alt="candidate photo" class="candidate_photo">
                         <div class="candidate-name"><?= htmlspecialchars($req->candidate_firstName . " " . $req->candidate_lastName) ?></div>
-                        <button class="schedule-btn">Schedule Meeting</button>
+                        <button class="schedule-btn" data-candidate="<?= $req->candidate_id ?>">Schedule Meeting</button>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -77,22 +77,27 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSideSchdeu
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const schedulerBg = document.querySelector(".popup-overlay");
-        const backBtn = document.getElementById("schedulerBackBtn");
-        const openBtns = document.querySelectorAll(".schedule-btn");
+    const schedulerBg = document.querySelector(".popup-overlay");
+    const backBtn = document.getElementById("schedulerBackBtn");
+    const openBtns = document.querySelectorAll(".schedule-btn");
+    const candidateInput = document.getElementById("schedulerCandidateId");
 
-        openBtns.forEach(btn => {
-            btn.addEventListener("click", () => {
-                if (schedulerBg) {
-                    schedulerBg.classList.add("active");
-                }
-            });
+    openBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const candidateId = btn.dataset.candidate;
+
+            candidateInput.value = candidateId;
+
+            schedulerBg.classList.add("active");
         });
-
-        if (backBtn) {
-            backBtn.addEventListener("click", () => {
-                schedulerBg.classList.remove("active");
-            });
-        }
     });
+
+    if (backBtn) {
+        backBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            schedulerBg.classList.remove("active");
+        });
+    }
+});
+
 </script>

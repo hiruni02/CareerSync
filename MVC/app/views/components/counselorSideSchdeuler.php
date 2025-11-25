@@ -4,15 +4,19 @@
     <div class='popup-window'>
         <h1>Schedule meeting with candidate</h1>
         <form method="POST">
-            <input type="hidden" name="action" value="company_scheduler">
+            <input type="hidden" name="candidate_id" id="schedulerCandidateId">
+            <input type="hidden" name="request_id" id="schedulerRequestId">
+            <input type="hidden" name="action" value="counselor_scheduler">
+            <input type="hidden" name="decision" value="accept">
+
             <div class="input-field">
                 <label for="medium">Online or Physical </label>
+                <select name="medium">
+                    <option value="" disabled selected hidden>Select interview medium</option>
+                    <option value="online">Online</option>
+                    <option value="physical">Physical</option>
+                </select>
             </div>
-            <select name="medium">
-                <option value="" disabled selected hidden>Select interview medium</option>
-                <option value="online">Online</option>
-                <option value="physical">Physical</option>
-            </select>
 
             <div class="input-field">
                 <label for="address">Address/Link</label>
