@@ -1,8 +1,8 @@
 <?php
-class CounselorMeeting
+class Consultation
 {
     use Model;
-    protected $table = 'counselorMeetings';
+    protected $table = 'consultation';
 
     protected $allowedColumns = [
         'candidate_id',
@@ -18,7 +18,7 @@ class CounselorMeeting
         $this->insert($data);
 
         $meeting = $this->query(
-            "SELECT meeting_id FROM counselorMeetings 
+            "SELECT meeting_id FROM consultation 
              WHERE candidate_id=? AND counselor_id=? 
              ORDER BY meeting_id DESC LIMIT 1",
             [$data['candidate_id'], $data['counselor_id']]
@@ -28,7 +28,7 @@ class CounselorMeeting
 
         $meeting_id = $meeting[0]->meeting_id;
 
-        $slotModel = new CounselorMeetingSlot();
+        $slotModel = new ConsultationSlot();
 
         foreach ($slots as $slot) {
             $slotModel->insert([

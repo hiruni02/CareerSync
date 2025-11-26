@@ -154,7 +154,7 @@ trait Model
                         )";
         $this->query($interview_slot_table);
 
-        $counselor_meeting_request_table = "CREATE TABLE IF NOT EXISTS counselor_requests (
+        $consultation_request_table = "CREATE TABLE IF NOT EXISTS consultation_requests (
                         request_id INT AUTO_INCREMENT PRIMARY KEY,
                         candidate_id INT,
                         counselor_id INT,
@@ -163,9 +163,9 @@ trait Model
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
                         FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
                         )";
-        $this->query($counselor_meeting_request_table);
+        $this->query($consultation_request_table);
 
-        $counselor_meeting_table = "CREATE TABLE IF NOT EXISTS counselorMeetings (
+        $consultation_table = "CREATE TABLE IF NOT EXISTS consultation (
                         meeting_id INT AUTO_INCREMENT PRIMARY KEY,
                         candidate_id INT,
                         counselor_id INT,
@@ -176,15 +176,15 @@ trait Model
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
                         FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
                     )";
-        $this->query($counselor_meeting_table);
+        $this->query($consultation_table);
 
-        $counselor_meeting_slot_table = "CREATE TABLE IF NOT EXISTS counselorMeeting_slots (
+        $consultation_slot_table = "CREATE TABLE IF NOT EXISTS consultation_slots (
                         slot_id INT AUTO_INCREMENT PRIMARY KEY,
                         meeting_id INT,
                         slot_datetime DATETIME,
-                        FOREIGN KEY (meeting_id) REFERENCES counselorMeetings(meeting_id)
+                        FOREIGN KEY (meeting_id) REFERENCES consultation(meeting_id)
                         )";
-        $this->query($counselor_meeting_slot_table);
+        $this->query($consultation_slot_table);
     }
 
     public function SelectAll()

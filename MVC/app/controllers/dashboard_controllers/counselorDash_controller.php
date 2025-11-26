@@ -4,7 +4,7 @@ $counselor = new Counselor;
 $data['counselorTable'] = $counselor->first(['user_id' => $_SESSION['USER']->user_id]);
 
 //extract meting requests made by candidates
-$request = new CounselorRequest;
+$request = new ConsultationRequest;
 $data['request'] = $request->getMeetingRequest($_SESSION['USER']->user_id);
 
 $isSchedulingMeeting = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'counselor_scheduler');
@@ -71,7 +71,7 @@ if ($isSchedulingMeeting) {
     $details = $_POST['details'] ?? '';
     $slots = $_POST['slots'] ?? [];
 
-    $reqModel = new CounselorRequest();
+    $reqModel = new ConsultationRequest();
     $reqRecord = $reqModel->first([
         'candidate_id' => $candidate_id,
         'counselor_id' => $counselor_id
@@ -94,7 +94,7 @@ if ($isSchedulingMeeting) {
     ], 'request_id');
 
 
-    $meetingModel = new CounselorMeeting();
+    $meetingModel = new Consultation();
     $meeting_id = $meetingModel->createMeeting([
         'candidate_id' => $candidate_id,
         'counselor_id' => $counselor_id,

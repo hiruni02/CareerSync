@@ -1,8 +1,8 @@
 <?php
-class CounselorRequest
+class ConsultationRequest
 {
     use Model;
-    protected $table = 'counselor_requests';
+    protected $table = 'consultation_requests';
 
     protected $allowedColumns = [
         'candidate_id',
@@ -18,7 +18,7 @@ class CounselorRequest
                     c.firstName AS candidate_firstName,
                     c.lastName AS candidate_lastName,
                     c.candidate_photo_path
-             FROM counselor_requests cr
+             FROM consultation_requests cr
              JOIN candidate c ON c.user_id = cr.candidate_id
              WHERE cr.counselor_id = ?";
 

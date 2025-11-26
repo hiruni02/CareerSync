@@ -1,8 +1,8 @@
 <?php
-class CounselorMeetingSlot
+class ConsultationSlot
 {
     use Model;
-    protected $table = 'counselorMeeting_slots';
+    protected $table = 'consultation_slots';
 
     protected $allowedColumns = [
         'meeting_id',

@@ -107,7 +107,7 @@ if ($isConfirmingInterviewDate) {
 }
 
 if ($requestMeetingWithCounselor) {
-    $counselorRequest = new CounselorRequest;
+    $counselorRequest = new ConsultationRequest;
     $newRequest = [
         'counselor_id'       => $_POST['counselor_id'],
         'candidate_id'       => $_SESSION['USER']->user_id,
