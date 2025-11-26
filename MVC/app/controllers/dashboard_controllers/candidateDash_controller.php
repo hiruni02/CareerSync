@@ -18,6 +18,9 @@ $data['confirmedInterview'] = $confirmedInterview->getInterviewsByCandidate($_SE
 $counselors = new Counselor;
 $data['counselors'] = $counselors->SelectAll();
 
+$consultation = new Consultation;
+$data['consultation'] = $consultation->getConsultationDetails($_SESSION['USER']->user_id);
+
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
 $requestMeetingWithCounselor = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'send_meeting_request');
 

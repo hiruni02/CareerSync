@@ -39,4 +39,35 @@ class Consultation
 
         return $meeting_id;
     }
+
+    public function getConsultationDetails($candidate_id)
+    {
+        $query = "SELECT 
+                cr.request_id,
+                cr.counselor_acceptance,
+                counselor.firstName,
+                counselor.lastName,
+                consultation.meeting_id,
+                consultation.mode,
+                consultation.address_link,
+                consultation.extra_details,
+                cs.slot_datetime
+            FROM consultation_requests cr
+            INNER JOIN counselor
+                ON cr.counselor_id = counselor.user_id
+            LEFT JOIN consultation
+                ON cr.candidate_id = consultation.candidate_id
+               AND cr.counselor_id = consultation.counselor_id
+            LEFT JOIN consultation_slots cs
+                ON consultation.meeting_id = cs.meeting_id
+               AND cs.slot_datetime = (
+                    SELECT MIN(slot_datetime)
+                    FROM consultation_slots
+                    WHERE meeting_id = consultation.meeting_id
+               )
+            WHERE cr.candidate_id = ?
+            ORDER BY cr.request_id DESC";
+
+        return $this->query($query, [$candidate_id]);
+    }
 }
