@@ -159,7 +159,7 @@ if ($isDeletingJob) {
 
 if ($isSchedulingInterview) {
     $candidate_id = $_POST['candidate_id'] ?? null;
-    $job_id = $_POST['job_id'] ?? null;
+    $job_id = $_POST['job_id'];
     $company_id = $_SESSION['USER']->user_id;
     $mode = $_POST['medium'] ?? null;
     $address = $_POST['address'] ?? null;
@@ -195,6 +195,7 @@ if ($isSchedulingInterview) {
             $interviewModel->createInterview([
                 'candidate_id'  => $candidate_id,
                 'company_id'    => $company_id,
+                'job_id'        => $job_id,
                 'mode'          => $mode,
                 'address_link'  => $address,
                 'extra_details' => $details

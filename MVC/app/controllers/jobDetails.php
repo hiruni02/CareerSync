@@ -40,7 +40,25 @@ class JobDetails
                 exit;
             }
         }
+
         $data['job'] = $jobData;
+
+        $alreadyApplied = false;
+
+        if (!empty($_SESSION['USER']) && $_SESSION['USER']->role === 'candidate') {
+            $cv = new CV;
+            $existingCV = $cv->first([
+                'job_id' => $jobData->job_id,
+                'candidate_id' => $_SESSION['USER']->user_id
+            ]);
+
+            if ($existingCV) {
+                $alreadyApplied = true;
+            }
+        }
+
+        $data['alreadyApplied'] = $alreadyApplied;
+
         $this->view("jobdetails", $data);
     }
 }

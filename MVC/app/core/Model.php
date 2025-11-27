@@ -129,7 +129,8 @@ trait Model
                         validator_approval ENUM('approved', 'pending', 'rejected') DEFAULT 'pending',
                         company_approval ENUM('approved', 'pending', 'rejected') DEFAULT 'pending',
                         FOREIGN KEY (job_id) REFERENCES jobPost(job_id),
-                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id)
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
+                        UNIQUE KEY unique_candidate_job (job_id, candidate_id)
                     )";
         $this->query($cv_table);
 
@@ -137,12 +138,14 @@ trait Model
                         interview_id INT AUTO_INCREMENT PRIMARY KEY,
                         candidate_id INT,
                         company_id INT,
+                        job_id INT,
                         mode ENUM('online','physical') NOT NULL,
                         address_link VARCHAR(255) NOT NULL,
                         extra_details TEXT,
                         dateConfirmed ENUM('confirmed','unconfirmed') DEFAULT 'unconfirmed',
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
-                        FOREIGN KEY (company_id) REFERENCES company(user_id)
+                        FOREIGN KEY (company_id) REFERENCES company(user_id),
+                        FOREIGN KEY (job_id) REFERENCES jobPost(job_id)
                     )";
         $this->query($interviews_table);
 
