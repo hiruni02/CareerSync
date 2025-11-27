@@ -211,7 +211,3 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
         });
     });
 </script>
-
-<?php
-    show($data['consultation']);
-?>

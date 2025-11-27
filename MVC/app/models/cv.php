@@ -7,6 +7,8 @@ class CV
         'job_id',
         'candidate_id',
         'cv_file_path',
+        'validator_approval',
+        'company_approval',
     ];
 
     public function SelectAll()
@@ -27,7 +29,7 @@ class CV
 
     public function getSentCVsByCandidate($candidate_id)
     {
-        $query = "SELECT DISTINCT
+        $query = "SELECT 
                 cvTable.cv_id,
                 cvTable.cv_file_path,
                 cvTable.candidate_id,
@@ -39,13 +41,7 @@ class CV
                 candidate.lastName,
                 CONCAT(candidate.firstName, ' ', candidate.lastName) AS candidateName,
                 company.companyName,
-                jobPost.posTitle AS posTitle,
-                interviews.interview_id,
-                interviews.company_id,
-                interviews.mode,
-                interviews.address_link,
-                interviews.extra_details,
-                interviews.dateConfirmed
+                jobPost.posTitle AS posTitle
             FROM cvTable
             JOIN candidate 
                 ON cvTable.candidate_id = candidate.user_id
@@ -53,18 +49,16 @@ class CV
                 ON cvTable.job_id = jobPost.job_id
             JOIN company 
                 ON jobPost.company_id = company.user_id
-            INNER JOIN interviews 
+            LEFT JOIN interviews 
                 ON interviews.candidate_id = cvTable.candidate_id 
                 AND interviews.company_id = company.user_id
-                AND interviews.dateConfirmed = 'unconfirmed'
             WHERE cvTable.candidate_id = ?
+              AND (interviews.interview_id IS NULL)
             ORDER BY cvTable.applied_at DESC";
 
         $result = $this->query($query, [$candidate_id]);
         return $result ?: [];
     }
-
-
 
     public function getApprovedCVsByCompany($company_id)
     {

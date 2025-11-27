@@ -112,9 +112,19 @@ if ($isConfirmingInterviewDate) {
 if ($requestMeetingWithCounselor) {
     $counselorRequest = new ConsultationRequest;
     $newRequest = [
-        'counselor_id'       => $_POST['counselor_id'],
-        'candidate_id'       => $_SESSION['USER']->user_id,
+        'counselor_id' => $_POST['counselor_id'],
+        'candidate_id' => $_SESSION['USER']->user_id,
     ];
-    $counselorRequest->insert($newRequest);
-    unset($_POST);
+
+    $existing = $counselorRequest->first([
+        'counselor_id' => $_POST['counselor_id'],
+        'candidate_id' => $_SESSION['USER']->user_id,
+    ]);
+
+    if (!$existing) {
+        $counselorRequest->insert($newRequest);
+    }
+
+    redirect('dashboard');
+    exit;
 }
