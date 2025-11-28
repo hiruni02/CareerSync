@@ -1,4 +1,4 @@
-.scheduler_bg {
+.interview_scheduler_bg {
     background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(7px);
     position: fixed;
@@ -12,7 +12,25 @@
     display: none;
 }
 
-.scheduler_bg.active {
+.consultation_scheduler_bg{
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.interview_scheduler_bg.active {
+    display: flex;
+}
+
+.consultation_scheduler_bg.active {
     display: flex;
 }
 

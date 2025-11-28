@@ -21,6 +21,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php"
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideScheduler.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.php");
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultationScheduler.php");
 ?>
 
 <h1 class="dashboard_tag">Welcome back <?php echo $candidateTable->firstName; ?> !</h1>
@@ -52,7 +53,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
     <div class='scrollBoxContainer'>
         <h1>Sent Applications</h1>
         <div class="scrollBox">
-            <ul class="applications">
+            <ul class="applications job-applications">
                 <?php
                 $sent_cv = $data['cv'];
                 ?>
@@ -95,7 +96,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
     <div class='scrollBoxContainer'>
         <h1>Sent Consultation Requests</h1>
         <div class="scrollBox">
-            <ul class="applications">
+            <ul class="applications consultation-list">
                 <?php if (!empty($data['consultation'])): ?>
                     <?php foreach ($data['consultation'] as $cons): ?>
                         <li class="application_item">
@@ -166,48 +167,77 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.p
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        const schedulerBg = document.querySelector(".scheduler_bg");
-        const schedulerbackBtn = document.getElementById("schedulerBackBtn");
+
+        /* ------------------------------------------
+           INTERVIEW SCHEDULER (Job Applications)
+        ------------------------------------------- */
+        const interviewBg = document.querySelector(".interview_scheduler_bg");
+        const interviewBackBtn = document.getElementById("interviewSchedulerBackBtn");
+
+        // Select only job application items
+        const jobAppItems = document.querySelectorAll(".applications.job-applications .application_item");
+
+        jobAppItems.forEach(item => {
+            const status = item.querySelector(".status");
+
+            if (status && status.classList.contains("accepted")) {
+                // Open interview scheduler
+                item.addEventListener("click", () => {
+                    interviewBg.classList.add("active");
+                });
+
+            } else if (status && status.classList.contains("rejected")) {
+                // Allow deletion of rejected job applications
+                item.addEventListener("click", () => {
+                    const confirmDelete = confirm("This application was rejected. Do you want to delete it?");
+                    if (confirmDelete) item.remove();
+                });
+            }
+        });
+
+        interviewBackBtn.addEventListener("click", () => {
+            interviewBg.classList.remove("active");
+        });
+
+
+        /* ------------------------------------------
+           CONSULTATION SCHEDULER (Consultation Requests)
+        ------------------------------------------- */
+        const consultationBg = document.querySelector(".consultation_scheduler_bg");
+        const consultationBackBtn = document.getElementById("consultationSchedulerBackBtn");
+
+        // Select only consultation request items
+        const consultationItems = document.querySelectorAll(".applications.consultation-list .application_item");
+
+        consultationItems.forEach(item => {
+            const status = item.querySelector(".status");
+
+            if (status && status.classList.contains("accepted")) {
+                item.addEventListener("click", () => {
+                    consultationBg.classList.add("active");
+                });
+            }
+        });
+
+        consultationBackBtn.addEventListener("click", () => {
+            consultationBg.classList.remove("active");
+        });
+
+
+        /* ------------------------------------------
+           COUNSELOR SELECTOR
+        ------------------------------------------- */
         const selectCounselorBtn = document.getElementById("select_counselor");
         const counselorSelector = document.querySelector(".selector_bg");
         const counselorSelectBackBtn = document.getElementById("counselor_selector_backBtn");
 
-        // Select all application items
-        const appItems = document.querySelectorAll(".application_item");
-
-        appItems.forEach(item => {
-            // Find the status inside each application
-            const status = item.querySelector(".status");
-
-            // If the status exists and is "accepted"
-            if (status && status.classList.contains("accepted")) {
-                item.addEventListener("click", () => {
-                    schedulerBg.classList.add("active");
-                });
-            } else if (status && status.classList.contains("rejected")) {
-                item.addEventListener("click", () => {
-                    const confirmDelete = confirm("This application was rejected. Do you want to delete it?");
-                    if (confirmDelete) {
-                        item.remove();
-                    }
-                });
-            }
-
-        });
-
-        // Close scheduler when Back is clicked
-        schedulerbackBtn.addEventListener("click", () => {
-            schedulerBg.classList.remove("active");
-        });
-
-        // Open counselor selector
         selectCounselorBtn.addEventListener("click", () => {
             counselorSelector.style.display = "flex";
         });
 
-        // Close counselor selector when back button is clicked
         counselorSelectBackBtn.addEventListener("click", () => {
             counselorSelector.style.display = "none";
         });
+
     });
 </script>

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/dashboard/candidateScheduler.css">
 
-<div class="scheduler_bg">
+<div class="interview_scheduler_bg">
     <div class="scheduler_window">
         <h1>Schedule Interview</h1>
 
@@ -30,7 +30,7 @@
             </div>
 
             <div class="form_btns">
-                <button type="button" id="schedulerBackBtn" class="back-btn">Back</button>
+                <button type="button" id="interviewSchedulerBackBtn" class="back-btn">Back</button>
                 <button type="submit" class="send-btn">Confirm Date</button>
             </div>
         </form>

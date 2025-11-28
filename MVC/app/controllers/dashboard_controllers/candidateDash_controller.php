@@ -21,8 +21,12 @@ $data['counselors'] = $counselors->SelectAll();
 $consultation = new Consultation;
 $data['consultation'] = $consultation->getConsultationDetails($_SESSION['USER']->user_id);
 
+$data['consultationMeeting'] = $consultation->getCandidateConsultation($_SESSION['USER']->user_id);
+
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
 $requestMeetingWithCounselor = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'send_meeting_request');
+$isConfirmingConsultationDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_consultation_scheduler');
+
 
 //code for updating user profile 
 $photoPath = null;
@@ -127,4 +131,42 @@ if ($requestMeetingWithCounselor) {
 
     redirect('dashboard');
     exit;
+}
+
+if ($isConfirmingConsultationDate) {
+
+    $meeting_id = $_POST['meeting_id'];
+    $selected_date = $_POST['selected_date'];
+
+    $consultation = new Consultation;
+    $slot = new ConsultationSlot;
+
+    // Verify meeting exists
+    $meetingRecord = $consultation->first([
+        'candidate_id' => $_SESSION['USER']->user_id,
+        'meeting_id' => $meeting_id
+    ]);
+
+    if ($meetingRecord) {
+
+        // Mark consultation date as confirmed
+        $consultation->update(
+            $meeting_id,
+            ['dateConfirmed' => 'confirmed'],
+            'meeting_id'
+        );
+
+        // Remove all other slots
+        $allSlots = $slot->where(['meeting_id' => $meeting_id]);
+
+        if (!empty($allSlots)) {
+            foreach ($allSlots as $s) {
+                if ($s->slot_datetime !== $selected_date) {
+                    $slot->delete($s->slot_id, 'slot_id');
+                }
+            }
+        }
+        redirect('dashboard');
+        exit;
+    }
 }

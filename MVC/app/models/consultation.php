@@ -70,4 +70,24 @@ class Consultation
 
         return $this->query($query, [$candidate_id]);
     }
+
+    public function getCandidateConsultation($candidate_id)
+    {
+        // fetch meeting record (the latest one for candidate)
+        $query = "SELECT * FROM consultation WHERE candidate_id = ? LIMIT 1";
+        $meeting = $this->query($query, [$candidate_id]);
+
+        $meetingData = $meeting ? $meeting[0] : null;
+        $slots = [];
+
+        if ($meetingData) {
+            $slotQuery = "SELECT slot_datetime FROM consultation_slots WHERE meeting_id = ?";
+            $slots = $this->query($slotQuery, [$meetingData->meeting_id]);
+        }
+
+        return [
+            'meetingData' => $meetingData,
+            'slots'       => $slots
+        ];
+    }
 }
