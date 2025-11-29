@@ -75,6 +75,36 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSideSchdeu
     </div>
 </div>
 
+<div class="interview-section">
+    <h3>Upcoming Counselor Meetings</h3>
+    <div class="interview-scrollbox">
+        <?php if (!empty($data['confirmedConsultation'])): ?>
+            <?php foreach ($data['confirmedConsultation'] as $cm): ?>
+                <div class="interview-item">
+                    <div class="interview-row">
+                        <span class="interview-label">Candudate:</span>
+                        <span class="interview-value"><?= htmlspecialchars($cm->candidate_first_name)." ".htmlspecialchars($cm->candidate_last_name) ?></span>
+                    </div>
+                    <div class="interview-row">
+                        <span class="interview-label">Consultation Date and Time:</span>
+                        <span class="interview-value"><?= htmlspecialchars($cm->slot_datetime) ?></span>
+                    </div>
+                    <div class="interview-row">
+                        <span class="interview-label">Method:</span>
+                        <span class="interview-value"><?= htmlspecialchars(ucfirst($cm->mode)) ?></span>
+                    </div>
+                    <div class="interview-row">
+                        <span class="interview-label">Address:</span>
+                        <a href="<?= htmlspecialchars($cm->address_link) ?>" target="_blank" class="interview-value"><?= htmlspecialchars($cm->address_link) ?></a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="itemsEmpty">No Upcoming Consultations</p>
+        <?php endif; ?>
+    </div>
+</div>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
     const schedulerBg = document.querySelector(".popup-overlay");

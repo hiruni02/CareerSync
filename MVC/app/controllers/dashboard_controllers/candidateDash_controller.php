@@ -20,8 +20,8 @@ $data['counselors'] = $counselors->SelectAll();
 
 $consultation = new Consultation;
 $data['consultation'] = $consultation->getConsultationDetails($_SESSION['USER']->user_id);
-
 $data['consultationMeeting'] = $consultation->getCandidateConsultation($_SESSION['USER']->user_id);
+$data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCandidate($_SESSION['USER']->user_id);
 
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
 $requestMeetingWithCounselor = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'send_meeting_request');

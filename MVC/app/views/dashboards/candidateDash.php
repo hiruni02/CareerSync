@@ -127,50 +127,85 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
     </div>
 </div>
 
-<div class="interview-section">
-    <h3>Upcoming Interviews</h3>
-    <div class="interview-scrollbox">
-        <?php if (!empty($data['confirmedInterview'])): ?>
-            <?php foreach ($data['confirmedInterview'] as $iv): ?>
-                <div class="interview-item">
-                    <div class="interview-row">
-                        <span class="interview-label">Position:</span>
-                        <span class="interview-value"><?= htmlspecialchars($iv->posTitle) ?></span>
+<div class="upcoming_section">
+    <div class="interview-section">
+        <h3>Upcoming Interviews</h3>
+        <div class="interview-scrollbox">
+            <?php if (!empty($data['confirmedInterview'])): ?>
+                <?php foreach ($data['confirmedInterview'] as $iv): ?>
+                    <div class="interview-item">
+                        <div class="interview-row">
+                            <span class="interview-label">Position:</span>
+                            <span class="interview-value"><?= htmlspecialchars($iv->posTitle) ?></span>
+                        </div>
+                        <div class="interview-row">
+                            <span class="interview-label">Company:</span>
+                            <span class="interview-value"><?= htmlspecialchars($iv->companyName) ?></span>
+                        </div>
+                        <div class="interview-row">
+                            <span class="interview-label">Interview Date:</span>
+                            <span class="interview-value"><?= htmlspecialchars($iv->slot_datetime) ?></span>
+                        </div>
+                        <div class="interview-row">
+                            <span class="interview-label">Method:</span>
+                            <span class="interview-value"><?= htmlspecialchars(ucfirst($iv->mode)) ?></span>
+                        </div>
+                        <div class="interview-row">
+                            <span class="interview-label">Address:</span>
+                            <a href="<?= htmlspecialchars($iv->address_link) ?>" target="_blank" class="interview-value"><?= htmlspecialchars($iv->address_link) ?></a>
+                        </div>
+                        <div class="interview-row interview-cv">
+                            <span class="interview-label">Candidate CV:</span>
+                            <a href="<?= ROOT . htmlspecialchars($iv->cv_file_path) ?>" class="interview-cvBtn" target="_blank">View CV</a>
+                        </div>
                     </div>
-                    <div class="interview-row">
-                        <span class="interview-label">Company:</span>
-                        <span class="interview-value"><?= htmlspecialchars($iv->companyName) ?></span>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="itemsEmpty">No upcoming interviews</p>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="interview-section">
+        <h3>Upcoming Counselor Meetings</h3>
+        <div class="interview-scrollbox">
+            <?php if (!empty($data['confirmedConsultation'])): ?>
+                <?php foreach ($data['confirmedConsultation'] as $cm): ?>
+                    <div class="interview-item">
+                        <div class="interview-row">
+                            <span class="interview-label">Counselor:</span>
+                            <span class="interview-value"><?= htmlspecialchars($cm->counselor_first_name) . " " . htmlspecialchars($cm->counselor_last_name) ?></span>
+                        </div>
+                        <div class="interview-row">
+                            <span class="interview-label">Consultation Date and Time:</span>
+                            <span class="interview-value"><?= htmlspecialchars($cm->slot_datetime) ?></span>
+                        </div>
+                        <div class="interview-row">
+                            <span class="interview-label">Method:</span>
+                            <span class="interview-value"><?= htmlspecialchars(ucfirst($cm->mode)) ?></span>
+                        </div>
+                        <div class="interview-row">
+                            <span class="interview-label">Address:</span>
+                            <a href="<?= htmlspecialchars($cm->address_link) ?>" target="_blank" class="interview-value"><?= htmlspecialchars($cm->address_link) ?></a>
+                        </div>
+                        <div class="interview-row">
+                            <span class="interview-label">Extra Details:</span>
+                            <span class="interview-value"><?= htmlspecialchars(ucfirst($cm->extra_details)) ?></span>
+                        </div>
                     </div>
-                    <div class="interview-row">
-                        <span class="interview-label">Interview Date:</span>
-                        <span class="interview-value"><?= htmlspecialchars($iv->slot_datetime) ?></span>
-                    </div>
-                    <div class="interview-row">
-                        <span class="interview-label">Method:</span>
-                        <span class="interview-value"><?= htmlspecialchars(ucfirst($iv->mode)) ?></span>
-                    </div>
-                    <div class="interview-row">
-                        <span class="interview-label">Address:</span>
-                        <a href="<?= htmlspecialchars($iv->address_link) ?>" target="_blank" class="interview-value"><?= htmlspecialchars($iv->address_link) ?></a>
-                    </div>
-                    <div class="interview-row interview-cv">
-                        <span class="interview-label">Candidate CV:</span>
-                        <a href="<?= ROOT . htmlspecialchars($iv->cv_file_path) ?>" class="interview-cvBtn" target="_blank">View CV</a>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="itemsEmpty">No upcoming interviews</p>
-        <?php endif; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="itemsEmpty">No Upcoming Consultations</p>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
+
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        /* ------------------------------------------
-           INTERVIEW SCHEDULER (Job Applications)
-        ------------------------------------------- */
         const interviewBg = document.querySelector(".interview_scheduler_bg");
         const interviewBackBtn = document.getElementById("interviewSchedulerBackBtn");
 
@@ -179,7 +214,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
 
         jobAppItems.forEach(item => {
             const status = item.querySelector(".status");
-
             if (status && status.classList.contains("accepted")) {
                 // Open interview scheduler
                 item.addEventListener("click", () => {
@@ -199,14 +233,9 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
             interviewBg.classList.remove("active");
         });
 
-
-        /* ------------------------------------------
-           CONSULTATION SCHEDULER (Consultation Requests)
-        ------------------------------------------- */
         const consultationBg = document.querySelector(".consultation_scheduler_bg");
         const consultationBackBtn = document.getElementById("consultationSchedulerBackBtn");
 
-        // Select only consultation request items
         const consultationItems = document.querySelectorAll(".applications.consultation-list .application_item");
 
         consultationItems.forEach(item => {
@@ -223,10 +252,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
             consultationBg.classList.remove("active");
         });
 
-
-        /* ------------------------------------------
-           COUNSELOR SELECTOR
-        ------------------------------------------- */
         const selectCounselorBtn = document.getElementById("select_counselor");
         const counselorSelector = document.querySelector(".selector_bg");
         const counselorSelectBackBtn = document.getElementById("counselor_selector_backBtn");

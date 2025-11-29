@@ -7,6 +7,9 @@ $data['counselorTable'] = $counselor->first(['user_id' => $_SESSION['USER']->use
 $request = new ConsultationRequest;
 $data['request'] = $request->getMeetingRequest($_SESSION['USER']->user_id);
 
+$consultation = new Consultation;
+$data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCounselor($_SESSION['USER']->user_id);
+
 $isSchedulingMeeting = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'counselor_scheduler');
 
 $photoPath = null;

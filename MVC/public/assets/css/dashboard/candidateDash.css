@@ -243,6 +243,14 @@
     font-weight: bold;
 }
 
+.upcoming_section {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    width: 100%;
+}
+
 @media (max-width: 900px) {
     .scrollBoxContainer {
         width: 100%;
