@@ -7,12 +7,20 @@ $data['companyTable'] = $company->first(['user_id' => $_SESSION['USER']->user_id
 $jobPost = new JobPost;
 $data['postedJobs'] = $jobPost->where(['company_id' => $_SESSION['USER']->user_id]);
 
+//fetching valid CV's
+$cv = new CV;
+$data['cv'] = $cv->getApprovedCVsByCompany($_SESSION['USER']->user_id);
+
+$confirmedInterviews = new Interview();
+$data['confirmedInterviews'] = $confirmedInterviews->getInterviewsByCompany($_SESSION['USER']->user_id);
+
 $photoPath = null;
 $certificatePath = $data['companyTable']->business_certificate ?? null;
 
 $isPostingJob = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'posting_job');
 $isExtendingDeadline = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'postedJobActions' && $_POST['btn'] === 'Extend Deadline');
 $isDeletingJob = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'postedJobActions' && $_POST['btn'] === 'Delete');
+$isSchedulingInterview = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'company_scheduler');
 
 if ($isProfileUpdate) {
     $errors = [];
@@ -112,9 +120,20 @@ if ($isPostingJob) {
     unset($_POST);
 }
 
-//do this later
 if ($isExtendingDeadline) {
+    $job_id = $_POST['job_id'] ?? null;
+    $new_deadline = $_POST['new_deadline'] ?? null;
 
+    if ($job_id && $new_deadline) {
+        $jobPost = new JobPost;
+        $jobPost->update($job_id, ['deadline' => $new_deadline], 'job_id');
+        $_SESSION['flash_message'] = "Deadline updated to $new_deadline successfully.";
+    } else {
+        $_SESSION['pjExtend_error_message'] = "Missing job ID or new deadline.";
+    }
+
+    redirect("dashboard/companyDash");
+    exit;
 }
 
 if ($isDeletingJob) {
@@ -134,6 +153,59 @@ if ($isDeletingJob) {
             exit;
         } catch (Exception $e) {
             $_SESSION['pjDeletion_error_message'] = "Error deleting job: " . $e->getMessage();
+        }
+    }
+}
+
+if ($isSchedulingInterview) {
+    $candidate_id = $_POST['candidate_id'] ?? null;
+    $job_id = $_POST['job_id'];
+    $company_id = $_SESSION['USER']->user_id;
+    $mode = $_POST['medium'] ?? null;
+    $address = $_POST['address'] ?? null;
+    $details = $_POST['details'] ?? '';
+    $slots = $_POST['slots'] ?? [];
+    $actionType = $_POST['decision'] ?? 'accept';
+
+    $cv = new CV;
+    $cvRecord = $cv->first(['candidate_id' => $candidate_id, 'job_id' => $job_id]);
+
+    if (!$cvRecord) {
+        $_SESSION['error'] = "No matching CV found for this candidate.";
+        redirect("dashboard/companyDash");
+        exit;
+    }
+
+    // REJECT CASE
+    if ($actionType === 'reject') {
+        $cv->update($cvRecord->cv_id, ['company_approval' => 'rejected'], 'cv_id');
+        $_SESSION['success'] = "Candidate rejected successfully.";
+        redirect("dashboard/companyDash");
+        exit;
+    }
+
+    // ACCEPT CASE
+    if ($actionType === 'accept') {
+        if ($candidate_id && $company_id && $mode && $address && !empty($slots)) {
+            // Update approval status
+            $cv->update($cvRecord->cv_id, ['company_approval' => 'approved'], 'cv_id');
+
+            // Create interview entry
+            $interviewModel = new Interview();
+            $interviewModel->createInterview([
+                'candidate_id'  => $candidate_id,
+                'company_id'    => $company_id,
+                'job_id'        => $job_id,
+                'mode'          => $mode,
+                'address_link'  => $address,
+                'extra_details' => $details
+            ], $slots);
+
+            $_SESSION['success'] = "Candidate accepted and interview scheduled.";
+            redirect("dashboard/companyDash");
+            exit;
+        } else {
+            $_SESSION['error'] = "Please fill in all required fields.";
         }
     }
 }

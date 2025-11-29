@@ -64,110 +64,50 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     <div class="content_section">
         <h3>Applied Candidates</h3>
         <div class="scScrollbox">
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Software Engineer Intern</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">John Silva</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
+            <?php $approvedCvs = $data['cv'] ?? []; ?>
 
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">UI/UX Designer</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Ayesha Fernando</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
+            <?php
+            $pendingCvs = array_filter($approvedCvs, fn($cv) => $cv->company_approval === 'pending');
+            ?>
 
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Data Analyst</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Kasun Perera</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Marketing Coordinator</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Rashmi De Alwis</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Project Manager Trainee</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Tharindu Wijesinghe</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-                <div class="li-actions">
-                    <button type="button" class="acceptBtn">Accept and schedule interview</button>
-                    <button type="button" class="rejectBtn">Reject candidate</button>
-                </div>
-            </div>
+            <?php if (!empty($pendingCvs)): ?>
+                <?php foreach ($pendingCvs as $cv): ?>
+                    <div class="listItem">
+                        <div class="li-row">
+                            <span class="li-label">Position:</span>
+                            <span class="li-value"><?= htmlspecialchars($cv->posTitle) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Candidate Name:</span>
+                            <span class="li-value"><?= htmlspecialchars($cv->candidateName) ?></span>
+                        </div>
+                        <div class="li-row li-cv">
+                            <span class="li-label">Candidate CV:</span>
+                            <a href="<?= ROOT ?><?= htmlspecialchars($cv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
+                        </div>
+                        <form method="POST" class="li-actions">
+                            <input type="hidden" name="action" value="company_scheduler">
+                            <input type="hidden" name="candidate_id" value="<?= $cv->candidate_id ?>">
+                            <input type="hidden" name="job_id" value="<?= $cv->job_id ?>">
+                            <input type="hidden" name="cv_id" value="<?= $cv->cv_id ?>">
+                            <input type="hidden" name="decision" value="">
+                            <button type="button" class="acceptBtn">Accept and schedule interview</button>
+                            <button type="submit" class="rejectBtn">Reject candidate</button>
+                        </form>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class='itemsEmpty'>No candidates applied yet.</p>
+            <?php endif; ?>
         </div>
     </div>
+
     <div class="content_section">
         <h3>Posted Jobs</h3>
         <div class="scScrollbox">
-
             <?php
             $postedJobs = $data['postedJobs'];
             ?>
-
             <?php if (!empty($postedJobs)): ?>
                 <?php foreach ($postedJobs as $pj): ?>
                     <div class="listItem">
@@ -187,6 +127,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                             <form method="post" class="pj_form">
                                 <input type="hidden" name="action" value="postedJobActions">
                                 <input type="hidden" name="job_id" value="<?= $pj->job_id ?>">
+                                <input type="date" name="new_deadline" required>
                                 <input type="submit" name="btn" class="extendBtn" value="Extend Deadline">
                                 <input type="submit" name="btn" class="deleteBtn" onclick="return confirm('Are you sure you want to delete this job post?');" value="Delete">
                             </form>
@@ -203,113 +144,41 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     <div class="content_section">
         <h3>Upcoming interviews</h3>
         <div class="scScrollbox">
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Software Engineer Intern</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">John Silva</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Interview Date:</span>
-                    <span class="li-value">2025-06-09</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Method:</span>
-                    <span class="li-value">Online</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Address:</span>
-                    <span class="li-value">https://app.zoom.us/wc/8863638238/join?fromPWA=1</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">UI/UX Designer</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Emma Rodriguez</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Interview Date:</span>
-                    <span class="li-value">2025-06-11</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Method:</span>
-                    <span class="li-value">Physical</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Address:</span>
-                    <span class="li-value">123 Tech Park, Silicon Avenue, CA</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Data Analyst Intern</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Kavindu Perera</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Interview Date:</span>
-                    <span class="li-value">2025-06-13</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Method:</span>
-                    <span class="li-value">Online</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Address:</span>
-                    <span class="li-value">https://example.com/zoom-meeting/FAKE-56327</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-            </div>
-
-            <div class="listItem">
-                <div class="li-row">
-                    <span class="li-label">Position:</span>
-                    <span class="li-value">Marketing Assistant</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Candidate Name:</span>
-                    <span class="li-value">Sarah Johnson</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Interview Date:</span>
-                    <span class="li-value">2025-06-15</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Method:</span>
-                    <span class="li-value">Online</span>
-                </div>
-                <div class="li-row">
-                    <span class="li-label">Address:</span>
-                    <span class="li-value">https://example.com/zoom-meeting/FAKE-94822</span>
-                </div>
-                <div class="li-row li-cv">
-                    <span class="li-label">Candidate CV:</span>
-                    <a href="<?= ROOT ?>assets/uploads/cv/sampleCV.pdf" class="cvBtn" target="_blank">View CV</a>
-                </div>
-            </div>
+            <?php $confirmedInterviews = $data['confirmedInterviews'] ?? []; ?>
+            <?php if (!empty($confirmedInterviews)): ?>
+                <?php foreach ($confirmedInterviews as $iv): ?>
+                    <div class="listItem">
+                        <div class="li-row">
+                            <span class="li-label">Position:</span>
+                            <span class="li-value"><?= htmlspecialchars($iv->posTitle) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Candidate Name:</span>
+                            <span class="li-value"><?= htmlspecialchars($iv->candidateName) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Interview Date:</span>
+                            <span class="li-value"><?= htmlspecialchars($iv->slot_datetime) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Method:</span>
+                            <span class="li-value"><?= htmlspecialchars($iv->mode) ?></span>
+                        </div>
+                        <div class="li-row">
+                            <span class="li-label">Address:</span>
+                            <a href="<?= htmlspecialchars($iv->address_link) ?>" target="_blank" class="li-value link">
+                                <?= htmlspecialchars($iv->address_link) ?>
+                            </a>
+                        </div>
+                        <div class="li-row li-cv">
+                            <span class="li-label">Candidate CV:</span>
+                            <a href="<?= ROOT ?><?= htmlspecialchars($iv->cv_file_path) ?>" class="cvBtn" target="_blank">View CV</a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="itemsEmpty">No upcoming interviews scheduled.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>
@@ -333,5 +202,73 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 schedulerBg.classList.remove("active");
             });
         }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const schedulerBg = document.querySelector(".scheduler_bg");
+        const backBtn = document.getElementById("schedulerBackBtn");
+        const openBtns = document.querySelectorAll(".acceptBtn");
+
+        openBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                if (schedulerBg) schedulerBg.classList.add("active");
+            });
+        });
+
+        if (backBtn) {
+            backBtn.addEventListener("click", () => schedulerBg.classList.remove("active"));
+        }
+
+        const deleteBtns = document.querySelectorAll(".deleteBtn");
+        deleteBtns.forEach(btn => {
+            btn.addEventListener("click", function(event) {
+                const form = btn.closest("form");
+                const dateInput = form.querySelector("input[name='new_deadline']");
+                if (dateInput) dateInput.removeAttribute("required");
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const schedulerBg = document.querySelector(".scheduler_bg");
+        const backBtn = document.getElementById("schedulerBackBtn");
+        const openBtns = document.querySelectorAll(".acceptBtn");
+        const rejectBtns = document.querySelectorAll(".rejectBtn");
+        const candidateInput = document.getElementById("schedulerCandidateId");
+        const jobInput = document.getElementById("schedulerJobId");
+
+        // Open scheduler for accepting
+        openBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const form = btn.closest("form");
+                const candidateId = form.querySelector("input[name='candidate_id']").value;
+                const jobId = form.querySelector("input[name='job_id']").value;
+                const decisionInput = form.querySelector("input[name='decision']");
+
+                decisionInput.value = "accept"; // set decision type
+
+                candidateInput.value = candidateId;
+                jobInput.value = jobId;
+
+                schedulerBg.classList.add("active");
+            });
+        });
+
+        // Reject directly (submits form)
+        rejectBtns.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const form = btn.closest("form");
+                const decisionInput = form.querySelector("input[name='decision']");
+                decisionInput.value = "reject"; // mark as rejected
+                form.submit();
+            });
+        });
+
+        backBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            schedulerBg.classList.remove("active");
+        });
     });
 </script>

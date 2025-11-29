@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 
-.sent_applications {
+.scrollBoxContainer {
     width: 50%;
     border-radius: 15px;
     background-color: var(--mid);
@@ -72,6 +72,14 @@
     background-color: var(--mid);
     border: 0px;
     padding: 8px;
+}
+
+.itemsEmpty {
+    background-color: var(--lightBlue);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: normal;
 }
 
 .applications {
@@ -235,8 +243,16 @@
     font-weight: bold;
 }
 
+.upcoming_section {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    width: 100%;
+}
+
 @media (max-width: 900px) {
-    .sent_applications {
+    .scrollBoxContainer {
         width: 100%;
         border-radius: 15px;
         background-color: var(--mid);

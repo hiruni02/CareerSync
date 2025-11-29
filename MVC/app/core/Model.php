@@ -127,8 +127,10 @@ trait Model
                         cv_file_path VARCHAR(1000) NOT NULL UNIQUE,
                         applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         validator_approval ENUM('approved', 'pending', 'rejected') DEFAULT 'pending',
+                        company_approval ENUM('approved', 'pending', 'rejected') DEFAULT 'pending',
                         FOREIGN KEY (job_id) REFERENCES jobPost(job_id),
-                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id)
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
+                        UNIQUE KEY unique_candidate_job (job_id, candidate_id)
                     )";
         $this->query($cv_table);
 
@@ -136,11 +138,14 @@ trait Model
                         interview_id INT AUTO_INCREMENT PRIMARY KEY,
                         candidate_id INT,
                         company_id INT,
-                        mode ENUM('online','offline') NOT NULL,
+                        job_id INT,
+                        mode ENUM('online','physical') NOT NULL,
                         address_link VARCHAR(255) NOT NULL,
                         extra_details TEXT,
+                        dateConfirmed ENUM('confirmed','unconfirmed') DEFAULT 'unconfirmed',
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
-                        FOREIGN KEY (company_id) REFERENCES company(user_id)
+                        FOREIGN KEY (company_id) REFERENCES company(user_id),
+                        FOREIGN KEY (job_id) REFERENCES jobPost(job_id)
                     )";
         $this->query($interviews_table);
 
@@ -151,6 +156,38 @@ trait Model
                         FOREIGN KEY (interview_id) REFERENCES interviews(interview_id)
                         )";
         $this->query($interview_slot_table);
+
+        $consultation_request_table = "CREATE TABLE IF NOT EXISTS consultation_requests (
+                        request_id INT AUTO_INCREMENT PRIMARY KEY,
+                        candidate_id INT,
+                        counselor_id INT,
+                        counselor_acceptance ENUM('accepted', 'pending') DEFAULT 'pending',
+                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
+                        FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
+                        )";
+        $this->query($consultation_request_table);
+
+        $consultation_table = "CREATE TABLE IF NOT EXISTS consultation (
+                        meeting_id INT AUTO_INCREMENT PRIMARY KEY,
+                        candidate_id INT,
+                        counselor_id INT,
+                        mode ENUM('online','physical') NOT NULL,
+                        address_link VARCHAR(255) NOT NULL,
+                        extra_details TEXT,
+                        dateConfirmed ENUM('confirmed','unconfirmed') DEFAULT 'unconfirmed',
+                        FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
+                        FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
+                    )";
+        $this->query($consultation_table);
+
+        $consultation_slot_table = "CREATE TABLE IF NOT EXISTS consultation_slots (
+                        slot_id INT AUTO_INCREMENT PRIMARY KEY,
+                        meeting_id INT,
+                        slot_datetime DATETIME,
+                        FOREIGN KEY (meeting_id) REFERENCES consultation(meeting_id)
+                        )";
+        $this->query($consultation_slot_table);
     }
 
     public function SelectAll()
@@ -216,7 +253,7 @@ trait Model
     public function update($id, $data, $id_column = 'id')
     {
         if (!empty($this->allowedColumns)) { //remove unwanted data
-            foreach ($this->data as $key => $value) {
+            foreach ($data as $key => $value) { //foreach ($this->data as $key => $value) {
                 if (!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);
                 }

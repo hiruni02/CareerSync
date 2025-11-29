@@ -11,7 +11,7 @@ class Home
         } else {
             if ($_SESSION['USER']->role !== 'company') {
                 $data['username'] = $_SESSION['USER']->firstName;
-            }else{
+            } else {
                 $data['username'] = $_SESSION['USER']->hr_firstName;
             }
         }
@@ -19,8 +19,22 @@ class Home
         $user->CreateTables();
 
         $jobPost = new JobPost;
-        $data['jobs'] = $jobPost->SelectAll(); 
-  
+        $data['jobs'] = $jobPost->SelectAll();
+
+        $job = new JobPost;
+
+        $filters = [
+            'minSalary'  => $_GET['minSalary'] ?? null,
+            'maxSalary'  => $_GET['maxSalary'] ?? null,
+            'sortBy'     => $_GET['sortBy'] ?? null,
+            'city'       => $_GET['city'] ?? null,
+            'workMode'   => $_GET['workMode'] ?? null,
+            'jobType'    => $_GET['jobType'] ?? null,
+            'experience' => $_GET['experience'] ?? null,
+        ];
+
+        $data['jobs'] = $job->getFilteredJobs($filters);
+
         $this->view("home", $data);
     }
 }

@@ -10,8 +10,7 @@
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 20px;
   padding: 20px;
-  background: #d5f6ff88;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+  background: #d5f6ff00;
   border-radius: 10px;
   max-height: 70vh;
   overflow-y: auto;
@@ -33,7 +32,6 @@
   text-align: left;
   font-size: 2.1875rem;
   color: #1e1f4b;
-
 }
 
 .listItem {
@@ -151,7 +149,7 @@
   margin-bottom: 0;
 }
 
-/*this section is for the filter options*/
+/* FILTERS */
 .filtersContainer {
   flex: 0 0 25%;
   background: #d5f6ff88;
@@ -164,38 +162,86 @@
 
 .filtersContainer label {
   font-size: 1.125rem;
-  margin-bottom: 10px;
+  margin-bottom: 3px;
   display: inline-block;
 }
 
-.filtersContainer h2 {
-  font-family: 'merriweather';
-  padding-bottom: 20px;
-  color: #1e1f4b;
+.apply-filter-btn {
+  padding: 10px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(to right, #1e1f4b, #662a86);
+  transition: 0.3s ease;
 }
 
-#salRange {
-  width: 90%;
-  accent-color: #9900ff;
+.apply-filter-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.356);
 }
 
-#salValue {
+.salary-inputs {
+  display: flex;
+  gap: 10px;
   margin-top: 10px;
-  font-weight: bold;
+}
+
+.salary-box {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.salary-box label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  padding-left: 5px;
+}
+
+.salary-box input {
+  padding: 3px 5px;
+  border: 2px solid #662a86b7;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  background: #ffffff;
+  transition: 0.2s ease;
+}
+
+.salary-box input:focus {
+  border-color: #662a86;
+  box-shadow: 0 0 5px #662a8677;
+}
+
+
+.filter-dropdown {
+  width: 90%;
+  padding: 3px;
+  border-radius: 8px;
+  border: 2px solid #662a86b7;
+  background: #ffffffdd;
+  font-size: 1rem;
+  margin-top: 2px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.filter-dropdown:focus {
+  outline: none;
+  border-color: #1e1f4b;
+  box-shadow: 0 0 5px #1e1f4b88;
 }
 
 .filterTypeBox {
-  padding: 10px;
-}
-
-.filterTypeBox ul li {
-  list-style-type: none;
+  padding: 10px 0;
 }
 
 @media (max-width: 600px) {
   .job-section {
     flex-direction: column;
-    /* stack filters and job list */
     padding: 10px;
     max-width: none;
     margin-left: -40px;
@@ -225,8 +271,6 @@
     width: 100%;
     max-height: 70vh;
     overflow-y: auto;
-    overflow-x: hidden;
-    border-radius: 10px;
   }
 
   .job-title {
