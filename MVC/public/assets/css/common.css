@@ -1,6 +1,6 @@
 :root {
   --white: #fff;
-  --red: rgb(255, 0, 0);
+  --error: rgb(255, 0, 0);
 
   --page_gradient: linear-gradient(60deg, #c4e9ff 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, #c4e9ff 100%);
   --navbar_gradient: linear-gradient(to right, #1E3A8A, #1D4ED8);
@@ -19,6 +19,7 @@
   --accentBlue: #60A5FA;
   --lightBlue: #b5d6ff;
   --translucentBlue: #60a5fa00;
+  --formBlue: #dff1fc;
 
   --lightBg: #F3F4F6;
   --cardWhite: #FFFFFF;

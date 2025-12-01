@@ -2,22 +2,22 @@
   max-width: 600px;
   margin: 80px auto;
   padding: 40px;
-  background: rgb(221, 235, 255);
+  background: var(--formBlue);
   border-radius: 12px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+  box-shadow: var(--shadowHard);
 }
 
 .contact-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #2c3e50;
+  color: var(--textDarkBlue);
 }
 
 .contact-container p {
   font-size: 1.0625rem;
   text-align: center;
   margin-bottom: 30px;
-  color: #555;
+  color: var(--textDark);
 }
 
 .contact-form input,
@@ -25,16 +25,22 @@
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
-  border: 1px solid #397eff;
+  border: 1px solid var(--accentBlue);
   border-radius: 8px;
   font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border: 1px solid var(--primaryBlue);
+  outline: none;
 }
 
 .contact-form button {
   width: 100%;
   padding: 14px;
-  background-image: linear-gradient(89deg, rgba(0, 2, 44, 1) 0%, rgba(0, 5, 109, 1) 18%, rgba(118, 0, 158, 1) 100%);
-  color: #fff;
+  background-image: var(--submit_btn_gradient);
+  color: var(--white);
   font-size: 1.25rem;
   border: none;
   border-radius: 8px;
@@ -53,7 +59,7 @@
     max-width: 600px;
     margin: 80px auto;
     padding: 20px;
-    background: rgb(221, 235, 255);
+    background: var(--formBlue);
     border-radius: 12px;
     box-shadow: none;
   }
