@@ -2,13 +2,16 @@
   --white: #fff;
   --error: rgb(255, 0, 0);
 
-  --page_gradient: linear-gradient(60deg, #c4e9ff 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, #c4e9ff 100%);
+  --page_gradient: linear-gradient(60deg, #c4e9ff 0%, #E5E7EB 46%, #E5E7EB 56%, #c4e9ff 100%);
+  /* --page_gradient: linear-gradient(60deg, #F9FAFB 0%, #E5E7EB 100%);  */
+  --light_gradient: linear-gradient(#F9FAFB 0%, rgb(186, 207, 236)100%);
   --navbar_gradient: linear-gradient(to right, #1E3A8A, #1D4ED8);
   --footer_gradient: linear-gradient(60deg, #0F172A, #182f6d, #0F172A);
   --nav_btn_gradient: linear-gradient(to right, #1D4ED8, #3B82F6);
   --submit_btn_gradient: linear-gradient(89deg, #1E3A8A 0%, #1D4ED8 50%, #3B82F6 100%);
 
   --primaryBlue: #1D4ED8;
+  --darkBlue: #1E3A8A;
   --primaryBlueLight: #3B82F6;
   --accentBlue: #60A5FA;
   --lightBlue: #b5d6ff;
@@ -24,7 +27,7 @@
 
   --shadowSoft: 4px 4px 16px rgba(0, 0, 0, 0.374);
   --shadowHard: 10px 10px 10px rgba(0, 0, 0, 0.288);
-  --  : 0 0 5px #662a8677;
+  --: 0 0 5px #662a8677;
 }
 
 

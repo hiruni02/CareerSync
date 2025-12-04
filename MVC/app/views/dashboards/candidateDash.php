@@ -49,80 +49,82 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
     <button id="select_counselor">Contact a Counselor</button>
 </div>
 
-<div class="content_section">
-    <div class='scrollBoxContainer'>
-        <h1>Sent Applications</h1>
-        <div class="scrollBox">
-            <ul class="applications job-applications">
-                <?php
-                $sent_cv = $data['cv'];
-                ?>
-                <?php if (!empty($sent_cv)): ?>
-                    <?php foreach ($sent_cv as $cv): ?>
-                        <li class="application_item">
-                            <div class="application-title"><?= htmlspecialchars($cv->posTitle) ?></div>
-                            <div class="application_state">
-                                <?php
-                                switch ($cv->company_approval) {
-                                    case 'pending':
-                                ?>
-                                        <span class="status pending">Pending</span>
+<div class="upcoming_section">
+    <div class="content_section">
+        <div class='scrollBoxContainer'>
+            <h1>Sent Applications</h1>
+            <div class="scrollBox">
+                <ul class="applications job-applications">
+                    <?php
+                    $sent_cv = $data['cv'];
+                    ?>
+                    <?php if (!empty($sent_cv)): ?>
+                        <?php foreach ($sent_cv as $cv): ?>
+                            <li class="application_item">
+                                <div class="application-title"><?= htmlspecialchars($cv->posTitle) ?></div>
+                                <div class="application_state">
                                     <?php
-                                        break;
-                                    case 'rejected':
+                                    switch ($cv->company_approval) {
+                                        case 'pending':
                                     ?>
-                                        <span class="status rejected">Rejected</span>
+                                            <span class="status pending">Pending</span>
+                                        <?php
+                                            break;
+                                        case 'rejected':
+                                        ?>
+                                            <span class="status rejected">Rejected</span>
+                                        <?php
+                                            break;
+                                        case 'approved':
+                                        ?>
+                                            <span class="status accepted">Accepted</span>
                                     <?php
-                                        break;
-                                    case 'approved':
+                                            break;
+                                    }
                                     ?>
-                                        <span class="status accepted">Accepted</span>
-                                <?php
-                                        break;
-                                }
-                                ?>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p class='itemsEmpty'>No CV's sent yet</p>
-                <?php endif; ?>
-            </ul>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class='itemsEmpty'>No CV's sent yet</p>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="content_section">
-    <div class='scrollBoxContainer'>
-        <h1>Sent Consultation Requests</h1>
-        <div class="scrollBox">
-            <ul class="applications consultation-list">
-                <?php if (!empty($data['consultation'])): ?>
-                    <?php foreach ($data['consultation'] as $cons): ?>
-                        <li class="application_item">
-                            <div class="application-title"><?= htmlspecialchars($cons->firstName . $cons->lastName) ?></div>
-                            <div class="application_state">
-                                <?php
-                                switch ($cons->counselor_acceptance) {
-                                    case 'pending':
-                                ?>
-                                        <span class="status pending">Pending</span>
+    <div class="content_section">
+        <div class='scrollBoxContainer'>
+            <h1>Sent Consultation Requests</h1>
+            <div class="scrollBox">
+                <ul class="applications consultation-list">
+                    <?php if (!empty($data['consultation'])): ?>
+                        <?php foreach ($data['consultation'] as $cons): ?>
+                            <li class="application_item">
+                                <div class="application-title"><?= htmlspecialchars($cons->firstName . $cons->lastName) ?></div>
+                                <div class="application_state">
                                     <?php
-                                        break;
-                                    case 'accepted':
+                                    switch ($cons->counselor_acceptance) {
+                                        case 'pending':
                                     ?>
-                                        <span class="status accepted">Accepted</span>
-                                <?php
-                                        break;
-                                }
-                                ?>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p class='itemsEmpty'>No Requests Sent</p>
-                <?php endif; ?>
-            </ul>
+                                            <span class="status pending">Pending</span>
+                                        <?php
+                                            break;
+                                        case 'accepted':
+                                        ?>
+                                            <span class="status accepted">Accepted</span>
+                                    <?php
+                                            break;
+                                    }
+                                    ?>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class='itemsEmpty'>No Requests Sent</p>
+                    <?php endif; ?>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

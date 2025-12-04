@@ -4,8 +4,9 @@
 
 .dashboard_tag {
     padding-bottom: 30px;
-    font-family: "logo-font";
+    font-family: 'Roboto', sans-serif;
     font-size: 45px;
+    color: var(--textDark);
 }
 
 .settings_btn {
@@ -57,8 +58,8 @@
     width: 100%;
     height: 50px;
     padding: 12px;
-    background: linear-gradient(to right, #662a86, #1e1f4b);
-    color: #fff;
+    background: var(--primaryBlueLight);
+    color: var(--white);
     border: none;
     border-radius: 8px;
     font-size: 18px;
@@ -118,44 +119,51 @@
     transform: scale(1.16);
 }
 
-.messege{
+.messege {
     background-color: var(--lightBlue);
     border-radius: 10px;
     padding: 5px;
-    transition: 0.3s ease;;
+    transition: 0.3s ease;
 }
 
-.messege:hover{
+.messege:hover {
     transform: scale(1.05);
 }
 
 .counting_boxes {
     width: fit-content;
     height: fit-content;
-    background-color: var(--mid);
+    background-color: var(--translucentBlue);
     border-radius: 15px;
     align-items: justify;
     display: flex;
-    padding: 20px;
+    margin-top: -10px;
     flex-wrap: wrap;
 }
 
 .box_segment {
     max-width: 300px;
-    background-color: var(--lightBlue);
+    background: var(--light_gradient);
     border-radius: 15px;
     padding: 20px;
     margin: 10px;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size: 25px;
+    transition: 0.25s ease;
+    text-align: center;
     display: flex;
     flex-grow: 1;
     flex-direction: column;
 }
 
+.box_segment:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
 .box_segment h1 {
-    color: rgb(59, 8, 59);
+    color: var(--textDark);
 }
 
 @media (max-width: 600px) {

@@ -6,7 +6,7 @@
 }
 
 .scrollBoxContainer {
-    width: 50%;
+    width: 100%;
     border-radius: 15px;
     background-color: var(--lightBlue);
     padding: 20px;
@@ -27,7 +27,7 @@
 .contact_counselor_section {
     width: 40%;
     height: fit-content;
-    background-color: var(--accentBlue);
+    background-color: var(--lightBlue);
     border-radius: 15px;
     align-items: justify;
     display: flex;
@@ -63,7 +63,6 @@
     z-index: 1;
 }
 
-
 .scrollBox {
     max-height: 260px;
     overflow-x: hidden;
@@ -75,7 +74,7 @@
 }
 
 .itemsEmpty {
-    background-color: var(--lightBlue);
+    background-color: var(--translucentBlue);
     padding: 20px;
     border-radius: 10px;
     width: 100%;
@@ -95,9 +94,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: solid 3px var(--accentBlue);
     border-radius: 8px;
-    background: linear-gradient#f9f9f9;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     background-color: var(--lightBlue);
     transition: ease 0.3s;
@@ -158,7 +156,7 @@
 
 .interview-section {
     width: 50%;
-    background-color: var(--mid);
+    background-color: var(--lightBlue);
     border-radius: 15px;
     padding: 20px;
     margin-top: 20px;
@@ -166,7 +164,7 @@
     flex-direction: column;
     overflow-y: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    min-height: 200px;
+    min-height: fit-content;
 }
 
 .interview-scrollbox {
@@ -174,7 +172,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    background-color: var(--mid);
+    background-color: var(--formBlue);
     width: 100%;
     border-radius: 10px;
     max-height: 500px;
@@ -223,11 +221,11 @@
     display: inline-block;
     padding: 8px 16px;
     border-radius: 8px;
-    background: #1e9bf0;
-    color: #fff;
+    background: var(--accentBlue);
+    color: var(--white);
     font-weight: 700;
     text-decoration: none;
-    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    transition: 0.15s ease;
 }
 
 .interview-cvBtn:hover {
@@ -255,7 +253,7 @@
     .scrollBoxContainer {
         width: 100%;
         border-radius: 15px;
-        background-color: var(--mid);
+        background-color: var(--lightBlue);
         padding: 15px 10px 5px 10px;
         margin: 10px 0;
         font-family: 'Roboto', sans-serif;
