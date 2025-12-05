@@ -18,16 +18,18 @@
   --translucentBlue: #60a5fa00;
   --formBlue: #dff1fc;
 
+  --primaryRed: #d81d1d;
+  --primaryRedLight: #f63b3b;
+
   --lightBg: #F3F4F6;
   --cardWhite: #FFFFFF;
 
   --textDark: #141e33;
   --textDarkBlue: #0d2669;
-  --textLight: #6B7280;
+  --textLight: #5e6470;
 
   --shadowSoft: 4px 4px 16px rgba(0, 0, 0, 0.374);
   --shadowHard: 10px 10px 10px rgba(0, 0, 0, 0.288);
-  --: 0 0 5px #662a8677;
 }
 
 

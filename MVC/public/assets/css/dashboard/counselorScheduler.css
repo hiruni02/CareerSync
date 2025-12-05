@@ -10,7 +10,6 @@
     justify-content: center;
     align-items: center;
     display: none;
-    /*change to none once JS in implemented*/
 }
 
 .popup-overlay.active {
@@ -21,10 +20,9 @@
     width: 30%;
     max-height: 80%;
     background: var(--lightBlue);
-    border: 3px solid var(--mid, #6a78d1);
+    border: 3px solid var(--primaryBlue);
     border-radius: 15px;
     padding: 30px 40px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +31,7 @@
 }
 
 .popup-window h1 {
-    color: var(--darkpurple, #443a77);
+    color: var(--textDark);
     text-align: center;
     font-size: 1.6rem;
     font-weight: 600;
@@ -66,17 +64,15 @@ textarea {
     width: 100%;
     padding: 10px 12px;
     border-radius: 8px;
-    border: 1.5px solid #b5b5b5;
-    background-color: #fff;
+    border: 1px solid var(--accentBlue);
+    background-color: var(--white);
     font-size: 14px;
-    transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #6a78d1;
-    box-shadow: 0 0 5px rgba(106, 120, 209, 0.4);
+    border-color: 1px solid var(--primaryBlue);
     outline: none;
 }
 
@@ -99,34 +95,34 @@ textarea:focus {
 }
 
 .slot-input .remove-slot {
-    background: #ff5757;
-    color: white;
+    background: var(--primaryRedLight);
+    color: var(--white);
     border: none;
     border-radius: 6px;
     padding: 5px 10px;
     font-size: 14px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: 0.2s ease;
 }
 
 .slot-input .remove-slot:hover {
-    background: #ff2f2f;
+    background: var(--primaryRed);
 }
 
 /* Add-slot button */
 #add-slot {
-    background: #d8ebff;
-    border: 1.5px dashed #6a78d1;
+    background: var(--formBlue);
+    border: 1.5px dashed var(--primaryBlue);
     border-radius: 8px;
     padding: 8px 12px;
     cursor: pointer;
-    color: #444;
+    color: var(--textLight);
     font-weight: 600;
-    transition: background 0.2s;
+    transition: 0.2s ease;
 }
 
 #add-slot:hover {
-    background: #c9e2ff;
+    background: var(--lightBlue);
 }
 
 .form_btns {
@@ -145,24 +141,6 @@ textarea:focus {
     cursor: pointer;
     font-size: 15px;
     transition: all 0.2s ease;
-}
-
-.form_btns button[type="submit"] {
-    background-color: #a9ff7d;
-    color: #ffffff;
-}
-
-.form_btns button[type="submit"]:hover {
-    background-color: #94f26b;
-}
-
-#pwBackBtn {
-    background-color: #ff5e5e;
-    color: white;
-}
-
-#pwBackBtn:hover {
-    background-color: #ff3838;
 }
 
 @media (max-width: 600px) {

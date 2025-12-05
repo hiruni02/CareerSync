@@ -155,11 +155,12 @@
     display: flex;
     flex-grow: 1;
     flex-direction: column;
+    box-shadow: var(--shadowSoft);
 }
 
 .box_segment:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--shadowHard);
 }
 
 .box_segment h1 {

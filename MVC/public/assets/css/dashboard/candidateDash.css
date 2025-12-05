@@ -16,12 +16,13 @@
     font-size: 18px;
     display: block;
     overflow-x: auto;
+    box-shadow: var(--shadowHard);
+}
 
-    h1 {
-        padding-bottom: 10px;
-        margin-top: 0px;
-        font-size: 22px;
-    }
+.scrollBoxContainer h1 {
+    padding-bottom: 10px;
+    margin-top: 0px;
+    font-size: 22px;
 }
 
 .contact_counselor_section {
@@ -34,25 +35,26 @@
     padding: 20px;
     flex-wrap: wrap;
     margin-top: 20px;
+    box-shadow: var(--shadowHard);
 }
 
 .contact_counselor_section label {
     font-size: 1.5rem;
     font-weight: bold;
-    font-family: "merriweather";
+    font-family: "Roboto", sans-serif;
     padding-bottom: 10px;
 }
 
 .contact_counselor_section button {
     font-size: 1.8rem;
     font-weight: bold;
-    color: white;
-    font-family: "logo-font";
+    color: var(--white);
+    font-family: 'Roboto', sans-serif;
     background-image: var(--submit_btn_gradient);
     height: fit-content;
     width: fit-content;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     transition: 0.2s ease;
     padding-left: 5px;
     padding-right: 5px;
@@ -96,8 +98,7 @@
     padding: 12px;
     border: solid 3px var(--accentBlue);
     border-radius: 8px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    background-color: var(--lightBlue);
+    background-color: var(--white);
     transition: ease 0.3s;
 }
 
@@ -113,7 +114,7 @@
 
 .application_item:hover {
     transform: scale(1.01);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
+    box-shadow: var(--shadowSoft);
     z-index: 2;
 }
 
@@ -127,7 +128,7 @@
 .status {
     padding: 6px 10px;
     border-radius: 999px;
-    color: white;
+    color: var(--white);
     font-size: 13px;
     font-weight: 600;
     text-transform: capitalize;
@@ -148,7 +149,7 @@
 .deleteBtn {
     background: none;
     border: none;
-    color: #d9534f;
+    color: var(--primaryRedLight);
     cursor: pointer;
     transition: color 0.2s ease;
     border-radius: 5px;
@@ -163,7 +164,7 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadowHard);
     min-height: fit-content;
 }
 
@@ -181,19 +182,17 @@
 .interview-item {
     width: 100%;
     background: var(--lightBlue);
-    border: 1px solid #ccc;
+    border: 3px solid var(--accentBlue);
     border-radius: 12px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
     padding: 16px 18px;
     font-weight: 600;
-    color: #222;
-    transition: transform .2s ease, box-shadow .2s ease;
+    transition: 0.2s ease;
     margin-bottom: 16px;
 }
 
 .interview-item:hover {
     transform: scale(1.01);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, .219);
+    box-shadow: var(--shadowSoft);
     z-index: 2;
 }
 
@@ -206,13 +205,13 @@
 }
 
 .interview-label {
-    color: #333;
+    color: var(--textDark);
     text-transform: lowercase;
     font-weight: 600;
 }
 
 .interview-value {
-    color: #000;
+    color: var(--textDark);
     font-family: "consolas";
     font-weight: normal;
 }
@@ -230,13 +229,13 @@
 
 .interview-cvBtn:hover {
     transform: scale(1.03);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
-    background: #1084cc;
+    box-shadow: var(--shadowSoft);
+    background: var(--primaryBlue);
 }
 
 .interview-section h3 {
     margin-bottom: 10px;
-    color: #000000;
+    color: var(--textDark);
     font-size: 22px;
     font-weight: bold;
 }
@@ -250,6 +249,12 @@
 }
 
 @media (max-width: 900px) {
+    .upcoming_section {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+
     .scrollBoxContainer {
         width: 100%;
         border-radius: 15px;
@@ -259,11 +264,14 @@
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 1rem;
+    }
 
+    .content_section {
+        width: 100%;
     }
 
     .contact_counselor_section {
-        width: fit-content;
+        width: 100%;
     }
 
     .contact_counselor_section label {
@@ -274,7 +282,7 @@
     }
 
     .interview-section {
-        width: 95%;
+        width: 100%;
         padding: 15px;
         margin-top: 10px;
     }
@@ -299,5 +307,4 @@
         font-size: 20px;
         text-align: center;
     }
-
 }

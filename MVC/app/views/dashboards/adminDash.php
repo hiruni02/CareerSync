@@ -21,7 +21,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php"
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 ?>
 
-<h1 class="dashboard_tag">Admin Dash Board</h1>
+<h1 class="dashboard_tag">Dashboard</h1>
 <div class="counting_boxes">
     <div class="box_segment">
         Total Users:<br>

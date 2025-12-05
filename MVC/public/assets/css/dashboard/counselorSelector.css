@@ -16,8 +16,8 @@
 .selector_window {
     width: 450px;
     max-width: 92%;
-    background: var(--mid);
-    border: 3px solid var(--mid, #6a78d1);
+    background: var(--lightBlue);
+    border: 3px solid var(--primaryBlue);
     border-radius: 15px;
     padding: 22px 20px;
     box-shadow: 0 12px 25px rgba(0,0,0,0.25);
@@ -30,7 +30,7 @@
 .selector_window h1 {
     font-size: 1.7rem;
     text-align: center;
-    color: #222;
+    color: var(--textDark);
 }
 
 .scrollbox {
@@ -42,18 +42,13 @@
 
 .listItem {
     width: 100%;
-    background: var(--lightBlue);
+    background: var(--formBlue);
     border-radius: 10px;
     padding: 16px;
     display: flex;
     gap: 18px;
-    transition: 0.2s ease;
     margin-bottom: 16px;
-}
-
-.listItem:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    border: 3px solid var(--accentBlue);
 }
 
 .counselor_photo {
@@ -61,7 +56,7 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--mid);
+    border: 3px solid var(--accentBlue);
     flex-shrink: 0;
 }
 
@@ -75,12 +70,12 @@
 .itemContent .title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #444;
+    color: i want to buy the complete edition
 }
 
 .itemContent .description {
     font-size: 1rem;
-    color: #555;
+    color: var(--textLight);
     line-height: 1.4;
 }
 
@@ -97,31 +92,31 @@
 }
 
 .interview-cvBtn {
-    background: #1e9bf0;
-    color: #fff;
+    background: var(--primaryBlueLight);
+    color: var(--white);
 }
 
 .interview-cvBtn:hover {
-    background: #1084cc;
+    background: var(--primaryBlue);
     transform: scale(1.03);
 }
 
 .request_meeting_btn {
     font-size: 1.2rem;
-    background: red;
-    color: #fff;
+    background: var(--primaryRedLight);
+    color: var(--white);
     border: none;
     margin-top: 6px;
 }
 
 .request_meeting_btn:hover {
-    background: #cc0000;
+    background: var(--primaryRed);
     transform: scale(1.03);
 }
 
 #counselor_selector_backBtn {
     background-image: var(--submit_btn_gradient);
-    color: white;
+    color: var(--white);
     width: 130px;
     height: 48px;
     border-radius: 12px;
