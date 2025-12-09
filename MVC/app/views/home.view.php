@@ -28,6 +28,9 @@
         <?php
         include("components/navbar.php");
         ?>
+        <div class="ss">
+            <img src="<?= ROOT ?>/assets/slideshow/4.png" alt="slideshow image">
+        </div>
         <div class='page-content'>
             <section class="intro">
                 <div class="intro-content">
@@ -51,7 +54,7 @@
                 </div>
             </section>
             <?php
-            include("components/searchBar.php");
+            //include("components/searchBar.php");
             include("components/joblist.php");
             ?>
         </div>

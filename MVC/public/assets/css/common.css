@@ -1,15 +1,35 @@
 :root {
-  --page_gradient: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
-  --navbar_gradient: linear-gradient(to right, #1e1f4b, #662a86);
-  --footer_gradient: linear-gradient(60deg, rgb(16, 0, 31), rgb(57, 0, 121), rgb(16, 0, 31));
-  --nav_btn_gradient: linear-gradient(to right, #7b4697, #2f2779);
-  --submit_btn_gradient: linear-gradient(89deg, rgba(0, 2, 44, 1) 0%, rgba(0, 5, 109, 1) 18%, rgba(118, 0, 158, 1) 100%);
+  --white: #fff;
+  --error: rgb(255, 0, 0);
 
-  --lightBlue: rgb(211, 231, 255);
-  --light: #f4b0fc;
-  --mid: rgb(181, 134, 224);
-  --darkblue: #1e1f4b;
-  --darkpurple: rgb(55, 22, 86);
+  --page_gradient: linear-gradient(60deg, #c4e9ff 0%, #E5E7EB 46%, #E5E7EB 56%, #c4e9ff 100%);
+  /* --page_gradient: linear-gradient(60deg, #F9FAFB 0%, #E5E7EB 100%);  */
+  --light_gradient: linear-gradient(#F9FAFB 0%, rgb(186, 207, 236)100%);
+  --navbar_gradient: linear-gradient(to right, #1E3A8A, #1D4ED8);
+  --footer_gradient: linear-gradient(60deg, #0F172A, #182f6d, #0F172A);
+  --nav_btn_gradient: linear-gradient(to right, #1D4ED8, #3B82F6);
+  --submit_btn_gradient: linear-gradient(89deg, #1E3A8A 0%, #1D4ED8 50%, #3B82F6 100%);
+
+  --primaryBlue: #1D4ED8;
+  --darkBlue: #1E3A8A;
+  --primaryBlueLight: #3B82F6;
+  --accentBlue: #60A5FA;
+  --lightBlue: #b5d6ff;
+  --translucentBlue: #60a5fa00;
+  --formBlue: #dff1fc;
+
+  --primaryRed: #d81d1d;
+  --primaryRedLight: #f63b3b;
+
+  --lightBg: #F3F4F6;
+  --cardWhite: #FFFFFF;
+
+  --textDark: #141e33;
+  --textDarkBlue: #0d2669;
+  --textLight: #5e6470;
+
+  --shadowSoft: 4px 4px 16px rgba(0, 0, 0, 0.374);
+  --shadowHard: 10px 10px 10px rgba(0, 0, 0, 0.288);
 }
 
 
@@ -64,7 +84,7 @@ body {
 body {
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(60deg, rgba(183, 148, 255, 1) 0%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 56%, rgba(142, 253, 248, 1) 100%);
+  background: var(--page_gradient);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }

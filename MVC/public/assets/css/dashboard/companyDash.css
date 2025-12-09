@@ -8,7 +8,7 @@
 
 .content_section {
   width: 49.5%;
-  background-color: var(--mid);
+  background-color: var(--lightBlue);
   border-radius: 15px;
   padding: 20px;
   margin-top: 20px;
@@ -16,7 +16,7 @@
   flex-direction: column;
   overflow-y: auto;
   flex: 1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadowHard);
   min-height: 200px;
 }
 
@@ -27,7 +27,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background-color: var(--mid);
+  background-color: var(--formBlue);
   height: 100%;
   width: 100%;
   border-radius: 10px;
@@ -38,7 +38,8 @@
 .list_pos_box {
   width: fit-content;
   height: fit-content;
-  background-color: var(--mid);
+  background-color: var(--lightBlue);
+  box-shadow: var(--shadowHard);
   border-radius: 15px;
   align-items: justify;
   display: flex;
@@ -49,16 +50,17 @@
 }
 
 .list_pos_box label {
-  font-size: 2.1875rem;
+  padding-top: 10px;
+  font-size: 1.8rem;
   font-weight: bold;
-  font-family: "merriweather";
+  font-family: 'Roboto', sans-serif;
 }
 
 .list_pos_box button {
   font-size: 2.1875rem;
   font-weight: bold;
-  color: white;
-  font-family: "logo-font";
+  color: var(--white);
+  font-family: 'Roboto', sans-serif;
   background-image: var(--submit_btn_gradient);
   height: 50px;
   width: 170px;
@@ -69,26 +71,25 @@
 }
 
 .list_pos_box button:hover {
-  transform: scale(1.15);
+  transform: scale(1.05);
   z-index: 1;
 }
 
 .listItem {
   width: 100%;
   background: var(--lightBlue);
-  border: 1px solid #ccc;
+  border: 3px solid var(--accentBlue);
   border-radius: 12px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
   padding: 16px 18px;
   font-weight: 600;
-  color: #222;
-  transition: transform .2s ease, box-shadow .2s ease;
+  color: var(--textDark);
+  transition: 0.2s ease;
   margin-bottom: 16px;
 }
 
 .listItem:hover {
   transform: scale(1.01);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, .219);
+  box-shadow: var(--shadowSoft);
   z-index: 2;
 }
 
@@ -101,13 +102,13 @@
 }
 
 .li-label {
-  color: #333;
+  color: var(--textDark);
   text-transform: lowercase;
   font-weight: 600;
 }
 
 .li-value {
-  color: #000;
+  color: var(--textDark);
   font-family: "consolas";
   font-weight: normal;
 }
@@ -116,17 +117,17 @@
   display: inline-block;
   padding: 8px 16px;
   border-radius: 8px;
-  background: #1e9bf0;
-  color: #fff;
+  background: var(--primaryBlueLight);
+  color: var(--white);
   font-weight: 700;
   text-decoration: none;
-  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  transition: 0.2s ease;
 }
 
 .cvBtn:hover {
   transform: scale(1.03);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
-  background: #1084cc;
+  box-shadow: var(--shadowSoft);
+  background: var(--primaryBlue);
 }
 
 .acceptBtn,
@@ -136,9 +137,9 @@
   border-radius: 12px;
   font-size: 16px;
   font-weight: 800;
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
-  transition: transform .15s ease, box-shadow .2s ease;
+  transition: 0.2 ease;
   flex: 1;
   text-align: center;
 }
@@ -153,13 +154,13 @@
 
 .acceptBtn:hover,
 .rejectBtn:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .18);
+  transform: scale(1.05);
+  box-shadow: var(--shadowSoft);
 }
 
 .content_section h3 {
   margin-bottom: 10px;
-  color: #000000;
+  color: var(--textDark);
   font-size: 22px;
   font-weight: bold;
 }
@@ -183,16 +184,16 @@
   border-radius: 12px;
   font-size: 16px;
   font-weight: 800;
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
-  background: #1e88e5;
-  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  background: var(--primaryBlueLight);
+  transition: 0.2s ease;
 }
 
 .extendBtn:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
-  background: #1565c0;
+  box-shadow: var(--shadowSoft);
+  background: var(--primaryBlue);
 }
 
 .deleteBtn {
@@ -201,21 +202,21 @@
   border-radius: 12px;
   font-size: 16px;
   font-weight: 800;
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
-  background: #e53935;
-  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  background: var(--primaryRedLight);
+  transition: 0.2s ease;
 }
 
 .deleteBtn:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
-  background: #c62828;
+  box-shadow: var(--shadowSoft);
+  background: var(--primaryRed);
 }
 
 .itemsEmpty {
-  background-color: var(--lightBlue);
-  padding: 20px;
+  background-color: var(--formBlue);
+  padding: 40px;
   border-radius: 10px;
   width: 100%;
 }

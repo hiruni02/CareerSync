@@ -8,7 +8,7 @@
 
   .navbar {
     background: var(--navbar_gradient);
-    color: white;
+    color: var(--white);
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -27,7 +27,7 @@
 
   .logo {
     font-family: "logo-font";
-    color: #f4b0fc;
+    color: var(--lightBlue);
     font-size: 2.1875rem;
     font-weight: 700;
     white-space: nowrap;
@@ -47,7 +47,7 @@
     height: 50px;
     padding: 12px;
     background: transparent;
-    color: #fff;
+    color: var(--white);
     border: none;
     border-radius: 8px;
     font-size: 1.125rem;
@@ -63,20 +63,20 @@
     top: 5px;
     right: 145px;
     border-radius: 50%;
-    border: solid var(--light) 3px;
+    border: solid var(--lightBlue) 3px;
     position: absolute;
   }
 
   .navbar-left .navbtn:hover {
     transform: scale(1.2);
     background: var(--nav_btn_gradient);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
+    box-shadow: var(--shadowSoft);
   }
 
   .navbar_right .navbtn:hover {
     transform: scale(1.2);
     background: var(--nav_btn_gradient);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.274);
+    box-shadow: var(--shadowSoft);
   }
 }
 
@@ -95,7 +95,7 @@
 
     .navbar {
       background: var(--navbar_gradient);
-      color: white;
+      color: var(--white);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -108,7 +108,7 @@
 
     .logo {
       font-family: "logo-font";
-      color: var(--light);
+      color: var(--lightBlue);
       font-size: 1.75rem;
       font-weight: 700;
       white-space: nowrap;
@@ -168,8 +168,8 @@
       width: 100%;
       height: 50px;
       padding: 12px;
-      background: linear-gradient(to right, #662a86, #1e1f4b);
-      color: #fff;
+      background: var(--nav_btn_gradient);
+      color: var(--white);
       border: none;
       border-radius: 8px;
       font-size: 1.125rem;

@@ -6,10 +6,10 @@
 }
 
 .container {
-    background: rgb(221, 235, 255);
+    background: var(--formBlue);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+    box-shadow: var(--shadowHard);
     text-align: center;
     width: 45vw;
     height: auto;
@@ -17,20 +17,20 @@
 
 .role-container {
     /*because role selection box was too long*/
-    background: rgb(221, 235, 255);
+    background: var(--formBlue);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+    box-shadow: var(--shadowHard);
     text-align: center;
     width: 25vw;
     height: auto;
 }
 
 .login-container {
-    background: rgb(221, 235, 255);
+    background: var(--formBlue);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.288);
+    box-shadow: var(--shadowHard);
     text-align: center;
     width: 25vw;
     height: auto;
@@ -43,10 +43,15 @@ h1 {
 
 input {
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--accentBlue);
     border-radius: 8px;
     font-size: 14px;
     width: 60%;
+}
+
+input:focus {
+    border: 1px solid var(--primaryBlue);
+    outline: none;
 }
 
 input:hover {
@@ -59,17 +64,22 @@ select {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--accentBlue);
     border-radius: 8px;
     font-size: 14px;
+}
+
+select:focus {
+    border: 1px solid var(--primaryBlue);
+    outline: none;
 }
 
 button {
     width: 100%;
     padding: 12px;
-    background-color: #6a11cb;
+    background-color: var(--primaryBlue);
     background-image: var(--submit_btn_gradient);
-    color: white;
+    color: var(--white);
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -79,7 +89,7 @@ button {
 }
 
 button a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
 }
 
@@ -94,22 +104,21 @@ button:hover {
     display: flex;
     justify-content: center;
     gap: 30px;
-    /* space between links */
     font-size: 17px;
 }
 
 .links a {
-    color: #333;
+    color: var(--textLight);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .links a:hover {
-    color: purple;
+    color: var(--primaryBlue);
 }
 
 .error {
-    color: red;
+    color: var(--error);
     margin-top: 4px;
     font-size: 14px;
 }
@@ -134,7 +143,7 @@ button:hover {
     background-image: url("../svg_icons/eye_open.svg");
     background-color: transparent !important;
     background-size: cover;
-    fill: black;
+    fill: var(--textDark);
 }
 
 .input-field-login {
@@ -157,7 +166,7 @@ button:hover {
     background-image: url("../svg_icons/eye_open.svg");
     background-color: transparent !important;
     background-size: cover;
-    fill: black;
+    fill: var(--textDark);
 }
 
 .container button {

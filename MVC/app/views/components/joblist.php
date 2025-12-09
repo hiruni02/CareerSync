@@ -140,7 +140,7 @@
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>No jobs available.</p>
+                <p class="itemsEmpty">No jobs available.</p>
             <?php endif; ?>
         </div>
     </div>
