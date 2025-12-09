@@ -9,33 +9,28 @@
     flex: 1;
 }
 
-.slideshow {
-    position: relative; /* establish stacking context */
-    height: 500px;
+.ss{
     width: 100%;
-    z-index: 0; /* behind content */
+    height: 550px;
+    overflow: hidden;
 }
 
-.ss_img {
-    display: block;
+.ss img{
     width: 100%;
-    height: 100%;
-    filter: blur(1px);
+    margin-top: -10px;
+    margin-bottom: -100px;
     opacity: 0.7;
-    z-index: 0; /* behind content */
 }
 
 .intro {
-    position: relative;
-    z-index: 1; /* content above image */
+    margin-top: -500px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
     text-align: center;
-    margin-top: -450px; /* pull intro up to overlap the slideshow */
+    z-index: 2;
 }
-
 
 .intro-content h1 {
     font-family: 'Poppins', sans-serif;
