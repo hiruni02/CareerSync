@@ -55,3 +55,22 @@ if ($isProfileUpdate) {
 
     $data['errors'] = $errors;
 }
+
+class CandidateDash extends Controller
+{
+    public function index()
+    {
+        // Load Message model
+        require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
+        
+        $messageModel = new Messege();
+        $candidateId = $_SESSION['user_id'] ?? null;
+        
+        $data = [];
+        $data['messeges'] = $candidateId ? $messageModel->getByReceiver($candidateId, 'candidate') : [];
+        
+        // ...rest of your existing code...
+        
+        $this->view('dashboards/candidateDash', $data);
+    }
+}

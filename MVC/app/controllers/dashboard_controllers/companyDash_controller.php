@@ -137,3 +137,9 @@ if ($isDeletingJob) {
         }
     }
 }
+
+require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
+
+$messageModel = new Messege();
+$companyId = $_SESSION['user_id'] ?? null;
+$data['messeges'] = $companyId ? $messageModel->getByReceiver($companyId, 'company') : [];
