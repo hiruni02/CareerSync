@@ -29,8 +29,31 @@
         include("components/navbar.php");
         ?>
         <div class="ss">
-            <img src="<?= ROOT ?>/assets/slideshow/4.png" alt="slideshow image">
+            <img id="heroImg" src="<?= ROOT ?>/assets/slideshow/4.png" alt="slideshow image">
         </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides=[
+                "<?= ROOT ?>/assets/slideshow/4.png",
+                "<?= ROOT ?>/assets/slideshow/5.png",
+            ]
+            let slideIndex = 0;
+            const hero = document.getElementById('heroImg');
+
+            function nextSlide() {
+                hero.classList.add('fade-out');
+                setTimeout(() => {
+                    slideIndex = (slideIndex + 1) % slides.length;
+                    hero.src = slides[slideIndex];
+                    hero.classList.remove('fade-out');
+                }, 250);
+            }
+
+            setInterval(nextSlide, 3000);
+        });
+        </script>
+
         <div class='page-content'>
             <section class="intro">
                 <div class="intro-content">
