@@ -88,30 +88,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 </div>
 
 <div class="genReport">
-    <form action="POST">
-        <label>Generate a report for the last 30 Days :</label>
-        <input type="hidden" name="action" value="reportGen">
-        <button id="generate" type="submit">Generate</button>
-    </form>
+    <label>Generate a report for the last 30 Days :</label>
+    <a href="report" target="_blank"><button>Generate</button></a>
 </div>
-
-<script>
-    document.getElementById("generate").addEventListener("click", function(e) {
-        e.preventDefault(); // stop the form submit
-
-        // Create a blank file
-        const file = new Blob([""], {
-            type: "text/plain"
-        });
-
-        // Create a download link
-        const url = URL.createObjectURL(file);
-
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "report.txt"; // your file name
-        a.click();
-
-        URL.revokeObjectURL(url);
-    });
-</script>
