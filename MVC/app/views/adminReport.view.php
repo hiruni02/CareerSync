@@ -22,34 +22,50 @@
 
     <table class="summary-table">
         <tr>
-            <td>Total Users</td>
-            <td class="amount"><?= $totalUsers ?? 170 ?></td>
+            <td>Newly registered companies</td>
+            <td class="amount"><?= $totalUsers ?? 69 ?></td>
         </tr>
         <tr>
-            <td>Active Users</td>
+            <td>Newly registered candidates</td>
             <td class="amount"><?= $activeUsers ?? 67 ?></td>
         </tr>
         <tr>
-            <td>Pending Requests</td>
+            <td>Newly registered counselors</td>
             <td class="amount"><?= $pendingRequests ?? 22 ?></td>
         </tr>
         <tr>
-            <td>System Alerts</td>
+            <td>Total users</td>
             <td class="amount"><?= $alerts ?? 26 ?></td>
         </tr>
         <tr>
-            <td>New Feedback Forms</td>
+            <td>Active users</td>
             <td class="amount"><?= $feedback ?? 2 ?></td>
         </tr>
+        <tr>
+            <td>No of feedback emails</td>
+            <td class="amount"><?= $activeUsers ?? 67 ?></td>
+        </tr>
+        <tr>
+            <td>Scheduled company interviews</td>
+            <td class="amount"><?= $activeUsers ?? 67 ?></td>
+        </tr>
+        <tr>
+            <td>Scheduled counselor meetings</td>
+            <td class="amount"><?= $activeUsers ?? 67 ?></td>
+        </tr>
+        <tr>
+            <td>total earnings in LKR</td>
+            <td class="amount"><?= $activeUsers ?? 67 ?></td>
+        </tr>
+        <tr>
+            <td>Scheduled company interviews</td>
+            <td class="amount"><?= $activeUsers ?? 67 ?></td>
+        </tr>
+        <tr>
+            <td>System alerts</td>
+            <td class="amount"><?= $activeUsers ?? 67 ?></td>
+        </tr>
     </table>
-
-    <h2 class="section-title">Notes</h2>
-    <p class="notes">
-        • System activity increased compared to previous month.<br>
-        • Pending requests should be cleared for improved response time.<br>
-        • Alert volume includes automated system messages and flagged issues.<br>
-        • Feedback submissions remain within expected range.
-    </p>
 
     <p class="footer">
         Report generated on <?= date("Y-m-d H:i") ?>  

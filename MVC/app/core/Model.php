@@ -188,6 +188,26 @@ trait Model
                         FOREIGN KEY (meeting_id) REFERENCES consultation(meeting_id)
                         )";
         $this->query($consultation_slot_table);
+
+        $admin_report = "CREATE TABLE IF NOT EXISTS admin_reports (
+                        report_id INT AUTO_INCREMENT PRIMARY KEY,
+                        report_month YEAR(4) NOT NULL,
+                        report_month_name VARCHAR(20) NOT NULL,
+                        prepared_by INT NULL,
+                        new_companies INT NOT NULL DEFAULT 0,
+                        new_candidates INT NOT NULL DEFAULT 0,
+                        new_counselors INT NOT NULL DEFAULT 0,
+                        total_users INT NOT NULL DEFAULT 0,
+                        active_users INT NOT NULL DEFAULT 0,
+                        feedback_count INT NOT NULL DEFAULT 0,
+                        company_interviews INT NOT NULL DEFAULT 0,
+                        counselor_meetings INT NOT NULL DEFAULT 0,
+                        total_earnings DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+                        system_alerts INT NOT NULL DEFAULT 0,
+                        generated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (prepared_by) REFERENCES users(user_id)
+                    )";
+        $this->query($admin_report);
     }
 
     public function SelectAll()

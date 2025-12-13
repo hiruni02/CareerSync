@@ -89,5 +89,5 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 
 <div class="genReport">
     <label>Generate a report for the last 30 Days :</label>
-    <a href="report" target="_blank"><button>Generate</button></a>
+    <a href="adminReport" target="_blank"><button>Generate</button></a>
 </div>
