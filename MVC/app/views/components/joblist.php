@@ -1,25 +1,86 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/joblist.css">
 <section class="job-section">
     <div class="filtersContainer">
-        <div class="filterTypeBox ">
-            <h2>Filters :</h1>
-                <label for="salRange">Salary Range:</label><br>
-                <input type="range" id="salRange" name="salRange" min="21000" max="10000000" value="210000">
-                <div id="salValue">21000</div>
-        </div>
-        <div class="filterTypeBox ">
-            <label>Sort by:</label><br>
-            <ul class="radioList">
-                <li><label><input type="radio" name="filter" checked> No filter</label></li>
-                <li><label><input type="radio" name="filter"> Ascending order</label></li>
-                <li><label><input type="radio" name="filter"> Descending order</label></li>
-                <li><label><input type="radio" name="filter"> Highest Salary</label></li>
-                <li><label><input type="radio" name="filter"> Lowest Salary</label></li>
-            </ul>
+        <button id="search" class="apply-filter-btn">Search</button><br><br>
+
+        <!-- Salary Range -->
+        <div class="filterTypeBox">
+            <label>Salary Range:</label>
+
+            <div class="salary-inputs">
+                <div class="salary-box">
+                    <label for="minSalary">Min:</label>
+                    <input type="number" id="minSalary" name="minSalary" placeholder="21000">
+                </div>
+
+                <div class="salary-box">
+                    <label for="maxSalary">Max:</label>
+                    <input type="number" id="maxSalary" name="maxSalary" placeholder="10000000">
+                </div>
+            </div>
         </div>
 
+        <!-- Sort Dropdown -->
+        <div class="filterTypeBox">
+            <label for="sortBy">Sort by:</label>
+            <select id="sortBy" name="sortBy" class="filter-dropdown">
+                <option value="none">No filter</option>
+                <option value="asc">Ascending order</option>
+                <option value="desc">Descending order</option>
+                <option value="highsal">Highest Salary</option>
+                <option value="lowsal">Lowest Salary</option>
+            </select>
+        </div>
 
+        <!-- City Dropdown -->
+        <div class="filterTypeBox">
+            <label for="city">City:</label>
+            <select id="city" name="city" class="filter-dropdown">
+                <option value="">All</option>
+                <option value="Colombo">Colombo</option>
+                <option value="Kandy">Kandy</option>
+                <option value="Galle">Galle</option>
+                <option value="Jaffna">Jaffna</option>
+                <option value="Matara">Matara</option>
+            </select>
+        </div>
+
+        <!-- Work Mode Dropdown -->
+        <div class="filterTypeBox">
+            <label for="workMode">Work Mode:</label>
+            <select id="workMode" name="workMode" class="filter-dropdown">
+                <option value="">All</option>
+                <option value="remote">Remote</option>
+                <option value="onsite">On-site</option>
+                <option value="hybrid">Hybrid</option>
+            </select>
+        </div>
+
+        <!-- Job Type Dropdown -->
+        <div class="filterTypeBox">
+            <label for="jobType">Job Type:</label>
+            <select id="jobType" name="jobType" class="filter-dropdown">
+                <option value="">All</option>
+                <option value="intern">Intern</option>
+                <option value="fullTime">Full-Time</option>
+                <option value="partTime">Part-Time</option>
+                <option value="freelance">Freelance</option>
+                <option value="contract">Contract</option>
+            </select>
+        </div>
+
+        <!-- Experience Level Dropdown -->
+        <div class="filterTypeBox">
+            <label for="experience">Experience Level:</label>
+            <select id="experience" name="experience" class="filter-dropdown">
+                <option value="">All</option>
+                <option value="entry">Entry</option>
+                <option value="mid">Mid</option>
+                <option value="senior">Senior</option>
+            </select>
+        </div>
     </div>
+
     <div class="jobContainer">
         <h3>Featured Jobs:</h3>
         <div class="scrollBox">
@@ -60,8 +121,8 @@
                             </div>
                             <div class="job-content">
                                 <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?>
-                                    <button type="button" class="BM-button" >
-                                    <!-- <img class="icon" src="<?= ROOT ?>assets/svg_icons/add_bm.svg"> -->
+                                    <button type="button" class="BM-button">
+                                        <!-- <img class="icon" src="<?= ROOT ?>assets/svg_icons/add_bm.svg"> -->
                                     </button>
                                 </h4>
                                 <h4 class="company-name"><?= htmlspecialchars($job->companyName) ?></h4>
@@ -79,8 +140,32 @@
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>No jobs available.</p>
+                <p class="itemsEmpty">No jobs available.</p>
             <?php endif; ?>
         </div>
     </div>
 </section>
+
+<script>
+    document.getElementById("search").addEventListener("click", function() {
+        const minSalary = document.getElementById("minSalary").value;
+        const maxSalary = document.getElementById("maxSalary").value;
+        const sortBy = document.getElementById("sortBy").value;
+        const city = document.getElementById("city").value;
+        const workMode = document.getElementById("workMode").value;
+        const jobType = document.getElementById("jobType").value;
+        const experience = document.getElementById("experience").value;
+
+        const params = new URLSearchParams();
+
+        if (minSalary) params.append("minSalary", minSalary);
+        if (maxSalary) params.append("maxSalary", maxSalary);
+        if (sortBy) params.append("sortBy", sortBy);
+        if (city) params.append("city", city);
+        if (workMode) params.append("workMode", workMode);
+        if (jobType) params.append("jobType", jobType);
+        if (experience) params.append("experience", experience);
+
+        window.location.href = "<?= ROOT ?>home?" + params.toString();
+    });
+</script>

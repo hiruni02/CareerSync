@@ -3,9 +3,33 @@
 $candidate = new Candidate;
 $data['candidateTable'] = $candidate->first(['user_id' => $_SESSION['USER']->user_id]);
 
-$photoPath = null;
+//extract the CV's sent by the candidate
+$cv = new CV;
+$data['cv'] = $cv->getSentCVsByCandidate($_SESSION['USER']->user_id);
+
+//extracting interview details
+$interview = new Interview;
+$data['interview'] = $interview->getCandidateInterview($_SESSION['USER']->user_id);
+
+$confirmedInterview = new Interview;
+$data['confirmedInterview'] = $confirmedInterview->getInterviewsByCandidate($_SESSION['USER']->user_id);
+
+//for the counselor selector
+$counselors = new Counselor;
+$data['counselors'] = $counselors->SelectAll();
+
+$consultation = new Consultation;
+$data['consultation'] = $consultation->getConsultationDetails($_SESSION['USER']->user_id);
+$data['consultationMeeting'] = $consultation->getCandidateConsultation($_SESSION['USER']->user_id);
+$data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCandidate($_SESSION['USER']->user_id);
+
+$isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
+$requestMeetingWithCounselor = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'send_meeting_request');
+$isConfirmingConsultationDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_consultation_scheduler');
+
 
 //code for updating user profile 
+$photoPath = null;
 if ($isProfileUpdate) {
     $errors = [];
 
@@ -46,9 +70,8 @@ if ($isProfileUpdate) {
         if ($updatedUser) {
             $_SESSION['USER'] = $updatedUser;
         }
-        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-        $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
-        //unset($_SESSION['USER']);//this loggs out after editing profile
+        $_SESSION['USER']->firstName = $_POST['firstName'];
+        $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path;
         redirect('home');
         exit;
     }
@@ -56,21 +79,94 @@ if ($isProfileUpdate) {
     $data['errors'] = $errors;
 }
 
-class CandidateDash extends Controller
-{
-    public function index()
-    {
-        // Load Message model
-        require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
-        
-        $messageModel = new Messege();
-        $candidateId = $_SESSION['user_id'] ?? null;
-        
-        $data = [];
-        $data['messeges'] = $candidateId ? $messageModel->getByReceiver($candidateId, 'candidate') : [];
-        
-        // ...rest of your existing code...
-        
-        $this->view('dashboards/candidateDash', $data);
+if ($isConfirmingInterviewDate) {
+    $interview_id = $_POST['interview_id'];
+    $selected_date = $_POST['selected_date'];
+
+    $interview = new Interview;
+    $slot = new InterviewSlot;
+
+    // fetch interview record
+    $interviewRecord = $interview->first([
+        'candidate_id' => $_SESSION['USER']->user_id,
+        'interview_id' => $interview_id
+    ]);
+
+    if ($interviewRecord) {
+        $interview->update(
+            $interviewRecord->interview_id,
+            ['dateConfirmed' => 'confirmed'],
+            'interview_id'
+        );
+
+        $allSlots = $slot->where(['interview_id' => $interview_id]);
+
+        if (!empty($allSlots)) {
+            foreach ($allSlots as $s) {
+                if ($s->slot_datetime !== $selected_date) {
+                    $slot->delete($s->slot_id, 'slot_id');
+                }
+            }
+        }
+        redirect('dashboard');
+        exit;
+    }
+}
+
+if ($requestMeetingWithCounselor) {
+    $counselorRequest = new ConsultationRequest;
+    $newRequest = [
+        'counselor_id' => $_POST['counselor_id'],
+        'candidate_id' => $_SESSION['USER']->user_id,
+    ];
+
+    $existing = $counselorRequest->first([
+        'counselor_id' => $_POST['counselor_id'],
+        'candidate_id' => $_SESSION['USER']->user_id,
+    ]);
+
+    if (!$existing) {
+        $counselorRequest->insert($newRequest);
+    }
+
+    redirect('dashboard');
+    exit;
+}
+
+if ($isConfirmingConsultationDate) {
+
+    $meeting_id = $_POST['meeting_id'];
+    $selected_date = $_POST['selected_date'];
+
+    $consultation = new Consultation;
+    $slot = new ConsultationSlot;
+
+    // Verify meeting exists
+    $meetingRecord = $consultation->first([
+        'candidate_id' => $_SESSION['USER']->user_id,
+        'meeting_id' => $meeting_id
+    ]);
+
+    if ($meetingRecord) {
+
+        // Mark consultation date as confirmed
+        $consultation->update(
+            $meeting_id,
+            ['dateConfirmed' => 'confirmed'],
+            'meeting_id'
+        );
+
+        // Remove all other slots
+        $allSlots = $slot->where(['meeting_id' => $meeting_id]);
+
+        if (!empty($allSlots)) {
+            foreach ($allSlots as $s) {
+                if ($s->slot_datetime !== $selected_date) {
+                    $slot->delete($s->slot_id, 'slot_id');
+                }
+            }
+        }
+        redirect('dashboard');
+        exit;
     }
 }

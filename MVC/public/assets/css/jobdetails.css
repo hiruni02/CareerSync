@@ -33,8 +33,8 @@
 }
 
 .heading_content {
-    background-color: var(--mid);
-    color:white;
+    background-color: var(--primaryBlueLight);
+    color:var(--white);
     padding: 30px;
     position: absolute;
     top: 80px;
@@ -93,7 +93,7 @@
     background-color: var(--lightBlue);
     width: 100%;
     max-width: 80%;
-    box-shadow: 3px 3px grey;
+    box-shadow: var(--shadowHard);
     border-radius: 8px;
     padding: 10px;
     margin: 20px auto;
@@ -106,7 +106,7 @@
     height: auto;
     margin: 5px;
     border-radius: 5px;
-    border: 2px solid var(--mid);
+    border: 3px solid var(--primaryBlue);
 }
 
 .jobinfo_box h4,
@@ -123,11 +123,11 @@ h5 {
 .job-meta td {
     padding: 8px 12px;
     font-size: 16px;
-    color: #333;
+    color: var(--textDark);
 }
 
 .job-meta td:first-child {
-    color: #666;
+    color: var(--textLight);
     width: 150px;
 
 }
@@ -140,7 +140,7 @@ h5 {
 
 .apply_job {
     background-image: var(--submit_btn_gradient);
-    color: white;
+    color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -200,7 +200,7 @@ h5 {
     width: 20px;
     height: 20px;
     padding-right: 10px;
-    color: #2d0c44;
+    color: var(--primaryBlue);
     cursor: pointer;
 }
 

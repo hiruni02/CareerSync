@@ -21,7 +21,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php"
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 ?>
 
-<h1 class="dashboard_tag">Admin Dash Board</h1>
+<h1 class="dashboard_tag">Dashboard</h1>
 <div class="counting_boxes">
     <div class="box_segment">
         Total Users:<br>
@@ -89,5 +89,5 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 
 <div class="genReport">
     <label>Generate a report for the last 30 Days :</label>
-    <button id="generate">Generate</button>
+    <a href="report" target="_blank"><button>Generate</button></a>
 </div>

@@ -19,8 +19,8 @@
 .listing_application_window {
     width: 50%;
     height: 85%;
-    background: var(--mid);
-    border: solid var(--mid) 5px;
+    background: var(--lightBlue);
+    border: solid var(--primaryBlue) 3px;
     display: flex;
     margin-top: 80px;
     border-radius: 10px;
@@ -28,18 +28,18 @@
     position: relative;
     flex-direction: column;
     align-items: center;
+}
 
-    h1 {
-        color: var(--darkpurple);
-        padding: 0px 0px 20px 0px;
-        font-family: "logo-font";
-        font-size: 2rem;
-    }
+.listing_application_window h1 {
+    color: var(--darkpurple);
+    padding: 0px 0px 20px 0px;
+    font-family: "Roboto", sans-serif;
+    font-size: 2rem;
 }
 
 #listing_application_backBtn {
     background-image: var(--submit_btn_gradient);
-    color: white;
+    color: var(--white);
     width: 100px;
     height: 50px;
     border-radius: 15px;
@@ -84,11 +84,15 @@ form {
     width: 100%;
 }
 
+.input-field input {
+    border: 1px solid var(--accentBlue) !important;
+}
+
 select {
     width: 60%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--accentBlue) !important;
     border-radius: 8px;
     font-size: 14px;
 }
@@ -96,6 +100,14 @@ select {
 textarea {
     width: 60%;
     border-radius: 7px;
+    border: 1px solid var(--accentBlue) !important;
+}
+
+.input-field input:focus,
+.input-field select:focus,
+.input-field textarea:focus {
+    border: 1px solid var(--primaryBlue) !important;
+    outline: none;
 }
 
 .input-field label {
@@ -131,13 +143,13 @@ textarea {
         height: 90%;
         padding: 10px;
         margin-top: 20px;
+    }
 
-        h1 {
-            color: var(--darkpurple);
-            padding: 0px 0px 0px 0px;
-            font-family: "logo-font";
-            font-size: 2rem;
-        }
+    .listing_application_window h1 {
+        color: var(--darkpurple);
+        padding: 0px 0px 0px 0px;
+        font-family: "Roboto", sans-serif;
+        font-size: 2rem;
     }
 
     .scrollbox {

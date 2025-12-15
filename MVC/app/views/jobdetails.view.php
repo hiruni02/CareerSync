@@ -8,9 +8,7 @@
 
 <body>
     <div class="page-wrapper">
-        <?php
-        include("components/navbar.php");
-        ?>
+        <?php include("components/navbar.php"); ?>
         <div class='page-content'>
             <div class="container">
                 <div class="box left">
@@ -21,8 +19,8 @@
                         </div>
                         <h3 class="company_name"><?= $data['job']->companyName ?></h3>
                     </div>
-                    <h3 class="jdTitle"><?= $data['job']->posTitle ?></h4><br>
-                        <p class="job_description"><?= $data['job']->jobDescription ?></p>
+                    <h3 class="jdTitle"><?= $data['job']->posTitle ?></h3><br>
+                    <p class="job_description"><?= $data['job']->jobDescription ?></p>
                 </div>
                 <div class="box right">
                     <div class="jobinfo_box">
@@ -40,9 +38,9 @@
                                 } else {
                                     $diff = $today->diff($deadline);
                                     $days = (int)$diff->format("%a");
-                                    if ($diff === 0) {
+                                    if ($days === 0) {
                                         $deadlineDisplay = "Today";
-                                    } elseif ($diff === 1) {
+                                    } elseif ($days === 1) {
                                         $deadlineDisplay = "1 day left";
                                     } else {
                                         $deadlineDisplay = $days . " days left";
@@ -54,7 +52,7 @@
                         }
                         ?>
                         <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/location.svg"><?= $data['job']->city ?></p>
-                        <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/clock.svg"><?php echo $deadlineDisplay ?></p>
+                        <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/clock.svg"><?= $deadlineDisplay ?></p>
                         <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/briefcase.svg"><?= $data['job']->posType ?></p>
                         <hr><br>
                         <p class="requirement"><?= $data['job']->required_skills ?></p>
@@ -75,45 +73,46 @@
                             </table>
                             <hr><br><br>
                             <div>
-                                <button class="apply_job" onclick="wrongUsr()" id="ApplyBtn">Apply</button><br>
+                                <button class="apply_job" id="ApplyBtn">Apply</button><br>
                                 <button class="save_job" id="backBtn">Bookmark</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <?php
-                include("components/cvDropWindow.php");
-                ?>
+                <?php include("components/cvDropWindow.php"); ?>
             </div>
-            <!--
-            need to add contact information of the company here
-            also loaction maybe?
-            -->
         </div>
-        <?php
-        include("components/footer.php");
-        ?>
+        <?php include("components/footer.php"); ?>
     </div>
 </body>
 
 <script>
     let userSession = <?= isset($_SESSION['USER']) ? json_encode($_SESSION['USER']->role) : 'null' ?>;
+    let alreadyApplied = <?= json_encode($data['alreadyApplied']) ?>;
+
 
     document.addEventListener("DOMContentLoaded", () => {
         const ApplyBtn = document.getElementById("ApplyBtn");
         const backBtn = document.getElementById("backBtn");
         const cvdw_pageCover = document.querySelector(".cvdw_pageCover");
 
+        ApplyBtn.onclick = null;
+
         ApplyBtn.addEventListener("click", (e) => {
             e.preventDefault();
 
             if (!userSession) {
-                alert("You must Log-in in order to apply for a position");
+                alert("You must log in to apply for a position");
                 return;
             }
 
             if (userSession !== 'candidate') {
                 alert("You must register as a candidate in order to apply for a position");
+                return;
+            }
+
+            if (alreadyApplied) {
+                alert("You have already applied to this job.");
                 return;
             }
 

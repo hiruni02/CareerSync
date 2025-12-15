@@ -1,15 +1,12 @@
 .selector_bg {
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(7px);
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     z-index: 40;
+    display: none;
     justify-content: center;
     align-items: center;
-    display: none;
 }
 
 .selector_bg.active {
@@ -17,82 +14,41 @@
 }
 
 .selector_window {
-    width: 40%;
-    max-width: 90%;
-    background: var(--mid);
-    border: 3px solid var(--mid, #6a78d1);
+    width: 450px;
+    max-width: 92%;
+    background: var(--lightBlue);
+    border: 3px solid var(--primaryBlue);
     border-radius: 15px;
-    padding: 20px 30px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    padding: 22px 20px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 18px;
 }
 
 .selector_window h1 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
+    text-align: center;
+    color: var(--textDark);
 }
 
 .scrollbox {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
     width: 100%;
-    border-radius: 10px;
-    align-items: flex-start;
-    max-height: 400px;
+    max-height: 420px;
     overflow-y: auto;
-    padding: 20px;
-
-}
-
-.selector_window button {
-    background-image: var(--submit_btn_gradient);
-    color: white;
-    width: 100px;
-    height: 50px;
-    border-radius: 15px;
-    border: none;
-    font-size: 30px;
-    font-weight: bold;
-    transition: 0.3s ease;
-    cursor: pointer;
+    padding-right: 4px;
 }
 
 .listItem {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border-radius: 8px;
-    background: var(--lightBlue);
-    transition: 0.2s ease;
+    background: var(--formBlue);
+    border-radius: 10px;
+    padding: 16px;
     display: flex;
-    justify-content: space-between;
-}
-
-.listItem:hover {
-    transform: scale(1.04);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.219);
-    z-index: 2;
-}
-
-.itemContent .title {
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin-bottom: 6px;
-    color: #444;
-}
-
-.itemContent .description {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.4;
-}
-
-.itemContent {
-    flex-grow: 1;
-    max-width: fit-content;
+    gap: 18px;
+    margin-bottom: 16px;
+    border: 3px solid var(--accentBlue);
 }
 
 .counselor_photo {
@@ -100,17 +56,100 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #a56ff0;
-    margin-bottom: 10px;
+    border: 3px solid var(--accentBlue);
+    flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
-    .selector_window {
-        width: 100%;
-        padding: 10px 10px;
+.itemContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.itemContent .title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: i want to buy the complete edition
+}
+
+.itemContent .description {
+    font-size: 1rem;
+    color: var(--textLight);
+    line-height: 1.4;
+}
+
+.interview-cvBtn,
+.request_meeting_btn {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.15s ease;
+    text-decoration: none;
+}
+
+.interview-cvBtn {
+    background: var(--primaryBlueLight);
+    color: var(--white);
+}
+
+.interview-cvBtn:hover {
+    background: var(--primaryBlue);
+    transform: scale(1.03);
+}
+
+.request_meeting_btn {
+    font-size: 1.2rem;
+    background: var(--primaryRedLight);
+    color: var(--white);
+    border: none;
+    margin-top: 6px;
+}
+
+.request_meeting_btn:hover {
+    background: var(--primaryRed);
+    transform: scale(1.03);
+}
+
+#counselor_selector_backBtn {
+    background-image: var(--submit_btn_gradient);
+    color: var(--white);
+    width: 130px;
+    height: 48px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#counselor_selector_backBtn:hover {
+    transform: scale(1.06);
+}
+
+@media (max-width: 650px) {
+
+    .listItem {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
     }
 
-    .selector_window h1 {
-        font-size: 1.5rem;
+    .itemContent {
+        align-items: center;
+    }
+
+    .itemContent .description {
+        text-align: center;
+    }
+
+    .selector_window {
+        width: 100%;
+        padding: 18px;
     }
 }
