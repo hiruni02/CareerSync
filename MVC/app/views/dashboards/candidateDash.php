@@ -7,14 +7,21 @@
     </ul>
 </div>
 
-<div class="messege_menu" id="messege_menu">
+<div class="messege_menu" id="messege_menu" role="region" aria-label="Messeges" aria-live="polite">
     <ul class="messege_list">
-        <li class="messege">messege 1: This is a test messege</li>
-        <li class="messege">messege 2: This is a test messege</li>
-        <li class="messege">messege 3: This is a test messege</li>
-        <li class="messege">messege 4: This is a test messege</li>
+        <?php if (!empty($data['messeges'])): ?>
+            <?php foreach ($data['messeges'] as $msg): ?>
+                <li class="messege">
+                    <?= htmlspecialchars($msg->content) ?>
+                    <span class="msg-time"><?= htmlspecialchars(date('M d, Y', strtotime($msg->created_at))) ?></span>
+                </li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li class="messege">No messeges.</li>
+        <?php endif; ?>
     </ul>
 </div>
+// ...existing code...
 
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");

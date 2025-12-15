@@ -11,7 +11,7 @@ trait Controller
         $userModel = new User;
         $user = $userModel->first([]);
         $data['admin_email'] = $user->email;
-        $data['admin_contact'] = $admin->contactNo;
+        //$data['admin_contact'] = $admin->contactNo;
 
         // Extract data to make variables available in view
         if (!empty($data)) {
