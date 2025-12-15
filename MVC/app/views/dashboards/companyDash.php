@@ -7,17 +7,17 @@
     </ul>
 </div>
 
-<div class="messege_menu" id="messege_menu" role="region" aria-label="Messages" aria-live="polite">
-    <ul class="messege_list">
+<div class="message_menu" id="message_menu" role="region" aria-label="Messages" aria-live="polite">
+    <ul class="message_list">
         <?php if (!empty($data['messages'])): ?>
             <?php foreach ($data['messages'] as $msg): ?>
-                <li class="messege">
+                <li class="message">
                     <?= htmlspecialchars($msg->content) ?>
                     <span class="msg-time"><?= htmlspecialchars(date('M d, Y', strtotime($msg->created_at))) ?></span>
                 </li>
             <?php endforeach; ?>
         <?php else: ?>
-            <li class="messege">No messages.</li>
+            <li class="message">No messages.</li>
         <?php endif; ?>
     </ul>
 </div>

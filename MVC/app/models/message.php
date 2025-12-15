@@ -1,8 +1,8 @@
 <?php
-class Messege {
+class Message {
     use Model;
 
-    protected $table = 'messeges';
+    protected $table = 'messages';
     protected $allowedColumns = ['receiver_id', 'receiver_type', 'content', 'is_read'];
 
     public function getByReceiver($receiverId, $receiverType)

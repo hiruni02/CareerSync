@@ -16,8 +16,8 @@
             <div class="settings_btn" onclick="toggleSettings()">
                 <img src="<?= ROOT ?>assets/images/settings_icon.png" alt="settings_btn">
             </div>
-            <div class="messeges_btn" onclick="toggleMesseges()">
-                <img src="<?= ROOT ?>assets/images/messeges_icon.png" alt="messeges_btn">
+            <div class="messages_btn" onclick="toggleMessages()">
+                <img src="<?= ROOT ?>assets/images/messages_icon.png" alt="messages_btn">
             </div>
             <?php
             switch ($_SESSION['USER']->role) {
@@ -43,36 +43,36 @@
     <script>
         function toggleSettings() {
             const settings_menu = document.getElementById('settings_menu');
-            const messege_menu = document.getElementById('messege_menu');
+            const message_menu = document.getElementById('message_menu');
             settings_menu.classList.toggle('active');
-            messege_menu.classList.remove('active');
+            message_menu.classList.remove('active');
         }
 
-        function toggleMesseges() {
-            const messege_menu = document.getElementById('messege_menu');
+        function toggleMessages() {
+            const message_menu = document.getElementById('message_menu');
             const settings_menu = document.getElementById('settings_menu');
-            messege_menu.classList.toggle('active');
+            message_menu.classList.toggle('active');
             settings_menu.classList.remove('active');
         }
 
         document.addEventListener("DOMContentLoaded", () => {
             const settings_menu = document.getElementById("settings_menu");
-            const messege_menu = document.getElementById("messege_menu");
+            const message_menu = document.getElementById("message_menu");
             const settingsBtn = document.querySelector(".settings_btn");
-            const messegesBtn = document.querySelector(".messeges_btn");
+            const messagesBtn = document.querySelector(".messages_btn");
 
             document.addEventListener("click", (e) => {
                 const clickedInsideMenu =
                     settings_menu.contains(e.target) ||
-                    messege_menu.contains(e.target);
+                    message_menu.contains(e.target);
 
                 const clickedOnToggle =
                     settingsBtn.contains(e.target) ||
-                    messegesBtn.contains(e.target);
+                    messagesBtn.contains(e.target);
 
                 if (!clickedInsideMenu && !clickedOnToggle) {
                     settings_menu.classList.remove("active");
-                    messege_menu.classList.remove("active");
+                    message_menu.classList.remove("active");
                 }
             });
         });

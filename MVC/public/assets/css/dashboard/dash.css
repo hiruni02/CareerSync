@@ -70,7 +70,7 @@
     transform: scale(1.05);
 }
 
-.messeges_btn {
+.messages_btn {
     position: fixed;
     cursor: pointer;
     transition: 0.3s ease;
@@ -80,16 +80,16 @@
     z-index: 30;
 }
 
-.messeges_btn img {
+.messages_btn img {
     width: 50px;
     height: 50px;
 }
 
-.messeges_btn:hover {
+.messages_btn:hover {
     transform: scale(1.2);
 }
 
-.messege_menu {
+.message_menu {
     position: fixed;
     top: 0;
     right: -350px;
@@ -101,12 +101,12 @@
     z-index: 20;
 }
 
-.messege_menu.active {
+.message_menu.active {
     right: 0;
     padding-top: 50px;
 }
 
-.messege_menu .messege_list {
+.message_menu .message_list {
     list-style: none;
     padding: 0;
     margin-top: 150px;
@@ -115,18 +115,18 @@
     gap: 20px;
 }
 
-.messeges_btn:hover {
+.messages_btn:hover {
     transform: scale(1.16);
 }
 
-.messege {
+.message {
     background-color: var(--lightBlue);
     border-radius: 10px;
     padding: 5px;
     transition: 0.3s ease;
 }
 
-.messege:hover {
+.message:hover {
     transform: scale(1.05);
 }
 
@@ -197,7 +197,7 @@
         z-index: 20;
     }
 
-    .messeges_btn {
+    .messages_btn {
         position: fixed;
         cursor: pointer;
         transition: 0.3s ease;
@@ -205,16 +205,16 @@
         right: 10px;
     }
 
-    .messeges_btn img {
+    .messages_btn img {
         width: 50px;
         height: 50px;
     }
 
-    .messeges_btn:hover {
+    .messages_btn:hover {
         transform: none;
     }
 
-    .messege_menu {
+    .message_menu {
         position: fixed;
         top: 0;
         right: -250px;
