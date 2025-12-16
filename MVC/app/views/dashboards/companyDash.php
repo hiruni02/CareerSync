@@ -27,6 +27,8 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php"
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
 ?>
 
+<?php $allApplications = $data['cv'] ?? []; ?>
+
 <h1 class="dashboard_tag">Company Dashboard</h1>
 
 <div class="counting_boxes">
@@ -34,10 +36,12 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
         Posted Jobs: <br>
         <h1>15</h1>
     </div>
+
     <div class="box_segment">
         Active Applications: <br>
-        <h1>42</h1>
+        <h1><?= count($allApplications) ?></h1>
     </div>
+
     <div class="box_segment">
         Shortlisted Candidates: <br>
         <h1>12</h1>
