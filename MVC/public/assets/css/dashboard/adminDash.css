@@ -36,6 +36,13 @@
     justify-content: space-between;
 }
 
+.itemsEmpty {
+    background-color: var(--formBlue);
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+}
+
 .listItem:hover {
     transform: scale(1.04);
     box-shadow: var(--shadowSoft);

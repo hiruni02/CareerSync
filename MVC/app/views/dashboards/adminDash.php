@@ -69,21 +69,26 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 <div class="sbContainer">
     <h3>View Monthly Reports</h3>
     <div class="scrollBox">
+
+
         <?php
-        for ($x = 0; $x <= 10; $x++) {
+        $repDetes = $data['oldReportDetails'];
         ?>
-            <div class="listItem">
-                <div class="itemContent">
-                    <div class="title">Report No: 12</div>
-                    <div class="title">Date: 2025-05-07</div>
-                    <div class="description">
-                        click to download report
-                    </div>
+        <?php if (!empty($repDetes)): ?>
+            <?php foreach ($repDetes as $repDetes): ?>
+                <div class="listItem">
+            <div class="itemContent">
+                <div class="title">Report No: 12</div>
+                <div class="title">Date: 2025-05-07</div>
+                <div class="description">
+                    click to download report
                 </div>
             </div>
-        <?php
-        }
-        ?>
+        </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No Reports available yet</p>
+        <?php endif; ?>
     </div>
 </div>
 
