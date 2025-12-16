@@ -178,7 +178,7 @@ trait Model
                         dateConfirmed ENUM('confirmed','unconfirmed') DEFAULT 'unconfirmed',
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
                         FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
-                    )";
+                        )";
         $this->query($consultation_table);
 
         $consultation_slot_table = "CREATE TABLE IF NOT EXISTS consultation_slots (
@@ -188,6 +188,16 @@ trait Model
                         FOREIGN KEY (meeting_id) REFERENCES consultation(meeting_id)
                         )";
         $this->query($consultation_slot_table);
+
+        $bookmarks = "CREATE TABLE IF NOT EXISTS bookmarks(
+                        bm_id INT AUTO_INCREMENT PRIMARY KEY,
+                        user_id INT,
+                        job_id INT,
+                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id),
+                        FOREIGN KEY (job_id) REFERENCES jobPost(job_id)
+                        )";
+        $this->query($bookmarks);
 
         $admin_report = "CREATE TABLE IF NOT EXISTS admin_reports (
                         report_id INT AUTO_INCREMENT PRIMARY KEY,

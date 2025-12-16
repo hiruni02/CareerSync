@@ -34,7 +34,7 @@
   color: var(--textDarkBlue);
 }
 
-.itemsEmpty{
+.itemsEmpty {
   font-size: 1.5rem;
   margin-left: 30px;
 }
@@ -68,15 +68,16 @@
   color: var(--textDarkBlue);
 }
 
-.BM-button {
+.bm_icon {
   background: none;
   border: none;
-  gap: 0;
   cursor: pointer;
-  align-items: center;
+  transition: ease 0.2s;
+  height: 2rem;
+  width: 2rem;
 }
 
-.BM-button:hover {
+.bm_icon:hover {
   transform: scale(1.2);
 }
 

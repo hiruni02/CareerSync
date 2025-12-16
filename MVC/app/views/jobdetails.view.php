@@ -106,10 +106,10 @@
                 return;
             }
 
-            if (userSession !== 'candidate') {
+            /*if (userSession !== 'candidate') {
                 alert("You must register as a candidate in order to apply for a position");
                 return;
-            }
+            }*/
 
             if (alreadyApplied) {
                 alert("You have already applied to this job.");

@@ -121,9 +121,7 @@
                             </div>
                             <div class="job-content">
                                 <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?>
-                                    <button type="button" class="BM-button">
-                                        <!-- <img class="icon" src="<?= ROOT ?>assets/svg_icons/add_bm.svg"> -->
-                                    </button>
+                                    <img class="bm_icon" src="<?= ROOT ?>assets/svg_icons/add_bm.svg">
                                 </h4>
                                 <h4 class="company-name"><?= htmlspecialchars($job->companyName) ?></h4>
                                 <div class="industry"><?= htmlspecialchars($job->industry) ?></div>
@@ -167,5 +165,22 @@
         if (experience) params.append("experience", experience);
 
         window.location.href = "<?= ROOT ?>home?" + params.toString();
+    });
+
+    //interim panel's request to disable clicking on jobs for non-candidates
+    let userSession = <?= isset($_SESSION['USER']) ? json_encode($_SESSION['USER']->role) : 'null' ?>;
+
+    document.addEventListener("click", function(e) {
+        const jobLink = e.target.closest(".jobListLink");
+        if (!jobLink) return;
+
+        if (
+            userSession === 'company' ||
+            userSession === 'counselor' ||
+            userSession === 'validator'
+        ) {
+            e.preventDefault();
+            alert("You must register as a candidate in order to apply for a position");
+        }
     });
 </script>
