@@ -74,7 +74,12 @@
                             <hr><br><br>
                             <div>
                                 <button class="apply_job" id="ApplyBtn">Apply</button><br>
-                                <button class="save_job" id="backBtn">Bookmark</button>
+                                <button class="save_job"
+                                    id="BookmarkBtn"
+                                    data-job-id="<?= $data['job']->job_id ?>">
+                                    <?= $data['bm_status'] === null ? 'Bookmark' : 'Remove Bookmark' ?>
+                                </button>
+
                             </div>
                         </div>
                     </div>
@@ -123,6 +128,40 @@
         backBtn.addEventListener("click", () => {
             cvdw_pageCover.classList.remove("active");
             document.body.style.overflow = "auto";
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const bookmarkBtn = document.getElementById("BookmarkBtn");
+        if (!bookmarkBtn) return;
+
+        bookmarkBtn.addEventListener("click", () => {
+
+            if (!userSession) {
+                alert("You must log in to bookmark jobs.");
+                return;
+            }
+
+            const jobId = bookmarkBtn.dataset.jobId;
+
+            fetch("", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `action=toggle_bookmark&job_id=${jobId}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "added") {
+                        bookmarkBtn.textContent = "Remove Bookmark";
+                    } else if (data.status === "removed") {
+                        bookmarkBtn.textContent = "Bookmark";
+                    }
+                })
+                .catch(err => console.error(err));
         });
     });
 </script>
