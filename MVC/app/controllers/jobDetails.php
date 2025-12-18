@@ -41,7 +41,15 @@ class JobDetails
         $jobData = $job->jobpost_and_company($id);
 
         $bookmark = new Bookmark;
-        $data['bm_status'] = $bookmark->getBmStatus($_SESSION['USER']->user_id, $jobData->job_id);
+
+        if (!empty($_SESSION['USER'])) {
+            $data['bm_status'] = $bookmark->getBmStatus(
+                $_SESSION['USER']->user_id,
+                $jobData->job_id
+            );
+        } else {
+            $data['bm_status'] = null;
+        }
 
         if (!$jobData) {
             $this->view("404");
