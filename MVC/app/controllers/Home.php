@@ -5,6 +5,38 @@ class Home
     use Database;
     public function index()
     {
+        if (
+            $_SERVER['REQUEST_METHOD'] === 'POST'
+            && isset($_POST['action'])
+            && $_POST['action'] === 'toggle_bookmark'
+        ) {
+
+            if (empty($_SESSION['USER'])) {
+                echo json_encode(['status' => 'unauthorized']);
+                exit;
+            }
+
+            $job_id  = $_POST['job_id'] ?? null;
+            $user_id = $_SESSION['USER']->user_id;
+
+            if (!$job_id) {
+                echo json_encode(['status' => 'error']);
+                exit;
+            }
+
+            $bookmark = new Bookmark();
+            $existing = $bookmark->getBmStatus($user_id, $job_id);
+
+            if ($existing) {
+                $bookmark->removeBookmark($user_id, $job_id);
+                echo json_encode(['status' => 'removed']);
+            } else {
+                $bookmark->addBookmark($user_id, $job_id);
+                echo json_encode(['status' => 'added']);
+            }
+
+            exit;
+        }
         //if not logged in the $username variable is deafulted to 'User'
         if (empty($_SESSION['USER'])) {
             $data['username'] = 'User';
