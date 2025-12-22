@@ -17,7 +17,7 @@ class Bookmark
                   AND job_id = ? 
                   LIMIT 1";
 
-        $result = $this->query($query, [$user_id,$job_id]);
+        $result = $this->query($query, [$user_id, $job_id]);
 
         return !empty($result) ? $result[0] : null;
     }
@@ -37,5 +37,25 @@ class Bookmark
                   AND job_id = ?";
 
         return $this->query($query, [$user_id, $job_id]);
+    }
+
+    public function getMyBookmarks($user_id)
+    {
+        $query = "  SELECT 
+                    b.bm_id,
+                    b.job_id,
+                    j.posTitle,
+                    c.companyName,
+                    c.company_photo_path
+                    FROM bookmarks b
+                    INNER JOIN jobPost j 
+                    ON b.job_id = j.job_id
+                    INNER JOIN company c 
+                    ON j.company_id = c.user_id
+                    WHERE b.user_id = ?
+                    ORDER BY b.created_at DESC
+                ";
+
+        return $this->query($query, [$user_id]);
     }
 }
