@@ -72,10 +72,15 @@
                                 </tr>
                             </table>
                             <hr><br><br>
-                            <div>
-                                <button class="apply_job" id="ApplyBtn">Apply</button><br>
-                                <button class="save_job" id="backBtn">Bookmark</button>
-                            </div>
+                            <?php if (
+                                !isset($_SESSION['USER']) ||
+                                (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'candidate') 
+                            ): ?>
+                                <div>
+                                    <button class="apply_job" id="ApplyBtn">Apply</button><br>
+                                    <button class="save_job" id="backBtn">Bookmark</button>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -96,7 +101,8 @@
         const backBtn = document.getElementById("backBtn");
         const cvdw_pageCover = document.querySelector(".cvdw_pageCover");
 
-        ApplyBtn.onclick = null;
+        if (!ApplyBtn || !backBtn) return;
+        //ApplyBtn.onclick = null;
 
         ApplyBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -106,10 +112,10 @@
                 return;
             }
 
-            if (userSession !== 'candidate') {
+            /*if (userSession !== 'candidate') {
                 alert("You must register as a candidate in order to apply for a position");
                 return;
-            }
+            }*/
 
             if (alreadyApplied) {
                 alert("You have already applied to this job.");
