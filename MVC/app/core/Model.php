@@ -188,6 +188,17 @@ trait Model
                         FOREIGN KEY (meeting_id) REFERENCES consultation(meeting_id)
                         )";
         $this->query($consultation_slot_table);
+
+        $messages_table = "CREATE TABLE IF NOT EXISTS messages (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        receiver_id INT NOT NULL,
+                        receiver_type ENUM('candidate', 'company', 'counselor', 'validator', 'admin') NOT NULL,
+                        content TEXT NOT NULL,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                        is_read TINYINT(1) DEFAULT 0,
+                        INDEX idx_receiver (receiver_id, receiver_type)
+                        )";
+        $this->query($messages_table);
     }
 
     public function SelectAll()
@@ -247,8 +258,7 @@ trait Model
 
         $query = "INSERT INTO $this->table (" . implode(",", $keys) . ") VALUES (" . implode(",", array_fill(0, count($keys), "?")) . ")";
         //echo $query;
-        $this->query($query, $data);
-        return false;
+        return $this->query($query, $data);
     }
     public function update($id, $data, $id_column = 'id')
     {
@@ -268,15 +278,14 @@ trait Model
         $query .= " WHERE $id_column = ?";
         $data[$id_column] = $id;
         //echo $query;
-        $this->query($query, $data);
-        return false;
+        return $this->query($query, $data);
     }
     public function delete($id, $id_column = 'id')
     {
         $data[$id_column] = $id;
         $query = "DELETE FROM $this->table WHERE $id_column = ?";
         //echo $query;
-        $this->query($query, $data);
-        return false;
+        return $this->query($query, $data);
     }
 }
+
