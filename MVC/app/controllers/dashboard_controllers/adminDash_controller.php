@@ -3,6 +3,9 @@
 $admin = new Admin;
 $data['adminTable'] = $admin->first(['user_id' => $_SESSION['USER']->user_id]);
 
+$reports = new AdminReportDetails;
+$data['oldReportDetails'] = $reports->selectOldReports();
+
 $photoPath = null;
 
 //code for updating user profile 
