@@ -139,9 +139,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                             <form method="post" class="pj_form">
                                 <input type="hidden" name="action" value="postedJobActions">
                                 <input type="hidden" name="job_id" value="<?= $pj->job_id ?>">
-                                <input type="date" name="new_deadline" required>
-                                <input type="submit" name="btn" class="extendBtn" value="Extend Deadline">
-                                <input type="submit" name="btn" class="deleteBtn" onclick="return confirm('Are you sure you want to delete this job post?');" value="Delete">
+                                <div class="jdBtns">
+                                    <input type="date" name="new_deadline" required>
+                                    <input type="submit" name="btn" class="extendBtn" value="Extend Deadline">
+                                    <input type="submit" name="btn" class="deleteBtn" onclick="return confirm('Are you sure you want to delete this job post?');" value="Delete">
+                                </div>
                             </form>
                         </div>
                     </div>

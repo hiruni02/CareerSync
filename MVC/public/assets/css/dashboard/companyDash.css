@@ -230,6 +230,17 @@
 
 .filter label {
   white-space: nowrap;
+  margin-top: -10px;
+}
+
+#jobFilter{
+  margin-top: -1px
+}
+
+.jdBtns{
+  display:  flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 
@@ -279,5 +290,9 @@
   .content_section h3 {
     font-size: 20px;
     text-align: center;
+  }
+
+  .jdBtns{
+    flex-direction: column;
   }
 }
