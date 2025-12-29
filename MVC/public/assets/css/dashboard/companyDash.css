@@ -173,7 +173,7 @@
   margin-top: 10px;
 }
 
-.pj_form{
+.pj_form {
   display: flex;
   flex-direction: row;
 }
@@ -220,6 +220,19 @@
   border-radius: 10px;
   width: 100%;
 }
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+}
+
+.filter label {
+  white-space: nowrap;
+}
+
+
 
 @media (max-width: 900px) {
   .content_wrapper {
