@@ -68,11 +68,30 @@
 .scrollBox {
     max-height: 260px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     border-radius: 6px;
     background-color: var(--formBlue);
     border: 0px;
     padding: 8px;
+}
+
+.scrollBox::-webkit-scrollbar {
+    width: 15px;
+}
+
+.scrollBox::-webkit-scrollbar-track {
+    background: var(--white);
+    border-radius: 10px;
+}
+
+.scrollBox::-webkit-scrollbar-thumb {
+    background-color: var(--primaryBlueLight);
+    border-radius: 10px;
+    border: 3px solid var(--white);
+}
+
+.scrollBox::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primaryBlue);
 }
 
 .itemsEmpty {
@@ -172,11 +191,30 @@
     padding: 10px 4%;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: scroll;
     background-color: var(--formBlue);
     width: 100%;
     border-radius: 10px;
     max-height: 500px;
+}
+
+.interview-scrollbox::-webkit-scrollbar {
+    width: 15px;
+}
+
+.interview-scrollbox::-webkit-scrollbar-track {
+    background: var(--white);
+    border-radius: 10px;
+}
+
+.interview-scrollbox::-webkit-scrollbar-thumb {
+    background-color: var(--primaryBlueLight);
+    border-radius: 10px;
+    border: 3px solid var(--white);
+}
+
+.interview-scrollbox::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primaryBlue);
 }
 
 .interview-item {
