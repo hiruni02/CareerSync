@@ -61,8 +61,20 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
 ?>
 
 <div class="content_wrapper">
-    <div class="content_section">
+    <div class="content_section" id="appliedCandidatesSection">
         <h3>Applied Candidates</h3>
+        <div class="filter">
+            <label for="jobFilter">Filter jobs:</label>
+            <select id="jobFilter">
+                <option value="all">All</option>
+                <?php foreach ($postedJobs as $pj): ?>
+                    <option value="<?= $pj->job_id ?>">
+                        <?= htmlspecialchars($pj->posTitle) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
         <div class="scScrollbox">
             <?php $approvedCvs = $data['cv'] ?? []; ?>
 
@@ -72,7 +84,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
 
             <?php if (!empty($pendingCvs)): ?>
                 <?php foreach ($pendingCvs as $cv): ?>
-                    <div class="listItem">
+                    <div class="listItem" data-job-id="<?= $cv->job_id ?>">
                         <div class="li-row">
                             <span class="li-label">Position:</span>
                             <span class="li-value"><?= htmlspecialchars($cv->posTitle) ?></span>
@@ -127,9 +139,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                             <form method="post" class="pj_form">
                                 <input type="hidden" name="action" value="postedJobActions">
                                 <input type="hidden" name="job_id" value="<?= $pj->job_id ?>">
-                                <input type="date" name="new_deadline" required>
-                                <input type="submit" name="btn" class="extendBtn" value="Extend Deadline">
-                                <input type="submit" name="btn" class="deleteBtn" onclick="return confirm('Are you sure you want to delete this job post?');" value="Delete">
+                                <div class="jdBtns">
+                                    <input type="date" name="new_deadline" required>
+                                    <input type="submit" name="btn" class="extendBtn" value="Extend Deadline">
+                                    <input type="submit" name="btn" class="deleteBtn" onclick="return confirm('Are you sure you want to delete this job post?');" value="Delete">
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -269,6 +283,29 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
         backBtn.addEventListener("click", (e) => {
             e.preventDefault();
             schedulerBg.classList.remove("active");
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const filter = document.getElementById("jobFilter");
+        const appliedSection = document.getElementById("appliedCandidatesSection");
+
+        if (!filter || !appliedSection) return;
+
+        const items = appliedSection.querySelectorAll(".listItem");
+
+        filter.addEventListener("change", () => {
+            const selectedJob = filter.value;
+
+            items.forEach(item => {
+                const jobId = item.dataset.jobId;
+
+                item.style.display =
+                    selectedJob === "all" || jobId === selectedJob ?
+                    "block" :
+                    "none";
+            });
         });
     });
 </script>

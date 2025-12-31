@@ -16,6 +16,25 @@
   overflow-y: auto;
 }
 
+.scrollBox::-webkit-scrollbar {
+  width: 15px;
+}
+
+.scrollBox::-webkit-scrollbar-track {
+  background: var(--white);
+  border-radius: 10px;
+}
+
+.scrollBox::-webkit-scrollbar-thumb {
+  background-color: var(--primaryBlueLight);
+  border-radius: 10px;
+  border: 3px solid var(--white);
+}
+
+.scrollBox::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primaryBlue);
+}
+
 .jobContainer {
   flex: 1;
   background: #d5f6ff88;
@@ -147,7 +166,7 @@
 
 .bm_section {
   margin-top: 1px;
-  
+
 }
 
 .deadline-box i {

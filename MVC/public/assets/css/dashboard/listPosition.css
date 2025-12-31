@@ -72,6 +72,25 @@
     align-items: flex-start;
 }
 
+.scrollbox::-webkit-scrollbar {
+    width: 15px;
+}
+
+.scrollbox::-webkit-scrollbar-track {
+    background: var(--white);
+    border-radius: 10px;
+}
+
+.scrollbox::-webkit-scrollbar-thumb {
+    background-color: var(--primaryBlueLight);
+    border-radius: 10px;
+    border: 3px solid var(--white);
+}
+
+.scrollbox::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primaryBlue);
+}
+
 form {
     width: 100%;
 }
