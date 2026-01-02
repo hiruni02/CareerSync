@@ -81,6 +81,11 @@
                                     <button class="save_job" id="backBtn">Bookmark</button>
                                 </div>
                             <?php endif; ?>
+                            <?php if (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'company') : ?>
+                            <div>
+                                <button class="edit_job" id="editJobBtn">Edit Job Post</button>
+                            </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -89,6 +94,9 @@
         </div>
         <?php include("components/footer.php"); ?>
     </div>
+    <?php if (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'company') : ?>
+        <?php include("components/editJobPostWindow.php"); ?>
+    <?php endif; ?>
 </body>
 
 <script>
@@ -131,6 +139,27 @@
             document.body.style.overflow = "auto";
         });
     });
+
+    const editBtn = document.getElementById("editJobBtn");
+    const Model = document.getElementById("editJobModel");
+
+    if (editBtn && Model) {
+        editBtn.addEventListener("click", () => {
+            Model.style.display = "flex";
+        });
+
+        const backModelBtn = Model.querySelector("button[type='button']");
+        backModelBtn.addEventListener("click", () => {
+            Model.style.display = "none";
+        });
+
+        window.addEventListener("click", (event) => {
+            if (event.target === Model) {
+                Model.style.display = "none";
+            }
+        });
+    }
+
 </script>
 
 </html>
