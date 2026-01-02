@@ -125,7 +125,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                     <div class="listItem">
                         <div class="li-row">
                             <span class="li-label">Position:</span>
-                            <span class="li-value"><?= htmlspecialchars($pj->posTitle) ?></span>
+                            <a href="<?= ROOT ?>jobdetails/<?= urlencode($pj->job_id) ?>"><span class="li-value"><?= htmlspecialchars($pj->posTitle) ?></span></a>
                         </div>
                         <div class="li-row">
                             <span class="li-label">Posted On:</span>

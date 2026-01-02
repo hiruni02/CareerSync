@@ -1,8 +1,6 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/joblist.css">
 <section class="job-section">
     <div class="filtersContainer">
-        <button id="search" class="apply-filter-btn">Search</button><br><br>
-
         <!-- Salary Range -->
         <div class="filterTypeBox">
             <label>Salary Range:</label>
@@ -79,6 +77,7 @@
                 <option value="senior">Senior</option>
             </select>
         </div>
+        <br><button id="search" class="apply-filter-btn">Apply Filters</button><br>
     </div>
 
     <div class="jobContainer">

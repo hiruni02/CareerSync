@@ -14,7 +14,7 @@
                 <div class="box left">
                     <div class="heading_content">
                         <div class="job_heading">
-                            <a href="<?= ROOT ?>home"><img src="<?= ROOT ?>assets/svg_icons/backBtn.svg" alt="back button" class="backicon"></a>
+                            <img src="<?= ROOT ?>assets/svg_icons/backBtn.svg" alt="back button" class="backicon" onclick="history.back()">
                             <h1 class="job_title"><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h1>
                         </div>
                         <h3 class="company_name"><?= $data['job']->companyName ?></h3>
