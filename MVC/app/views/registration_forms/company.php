@@ -26,7 +26,7 @@
     }
 </script>
 <h1>Register as a Company</h1>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" onsubmit="return handleSubmit(this)">
     <div class="input-field">
         <label for="companyName">Company Name</label>
         <input

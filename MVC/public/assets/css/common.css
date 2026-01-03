@@ -89,5 +89,52 @@ body {
   background-attachment: fixed;
 }
 
+/*loading screen*/
+#page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--page_gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#page-loader.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#page-loader p{
+  padding-left: 16px;
+  font-size: 1.5rem;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid var(--formBlue);
+  border-top-color: var(--primaryBlueLight);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hidden state */
+#page-loader.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+
 /*phone screen optimization*/
 @media (max-width: 600px) {}
