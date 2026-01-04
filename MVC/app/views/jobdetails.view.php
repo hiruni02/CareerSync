@@ -21,7 +21,14 @@
                     </div>
                     <h3 class="jdTitle"><?= $data['job']->posTitle ?></h3><br>
                     <p class="job_description"><?= $data['job']->jobDescription ?></p>
+
+                    <p class="requirementsHead">Requirements : </p>
+                    <p class="ExperienceLevel">Experience Level: <?= $data['job']->exp_level ?></p>
+                    <p class="ExperienceYears">Years of Experience: <?= $data['job']->yearsOfExp ?> Years</p>
+                    <p class="requirements"><?= $data['job']->required_skills ?></p> 
+                      
                 </div>
+                
                 <div class="box right">
                     <div class="jobinfo_box">
                         <img class="company_logo" src="<?= ROOT . $data['job']->company_photo_path ?>" alt="Company Logo">
@@ -55,9 +62,19 @@
                         <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/clock.svg"><?= $deadlineDisplay ?></p>
                         <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/briefcase.svg"><?= $data['job']->posType ?></p>
                         <hr><br>
-                        <p class="requirement"><?= $data['job']->required_skills ?></p>
+
                         <div class="job-meta">
                             <table>
+                                <tr>
+                                    <td>Work Mode</td>
+                                    <td><strong><?= $data['job']->workMode?></strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td>No. of Vacancies</td>
+                                    <td><strong><?= $data['job']->vacancies ?></strong></td>
+                                </tr>
+
                                 <tr>
                                     <td>Education</td>
                                     <td><strong><?= $data['job']->qualifications ?></strong></td>

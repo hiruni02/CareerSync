@@ -1,3 +1,12 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/common.css">
+    <link rel="stylesheet" href="<?= ROOT ?>assets/css/jobdetails.css">
+</head>
+
+<body>
+
 <div class="edit_job_display" id="editJobModel" style="display: none;">
     <div class="editWindow">
         <h1 style="text-align: center;">Edit Job Post</h1>
@@ -96,3 +105,7 @@
         </form>
     </div>
 </div>
+
+</body>
+
+</html>
