@@ -67,10 +67,8 @@
     margin-left: 70px;
 }
 
-
-
 .company_name {
-    margin-left: 50px;
+    /*margin-left: 50px;*/
     margin-top: 10px;
 }
 
@@ -256,7 +254,15 @@ h5 {
 .edit_job_display .editWindow h1 {
     color: var(--darkpurple);
     padding-bottom: 20px;
-    font-size: 25px;
+    align-self: center;
+    font-size: 30px;
+}
+
+.edit_job_display .editWindow h4 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    align-self: center;
 }
 
 .edit_job_display .input-field {
