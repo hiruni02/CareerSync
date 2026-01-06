@@ -125,6 +125,11 @@
   font-weight: 600;
 }
 
+.jobTitle_Link{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.15rem;
+}
+
 .li-value {
   color: var(--textDark);
   font-family: "consolas";
