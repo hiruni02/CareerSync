@@ -2,6 +2,7 @@
 //extract admin data
 $admin = new Admin;
 $data['adminTable'] = $admin->first(['user_id' => $_SESSION['USER']->user_id]);
+$data['validators'] = $admin->getValidatorDetails();
 
 $reports = new AdminReportDetails;
 $data['oldReportDetails'] = $reports->selectOldReports();
