@@ -58,6 +58,10 @@ if ($isProfileUpdate) {
 
 $cv = new CV;
 
+require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/jobPost.php';
+require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/candidate.php';
+require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
+
 $data['applications'] = $cv->SelectAll();
 
 $is_Validating_CV  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCV');
@@ -76,6 +80,32 @@ if ($is_Validating_CV) {
 
     if ($cv_id && $status) {
         $cv->update($cv_id, ['validator_approval' => $status], 'cv_id');
+        
+        if ($status === 'approved') {
+            // Get CV data
+            $cvData = $cv->first(['cv_id' => $cv_id]);
+            $job_id = $cvData->job_id;
+            
+            // Get job data to find company_id
+            $jobPost = new JobPost();
+            $jobData = $jobPost->first(['job_id' => $job_id]);
+            $company_id = $jobData->company_id;
+            
+            // Get candidate name
+            $candidateModel = new Candidate();
+            $candidateData = $candidateModel->first(['user_id' => $cvData->candidate_id]);
+            $candidateName = $candidateData->firstName . ' ' . $candidateData->lastName;
+            
+            // Insert notification message to company
+            $messageModel = new Message();
+            $messageModel->insert([
+                'receiver_id' => $company_id,
+                'receiver_type' => 'company',
+                'content' => "A candidate, {$candidateName}, has applied to your job '{$jobData->posTitle}' and has been validated.",
+                'is_read' => 0
+            ]);
+        }
+        
         redirect('dashboard');
     }
 }
