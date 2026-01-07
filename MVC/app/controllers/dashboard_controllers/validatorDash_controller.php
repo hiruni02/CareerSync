@@ -104,6 +104,19 @@ if ($is_Validating_CV) {
                 'content' => "A candidate, {$candidateName}, has applied to your job '{$jobData->posTitle}' and has been validated.",
                 'is_read' => 0
             ]);
+        } else if ($status === 'rejected') {
+            // Get CV data
+            $cvData = $cv->first(['cv_id' => $cv_id]);
+            $candidate_id = $cvData->candidate_id;
+            
+            // Insert notification message to candidate
+            $messageModel = new Message();
+            $messageModel->insert([
+                'receiver_id' => $candidate_id,
+                'receiver_type' => 'candidate',
+                'content' => "Your CV has been rejected. Please ensure it contains accurate and proper information.",
+                'is_read' => 0
+            ]);
         }
         
         redirect('dashboard');
