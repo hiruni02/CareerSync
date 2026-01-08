@@ -92,10 +92,11 @@ class Admin
 
     public function getValidatorDetails()
     {
-        $query = "SELECT v.*, u.email
+        $query = "SELECT v.*, u.email, u.status
         FROM validator v
-        JOIN users u ON u.user_id = v.user_id";
-
+        JOIN users u ON v.user_id = u.user_id
+        WHERE u.status = 'pending'";
+        
         return $this->query($query);
     }
 }

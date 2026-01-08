@@ -101,13 +101,21 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                 <div class="validator_manager_list_item">
                     <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
                     <div class="managerContent">
-                        <label>User ID: </label><div class="details"><?= htmlspecialchars($val->user_id); ?></div>
-                        <label>Name: </label><div class="details"><?= htmlspecialchars($val->firstName . ' ' . $val->lastName); ?></div>
-                        <label>Email: </label><div class="details"><?= htmlspecialchars($val->email); ?></div>
-                        <label>Contact No: </label><div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
+                        <label>User ID: </label>
+                        <div class="details"><?= htmlspecialchars($val->user_id); ?></div>
+                        <label>Name: </label>
+                        <div class="details"><?= htmlspecialchars($val->firstName . ' ' . $val->lastName); ?></div>
+                        <label>Email: </label>
+                        <div class="details"><?= htmlspecialchars($val->email); ?></div>
+                        <label>Contact No: </label>
+                        <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
                     </div>
-                    <input type="button" value="Grant Access">
-                    <input type="button" value="Deny Access">
+                    <form method="POST">
+                        <input type="hidden" name="action" value="validateValidator">
+                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
+                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
+                    </form>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
