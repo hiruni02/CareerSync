@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/joblist.css">
 <section class="job-section">
     <div class="filtersContainer">
+        <h2>Add Filters : </h2>
         <!-- Salary Range -->
         <div class="filterTypeBox">
             <label>Salary Range:</label>
