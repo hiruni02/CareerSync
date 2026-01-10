@@ -315,6 +315,20 @@
     text-align: center;
   }
 
+  .status-approved {
+    color: green;
+    font-weight: bold;
+  }
+
+  .status-rejected {
+    color: red;
+    font-weight: bold;
+  }
+
+  .status-pending {
+    color: orange;
+    font-weight: bold;
+
   .jdBtns{
     flex-direction: column;
   }

@@ -51,6 +51,10 @@ trait Database
                 }
                 return $rows ?: false;
             }
+        } elseif (stripos(trim($query), "INSERT") === 0) {
+            return $stmt->insert_id ?: true; // Return insert ID or true for successful insert
+        } elseif (stripos(trim($query), "UPDATE") === 0 || stripos(trim($query), "DELETE") === 0) {
+            return $stmt->affected_rows > 0; // Return true if rows were affected
         }
         return false;
     }

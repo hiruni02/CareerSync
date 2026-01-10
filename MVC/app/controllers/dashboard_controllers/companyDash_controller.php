@@ -14,6 +14,12 @@ $data['cv'] = $cv->getApprovedCVsByCompany($_SESSION['USER']->user_id);
 $confirmedInterviews = new Interview();
 $data['confirmedInterviews'] = $confirmedInterviews->getInterviewsByCompany($_SESSION['USER']->user_id);
 
+// Load messages for company
+require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
+$messageModel = new Message();
+$companyId = $_SESSION['USER']->user_id ?? null;
+$data['messages'] = $companyId ? $messageModel->getByReceiver($companyId, 'company') : [];
+
 $photoPath = null;
 $certificatePath = $data['companyTable']->business_certificate ?? null;
 
@@ -167,6 +173,12 @@ if ($isSchedulingInterview) {
     $slots = $_POST['slots'] ?? [];
     $actionType = $_POST['decision'] ?? 'accept';
 
+    // Get job and company details for message
+    $jobPost = new JobPost;
+    $jobDetails = $jobPost->first(['job_id' => $job_id]);
+    $companyDetails = $company->first(['user_id' => $company_id]);
+    $messageModel = new Message;
+
     $cv = new CV;
     $cvRecord = $cv->first(['candidate_id' => $candidate_id, 'job_id' => $job_id]);
 
@@ -179,6 +191,15 @@ if ($isSchedulingInterview) {
     // REJECT CASE
     if ($actionType === 'reject') {
         $cv->update($cvRecord->cv_id, ['company_approval' => 'rejected'], 'cv_id');
+
+        // Send message to candidate
+        $messageModel->insert([
+            'receiver_id' => $candidate_id,
+            'receiver_type' => 'candidate',
+            'content' => "Your application for {$jobDetails->posTitle} at {$companyDetails->companyName} has been rejected.",
+            'is_read' => 0
+        ]);
+
         $_SESSION['success'] = "Candidate rejected successfully.";
         redirect("dashboard/companyDash");
         exit;
@@ -200,6 +221,14 @@ if ($isSchedulingInterview) {
                 'address_link'  => $address,
                 'extra_details' => $details
             ], $slots);
+
+            // Send message to candidate
+            $messageModel->insert([
+                'receiver_id' => $candidate_id,
+                'receiver_type' => 'candidate',
+                'content' => "Your application for {$jobDetails->posTitle} at {$companyDetails->companyName} has been accepted. Interview has been scheduled.",
+                'is_read' => 0
+            ]);
 
             $_SESSION['success'] = "Candidate accepted and interview scheduled.";
             redirect("dashboard/companyDash");

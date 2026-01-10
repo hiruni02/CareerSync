@@ -8,12 +8,18 @@
     </ul>
 </div>
 
-<div class="messege_menu" id="messege_menu">
-    <ul class="messege_list">
-        <li class="messege">messege 1: This is a test messege</li>
-        <li class="messege">messege 2: This is a test messege</li>
-        <li class="messege">messege 3: This is a test messege</li>
-        <li class="messege">messege 4: This is a test messege</li>
+<div class="message_menu" id="message_menu" role="region" aria-label="Messages" aria-live="polite">
+    <ul class="message_list">
+        <?php if (!empty($messages ?? [])): ?>
+            <?php foreach ($messages as $msg): ?>
+                <li class="message">
+                    <?= htmlspecialchars($msg->content) ?>
+                    <span class="msg-time"><?= htmlspecialchars(date('M d, Y', strtotime($msg->created_at))) ?></span>
+                </li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li class="message">No messages.</li>
+        <?php endif; ?>
     </ul>
 </div>
 
@@ -41,7 +47,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
         <h1>2</h1>
     </div>
     <div class="box_segment">
-        Unread messeges: <br>
+        Unread messages: <br>
         <h1>4</h1>
     </div>
 </div>

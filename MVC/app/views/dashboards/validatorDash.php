@@ -7,12 +7,12 @@
     </ul>
 </div>
 
-<div class="messege_menu" id="messege_menu">
-    <ul class="messege_list">
-        <li class="messege">messege 1: This is a test messege</li>
-        <li class="messege">messege 2: This is a test messege</li>
-        <li class="messege">messege 3: This is a test messege</li>
-        <li class="messege">messege 4: This is a test messege</li>
+<div class="message_menu" id="message_menu">
+    <ul class="message_list">
+        <li class="message">message 1: This is a test message</li>
+        <li class="message">message 2: This is a test message</li>
+        <li class="message">message 3: This is a test message</li>
+        <li class="message">message 4: This is a test message</li>
     </ul>
 </div>
 
@@ -32,7 +32,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
         <h1>34</h1>
     </div>
     <div class="box_segment">
-        Unread messeges: <br>
+        Unread messages: <br>
         <h1>2</h1>
     </div>
 </div>
