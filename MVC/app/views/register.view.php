@@ -18,6 +18,10 @@ $role = $_GET['role'];
 </head>
 
 <body>
+    <div id="page-loader">
+        <div class="spinner"></div>
+        <p>Creating your account…</p>
+    </div>
     <?php
     include("components/navbar.php");
     ?>
@@ -45,5 +49,21 @@ $role = $_GET['role'];
         </div>
     </div>
 </body>
+
+<script>
+    function handleSubmit(form) {
+        if (form.dataset.submitted) return false;
+        form.dataset.submitted = "true";
+
+        document.getElementById("page-loader").classList.add("active");
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => form.submit());
+        });
+
+        return false;
+    }
+</script>
+
 
 </html>
