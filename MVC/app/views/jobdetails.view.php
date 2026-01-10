@@ -127,8 +127,8 @@
         const backBtn = document.getElementById("backBtn");
         const cvdw_pageCover = document.querySelector(".cvdw_pageCover");
 
-        if (!ApplyBtn || !backBtn) return;
-        //ApplyBtn.onclick = null;
+        //if (!ApplyBtn || !backBtn) return;
+        ApplyBtn.onclick = null;
 
         ApplyBtn.addEventListener("click", (e) => {
             e.preventDefault();
