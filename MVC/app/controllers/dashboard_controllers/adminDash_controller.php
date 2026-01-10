@@ -2,6 +2,10 @@
 //extract admin data
 $admin = new Admin;
 $data['adminTable'] = $admin->first(['user_id' => $_SESSION['USER']->user_id]);
+$data['validators'] = $admin->getValidatorDetails();
+
+$reports = new AdminReportDetails;
+$data['oldReportDetails'] = $reports->selectOldReports();
 
 $photoPath = null;
 
@@ -53,4 +57,32 @@ if ($isProfileUpdate) {
     }
 
     $data['errors'] = $errors;
+}
+
+$isManageValidator = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateValidator');
+
+if ($isManageValidator) {
+    $validatorId = $_POST['validator_id'] ?? null;
+    if (!$validatorId) {
+        redirect('dashboard');
+        exit;
+    }
+
+    $user = new User;
+    $validator = new Validator;
+
+    if (isset($_POST['grant'])) {
+        $user->update(
+            $validatorId,
+            ['status' => 'active'],
+            'user_id'
+        );
+    }
+
+    if (isset($_POST['deny'])) {
+        $validator->delete($validatorId, 'user_id');
+        $user->delete($validatorId, 'user_id');
+    }
+    redirect('dashboard');
+    exit;
 }

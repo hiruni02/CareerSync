@@ -14,7 +14,6 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   flex: 1;
   box-shadow: var(--shadowHard);
   min-height: 200px;
@@ -26,13 +25,32 @@
   padding-right: 4%;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: scroll;
   background-color: var(--formBlue);
   height: 100%;
   width: 100%;
   border-radius: 10px;
   align-items: flex-start;
   max-height: 500px;
+}
+
+.scScrollbox::-webkit-scrollbar {
+    width: 15px;
+}
+
+.scScrollbox::-webkit-scrollbar-track {
+    background: var(--white);
+    border-radius: 10px;
+}
+
+.scScrollbox::-webkit-scrollbar-thumb {
+    background-color: var(--primaryBlueLight);
+    border-radius: 10px;
+    border: 3px solid var(--white);
+}
+
+.scScrollbox::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primaryBlue);
 }
 
 .list_pos_box {
@@ -107,6 +125,11 @@
   font-weight: 600;
 }
 
+.jobTitle_Link{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.15rem;
+}
+
 .li-value {
   color: var(--textDark);
   font-family: "consolas";
@@ -173,7 +196,7 @@
   margin-top: 10px;
 }
 
-.pj_form{
+.pj_form {
   display: flex;
   flex-direction: row;
 }
@@ -221,6 +244,30 @@
   width: 100%;
 }
 
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+}
+
+.filter label {
+  white-space: nowrap;
+  margin-top: -10px;
+}
+
+#jobFilter{
+  margin-top: -1px
+}
+
+.jdBtns{
+  display:  flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+
+
 @media (max-width: 900px) {
   .content_wrapper {
     flex-direction: column;
@@ -266,5 +313,9 @@
   .content_section h3 {
     font-size: 20px;
     text-align: center;
+  }
+
+  .jdBtns{
+    flex-direction: column;
   }
 }

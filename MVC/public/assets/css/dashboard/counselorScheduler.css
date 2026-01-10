@@ -30,6 +30,25 @@
     overflow-y: scroll;
 }
 
+.popup-window::-webkit-scrollbar {
+    width: 15px;
+}
+
+.popup-window::-webkit-scrollbar-track {
+    background: var(--white);
+    border-radius: 10px;
+}
+
+.popup-window::-webkit-scrollbar-thumb {
+    background-color: var(--primaryBlueLight);
+    border-radius: 10px;
+    border: 3px solid var(--white);
+}
+
+.popup-window::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primaryBlue);
+}
+
 .popup-window h1 {
     color: var(--textDark);
     text-align: center;

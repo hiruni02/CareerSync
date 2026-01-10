@@ -1,12 +1,15 @@
 <?php
-class report{
+class AdminReport
+{
     use Controller;
     public function index()
     {
         //if not logged in the $username variable is deafulted to 'User'
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
 
-        $this->view("report", $data);
+        $reportModel = new Admin();
+        $data['reportData'] = $reportModel->generateLast30DaysReport();
+
+        $this->view("adminReport", $data);
     }
 }
-?>

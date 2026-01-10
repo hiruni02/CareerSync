@@ -58,11 +58,11 @@
             <section class="intro">
                 <div class="intro-content">
                     <h1>Empowering Careers. Connecting Talent.</h1>
-                    <p style="padding-bottom: 50px;">One platform for potential employees and companies to collaborate.</p>
+                    <p class="introTxt1">One platform for potential employees and companies to collaborate.</p>
                     <?php
                     if ($username == 'User') {
                     ?>
-                        <p style=" font-size: 20px; padding-bottom:20px;">you are currently exploring as a guest.<br> would you like to:</p>
+                        <p class="introTxt2">you are currently exploring as a guest.<br> would you like to:</p>
                         <div class="intro-buttons">
                             <a href="login"><button class="intro-btn">Login</button></a>
                             <a href="welcome"><button class="intro-btn secondary">Register</button></a>

@@ -4,6 +4,7 @@
     <ul class="settings_links">
         <li><a href=""><button class="setting_btn" id="profileBtn">Your Profile</button></a></li>
         <li><a href=""><button class="setting_btn" id="passwordBtn">Change Password</button></a></li>
+        <li><a href=""><button class="setting_btn" id="bookmarksBtn">Bookmarks</button></a></li>
     </ul>
 </div>
 
@@ -20,6 +21,7 @@
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/changePassword.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/candidateProfile.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateSideScheduler.php");
+include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/bookmarkViewer.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSelector.php");
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultationScheduler.php");
 ?>
@@ -264,6 +266,24 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
 
         counselorSelectBackBtn.addEventListener("click", () => {
             counselorSelector.style.display = "none";
+        });
+
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const bookmarksBtn = document.getElementById("bookmarksBtn");
+        const bmBg = document.querySelector(".bmDisplay_bg");
+        const bmBackBtn = document.getElementById("bmBackBtn");
+
+        bookmarksBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            bmBg.classList.add("active");
+        });
+
+        bmBackBtn.addEventListener("click", () => {
+            bmBg.classList.remove("active");
         });
 
     });

@@ -42,7 +42,7 @@
     will-change: opacity, transform;
 }
 
-.fade-out{
+.fade-out {
     opacity: 0;
     transform: scale(1.03);
 }
@@ -74,6 +74,15 @@
     text-align: center;
     color: var(--textLight);
     margin-top: 10px;
+}
+
+.introTxt1 {
+    padding-bottom: 50px;
+}
+
+.introTxt2 {
+    font-size: 20px;
+    padding-bottom: 20px;
 }
 
 .intro-buttons {
@@ -135,5 +144,3 @@
         padding-top: 10px;
     }
 }
-
-

@@ -26,7 +26,7 @@
     }
 </script>
 <h1>Register as a Candidate</h1>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" onsubmit="return handleSubmit(this)">
     <div class="input-field">
         <label for="firstName">First Name</label>
         <input
