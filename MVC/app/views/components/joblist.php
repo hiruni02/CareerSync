@@ -188,7 +188,6 @@
         if (!jobLink) return;
 
         if (
-            userSession === 'company' ||
             userSession === 'counselor' ||
             userSession === 'validator'
         ) {
