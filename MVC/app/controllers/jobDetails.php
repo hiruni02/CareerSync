@@ -100,4 +100,60 @@ class JobDetails
 
         $this->view("jobdetails", $data);
     }
+
+    public function updateJob($id = null)
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || ($_POST['action'] ?? '') !== 'job_edit') {
+            redirect('home');
+            return;
+        }
+
+        if (!$id) {
+            redirect('home');
+            return;
+        }
+
+        // Only the company that owns the job can edit it
+        if (empty($_SESSION['USER']) || $_SESSION['USER']->role !== 'company') {
+            redirect('home');
+            return;
+        }
+
+        $jobModel = new JobPost;
+        $jobData = $jobModel->jobpost_and_company($id);
+        if (!$jobData || $jobData->company_id != $_SESSION['USER']->user_id) {
+            redirect('home');
+            return;
+        }
+
+        // Collect updatable fields (match Model::$allowedColumns)
+        $updateData = [
+            'posTitle'       => $_POST['posTitle']       ?? null,
+            'posType'        => $_POST['posType']        ?? null,
+            'industry'       => $_POST['industry']       ?? null,
+            'exp_level'      => $_POST['exp_level']      ?? null,
+            'yearsOfExp'     => $_POST['yearsOfExp']     ?? null,
+            'qualifications' => $_POST['qualifications'] ?? null,
+            'required_skills'=> $_POST['required_skills']?? null,
+            'salaryDetails'  => $_POST['salaryDetails']  ?? null,
+            'address'        => $_POST['address']        ?? null,
+            'city'           => $_POST['city']           ?? null,
+            'workMode'       => $_POST['workMode']       ?? null,
+            'jobDescription' => $_POST['jobDescription'] ?? null,
+            'vacancies'      => $_POST['vacancies']      ?? null,
+            'deadline'       => $_POST['deadline']       ?? null,
+        ];
+
+        // Remove fields that weren't submitted
+        $updateData = array_filter($updateData, function ($v) {
+            return $v !== null;
+        });
+
+        if (!empty($updateData)) {
+            $jobModel->update($id, $updateData, 'job_id');
+        }
+
+        redirect("jobdetails/{$id}");
+        exit;
+    }
 }

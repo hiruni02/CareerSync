@@ -67,10 +67,8 @@
     margin-left: 70px;
 }
 
-
-
 .company_name {
-    margin-left: 50px;
+    /*margin-left: 50px;*/
     margin-top: 10px;
 }
 
@@ -87,6 +85,43 @@
     display: flex;
     text-align: justify;
     width: 75%;
+    padding-bottom: 50px;
+}
+
+.requirementsHead {
+    margin-top: -15px;
+    padding-left: 70px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    width: 75%;
+    padding-bottom: 40px;
+}
+
+.requirements{
+    margin-top: -25px;
+    padding-left: 70px;
+    display: flex;
+    text-align: justify;
+    width: 75%;
+    padding-bottom: 35px;
+}
+
+.ExperienceLevel{
+    margin-top: -25px;
+    padding-left: 70px;
+    display: flex;
+    text-align: justify;
+    width: 75%;
+    padding-bottom: 35px;
+}
+
+.ExperienceYears{
+    margin-top: -25px;
+    padding-left: 70px;
+    display: flex;
+    text-align: justify;
+    width: 75%;
+    padding-bottom: 35px;
 }
 
 .jobinfo_box {
@@ -204,6 +239,108 @@ h5 {
     cursor: pointer;
 }
 
+.edit_job {
+    background-image: var(--submit_btn_gradient);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 5px auto;
+    transition: 0.3s ease;
+}
+
+/**/
+.edit_job_display {
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(7px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 40;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.edit_job_display.active {
+    display: flex;
+}
+
+.edit_job_display .editWindow {
+    width: 40%;
+    max-height: 80vh;
+    background: var(--formBlue);
+    border: solid var(--accentBlue) 3px;
+    display: flex;
+    margin-top: 80px;
+    border-radius: 10px;
+    padding: 50px;
+    position: relative;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.edit_job_display .editWindow h1 {
+    color: var(--darkpurple);
+    padding-bottom: 20px;
+    align-self: center;
+    font-size: 30px;
+}
+
+.edit_job_display .editWindow h4 {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    align-self: center;
+}
+
+.edit_job_display .input-field {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_job_display .input-field label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.edit_job_display .input-field input,
+.edit_job_display .input-field textarea{
+    padding: 10px;
+    border: 1px solid var(--accentBlue);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.edit_job_display .form_btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.edit_job_display .form_btns button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.edit_job_display .form_btns button:hover {
+    background-color: var(--primaryBlue);
+    color: var(--white);
+}
+
 @media (max-width: 600px) {
     .container {
         flex-direction: column-reverse;
@@ -233,5 +370,14 @@ h5 {
         padding-left: 20px;
         text-align: left;
         padding-bottom: 30px;
+    }
+
+    .edit_job_display .editWindow {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .edit_job_display .editWindow h1 {
+        font-size: 1.5rem;
     }
 }
