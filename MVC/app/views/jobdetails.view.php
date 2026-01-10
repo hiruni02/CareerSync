@@ -127,6 +127,7 @@
         const backBtn = document.getElementById("backBtn");
         const cvdw_pageCover = document.querySelector(".cvdw_pageCover");
 
+
         if (!ApplyBtn) return;
         //ApplyBtn.onclick = null;
 
