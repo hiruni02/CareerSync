@@ -178,7 +178,7 @@ trait Model
                         dateConfirmed ENUM('confirmed','unconfirmed') DEFAULT 'unconfirmed',
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
                         FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
-                    )";
+                        )";
         $this->query($consultation_table);
 
         $consultation_slot_table = "CREATE TABLE IF NOT EXISTS consultation_slots (
@@ -199,6 +199,36 @@ trait Model
                         INDEX idx_receiver (receiver_id, receiver_type)
                         )";
         $this->query($messages_table);
+
+        $bookmarks = "CREATE TABLE IF NOT EXISTS bookmarks(
+                        bm_id INT AUTO_INCREMENT PRIMARY KEY,
+                        user_id INT,
+                        job_id INT,
+                        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (user_id) REFERENCES users(user_id),
+                        FOREIGN KEY (job_id) REFERENCES jobPost(job_id)
+                        )";
+        $this->query($bookmarks);
+
+        $admin_report = "CREATE TABLE IF NOT EXISTS admin_reports (
+                        report_id INT AUTO_INCREMENT PRIMARY KEY,
+                        report_month YEAR(4) NOT NULL,
+                        report_month_name VARCHAR(20) NOT NULL,
+                        prepared_by INT NULL,
+                        new_companies INT NOT NULL DEFAULT 0,
+                        new_candidates INT NOT NULL DEFAULT 0,
+                        new_counselors INT NOT NULL DEFAULT 0,
+                        total_users INT NOT NULL DEFAULT 0,
+                        active_users INT NOT NULL DEFAULT 0,
+                        feedback_count INT NOT NULL DEFAULT 0,
+                        company_interviews INT NOT NULL DEFAULT 0,
+                        counselor_meetings INT NOT NULL DEFAULT 0,
+                        total_earnings DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+                        system_alerts INT NOT NULL DEFAULT 0,
+                        generated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (prepared_by) REFERENCES users(user_id)
+                    )";
+        $this->query($admin_report);
     }
 
     public function SelectAll()

@@ -14,14 +14,21 @@
                 <div class="box left">
                     <div class="heading_content">
                         <div class="job_heading">
-                            <a href="<?= ROOT ?>home"><img src="<?= ROOT ?>assets/svg_icons/backBtn.svg" alt="back button" class="backicon"></a>
+                            <img src="<?= ROOT ?>assets/svg_icons/backBtn.svg" alt="back button" class="backicon" onclick="history.back()">
                             <h1 class="job_title"><?= $data['job']->posTitle ?> | <?= $data['job']->city ?></h1>
                         </div>
                         <h3 class="company_name"><?= $data['job']->companyName ?></h3>
                     </div>
                     <h3 class="jdTitle"><?= $data['job']->posTitle ?></h3><br>
                     <p class="job_description"><?= $data['job']->jobDescription ?></p>
+
+                    <p class="requirementsHead">Requirements : </p>
+                    <p class="ExperienceLevel">Experience Level: <?= $data['job']->exp_level ?></p>
+                    <p class="ExperienceYears">Years of Experience: <?= $data['job']->yearsOfExp ?> Years</p>
+                    <p class="requirements"><?= $data['job']->required_skills ?></p> 
+                      
                 </div>
+                
                 <div class="box right">
                     <div class="jobinfo_box">
                         <img class="company_logo" src="<?= ROOT . $data['job']->company_photo_path ?>" alt="Company Logo">
@@ -55,9 +62,19 @@
                         <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/clock.svg"><?= $deadlineDisplay ?></p>
                         <p class="short_details"><img class="icon" src="<?= ROOT ?>assets/svg_icons/briefcase.svg"><?= $data['job']->posType ?></p>
                         <hr><br>
-                        <p class="requirement"><?= $data['job']->required_skills ?></p>
+
                         <div class="job-meta">
                             <table>
+                                <tr>
+                                    <td>Work Mode</td>
+                                    <td><strong><?= $data['job']->workMode?></strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td>No. of Vacancies</td>
+                                    <td><strong><?= $data['job']->vacancies ?></strong></td>
+                                </tr>
+
                                 <tr>
                                     <td>Education</td>
                                     <td><strong><?= $data['job']->qualifications ?></strong></td>
@@ -72,10 +89,21 @@
                                 </tr>
                             </table>
                             <hr><br><br>
+                            <?php if (!isset($_SESSION['USER']) || (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'candidate')): ?>
+                                <div>
+                                    <button class="apply_job" id="ApplyBtn">Apply</button><br>
+                                    <button class="save_job"
+                                        id="BookmarkBtn"
+                                        data-job-id="<?= $data['job']->job_id ?>">
+                                        <?= $data['bm_status'] === null ? 'Bookmark' : 'Remove Bookmark' ?>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'company') : ?>
                             <div>
-                                <button class="apply_job" id="ApplyBtn">Apply</button><br>
-                                <button class="save_job" id="backBtn">Bookmark</button>
+                                <button class="edit_job" id="editJobBtn">Edit Job Post</button>
                             </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -84,6 +112,9 @@
         </div>
         <?php include("components/footer.php"); ?>
     </div>
+    <?php if (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'company') : ?>
+        <?php include("components/editJobPostWindow.php"); ?>
+    <?php endif; ?>
 </body>
 
 <script>
@@ -96,7 +127,8 @@
         const backBtn = document.getElementById("backBtn");
         const cvdw_pageCover = document.querySelector(".cvdw_pageCover");
 
-        ApplyBtn.onclick = null;
+        if (!ApplyBtn || !backBtn) return;
+        //ApplyBtn.onclick = null;
 
         ApplyBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -106,10 +138,10 @@
                 return;
             }
 
-            if (userSession !== 'candidate') {
+            /*if (userSession !== 'candidate') {
                 alert("You must register as a candidate in order to apply for a position");
                 return;
-            }
+            }*/
 
             if (alreadyApplied) {
                 alert("You have already applied to this job.");
@@ -123,6 +155,61 @@
         backBtn.addEventListener("click", () => {
             cvdw_pageCover.classList.remove("active");
             document.body.style.overflow = "auto";
+        });
+    });
+
+    const editBtn = document.getElementById("editJobBtn");
+    const Model = document.getElementById("editJobModel");
+
+    if (editBtn && Model) {
+        editBtn.addEventListener("click", () => {
+            Model.style.display = "flex";
+        });
+
+        const backModelBtn = Model.querySelector("button[type='button']");
+        backModelBtn.addEventListener("click", () => {
+            Model.style.display = "none";
+        });
+
+        window.addEventListener("click", (event) => {
+            if (event.target === Model) {
+                Model.style.display = "none";
+            }
+        });
+    }
+
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        const bookmarkBtn = document.getElementById("BookmarkBtn");
+        if (!bookmarkBtn) return;
+
+        bookmarkBtn.addEventListener("click", () => {
+
+            if (!userSession) {
+                alert("You must log in to bookmark jobs.");
+                return;
+            }
+
+            const jobId = bookmarkBtn.dataset.jobId;
+
+            fetch("", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `action=toggle_bookmark&job_id=${jobId}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "added") {
+                        bookmarkBtn.textContent = "Remove Bookmark";
+                    } else if (data.status === "removed") {
+                        bookmarkBtn.textContent = "Bookmark";
+                    }
+                })
+                .catch(err => console.error(err));
         });
     });
 </script>

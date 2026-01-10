@@ -5,7 +5,6 @@ body {
     background: white;
 }
 
-/* Title */
 .title {
     text-align: center;
     font-size: 26px;
@@ -13,7 +12,6 @@ body {
     font-weight: 700;
 }
 
-/* Info Table */
 .info-table {
     width: 100%;
     font-size: 15px;
@@ -24,7 +22,6 @@ body {
     padding: 6px 8px;
 }
 
-/* Section Title */
 .section-title {
     font-size: 18px;
     font-weight: 700;
@@ -34,7 +31,6 @@ body {
     padding-bottom: 5px;
 }
 
-/* Summary Table */
 .summary-table {
     width: 100%;
     border-collapse: collapse;
@@ -51,14 +47,6 @@ body {
     font-weight: 600;
 }
 
-/* Notes */
-.notes {
-    font-size: 14px;
-    line-height: 1.5;
-    margin-top: 10px;
-}
-
-/* Footer */
 .footer {
     margin-top: 40px;
     text-align: center;
@@ -66,7 +54,6 @@ body {
     color: #777;
 }
 
-/* Print cleanup */
 @media print {
     body {
         margin: 20mm;

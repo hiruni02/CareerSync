@@ -31,6 +31,25 @@
     overflow-y: scroll;
 }
 
+.pd_content::-webkit-scrollbar {
+    width: 15px;
+}
+
+.pd_content::-webkit-scrollbar-track {
+    background: var(--white);
+    border-radius: 10px;
+}
+
+.pd_content::-webkit-scrollbar-thumb {
+    background-color: var(--primaryBlueLight);
+    border-radius: 10px;
+    border: 3px solid var(--white);
+}
+
+.pd_content::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primaryBlue);
+}
+
 .pf_content .h1 {
     color: var(--textDark);
     padding: 0px 0px 20px 0px;

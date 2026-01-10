@@ -3,6 +3,8 @@
 $validator = new Validator;
 $data['validatorTable'] = $validator->first(['user_id' => $_SESSION['USER']->user_id]);
 
+$isRealValidator = ($_SESSION['USER']->status != 'active') ? false : true;//var to check if validator is approved by the admin
+
 $photoPath = null;
 
 //code for updating user profile 
@@ -62,7 +64,7 @@ require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/jobPost.php';
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/candidate.php';
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
 
-$data['applications'] = $cv->SelectAll();
+$data['applications'] = $isRealValidator ? $cv->SelectAll() : [];//validator cant see applications before getting the admin approval
 
 $is_Validating_CV  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCV');
 if ($is_Validating_CV) {

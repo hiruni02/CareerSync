@@ -48,6 +48,9 @@ class register
                             ];
                             $validator->insert($validatorData);
 
+                            require_once __DIR__ . '/../core/Mailer.php';
+                            Mailer::sendTestMail($_POST['email']);
+
                             redirect('login');
                             exit;
                         } else {
@@ -90,6 +93,9 @@ class register
                             ];
                             $counselor->insert($companyData);
 
+                            require_once __DIR__ . '/../core/Mailer.php';
+                            Mailer::sendTestMail($_POST['email']);
+
                             redirect('login');
                             exit;
                         } else {
@@ -129,6 +135,9 @@ class register
                             ];
                             $counselor->insert($counselorData);
 
+                            require_once __DIR__ . '/../core/Mailer.php';
+                            Mailer::sendTestMail($_POST['email']);
+
                             redirect('login');
                             exit;
                         } else {
@@ -160,6 +169,11 @@ class register
 
                             $candidate->insert($candidateData);
 
+                            require_once __DIR__ . '/../core/Mailer.php';
+                            Mailer::sendTestMail($_POST['email']);
+
+     
+
                             redirect('login');
                             exit;
                         } else {
@@ -175,3 +189,8 @@ class register
         $this->view("register", $data);
     }
 }
+
+
+
+
+

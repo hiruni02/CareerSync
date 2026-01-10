@@ -1,8 +1,6 @@
 <link rel="stylesheet" href="<?= ROOT ?>assets/css/joblist.css">
 <section class="job-section">
     <div class="filtersContainer">
-        <button id="search" class="apply-filter-btn">Search</button><br><br>
-
         <!-- Salary Range -->
         <div class="filterTypeBox">
             <label>Salary Range:</label>
@@ -79,6 +77,7 @@
                 <option value="senior">Senior</option>
             </select>
         </div>
+        <br><button id="search" class="apply-filter-btn">Apply Filters</button><br>
     </div>
 
     <div class="jobContainer">
@@ -115,15 +114,27 @@
                             <div class="job-header">
                                 <img class="company-logo" src="<?= htmlspecialchars($job->company_photo_path) ?>" alt="Logo">
                                 <div class="deadline-box" area-hidden="false" title="Application deadline">
-                                    <img class="icon" style="margin-bottom: 7px;" src="<?= ROOT ?>assets/svg_icons/clock.svg">
-                                    <span class="deadline-text"><?= $deadlineDisplay ?></span>
+                                    <div class="deadline_row">
+                                        <img class="icon" src="<?= ROOT ?>assets/svg_icons/clock.svg">
+                                        <span class="deadline-text"><?= $deadlineDisplay ?></span>
+                                    </div>
+                                    <div class="bm_section">
+                                        <?php
+                                        $bm = null;
+                                        if (!empty($_SESSION['USER'])) {
+                                            $bookmarkModel = new Bookmark();
+                                            $bm = $bookmarkModel->getBmStatus($_SESSION['USER']->user_id, $job->job_id);
+                                        } ?>
+                                        <button class="save_job bookmark-btn"
+                                            data-job-id="<?= $job->job_id ?>">
+                                            <img class="bm_icon" src="<?= ROOT ?>assets/svg_icons/<?= $bm ? 'remove_bm.svg' : 'add_bm.svg' ?>">
+                                        </button>
+                                    </div>
                                 </div>
+
                             </div>
                             <div class="job-content">
                                 <h4 class="job-title"><?= htmlspecialchars($job->posTitle) ?>
-                                    <button type="button" class="BM-button">
-                                        <!-- <img class="icon" src="<?= ROOT ?>assets/svg_icons/add_bm.svg"> -->
-                                    </button>
                                 </h4>
                                 <h4 class="company-name"><?= htmlspecialchars($job->companyName) ?></h4>
                                 <div class="industry"><?= htmlspecialchars($job->industry) ?></div>
@@ -167,5 +178,59 @@
         if (experience) params.append("experience", experience);
 
         window.location.href = "<?= ROOT ?>home?" + params.toString();
+    });
+
+    //interim panel's request to disable clicking on jobs for non-candidates
+    let userSession = <?= isset($_SESSION['USER']) ? json_encode($_SESSION['USER']->role) : 'null' ?>;
+
+    document.addEventListener("click", function(e) {
+        const jobLink = e.target.closest(".jobListLink");
+        if (!jobLink) return;
+
+        if (
+            userSession === 'counselor' ||
+            userSession === 'validator'
+        ) {
+            e.preventDefault();
+            alert("You must register as a candidate in order to apply for a position");
+        }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        document.querySelectorAll(".bookmark-btn").forEach(btn => {
+
+            btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation(); // prevent opening job link
+
+                if (!userSession) {
+                    alert("You must log in to bookmark jobs.");
+                    return;
+                }
+
+                const jobId = btn.dataset.jobId;
+                const icon = btn.querySelector("img");
+
+                fetch("", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: `action=toggle_bookmark&job_id=${jobId}`
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === "added") {
+                            icon.src = "<?= ROOT ?>assets/svg_icons/remove_bm.svg";
+                        } else if (data.status === "removed") {
+                            icon.src = "<?= ROOT ?>assets/svg_icons/add_bm.svg";
+                        }
+                    })
+                    .catch(err => console.error(err));
+            });
+
+        });
     });
 </script>

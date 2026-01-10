@@ -7,5 +7,6 @@ class User
         'email',
         'password',
         'role',
+        'status',
     ];
 }

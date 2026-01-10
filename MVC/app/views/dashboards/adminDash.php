@@ -70,24 +70,61 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <h3>View Monthly Reports</h3>
     <div class="scrollBox">
         <?php
-        for ($x = 0; $x <= 10; $x++) {
+        $repDetes = $data['oldReportDetails'];
         ?>
-            <div class="listItem">
-                <div class="itemContent">
-                    <div class="title">Report No: 12</div>
-                    <div class="title">Date: 2025-05-07</div>
-                    <div class="description">
-                        click to download report
+        <?php if (!empty($repDetes)): ?>
+            <?php foreach ($repDetes as $repDetes): ?>
+                <div class="listItem">
+                    <div class="itemContent">
+                        <div class="title">Report No: 12</div>
+                        <div class="title">Date: 2025-05-07</div>
+                        <div class="description">
+                            click to download report
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No Reports available yet</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="sbContainer">
+    <h3>Manage Validators</h3>
+    <div class="scrollBox">
         <?php
-        }
+        $validators = $data['validators'];
         ?>
+        <?php if (!empty($validators)): ?>
+            <?php foreach ($validators as $val): ?>
+                <div class="validator_manager_list_item">
+                    <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
+                    <div class="managerContent">
+                        <label>User ID: </label>
+                        <div class="details"><?= htmlspecialchars($val->user_id); ?></div>
+                        <label>Name: </label>
+                        <div class="details"><?= htmlspecialchars($val->firstName . ' ' . $val->lastName); ?></div>
+                        <label>Email: </label>
+                        <div class="details"><?= htmlspecialchars($val->email); ?></div>
+                        <label>Contact No: </label>
+                        <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
+                    </div>
+                    <form method="POST">
+                        <input type="hidden" name="action" value="validateValidator">
+                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
+                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No Validators Registered yet.</p>
+        <?php endif; ?>
     </div>
 </div>
 
 <div class="genReport">
     <label>Generate a report for the last 30 Days :</label>
-    <a href="report" target="_blank"><button>Generate</button></a>
+    <a href="adminReport" target="_blank"><button>Generate</button></a>
 </div>

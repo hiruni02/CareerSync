@@ -18,6 +18,10 @@ $data['confirmedInterview'] = $confirmedInterview->getInterviewsByCandidate($_SE
 $counselors = new Counselor;
 $data['counselors'] = $counselors->SelectAll();
 
+//loading the bookmarks
+$bookmarks = new Bookmark;
+$data['myBM'] = $bookmarks->getMyBookmarks($_SESSION['USER']->user_id);
+
 $consultation = new Consultation;
 $data['consultation'] = $consultation->getConsultationDetails($_SESSION['USER']->user_id);
 $data['consultationMeeting'] = $consultation->getCandidateConsultation($_SESSION['USER']->user_id);
