@@ -229,6 +229,17 @@ trait Model
                         FOREIGN KEY (prepared_by) REFERENCES users(user_id)
                     )";
         $this->query($admin_report);
+
+        $payments = "CREATE TABLE payments (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        order_id VARCHAR(50),
+                        amount DECIMAL(10,2),
+                        currency VARCHAR(10),
+                        status ENUM('pending','success','failed'),
+                        transaction_ref VARCHAR(100),
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                        )";
+        $this->query($payments);
     }
 
     public function SelectAll()
@@ -318,4 +329,3 @@ trait Model
         return $this->query($query, $data);
     }
 }
-
