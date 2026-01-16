@@ -13,7 +13,7 @@ $photoPath = null;
 if ($isProfileUpdate) {
     $errors = [];
 
-    if ($data['userTable']->password !== $_POST['confirm_password']) {
+    if (!password_verify($_POST['confirm_password'], $data['userTable']->password)) {
         $errors['confirm_password'] = "Incorrect password";
     }
 

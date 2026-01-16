@@ -11,10 +11,9 @@ $photoPath = null;
 if ($isProfileUpdate) {
     $errors = [];
 
-    if ($data['userTable']->password !== $_POST['confirm_password']) {
+    if (!password_verify($_POST['confirm_password'], $data['userTable']->password)) {
         $errors['confirm_password'] = "Incorrect password";
     }
-
     if (!empty($_FILES['validator_photo_path']['name'])) {
         $uploadDir = $_SERVER['DOCUMENT_ROOT'] . '/CareerSync/MVC/public/assets/uploads/validator_photos/';
 
