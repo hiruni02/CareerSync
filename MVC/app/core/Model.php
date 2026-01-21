@@ -40,7 +40,7 @@ trait Model
 
         if ($result && isset($result[0]->total_rows) && $result[0]->total_rows == 0) {
             $insert_user = "INSERT INTO users (email, password, role, status) VALUES (?, ?, 'admin', 'active')";
-            $this->query($insert_user, [$admin_email, $admin_password]);
+            $this->query($insert_user, [$admin_email, password_hash($admin_password, PASSWORD_DEFAULT)]);
 
             $user_id = 1;
             $insert_admin = "INSERT INTO admin (user_id, firstName, lastName, contactNo, admin_photo_path) 
@@ -58,6 +58,9 @@ trait Model
                         hr_contactNo VARCHAR(15) NOT NULL,
                         business_certificate VARCHAR(255) NOT NULL UNIQUE,
                         company_photo_path VARCHAR(1000) NOT NULL UNIQUE,
+                        payment_status ENUM('inactive','active') DEFAULT 'inactive',
+                        transaction_ref VARCHAR(100),
+                        paid_at DATETIME,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
         $this->query($company_table);
