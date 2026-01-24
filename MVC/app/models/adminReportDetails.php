@@ -114,10 +114,8 @@ class AdminReportDetails
         // Previous month range
         $startDate = date('Y-m-01 00:00:00', strtotime('first day of last month'));
         $endDate   = date('Y-m-t 23:59:59', strtotime('last day of last month'));
-
         $monthKey  = date('Y-m', strtotime('last month'));
 
-        // Preventing duplicates
         if ($this->first(['report_month' => $monthKey])) {
             return false;
         }

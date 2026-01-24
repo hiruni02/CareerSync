@@ -36,10 +36,10 @@ class AdminReport
             $data['reportMonth'] = $report->report_month_name;
         }
 
-        // else {
-        //     $data['reportData'] = $reports->generateLast30DaysReport();
-        //     $data['reportMonth'] = "Last 30 Days";
-        // }
+        else {
+            $data['reportData'] = $reports->generateLast30DaysReport();
+            $data['reportMonth'] = "Last 30 Days";
+        }
 
         $this->view("adminReport", $data);
     }
