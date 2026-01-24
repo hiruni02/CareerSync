@@ -215,7 +215,7 @@ trait Model
 
         $admin_report = "CREATE TABLE IF NOT EXISTS admin_reports (
                         report_id INT AUTO_INCREMENT PRIMARY KEY,
-                        report_month YEAR(4) NOT NULL,
+                        report_month CHAR(7) NOT NULL,
                         report_month_name VARCHAR(20) NOT NULL,
                         prepared_by INT NULL,
                         new_companies INT NOT NULL DEFAULT 0,

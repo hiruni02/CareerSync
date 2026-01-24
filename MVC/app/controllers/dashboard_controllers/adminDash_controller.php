@@ -5,6 +5,7 @@ $data['adminTable'] = $admin->first(['user_id' => $_SESSION['USER']->user_id]);
 $data['validators'] = $admin->getValidatorDetails();
 
 $reports = new AdminReportDetails;
+$reports->generateMonthlyReportIfMissing($_SESSION['USER']->user_id);
 $data['oldReportDetails'] = $reports->selectOldReports();
 
 $photoPath = null;
