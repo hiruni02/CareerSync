@@ -52,6 +52,7 @@ class Home
 
         $jobPost = new JobPost;
         $data['jobs'] = $jobPost->SelectAll();
+        $data['cities'] = $jobPost->getJobLocations();
 
         $job = new JobPost;
 
@@ -68,23 +69,6 @@ class Home
         $data['jobs'] = $job->getFilteredJobs($filters);
 
         $this->view("home", $data);
-    }
-
-    public function autoSaveReports()
-    {
-        if (empty($_SESSION['USER']) || $_SESSION['USER']->role !== 'admin') {
-            return;
-        }
-        if (date('d') !== '01') {
-            return;
-        }
-        $reports = new AdminReportDetails;
-        $currentMonth = date('Y-m');
-        $existing = $reports->first(['report_month' => $currentMonth]);
-        if ($existing) {
-            return; // Report already generated
-        }
-        $reports->saveReportDetails($_SESSION['USER']->user_id);
     }
 }
     #if you need to load a view, there must be a controller for that view in the controller folder calling the view functuon from the Controller class

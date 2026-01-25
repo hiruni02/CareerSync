@@ -142,7 +142,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 <?php foreach ($postedJobs as $pj): ?>
                     <div class="listItem">
                         <div class="li-row">
-                            <a href="<?= ROOT ?>jobdetails/<?= urlencode($pj->job_id) ?>"><span class="jobTitleLink"><?= htmlspecialchars($pj->posTitle) ?></span></a>
+                            <a href="<?= ROOT ?>jobdetails/<?= urlencode($pj->job_id) ?>"  class="jobTitleLink"><?= htmlspecialchars($pj->posTitle) ?></a>
                         </div>
                         <div class="li-row">
                             <span class="li-label">Posted On:</span>
