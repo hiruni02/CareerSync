@@ -34,36 +34,37 @@
 
 .heading_content {
     background-color: var(--primaryBlueLight);
-    color:var(--white);
+    color: var(--white);
     padding: 30px;
     position: absolute;
     top: 80px;
     left: 0;
     right: 0;
 }
-.heading_content img{
+
+.heading_content img {
     width: 70px;
     height: 70px;
     transition: 0.3s ease;
 }
 
-.heading_content img:hover{
+.heading_content img:hover {
     transform: scale(1.05);
 }
 
 .job_heading {
     display: flex;
-    align-items: center;  
-    gap: 10px;           
+    align-items: center;
+    gap: 10px;
 }
 
 .job_heading img {
-    width: 60px;   
+    width: 60px;
     height: 60px;
     cursor: pointer;
 }
 
-.heading_content h3{
+.heading_content h3 {
     margin-left: 70px;
 }
 
@@ -97,7 +98,7 @@
     padding-bottom: 40px;
 }
 
-.requirements{
+.requirements {
     margin-top: -25px;
     padding-left: 70px;
     display: flex;
@@ -106,7 +107,7 @@
     padding-bottom: 35px;
 }
 
-.ExperienceLevel{
+.ExperienceLevel {
     margin-top: -25px;
     padding-left: 70px;
     display: flex;
@@ -115,7 +116,7 @@
     padding-bottom: 35px;
 }
 
-.ExperienceYears{
+.ExperienceYears {
     margin-top: -25px;
     padding-left: 70px;
     display: flex;
@@ -288,6 +289,25 @@ h5 {
     overflow-y: auto;
 }
 
+.edit_job_display .editWindow::-webkit-scrollbar {
+    width: 15px;
+}
+
+.edit_job_display .editWindow::-webkit-scrollbar-track {
+    background: var(--white);
+    border-radius: 10px;
+}
+
+.edit_job_display .editWindow::-webkit-scrollbar-thumb {
+    background-color: var(--primaryBlueLight);
+    border-radius: 10px;
+    border: 3px solid var(--white);
+}
+
+.edit_job_display .editWindow::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primaryBlue);
+}
+
 .edit_job_display .editWindow h1 {
     color: var(--darkpurple);
     padding-bottom: 20px;
@@ -313,12 +333,33 @@ h5 {
     font-weight: bold;
 }
 
-.edit_job_display .input-field input,
-.edit_job_display .input-field textarea{
-    padding: 10px;
+.edit_job_display .filter_dropdown {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
     border: 1px solid var(--accentBlue);
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.edit_job_display .filter_dropdown:focus {
+    border: 1px solid var(--primaryBlue);
+    outline: none;
+}
+
+.edit_job_display .input-field input,
+.edit_job_display .input-field textarea {
+    padding: 12px;
+    border: 1px solid var(--accentBlue);
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.edit_job_display .input-field input:focus,
+.edit_job_display .input-field textarea:focus {
+    border: 1px solid var(--primaryBlue);
+    outline: none;
 }
 
 .edit_job_display .form_btns {

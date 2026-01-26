@@ -111,4 +111,14 @@ class JobPost
         }
         return $this->query($query, $params);
     }
+
+    public function getJobLocations()
+    {
+        $query = "SELECT DISTINCT city 
+                    FROM jobPost 
+                    WHERE city IS NOT NULL 
+                    AND city != '' 
+                    ORDER BY city ASC";
+        return $this->query($query);
+    }
 }

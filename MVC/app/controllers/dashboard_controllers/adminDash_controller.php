@@ -5,6 +5,7 @@ $data['adminTable'] = $admin->first(['user_id' => $_SESSION['USER']->user_id]);
 $data['validators'] = $admin->getValidatorDetails();
 
 $reports = new AdminReportDetails;
+$reports->generateMonthlyReportIfMissing($_SESSION['USER']->user_id);
 $data['oldReportDetails'] = $reports->selectOldReports();
 
 $photoPath = null;
@@ -13,7 +14,7 @@ $photoPath = null;
 if ($isProfileUpdate) {
     $errors = [];
 
-    if ($data['userTable']->password !== $_POST['confirm_password']) {
+    if (!password_verify($_POST['confirm_password'], $data['userTable']->password)) {
         $errors['confirm_password'] = "Incorrect password";
     }
 

@@ -128,20 +128,20 @@ class JobDetails
 
         // Collect updatable fields (match Model::$allowedColumns)
         $updateData = [
-            'posTitle'       => $_POST['posTitle']       ?? null,
-            'posType'        => $_POST['posType']        ?? null,
-            'industry'       => $_POST['industry']       ?? null,
-            'exp_level'      => $_POST['exp_level']      ?? null,
-            'yearsOfExp'     => $_POST['yearsOfExp']     ?? null,
-            'qualifications' => $_POST['qualifications'] ?? null,
-            'required_skills'=> $_POST['required_skills']?? null,
-            'salaryDetails'  => $_POST['salaryDetails']  ?? null,
-            'address'        => $_POST['address']        ?? null,
-            'city'           => $_POST['city']           ?? null,
-            'workMode'       => $_POST['workMode']       ?? null,
-            'jobDescription' => $_POST['jobDescription'] ?? null,
-            'vacancies'      => $_POST['vacancies']      ?? null,
-            'deadline'       => $_POST['deadline']       ?? null,
+            'posTitle'       => $_POST['posTitle'],
+            'posType'        => $_POST['posType'],
+            'industry'       => $_POST['industry'],
+            'exp_level'      => $_POST['exp_level'],
+            'yearsOfExp'     => $_POST['yearsOfExp'],
+            'qualifications' => $_POST['qualifications'],
+            'required_skills'=> $_POST['required_skills'],
+            'salaryDetails'  => $_POST['salaryDetails'],
+            'address'        => $_POST['address'],
+            'city'           => ucfirst(trim($_POST['city']," ")),
+            'workMode'       => $_POST['workMode'],
+            'jobDescription' => $_POST['jobDescription'],
+            'vacancies'      => $_POST['vacancies'],
+            'deadline'       => $_POST['deadline'],
         ];
 
         // Remove fields that weren't submitted

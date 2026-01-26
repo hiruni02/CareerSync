@@ -3,6 +3,10 @@
 $company = new Company;
 $data['companyTable'] = $company->first(['user_id' => $_SESSION['USER']->user_id]);
 
+//for getting the company status
+$user = new User;
+$data['paymentStatus'] = $user->getCompanyPaymentStatus($_SESSION['USER']->user_id);
+
 //fetching posted jobs
 $jobPost = new JobPost;
 $data['postedJobs'] = $jobPost->where(['company_id' => $_SESSION['USER']->user_id]);
@@ -32,7 +36,7 @@ if ($isProfileUpdate) {
     $errors = [];
 
     // Password check
-    if ($data['userTable']->password !== $_POST['confirm_password']) {
+    if (!password_verify($_POST['confirm_password'], $data['userTable']->password)) {
         $errors['confirm_password'] = "Incorrect password";
     }
 
@@ -115,7 +119,7 @@ if ($isPostingJob) {
         'required_skills'   => $_POST['required_skills'] ?? '',
         'salaryDetails'     => $_POST['salaryDetails'],
         'address'           => $_POST['address'],
-        'city'              => $_POST['city'],
+        'city'              => ucfirst(trim($_POST['city']," ")),
         'workMode'          => $_POST['workMode'],
         'jobDescription'    => $_POST['jobDescription'],
         'vacancies'         => $_POST['vacancies'],

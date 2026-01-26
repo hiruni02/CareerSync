@@ -25,6 +25,7 @@ class register
                 $user->errors['confirm_password'] = "passwords do not match";
             } else {
                 $userTableData = $_POST;
+                $userTableData["password"] = password_hash($userTableData["password"], PASSWORD_DEFAULT);
                 //updating validator table fields
                 switch ($role) {
                     case 'validator':
