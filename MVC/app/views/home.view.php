@@ -36,7 +36,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const slides=[
                 "<?= ROOT ?>/assets/slideshow/4.png",
-                "<?= ROOT ?>/assets/slideshow/5.png",
+                "<?= ROOT ?>/assets/slideshow/1.png",
             ]
             let slideIndex = 0;
             const hero = document.getElementById('heroImg');

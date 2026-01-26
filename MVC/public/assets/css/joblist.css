@@ -224,6 +224,8 @@
   color: #fff;
   background: var(--submit_btn_gradient);
   transition: 0.3s ease;
+  margin-left: 43%;
+  display: block;
 }
 
 .apply-filter-btn:hover {
