@@ -14,4 +14,15 @@ class Company
         'business_certificate',
         'company_photo_path',
     ];
+
+    public function activateSubscription($userId, $transactionRef)
+    {
+        $query = "UPDATE company 
+        SET payment_status = 'active',
+            transaction_ref = ?,
+            paid_at = NOW()
+        WHERE user_id = ?";
+
+        $this->query($query, [$transactionRef, $userId]);
+    }
 }

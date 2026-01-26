@@ -70,22 +70,26 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <h3>View Monthly Reports</h3>
     <div class="scrollBox">
         <?php
-        $repDetes = $data['oldReportDetails'];
+        $oldReportDetails = $data['oldReportDetails'];
         ?>
-        <?php if (!empty($repDetes)): ?>
-            <?php foreach ($repDetes as $repDetes): ?>
+        <?php if (!empty($oldReportDetails)): ?>
+            <?php foreach ($oldReportDetails as $report): ?>
                 <div class="listItem">
                     <div class="itemContent">
-                        <div class="title">Report No: 12</div>
-                        <div class="title">Date: 2025-05-07</div>
+                        <div class="title">
+                            <?= htmlspecialchars($report->report_month_name) ?>
+                        </div>
+                        <div class="title">
+                            Generated on: <?= date('Y-m-d', strtotime($report->generated_at)) ?>
+                        </div>
                         <div class="description">
-                            click to download report
+                            <a href="adminReport ? report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class='itemsEmpty'>No Reports available yet</p>
+            <p class="itemsEmpty">No Reports available yet</p>
         <?php endif; ?>
     </div>
 </div>
@@ -126,5 +130,5 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 
 <div class="genReport">
     <label>Generate a report for the last 30 Days :</label>
-    <a href="adminReport" target="_blank"><button>Generate</button></a>
+    <a href="adminReport ? live=1" target="_blank"><button>Generate</button></a>
 </div>

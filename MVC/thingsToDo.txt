@@ -1,8 +1,2 @@
-make sure a company account can't click on the jobPosts
-
-make the color scheme better
-
-add filters to the CV's for the company
-
 email verification
 

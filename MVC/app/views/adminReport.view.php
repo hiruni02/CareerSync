@@ -12,7 +12,7 @@
     <table class="info-table">
         <tr>
             <td><strong>Month:</strong></td>
-            <td><?= date("F Y") ?></td>
+            <td><?= $data['reportMonth'] ?? date("F Y") ?></td>
             <td><strong>Prepared By:</strong></td>
             <td><?= $_SESSION['USER']->email ?? "Admin" ?></td>
         </tr>

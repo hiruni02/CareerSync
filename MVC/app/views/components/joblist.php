@@ -35,11 +35,13 @@
             <label for="city">City:</label>
             <select id="city" name="city" class="filter-dropdown">
                 <option value="">All</option>
-                <option value="Colombo">Colombo</option>
-                <option value="Kandy">Kandy</option>
-                <option value="Galle">Galle</option>
-                <option value="Jaffna">Jaffna</option>
-                <option value="Matara">Matara</option>
+                <?php if (!empty($cities)): ?>
+                    <?php foreach ($cities as $c): ?>
+                        <option value="<?= htmlspecialchars($c->city) ?>">
+                            <?= htmlspecialchars($c->city) ?>
+                        </option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </select>
         </div>
 

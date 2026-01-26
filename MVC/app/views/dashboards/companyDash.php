@@ -58,7 +58,15 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
 
 <div class="list_pos_box">
     <label>Create New Position :</label>
-    <button id="createBtn">Create</button>
+    <?php
+        if($data['paymentStatus'] == 'active'){
+            ?><button id="createBtn">Create</button><?php
+        }
+        else{
+            ?><button id="payBtn">Make Payment</button><?php
+        }
+    ?>
+    
 </div>
 
 <?php
@@ -134,7 +142,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 <?php foreach ($postedJobs as $pj): ?>
                     <div class="listItem">
                         <div class="li-row">
-                            <a href="<?= ROOT ?>jobdetails/<?= urlencode($pj->job_id) ?>"><span class="jobTitleLink"><?= htmlspecialchars($pj->posTitle) ?></span></a>
+                            <a href="<?= ROOT ?>jobdetails/<?= urlencode($pj->job_id) ?>"  class="jobTitleLink"><?= htmlspecialchars($pj->posTitle) ?></a>
                         </div>
                         <div class="li-row">
                             <span class="li-label">Posted On:</span>
@@ -317,4 +325,12 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
             });
         });
     });
+</script>
+
+
+<script>
+//navigating to the payment gateway
+document.getElementById("payBtn")?.addEventListener("click", () => {
+    window.location.href = "paymentGateway";
+});
 </script>

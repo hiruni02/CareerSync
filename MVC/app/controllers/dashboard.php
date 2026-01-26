@@ -37,7 +37,7 @@ class Dashboard
         if ($isPasswordChange) {
             $pw_errors = [];
 
-            if ($data['userTable']->password !== $_POST['oldPassword']) {
+            if (!password_verify($_POST['oldPassword'], $data['userTable']->password)) {
                 $pw_errors['oldPassword'] = "Incorrect Password";
             } else if ($_POST['newPassword'] !== $_POST['confirm_new_password']) {
                 $pw_errors['confirm_new_password'] = "Passwords do not match";
@@ -46,7 +46,7 @@ class Dashboard
             if (empty($pw_errors)) {
                 // Prepare user update array
                 if (!empty($_POST['newPassword'])) {
-                    $userUpdate['password'] = $_POST['newPassword'];
+                    $userUpdate['password'] = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
                 }
                 $user->update($_SESSION['USER']->user_id, $userUpdate, 'user_id');
 
