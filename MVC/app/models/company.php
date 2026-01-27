@@ -25,4 +25,12 @@ class Company
 
         $this->query($query, [$transactionRef, $userId]);
     }
+
+    public function getCompanyPaymentStatus($user_id)
+    {
+        $query = "SELECT payment_status FROM company WHERE user_id = ? LIMIT 1";
+        $result = $this->query($query, [$user_id]);
+
+        return $result ? $result[0]->payment_status : null;
+    }
 }

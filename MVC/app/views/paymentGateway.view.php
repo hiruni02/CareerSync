@@ -22,7 +22,8 @@
     <script src="https://www.payhere.lk/lib/payhere.js"></script>
 
     <script>
-        const orderId = "ORDER_" + Math.floor(Math.random() * 100000);
+        const orderId = "ORDER_" + Math.floor(Math.random() * 100000) + "_USER_<?= $_SESSION['USER']->user_id ?>";
+
 
         payhere.onCompleted = function(orderId) {
             window.location.href = "<?= ROOT ?>?url=paymentGateway/success";
@@ -54,12 +55,13 @@
                     const payment = {
                         sandbox: true,
                         merchant_id: "1233775",
-                        return_url: undefined,
-                        cancel_url: undefined,
-                        notify_url: "https://example.com",
+                        return_url: "<?= ROOT ?>?url=paymentGateway/success",
+                        cancel_url: "<?= ROOT ?>?url=paymentGateway/cancel",
+                        notify_url: "<?= ROOT ?>?url=paymentGateway/notify",
+
                         order_id: orderId,
                         items: "Company Subscription",
-                        amount: "<?= number_format($amount, 2) ?>",
+                        amount: "5000.00",
                         currency: "LKR",
                         hash: data.hash,
 
@@ -71,6 +73,7 @@
                         city: "Colombo",
                         country: "Sri Lanka",
                     };
+
 
                     console.log("Payment object:", payment);
 
