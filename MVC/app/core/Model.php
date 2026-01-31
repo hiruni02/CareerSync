@@ -233,7 +233,7 @@ trait Model
                     )";
         $this->query($admin_report);
 
-        $payments = "CREATE TABLE payments (
+        $payments = "CREATE TABLE IF NOT EXISTS payments (
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         order_id VARCHAR(50),
                         amount DECIMAL(10,2),
@@ -243,6 +243,20 @@ trait Model
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                         )";
         $this->query($payments);
+
+        $sysLogs = "CREATE TABLE IF NOT EXISTS system_logs (
+                        log_id INT AUTO_INCREMENT PRIMARY KEY,
+                        user_id INT NULL,
+                        role ENUM('candidate','counselor','company','validator','admin','guest') NULL,
+                        action VARCHAR(100) NOT NULL,
+                        description TEXT,
+                        ip_address VARCHAR(45),
+                        user_agent TEXT,
+                        status ENUM('SUCCESS','FAIL','WARNING') DEFAULT 'SUCCESS',
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )";
+        $this->query($sysLogs);
+
     }
 
     public function SelectAll()

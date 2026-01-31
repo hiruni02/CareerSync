@@ -1,0 +1,30 @@
+<?php
+
+class SystemLogger
+{
+    use Database;
+
+    public static function log($action, $description = null, $status = 'SUCCESS')
+    {
+        $logger = new self();
+
+        $query = "INSERT INTO system_logs
+                  (user_id, role, action, description, ip_address, user_agent, status)
+                  VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        $user_id = $_SESSION['USER']->user_id ?? 0;
+        $role    = $_SESSION['USER']->role ?? 'guest';
+
+        $data = [
+            $user_id,
+            $role,
+            $action,
+            $description ?? '',
+            $_SERVER['REMOTE_ADDR'] ?? '',
+            $_SERVER['HTTP_USER_AGENT'] ?? '',
+            $status
+        ];
+
+        $logger->query($query, $data);
+    }
+}

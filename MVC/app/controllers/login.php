@@ -53,11 +53,12 @@ class login
                     if ($row->role == 'company') {
                         $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
                     }
-
+                    SystemLogger::log('LOGIN_SUCCESS', 'User logged in');
                     redirect('home');
                     exit;
                 } else {
                     $user->errors['password'] = "Incorrect password";
+                    SystemLogger::log('LOGIN_FAILED', 'Invalid credentials', 'FAIL');
                 }
             } else {
                 $user->errors['email'] = "Email doesnt exist";
