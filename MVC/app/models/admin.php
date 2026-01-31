@@ -13,10 +13,18 @@ class Admin
     public function getValidatorDetails()
     {
         $query = "SELECT v.*, u.email, u.status
-        FROM validator v
-        JOIN users u ON v.user_id = u.user_id
-        WHERE u.status = 'pending'";
-        
+                FROM validator v
+                JOIN users u ON v.user_id = u.user_id
+                WHERE u.status = 'pending'";
+
+        return $this->query($query);
+    }
+
+    public function getSystemLogs()
+    {
+        $query = "SELECT * FROM system_logs
+                ORDER BY created_at ASC";
+
         return $this->query($query);
     }
 }

@@ -48,10 +48,10 @@ class register
                                 'validator_photo_path'  => $photo_target,
                             ];
                             $validator->insert($validatorData);
-
+                            $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-
+                            SystemLogger::log('VALIDATOR_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
                             redirect('login');
                             exit;
                         } else {
@@ -90,13 +90,13 @@ class register
                                 'hr_contactNo'          => $_POST['hr_contactNo'],
                                 'company_photo_path'    => $photo_target,
                                 'business_certificate'  => $certificate_target,
-                                
+
                             ];
                             $counselor->insert($companyData);
 
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-
+                            SystemLogger::log('COMPANY_REGISTERED','('.$newUser->user_id.')'.$_POST['companyName'].' registered');
                             redirect('login');
                             exit;
                         } else {
@@ -125,7 +125,7 @@ class register
                             $user->insert($userTableData);
                             $newUser = $user->first(['email' => $_POST['email']]);
 
-                             // Insert into career_counselors table
+                            // Insert into career_counselors table
                             $counselorData = [
                                 'user_id'               => $newUser->user_id,
                                 'firstName'             => $_POST['firstName'],
@@ -135,10 +135,10 @@ class register
                                 'certificate_path'      => $certificate_target,
                             ];
                             $counselor->insert($counselorData);
-
+                            $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-
+                            SystemLogger::log('COUNSELOR_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
                             redirect('login');
                             exit;
                         } else {
@@ -169,12 +169,10 @@ class register
                             ];
 
                             $candidate->insert($candidateData);
-
+                            $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-
-     
-
+                            SystemLogger::log('CANDIDATE_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
                             redirect('login');
                             exit;
                         } else {
@@ -190,8 +188,3 @@ class register
         $this->view("register", $data);
     }
 }
-
-
-
-
-

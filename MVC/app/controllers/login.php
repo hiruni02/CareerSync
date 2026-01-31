@@ -58,7 +58,7 @@ class login
                     exit;
                 } else {
                     $user->errors['password'] = "Incorrect password";
-                    SystemLogger::log('LOGIN_FAILED', 'Invalid credentials', 'FAIL');
+                    SystemLogger::log('LOGIN_FAILED', 'Invalid credentials');
                 }
             } else {
                 $user->errors['email'] = "Email doesnt exist";

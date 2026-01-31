@@ -252,7 +252,6 @@ trait Model
                         description TEXT,
                         ip_address VARCHAR(45),
                         user_agent TEXT,
-                        status ENUM('SUCCESS','FAIL','WARNING') DEFAULT 'SUCCESS',
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
         $this->query($sysLogs);

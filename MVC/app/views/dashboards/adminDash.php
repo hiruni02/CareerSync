@@ -230,7 +230,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     </div>
 </div>
 
-<div class="genReport">
-    <label>Generate a report for the last 30 Days :</label>
-    <a href="adminReport ? live=1" target="_blank"><button>Generate</button></a>
+<div class="report_generators">
+    <div class="genReport">
+        <label>Generate a report for the last 30 Days :</label>
+        <a href="adminReport ? live=1" target="_blank"><button>Generate</button></a>
+    </div>
+
+    <div class="genReport">
+        <label>View System Logs :</label>
+        <a href="systemLog" target="_blank"><button>View</button></a>
+    </div>
 </div>

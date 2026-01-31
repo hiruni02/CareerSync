@@ -87,6 +87,12 @@
     max-width: fit-content;
 }
 
+.report_generators{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
 .genReport {
     width: fit-content;
     height: fit-content;
