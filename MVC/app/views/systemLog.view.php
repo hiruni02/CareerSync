@@ -29,7 +29,7 @@
 
                 <tbody>
                     <?php foreach ($syslogs as $log) : ?>
-                        <tr class="role-<?= htmlspecialchars($log->role) ?>">
+                        <tr class="role-<?= htmlspecialchars($log->role) ?> <?= $log->action === 'ALERT' ? 'alert' : '' ?>">
                             <td><?= $log->log_id ?></td>
                             <td><?= $log->user_id ?? '-' ?></td>
                             <td><?= ucfirst($log->role) ?></td>

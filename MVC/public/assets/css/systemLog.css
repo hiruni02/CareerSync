@@ -31,6 +31,19 @@ h1 {
     min-width: 900px;
 }
 
+.syslog-table tr.alert {
+    background-color: #ffe5e5;
+}
+
+.syslog-table tr.alert:hover {
+    background-color: #ffd6d6;
+}
+
+.syslog-table tr.alert td {
+    color: #842029;
+    font-weight: 600;
+}
+
 .syslog-table th,
 .syslog-table td {
     padding: 12px 14px;

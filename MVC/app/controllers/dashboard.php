@@ -72,6 +72,7 @@ class Dashboard
                         $_SESSION['USER']->photo_path = $photoPath ?? $data['candidateTable']->candidate_photo_path;
                         break;
                 }
+                SystemLogger::log('CHANGED_PASSWORD','ID: '.$_SESSION['USER']->user_id.' changed account password');
                 //unset($_SESSION['USER']);//this loggs out after editing profile
                 redirect('dashboard');
                 exit;
