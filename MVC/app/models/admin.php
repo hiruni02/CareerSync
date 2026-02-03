@@ -27,4 +27,11 @@ class Admin
 
         return $this->query($query);
     }
+
+    public function getSysAlerts(){
+        $query = "SELECT * FROM system_logs 
+                WHERE action = 'ALERT'
+                ORDER BY  created_at";
+        return $this->query($query);
+    }
 }

@@ -44,6 +44,41 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         <h1>2</h1>
     </div>
 </div>
+
+<div class="sbContainer">
+    <h3>System Alerts</h3>
+    <?php
+    $alerts = $data['sysAlerts'];
+    ?>
+    <div class="scrollBox">
+        <?php if (!empty($alerts)): ?>
+            <?php foreach ($alerts as $a): ?>
+                <div class="alertListItem">
+                    <div class="alertItemContent">
+                        <label>Log ID: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->log_id); ?></div>
+                        <label>User ID: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->user_id); ?></div>
+                        <label>Role: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->role); ?></div>
+                        <label>Description: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->description); ?></div>
+                        <label>IP Address: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->ip_address); ?></div>
+                        <label>User Agent: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->user_agent); ?></div>
+                        <label>Time Created: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->created_at); ?></div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No Validators Registered yet.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+
 <div class="sbContainer">
     <h3>User Feedback</h3>
     <div class="scrollBox">
@@ -64,33 +99,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         <?php
         }
         ?>
-    </div>
-</div>
-<div class="sbContainer">
-    <h3>View Monthly Reports</h3>
-    <div class="scrollBox">
-        <?php
-        $oldReportDetails = $data['oldReportDetails'];
-        ?>
-        <?php if (!empty($oldReportDetails)): ?>
-            <?php foreach ($oldReportDetails as $report): ?>
-                <div class="listItem">
-                    <div class="itemContent">
-                        <div class="title">
-                            <?= htmlspecialchars($report->report_month_name) ?>
-                        </div>
-                        <div class="title">
-                            Generated on: <?= date('Y-m-d', strtotime($report->generated_at)) ?>
-                        </div>
-                        <div class="description">
-                            <a href="adminReport ? report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="itemsEmpty">No Reports available yet</p>
-        <?php endif; ?>
     </div>
 </div>
 
@@ -239,5 +247,33 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <div class="genReport">
         <label>View System Logs :</label>
         <a href="systemLog" target="_blank"><button>View</button></a>
+    </div>
+</div>
+
+<div class="sbContainer">
+    <h3>View Monthly Reports</h3>
+    <div class="scrollBox">
+        <?php
+        $oldReportDetails = $data['oldReportDetails'];
+        ?>
+        <?php if (!empty($oldReportDetails)): ?>
+            <?php foreach ($oldReportDetails as $report): ?>
+                <div class="listItem">
+                    <div class="itemContent">
+                        <div class="title">
+                            <?= htmlspecialchars($report->report_month_name) ?>
+                        </div>
+                        <div class="title">
+                            Generated on: <?= date('Y-m-d', strtotime($report->generated_at)) ?>
+                        </div>
+                        <div class="description">
+                            <a href="adminReport ? report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="itemsEmpty">No Reports available yet</p>
+        <?php endif; ?>
     </div>
 </div>

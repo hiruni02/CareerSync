@@ -19,7 +19,7 @@
 }
 
 .scrollBox {
-    max-height: 400px;
+    max-height: 300px;
     overflow-y: auto;
     padding-right: 20px;
     padding-left: 20px;
@@ -87,14 +87,15 @@
     max-width: fit-content;
 }
 
-.report_generators{
+.report_generators {
     display: flex;
     flex-direction: row;
-    gap: 100px;
+    gap: 15px;
 }
 
 .genReport {
-    width: fit-content;
+    justify-content: center;
+    width: 45%;
     height: fit-content;
     background-color: var(--lightBlue);
     box-shadow: var(--shadowHard);
@@ -103,7 +104,8 @@
     display: flex;
     padding: 20px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .genReport label {
@@ -195,7 +197,7 @@
     margin-left: 10px;
 }
 
-.acceptBtn{
+.acceptBtn {
     background-color: var(--primaryBlueLight);
 }
 
@@ -205,8 +207,43 @@
 
 .acceptBtn:hover,
 .denyBtn:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadowSoft);
+    transform: scale(1.05);
+    box-shadow: var(--shadowSoft);
+}
+
+.alertListItem {
+    display: block;
+    padding: 15px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    background: var(--white);
+    border-left: 6px solid var(--primaryRed);
+    box-shadow: var(--shadowSoft);
+    transition: 0.2s ease;
+}
+
+.alertListItem:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadowSoft);
+    z-index: 2;
+}
+
+.alertItemContent {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 6px 12px;
+    font-size: 14px;
+}
+
+.alertItemContent label {
+    font-weight: bold;
+    color: var(--textDark);
+}
+
+.alertDetail {
+    color: var(--textLight);
+    word-break: break-word;
+    font-family: 'Consolas', monospace;
 }
 
 @media (max-width: 768px) {
