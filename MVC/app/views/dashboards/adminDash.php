@@ -44,6 +44,41 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         <h1>2</h1>
     </div>
 </div>
+
+<div class="sbContainer">
+    <h3>System Alerts</h3>
+    <?php
+    $alerts = $data['sysAlerts'];
+    ?>
+    <div class="scrollBox">
+        <?php if (!empty($alerts)): ?>
+            <?php foreach ($alerts as $a): ?>
+                <div class="alertListItem">
+                    <div class="alertItemContent">
+                        <label>Log ID: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->log_id); ?></div>
+                        <label>User ID: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->user_id); ?></div>
+                        <label>Role: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->role); ?></div>
+                        <label>Description: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->description); ?></div>
+                        <label>IP Address: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->ip_address); ?></div>
+                        <label>User Agent: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->user_agent); ?></div>
+                        <label>Time Created: </label>
+                        <div class="alertDetail"><?= htmlspecialchars($a->created_at); ?></div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No Validators Registered yet.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+
 <div class="sbContainer">
     <h3>User Feedback</h3>
     <div class="scrollBox">
@@ -66,30 +101,105 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         ?>
     </div>
 </div>
+
 <div class="sbContainer">
-    <h3>View Monthly Reports</h3>
+    <h3>Manage Companies</h3>
     <div class="scrollBox">
         <?php
-        $oldReportDetails = $data['oldReportDetails'];
+        $validators = $data['validators'];
         ?>
-        <?php if (!empty($oldReportDetails)): ?>
-            <?php foreach ($oldReportDetails as $report): ?>
-                <div class="listItem">
-                    <div class="itemContent">
-                        <div class="title">
-                            <?= htmlspecialchars($report->report_month_name) ?>
-                        </div>
-                        <div class="title">
-                            Generated on: <?= date('Y-m-d', strtotime($report->generated_at)) ?>
-                        </div>
-                        <div class="description">
-                            <a href="adminReport ? report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
-                        </div>
+        <?php if (!empty($validators)): ?>
+            <?php foreach ($validators as $val): ?>
+                <div class="validator_manager_list_item">
+                    <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
+                    <div class="managerContent">
+                        <label>User ID: </label>
+                        <div class="details"><?= htmlspecialchars($val->user_id); ?></div>
+                        <label>Name: </label>
+                        <div class="details"><?= htmlspecialchars($val->firstName . ' ' . $val->lastName); ?></div>
+                        <label>Email: </label>
+                        <div class="details"><?= htmlspecialchars($val->email); ?></div>
+                        <label>Contact No: </label>
+                        <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
                     </div>
+                    <form method="POST">
+                        <input type="hidden" name="action" value="validateValidator">
+                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
+                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
+                    </form>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class="itemsEmpty">No Reports available yet</p>
+            <p class='itemsEmpty'>No Validators Registered yet.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="sbContainer">
+    <h3>Manage Candidates</h3>
+    <div class="scrollBox">
+        <?php
+        $validators = $data['validators'];
+        ?>
+        <?php if (!empty($validators)): ?>
+            <?php foreach ($validators as $val): ?>
+                <div class="validator_manager_list_item">
+                    <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
+                    <div class="managerContent">
+                        <label>User ID: </label>
+                        <div class="details"><?= htmlspecialchars($val->user_id); ?></div>
+                        <label>Name: </label>
+                        <div class="details"><?= htmlspecialchars($val->firstName . ' ' . $val->lastName); ?></div>
+                        <label>Email: </label>
+                        <div class="details"><?= htmlspecialchars($val->email); ?></div>
+                        <label>Contact No: </label>
+                        <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
+                    </div>
+                    <form method="POST">
+                        <input type="hidden" name="action" value="validateValidator">
+                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
+                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No Validators Registered yet.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="sbContainer">
+    <h3>Manage Counselors</h3>
+    <div class="scrollBox">
+        <?php
+        $validators = $data['validators'];
+        ?>
+        <?php if (!empty($validators)): ?>
+            <?php foreach ($validators as $val): ?>
+                <div class="validator_manager_list_item">
+                    <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
+                    <div class="managerContent">
+                        <label>User ID: </label>
+                        <div class="details"><?= htmlspecialchars($val->user_id); ?></div>
+                        <label>Name: </label>
+                        <div class="details"><?= htmlspecialchars($val->firstName . ' ' . $val->lastName); ?></div>
+                        <label>Email: </label>
+                        <div class="details"><?= htmlspecialchars($val->email); ?></div>
+                        <label>Contact No: </label>
+                        <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
+                    </div>
+                    <form method="POST">
+                        <input type="hidden" name="action" value="validateValidator">
+                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
+                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
+                    </form>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No Validators Registered yet.</p>
         <?php endif; ?>
     </div>
 </div>
@@ -128,7 +238,42 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     </div>
 </div>
 
-<div class="genReport">
-    <label>Generate a report for the last 30 Days :</label>
-    <a href="adminReport ? live=1" target="_blank"><button>Generate</button></a>
+<div class="report_generators">
+    <div class="genReport">
+        <label>Generate a report for the last 30 Days :</label>
+        <a href="adminReport ? live=1" target="_blank"><button>Generate</button></a>
+    </div>
+
+    <div class="genReport">
+        <label>View System Logs :</label>
+        <a href="systemLog" target="_blank"><button>View</button></a>
+    </div>
+</div>
+
+<div class="sbContainer">
+    <h3>View Monthly Reports</h3>
+    <div class="scrollBox">
+        <?php
+        $oldReportDetails = $data['oldReportDetails'];
+        ?>
+        <?php if (!empty($oldReportDetails)): ?>
+            <?php foreach ($oldReportDetails as $report): ?>
+                <div class="listItem">
+                    <div class="itemContent">
+                        <div class="title">
+                            <?= htmlspecialchars($report->report_month_name) ?>
+                        </div>
+                        <div class="title">
+                            Generated on: <?= date('Y-m-d', strtotime($report->generated_at)) ?>
+                        </div>
+                        <div class="description">
+                            <a href="adminReport ? report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="itemsEmpty">No Reports available yet</p>
+        <?php endif; ?>
+    </div>
 </div>

@@ -4,8 +4,7 @@ $company = new Company;
 $data['companyTable'] = $company->first(['user_id' => $_SESSION['USER']->user_id]);
 
 //for getting the company status
-$user = new User;
-$data['paymentStatus'] = $user->getCompanyPaymentStatus($_SESSION['USER']->user_id);
+$data['paymentStatus'] = $company->getCompanyPaymentStatus($_SESSION['USER']->user_id);
 
 //fetching posted jobs
 $jobPost = new JobPost;
@@ -119,13 +118,14 @@ if ($isPostingJob) {
         'required_skills'   => $_POST['required_skills'] ?? '',
         'salaryDetails'     => $_POST['salaryDetails'],
         'address'           => $_POST['address'],
-        'city'              => ucfirst(trim($_POST['city']," ")),
+        'city'              => ucfirst(trim($_POST['city'], " ")),
         'workMode'          => $_POST['workMode'],
         'jobDescription'    => $_POST['jobDescription'],
         'vacancies'         => $_POST['vacancies'],
         'deadline'          => $_POST['deadline'],
     ];
     $jobPost->insert($jobData);
+    SystemLogger::log('JOB_CREATED', $_POST['posTitle'].' : by '.$_SESSION['USER']->user_id);
     redirect("dashboard/companyDash");
     unset($_POST);
 }
@@ -158,7 +158,7 @@ if ($isDeletingJob) {
             $jobPost->query("DELETE FROM cvTable WHERE job_id = ?", [$job_id]);
             $jobPost->query("DELETE FROM jobPost WHERE job_id = ?", [$job_id]);
 
-            $_SESSION['flash_message'] = "Job and related data deleted successfully.";
+            SystemLogger::log('JOB_DELETED','Deleted Job, ID: ' . $job_id);
             redirect("dashboard/companyDash");
             exit;
         } catch (Exception $e) {

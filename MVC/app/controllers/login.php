@@ -7,13 +7,17 @@ class login
         $user = new User;
         $data = [];
 
+        if (!isset($_SESSION['login_attempts'])) {
+            $_SESSION['login_attempts'] = 0;
+        }
+
         //if not logged in the $username variable is deafulted to 'User'
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->firstName;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $row = $user->first(['email' => $_POST['email']]);
             if ($row) {
-                if (/*$row->password === $_POST['password']*/password_verify($_POST["password"],$row->password)) {
+                if (/*$row->password === $_POST['password']*/password_verify($_POST["password"], $row->password)) {
                     $_SESSION['USER'] = $row;
                     switch ($row->role) {
                         case 'admin':
@@ -53,11 +57,19 @@ class login
                     if ($row->role == 'company') {
                         $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
                     }
-
+                    $_SESSION['login_attempts'] = 0;
+                    SystemLogger::log('LOGIN_SUCCESS', 'User logged in');
                     redirect('home');
                     exit;
                 } else {
                     $user->errors['password'] = "Incorrect password";
+                    SystemLogger::log('LOGIN_FAILED', 'Invalid credentials');
+                    $_SESSION['login_attempts']++;
+
+                    if ($_SESSION['login_attempts'] > 3) {
+                        $_SESSION['login_attempts'] = 0;
+                        SystemLogger::log('ALERT','Multiple failed login attempts detected by ' . $_POST['email']);
+                    }
                 }
             } else {
                 $user->errors['email'] = "Email doesnt exist";
