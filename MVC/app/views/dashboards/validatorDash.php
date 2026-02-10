@@ -40,57 +40,33 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 <div class="sbContainer">
     <h3> Pending Company registration requests:</h3>
     <div class="scrollBox">
-        <?php
-        for ($x = 0; $x <= 10; $x++) {
-        ?>
-            <div class="listItem">
-                <div class="itemContent">
-                    <div class="title">Company Name</div>
-                    <div class="description">
-                        THE DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+        <?php $companyDetails = $data['companyDetails']; ?>
+        <?php if (!empty($companyDetails)): ?>
+            <?php foreach ($companyDetails as $cd): ?>
+                <div class="companylistItem">
+                    <img src="<?= ROOT . htmlspecialchars($cd->company_photo_path) ?>" alt="company photo" class="photo">
+                    <div class="itemContent">
+                        <div class="title"></div>
+                        <div class="details"><label>Company Name: </label><?= htmlspecialchars($cd->companyName) ?></div>
+                        <div class="details"><label>User ID: </label><?= htmlspecialchars($cd->user_id); ?></div>
+                        <div class="details"><label>HR manager Name: </label><?= htmlspecialchars($cd->hr_firstName . ' ' . $cd->hr_lastName); ?></div>
+                        <div class="details"><label>Email: </label><?= htmlspecialchars($cd->email); ?></div>
+                        <div class="details"><label>Comapny Contact No: </label><?= htmlspecialchars($cd->contactNo); ?></div>
+                        <div class="details"><label>HR Contact No: </label><?= htmlspecialchars($cd->hr_contactNo); ?></div>
+                        <div class="details"><label>Business Certificate: </label><a target="_blank" href="<?= $cd->business_certificate ?>">click here to view</a></div>
+                        <form method="post">
+                            <input type="hidden" name="action" value="validateCompany">
+                            <button type="submit" name="approve" value="approve" class="acceptBtn">Approve</button>
+                            <button type="submit" name="reject" value="reject" class="denyBtn">Reject</button>
+                        </form>
                     </div>
                 </div>
-                <form method="post" class="formButtons">
-                    <input type="hidden" name="action" value="validateCompany">
-                    <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
-                    <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
-                </form>
-            </div>
-        <?php
-        }
-        ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class='itemsEmpty'>No pending applications available.</p>
+        <?php endif; ?>
     </div>
 </div>
-
-
-<!-- <div class="sbContainer">
-    <h3> Pending Student registration requests:</h3>
-    <div class="scrollBox">
-        <?php
-        for ($x = 0; $x <= 10; $x++) {
-        ?>
-            <div class="listItem">
-                <div class="itemContent">
-                    <div class="title">Student Application Name</div>
-                    <div class="description">
-                        THE DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
-                    </div>
-                </div>
-                <form method="post" class="formButtons">
-                    <input type="hidden" name="action" value="validateCandidate">
-                    <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
-                    <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
-                </form>
-            </div>
-        <?php
-        }
-        ?>
-    </div>
-</div> -->
 
 <div class="sbContainer">
     <h3> Pending Student Application:</h3>

@@ -10,4 +10,14 @@ class Validator
         'contactNo',
         'validator_photo_path',
     ];
+
+    public function getCompanyDetails()
+    {
+        $query = "SELECT c.*, u.email FROM company c 
+        JOIN users u ON c.user_id = u.user_id
+        WHERE u.status = 'pending' 
+        AND c.payment_status = 'inactive'";
+
+        return $this->query($query);
+    }
 }

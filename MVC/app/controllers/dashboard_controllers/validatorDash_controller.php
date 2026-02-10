@@ -2,6 +2,7 @@
 //extract validator data
 $validator = new Validator;
 $data['validatorTable'] = $validator->first(['user_id' => $_SESSION['USER']->user_id]);
+$data['companyDetails'] = $validator->getCompanyDetails();
 
 $isRealValidator = ($_SESSION['USER']->status != 'active') ? false : true;//var to check if validator is approved by the admin
 
