@@ -25,19 +25,19 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 <div class="counting_boxes">
     <div class="box_segment">
         Total Users:<br>
-        <h1>170</h1>
+        <h1><?= $data['totalUsers'] ?? 0 ?></h1>
     </div>
     <div class="box_segment">
         Active Users: <br>
-        <h1>67</h1>
+        <h1><?= $data['activeUsers'] ?? 0 ?></h1>
     </div>
     <div class="box_segment">
-        Pending requests: <br>
-        <h1>22</h1>
+        Total Posted Jobs: <br>
+        <h1><?= $data['totalJobPosts'] ?? 0 ?></h1>
     </div>
     <div class="box_segment">
         System Alerts: <br>
-        <h1>26</h1>
+        <h1><?= $data['systemAlertCount'] ?? 0 ?></h1>
     </div>
     <div class="box_segment">
         New Feedback forms: <br>
@@ -106,32 +106,34 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <h3>Manage Companies</h3>
     <div class="scrollBox">
         <?php
-        $validators = $data['validators'];
+        $companies = $data['companies'];
         ?>
-        <?php if (!empty($validators)): ?>
-            <?php foreach ($validators as $val): ?>
-                <div class="validator_manager_list_item">
-                    <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
+        <?php if (!empty($companies)): ?>
+            <?php foreach ($companies as $val): ?>
+                <div class="manager_list_item">
+                    <img src="<?= ROOT . htmlspecialchars($val->company_photo_path) ?>" alt="Company logo" class="photo">
                     <div class="managerContent">
                         <label>User ID: </label>
                         <div class="details"><?= htmlspecialchars($val->user_id); ?></div>
-                        <label>Name: </label>
-                        <div class="details"><?= htmlspecialchars($val->firstName . ' ' . $val->lastName); ?></div>
+                        <label>Company: </label>
+                        <div class="details"><?= htmlspecialchars($val->companyName); ?></div>
                         <label>Email: </label>
                         <div class="details"><?= htmlspecialchars($val->email); ?></div>
                         <label>Contact No: </label>
                         <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
+                        <label>Payment Status: </label>
+                        <div class="details"><?= htmlspecialchars($val->payment_status); ?></div>
                     </div>
                     <form method="POST">
-                        <input type="hidden" name="action" value="validateValidator">
-                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
+                        <input type="hidden" name="action" value="validateCompany">
+                        <input type="hidden" name="company_id" value="<?= $val->user_id ?>">
                         <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this company?');">Deny Access</button>
                     </form>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class='itemsEmpty'>No Validators Registered yet.</p>
+            <p class='itemsEmpty'>No Companies Registered yet.</p>
         <?php endif; ?>
     </div>
 </div>
@@ -140,12 +142,12 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <h3>Manage Candidates</h3>
     <div class="scrollBox">
         <?php
-        $validators = $data['validators'];
+        $candidates = $data['candidates'];
         ?>
-        <?php if (!empty($validators)): ?>
-            <?php foreach ($validators as $val): ?>
-                <div class="validator_manager_list_item">
-                    <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
+        <?php if (!empty($candidates)): ?>
+            <?php foreach ($candidates as $val): ?>
+                <div class="manager_list_item">
+                    <img src="<?= ROOT . htmlspecialchars($val->candidate_photo_path) ?>" alt="candidate photo" class="photo">
                     <div class="managerContent">
                         <label>User ID: </label>
                         <div class="details"><?= htmlspecialchars($val->user_id); ?></div>
@@ -157,15 +159,15 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
                     </div>
                     <form method="POST">
-                        <input type="hidden" name="action" value="validateValidator">
-                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
+                        <input type="hidden" name="action" value="validateCandidate">
+                        <input type="hidden" name="candidate_id" value="<?= $val->user_id ?>">
                         <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this candidate?');">Deny Access</button>
                     </form>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class='itemsEmpty'>No Validators Registered yet.</p>
+            <p class='itemsEmpty'>No Candidates Registered yet.</p>
         <?php endif; ?>
     </div>
 </div>
@@ -174,12 +176,12 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <h3>Manage Counselors</h3>
     <div class="scrollBox">
         <?php
-        $validators = $data['validators'];
+        $counselors = $data['counselors'];
         ?>
-        <?php if (!empty($validators)): ?>
-            <?php foreach ($validators as $val): ?>
-                <div class="validator_manager_list_item">
-                    <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
+        <?php if (!empty($counselors)): ?>
+            <?php foreach ($counselors as $val): ?>
+                <div class="manager_list_item">
+                    <img src="<?= ROOT . htmlspecialchars($val->counselor_photo_path) ?>" alt="Counselor photo" class="photo">
                     <div class="managerContent">
                         <label>User ID: </label>
                         <div class="details"><?= htmlspecialchars($val->user_id); ?></div>
@@ -191,15 +193,15 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
                     </div>
                     <form method="POST">
-                        <input type="hidden" name="action" value="validateValidator">
-                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
+                        <input type="hidden" name="action" value="validateCounselor">
+                        <input type="hidden" name="counselor_id" value="<?= $val->user_id ?>">
                         <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this counselor?');">Deny Access</button>
                     </form>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class='itemsEmpty'>No Validators Registered yet.</p>
+            <p class='itemsEmpty'>No Counselors Registered yet.</p>
         <?php endif; ?>
     </div>
 </div>
@@ -212,7 +214,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         ?>
         <?php if (!empty($validators)): ?>
             <?php foreach ($validators as $val): ?>
-                <div class="validator_manager_list_item">
+                <div class="manager_list_item">
                     <img src="<?= ROOT . htmlspecialchars($val->validator_photo_path) ?>" alt="Validator photo" class="photo">
                     <div class="managerContent">
                         <label>User ID: </label>

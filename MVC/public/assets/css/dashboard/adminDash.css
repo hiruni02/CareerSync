@@ -135,7 +135,7 @@
 
 /* ===== Manage Validators ===== */
 
-.validator_manager_list_item {
+.manager_list_item {
     display: grid;
     grid-template-columns: 120px 1fr;
     grid-template-rows: auto auto;
@@ -149,12 +149,12 @@
     transition: 0.2s ease;
 }
 
-.validator_manager_list_item:hover {
+.manager_list_item:hover {
     transform: scale(1.03);
     box-shadow: var(--shadowSoft);
 }
 
-.validator_manager_list_item .photo {
+.manager_list_item .photo {
     width: 100%;
     height: 140px;
     object-fit: cover;
@@ -163,20 +163,20 @@
     grid-row: 1 / span 2;
 }
 
-.validator_manager_list_item .managerContent {
+.manager_list_item .managerContent {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 6px 10px;
     align-items: center;
 }
 
-.validator_manager_list_item label {
+.manager_list_item label {
     font-weight: bold;
     color: var(--textDark);
     font-size: 14px;
 }
 
-.validator_manager_list_item .details {
+.manager_list_item .details {
     font-family: 'consolas';
     font-size: 1rem;
     color: var(--textDark);
@@ -270,11 +270,11 @@
         margin-left: 0px;
     }
 
-    .validator_manager_list_item {
+    .manager_list_item {
         grid-template-columns: 1fr;
     }
 
-    .validator_manager_list_item .photo {
+    .manager_list_item .photo {
         grid-row: auto;
         height: 180px;
     }
