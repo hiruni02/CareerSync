@@ -56,6 +56,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
                         <div class="details"><label>Business Certificate: </label><a target="_blank" href="<?= $cd->business_certificate ?>">click here to view</a></div>
                         <form method="post">
                             <input type="hidden" name="action" value="validateCompany">
+                            <input type="hidden" name="company_id" value="<?= $cd->user_id ?>">
                             <button type="submit" name="approve" value="approve" class="acceptBtn">Approve</button>
                             <button type="submit" name="reject" value="reject" class="denyBtn">Reject</button>
                         </form>
