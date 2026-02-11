@@ -13,6 +13,8 @@ class Company
         'hr_contactNo',
         'business_certificate',
         'company_photo_path',
+        'payment_status',
+        'validator_approval',
     ];
 
     public function activateSubscription($userId, $transactionRef)
@@ -26,11 +28,14 @@ class Company
         $this->query($query, [$transactionRef, $userId]);
     }
 
-    public function getCompanyPaymentStatus($user_id)
+    public function getCompanyStatus($user_id)
     {
-        $query = "SELECT payment_status FROM company WHERE user_id = ? LIMIT 1";
+        $query = "SELECT payment_status, validator_approval 
+              FROM company 
+              WHERE user_id = ?";
+
         $result = $this->query($query, [$user_id]);
 
-        return $result ? $result[0]->payment_status : null;
+        return $result ? $result[0] : null;
     }
 }

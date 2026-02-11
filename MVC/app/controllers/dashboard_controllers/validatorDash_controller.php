@@ -69,6 +69,8 @@ require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
 
 $data['applications'] = $isRealValidator ? $cv->SelectAll() : []; //validator cant see applications before getting the admin approval
 
+$isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
 if ($is_Validating_CV) {
     if ($data['approval']->validator_approval === 'pending') {
     }
@@ -123,11 +125,15 @@ if ($is_Validating_CV) {
             ]);
         }
 
+        if ($isAjax) {
+            echo json_encode(['success' => true]);
+            exit;
+        }
         redirect('dashboard');
     }
 }
 
-if($is_Validating_Company){
+if ($is_Validating_Company) {
     $company_id = $_POST['company_id'] ?? null;
     if (!$company_id) {
         redirect('dashboard');
@@ -138,9 +144,9 @@ if($is_Validating_Company){
     $company = new Company;
 
     if (isset($_POST['approve'])) {
-        $user->update(
+        $company->update(
             $company_id,
-            ['status' => 'active'],
+            ['validator_approval' => 'approved'],
             'user_id'
         );
     }
@@ -148,6 +154,10 @@ if($is_Validating_Company){
     if (isset($_POST['reject'])) {
         $company->delete($company_id, 'user_id');
         $user->delete($company_id, 'user_id');
+    }
+    if ($isAjax) {
+        echo json_encode(['success' => true]);
+        exit;
     }
     redirect('dashboard');
     exit;

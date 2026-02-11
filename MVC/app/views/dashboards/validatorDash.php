@@ -54,12 +54,13 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
                         <div class="details"><label>Comapny Contact No: </label><?= htmlspecialchars($cd->contactNo); ?></div>
                         <div class="details"><label>HR Contact No: </label><?= htmlspecialchars($cd->hr_contactNo); ?></div>
                         <div class="details"><label>Business Certificate: </label><a target="_blank" href="<?= $cd->business_certificate ?>">click here to view</a></div>
-                        <form method="post">
+                        <form class="companyValidationForm">
                             <input type="hidden" name="action" value="validateCompany">
                             <input type="hidden" name="company_id" value="<?= $cd->user_id ?>">
-                            <button type="submit" name="approve" value="approve" class="acceptBtn">Approve</button>
-                            <button type="submit" name="reject" value="reject" class="denyBtn">Reject</button>
+                            <button type="button" data-status="approve" class="acceptBtn">Approve</button>
+                            <button type="button" data-status="reject" class="denyBtn">Reject</button>
                         </form>
+
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -78,7 +79,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
             return $cvs->validator_approval === 'pending';
         });
         ?>
-
         <?php if (!empty($pendingCvs)): ?>
             <?php foreach ($pendingCvs as $cvs): ?>
                 <div class="listItem">
@@ -91,13 +91,12 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
                             CV: <a href="<?= ROOT . $cvs->cv_file_path ?>" target="_blank">View CV</a>
                         </div>
                     </div>
-                    <form method="post" class="formButtons">
+                    <form class="cvValidationForm">
                         <input type="hidden" name="action" value="validateCV">
                         <input type="hidden" name="cv_id" value="<?= $cvs->cv_id ?>">
-                        <button type="submit" name="approve" value="approve" class="approveBtn">Approve</button>
-                        <button type="submit" name="reject" value="reject" class="rejectBtn">Reject</button>
+                        <button type="button" data-status="approve" class="approveBtn">Approve</button>
+                        <button type="button" data-status="reject" class="rejectBtn">Reject</button>
                     </form>
-
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -105,3 +104,62 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
         <?php endif; ?>
     </div>
 </div>
+
+<script>
+    document.addEventListener("click", function(e) {
+
+        //cv validation
+        if (e.target.closest(".cvValidationForm button")) {
+            const btn = e.target;
+            const form = btn.closest(".cvValidationForm");
+
+            const formData = new FormData(form);
+            formData.append(btn.dataset.status, btn.dataset.status);
+
+            sendAjax(formData, form);
+        }
+
+        //comapny validation
+        if (e.target.closest(".companyValidationForm button")) {
+            const btn = e.target;
+            const form = btn.closest(".companyValidationForm");
+
+            const formData = new FormData(form);
+            formData.append(btn.dataset.status, btn.dataset.status);
+
+            sendAjax(formData, form);
+        }
+    });
+
+    function sendAjax(formData, form) {
+        fetch("<?= ROOT ?>dashboard", {
+                method: "POST",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const item = form.closest(".listItem, .companylistItem");
+                    const scrollBox = item.closest(".scrollBox");
+
+                    item.remove();
+
+                    // if no items left show empty message
+                    if (!scrollBox.querySelector(".listItem, .companylistItem")) {
+                        if (!scrollBox.querySelector(".itemsEmpty")) {
+                            scrollBox.insertAdjacentHTML(
+                                "beforeend",
+                                "<p class='itemsEmpty'>No pending applications available.</p>"
+                            );
+                        }
+                    }
+                } else {
+                    alert(data.message || "Action failed");
+                }
+            })
+            .catch(err => console.error(err));
+    }
+</script>
