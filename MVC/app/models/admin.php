@@ -8,6 +8,7 @@ class Admin
         'firstName',
         'lastName',
         'contactNo',
+        'admin_photo_path',
     ];
 
     public function getValidatorDetails()
