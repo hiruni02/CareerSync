@@ -11,13 +11,30 @@ class login
             $_SESSION['login_attempts'] = 0;
         }
 
-        //if not logged in the $username variable is deafulted to 'User'
+        if (!isset($_SESSION['lockout_until'])) {
+            $_SESSION['lockout_until'] = 0;
+        }
+
+        if ($_SESSION['lockout_until'] > 0 && time() >= $_SESSION['lockout_until']) {
+            $_SESSION['lockout_until'] = 0;
+        }
+
+        $data['lockout_until'] = $_SESSION['lockout_until'];
+        $data['is_locked'] = time() < $_SESSION['lockout_until'];
+
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->firstName;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($data['is_locked']) {
+                $remaining = $_SESSION['lockout_until'] - time();
+                $data['errors']['password'] =
+                    "Too many failed attempts. Try again in {$remaining} seconds.";
+                $this->view("login", $data);
+                return;
+            }
             $row = $user->first(['email' => $_POST['email']]);
             if ($row) {
-                if (/*$row->password === $_POST['password']*/password_verify($_POST["password"], $row->password)) {
+                if (password_verify($_POST["password"], $row->password)) {
                     $_SESSION['USER'] = $row;
                     switch ($row->role) {
                         case 'admin':
@@ -57,27 +74,37 @@ class login
                     if ($row->role == 'company') {
                         $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
                     }
+                    $_SESSION['USER'] = $row;
                     $_SESSION['login_attempts'] = 0;
+                    $_SESSION['lockout_until'] = 0;
                     SystemLogger::log('LOGIN_SUCCESS', 'User logged in');
                     redirect('home');
                     exit;
                 } else {
-                    $user->errors['password'] = "Incorrect password";
-                    SystemLogger::log('LOGIN_FAILED', 'Invalid credentials');
                     $_SESSION['login_attempts']++;
+                    SystemLogger::log('LOGIN_FAILED', 'Invalid credentials');
 
-                    if ($_SESSION['login_attempts'] > 3) {
+                    if ($_SESSION['login_attempts'] >= 3) {
+                        $_SESSION['lockout_until'] = time() + 30;
                         $_SESSION['login_attempts'] = 0;
-                        SystemLogger::log('ALERT','Multiple failed login attempts detected by ' . $_POST['email']);
+
+                        SystemLogger::log(
+                            'ALERT',
+                            'Multiple failed login attempts by ' . $_POST['email']
+                        );
+
+                        $data['lockout_until'] = $_SESSION['lockout_until'];
+                        $data['is_locked'] = true;
+                        $data['errors']['password'] =
+                            "Too many failed attempts. Please wait 30 seconds.";
+                    } else {
+                        $data['errors']['password'] = "Incorrect password";
                     }
                 }
             } else {
-                $user->errors['email'] = "Email doesnt exist";
+                $data['errors']['email'] = "Email doesn't exist";
             }
-            //Send errors to the view
-            $data['errors'] = $user->errors;
         }
-
 
         $this->view("login", $data);
     }
