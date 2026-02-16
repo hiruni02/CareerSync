@@ -18,3 +18,5 @@ class contact
         $this->view("contact", $data);
     }
 }
+
+//test
