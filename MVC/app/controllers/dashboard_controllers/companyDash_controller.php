@@ -4,7 +4,7 @@ $company = new Company;
 $data['companyTable'] = $company->first(['user_id' => $_SESSION['USER']->user_id]);
 
 //for getting the company status
-$data['paymentStatus'] = $company->getCompanyPaymentStatus($_SESSION['USER']->user_id);
+$data['companyStatus'] = $company->getCompanyStatus($_SESSION['USER']->user_id);
 
 //fetching posted jobs
 $jobPost = new JobPost;

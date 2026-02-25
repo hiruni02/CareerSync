@@ -59,11 +59,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
 <div class="list_pos_box">
     <label>Create New Position :</label>
     <?php
-        if($data['paymentStatus'] == 'active'){
-            ?><button id="createBtn">Create</button><?php
+        if($data['companyStatus']->validator_approval == 'pending'){
+            ?><button>Wait for validator approval</button><?php
+        }
+        else if($data['companyStatus']->payment_status == 'inactive'){
+            ?><button id="payBtn">Make Payment</button><?php
         }
         else{
-            ?><button id="payBtn">Make Payment</button><?php
+            ?><button id="createBtn">Create</button><?php
         }
     ?>
     
