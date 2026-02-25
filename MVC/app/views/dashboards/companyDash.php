@@ -8,18 +8,39 @@
 </div>
 
 <div class="message_menu" id="message_menu" role="region" aria-label="Messages" aria-live="polite">
-    <ul class="message_list">
+    <div class="msg-header">
+        <div class="msg-title">Inbox</div>
+        <div class="msg-tabs" role="tablist">
+            <button class="msg-tab active" data-tab="messages">Messages</button>
+            <button class="msg-tab" data-tab="alerts">Alerts</button>
+        </div>
+    </div>
+
+    <div class="message_body">
         <?php if (!empty($messages ?? [])): ?>
-            <?php foreach ($messages as $msg): ?>
-                <li class="message">
-                    <?= htmlspecialchars($msg->content) ?>
-                    <span class="msg-time"><?= htmlspecialchars(date('M d, Y', strtotime($msg->created_at))) ?></span>
-                </li>
-            <?php endforeach; ?>
+            <ul class="message_list" data-section="messages">
+                <?php foreach ($messages as $msg): ?>
+                    <li class="message">
+                        <div class="msg-content"><?= htmlspecialchars($msg->content) ?></div>
+                        <span class="msg-time"><?= htmlspecialchars(date('M d, Y', strtotime($msg->created_at))) ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         <?php else: ?>
-            <li class="message">No messages.</li>
+            <div class="message_empty_state" data-section="empty">
+                <div class="envelope">
+                    <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
+                        <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
+                    </svg>
+                </div>
+                <h2>All caught up!</h2>
+                <p>New messages will appear here</p>
+            </div>
         <?php endif; ?>
-    </ul>
+    </div>
+
+    <div class="decor-star" aria-hidden="true"></div>
 </div>
 
 <?php
