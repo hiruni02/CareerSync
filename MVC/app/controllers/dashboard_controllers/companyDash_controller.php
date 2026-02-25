@@ -16,6 +16,10 @@ $data['cv'] = $cv->getApprovedCVsByCompany($_SESSION['USER']->user_id);
 
 $confirmedInterviews = new Interview();
 $data['confirmedInterviews'] = $confirmedInterviews->getInterviewsByCompany($_SESSION['USER']->user_id);
+$data['pendingInterviews'] = $confirmedInterviews->query(
+    "SELECT COUNT(*) AS cnt FROM interviews WHERE company_id = ? AND (dateConfirmed IS NULL OR dateConfirmed != 'confirmed')",
+    [$_SESSION['USER']->user_id]
+);
 
 // Load messages for company
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
