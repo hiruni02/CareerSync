@@ -63,6 +63,13 @@ require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/jobPost.php';
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/candidate.php';
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
 
+$messageModel = new Message();
+$unreadResult = $messageModel->query(
+    "SELECT COUNT(*) AS cnt FROM messages WHERE receiver_id = ? AND receiver_type = 'validator' AND is_read = 0",
+    [$_SESSION['USER']->user_id]
+);
+$data['unreadMsgCount'] = $unreadResult ? (int)$unreadResult[0]->cnt : 0;
+
 $data['applications'] = $isRealValidator ? $cv->SelectAll() : [];//validator cant see applications before getting the admin approval
 
 $is_Validating_CV  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCV');

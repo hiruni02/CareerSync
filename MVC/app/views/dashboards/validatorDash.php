@@ -25,15 +25,15 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 <div class="counting_boxes">
     <div class="box_segment">
         Companies to validate:<br>
-        <h1>23</h1>
+        <h1>hard code</h1>
     </div>
     <div class="box_segment">
         Candidates to validate: <br>
-        <h1>34</h1>
+        <h1><?= count(array_filter($data['applications'] ?? [], fn($app) => $app->validator_approval === 'pending')) ?></h1>
     </div>
     <div class="box_segment">
         Unread messages: <br>
-        <h1>2</h1>
+        <h1><?= $data['unreadMsgCount'] ?? 0 ?></h1>
     </div>
 </div>
 
