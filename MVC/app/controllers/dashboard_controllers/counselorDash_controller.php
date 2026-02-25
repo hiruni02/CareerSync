@@ -10,6 +10,14 @@ $data['request'] = $request->getMeetingRequest($_SESSION['USER']->user_id);
 $consultation = new Consultation;
 $data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCounselor($_SESSION['USER']->user_id);
 
+require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
+$messageModel = new Message();
+$unreadResult = $messageModel->query(
+    "SELECT COUNT(*) AS cnt FROM messages WHERE receiver_id = ? AND receiver_type = 'counselor' AND is_read = 0",
+    [$_SESSION['USER']->user_id]
+);
+$data['unreadMsgCount'] = $unreadResult ? (int)$unreadResult[0]->cnt : 0;
+
 $isSchedulingMeeting = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'counselor_scheduler');
 
 $photoPath = null;

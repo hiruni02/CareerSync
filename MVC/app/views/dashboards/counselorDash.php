@@ -26,23 +26,19 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/counselorProfile.php"
 <div class="counting_boxes">
     <div class="box_segment">
         Assigned Students:<br>
-        <h1>35</h1>
+        <h1><?= count(array_filter($data['request'] ?: [], fn($req) => $req->counselor_acceptance === 'accepted')) ?></h1>
     </div>
     <div class="box_segment">
         Scheduled Sessions: <br>
-        <h1>12</h1>
+        <h1><?= count($data['confirmedConsultation'] ?: []) ?></h1>
     </div>
     <div class="box_segment">
         Pending Approvals: <br>
-        <h1>5</h1>
+        <h1><?= count(array_filter($data['request'] ?: [], fn($req) => $req->counselor_acceptance === 'pending')) ?></h1>
     </div>
     <div class="box_segment">
         Messages: <br>
-        <h1>8</h1>
-    </div>
-    <div class="box_segment">
-        Feedback Received: <br>
-        <h1>3</h1>
+        <h1><?= $data['unreadMsgCount'] ?? 0 ?></h1>
     </div>
 </div>
 
