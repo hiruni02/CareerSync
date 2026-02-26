@@ -1,8 +1,15 @@
 <?php
 //extract admin data
 $admin = new Admin;
+$data['totalUsers'] = $admin->getTotalUsers();
+$data['activeUsers'] = $admin->getActiveUsersLast7Days();
+$data['systemAlertCount'] = $admin->getSystemAlertCount();
+$data['totalJobPosts'] = $admin->getTotalJobPosts();
 $data['adminTable'] = $admin->first(['user_id' => $_SESSION['USER']->user_id]);
 $data['validators'] = $admin->getValidatorDetails();
+$data['candidates'] = $admin->getCandidateDetails();
+$data['counselors'] = $admin->getCounselorDetails();
+$data['companies'] = $admin->getCompanyDetails();
 $data['sysAlerts'] = $admin->getSysAlerts();
 
 $reports = new AdminReportDetails;
@@ -62,6 +69,8 @@ if ($isProfileUpdate) {
 }
 
 $isManageValidator = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateValidator');
+$isManageCounselor = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCounselor');
+$isManageCompany = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCompany');
 
 if ($isManageValidator) {
     $validatorId = $_POST['validator_id'] ?? null;
@@ -84,6 +93,58 @@ if ($isManageValidator) {
     if (isset($_POST['deny'])) {
         $validator->delete($validatorId, 'user_id');
         $user->delete($validatorId, 'user_id');
+    }
+    redirect('dashboard');
+    exit;
+}
+
+if ($isManageCounselor) {
+    $counselorId = $_POST['counselor_id'] ?? null;
+    if (!$counselorId) {
+        redirect('dashboard');
+        exit;
+    }
+
+    $user = new User;
+    $counselor = new Counselor;
+
+    if (isset($_POST['grant'])) {
+        $user->update(
+            $counselorId,
+            ['status' => 'active'],
+            'user_id'
+        );
+    }
+
+    if (isset($_POST['deny'])) {
+        $counselor->delete($counselorId, 'user_id');
+        $user->delete($counselorId, 'user_id');
+    }
+    redirect('dashboard');
+    exit;
+}
+
+if ($isManageCompany) {
+    $companyId = $_POST['company_id'] ?? null;
+    if (!$companyId) {
+        redirect('dashboard');
+        exit;
+    }
+
+    $user = new User;
+    $company = new Company;
+
+    if (isset($_POST['grant'])) {
+        $user->update(
+            $companyId,
+            ['status' => 'active'],
+            'user_id'
+        );
+    }
+
+    if (isset($_POST['deny'])) {
+        $company->delete($companyId, 'user_id');
+        $user->delete($companyId, 'user_id');
     }
     redirect('dashboard');
     exit;

@@ -54,22 +54,23 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
 ?>
 
 <h1 class="dashboard_tag">Welcome back <?php echo $candidateTable->firstName; ?> !</h1>
+<?php $allCVs = $data['cv'] ?? []; ?>
 <div class="counting_boxes">
     <div class="box_segment">
         Pending applications:<br>
-        <h1>2</h1>
+        <h1><?= count(array_filter($allCVs, fn($cv) => $cv->company_approval === 'pending')) ?></h1>
     </div>
     <div class="box_segment">
         Accepted applications: <br>
-        <h1>1</h1>
+        <h1><?= count(array_filter($allCVs, fn($cv) => $cv->company_approval === 'approved')) ?></h1>
     </div>
     <div class="box_segment">
         Rejected applications: <br>
-        <h1>2</h1>
+        <h1><?= count(array_filter($allCVs, fn($cv) => $cv->company_approval === 'rejected' || $cv->validator_approval === 'rejected')) ?></h1>
     </div>
     <div class="box_segment">
         Unread messages: <br>
-        <h1>4</h1>
+        <h1><?= count(array_filter($data['messages'] ?? [], fn($msg) => !$msg->is_read)) ?></h1>
     </div>
 </div>
 
