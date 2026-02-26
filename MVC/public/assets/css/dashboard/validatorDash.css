@@ -132,6 +132,83 @@
     background: var(--primaryRed);
 }
 
+.companylistItem {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px 20px;
+    align-items: start;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    background-color: var(--formBlue);
+    border: 3px solid var(--accentBlue);
+    transition: 0.2s ease;
+}
+
+.companylistItem:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadowSoft);
+}
+
+.companylistItem .photo {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid var(--accentBlue);
+    grid-row: 1 / span 2;
+}
+
+.companylistItem .managerContent {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 10px;
+    align-items: center;
+}
+
+.companylistItem .details {
+    font-family: 'consolas';
+    font-size: 1rem;
+    color: var(--textDark);
+}
+
+.companylistItem .details label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: var(--textDark);
+    font-size: 0.9rem;
+}
+
+.acceptBtn,
+.denyBtn {
+    border: none;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--white);
+    cursor: pointer;
+    transition: 0.2 ease;
+    flex: 1;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.acceptBtn {
+    background-color: var(--primaryBlueLight);
+}
+
+.denyBtn {
+    background-color: var(--primaryRed);
+}
+
+.acceptBtn:hover,
+.denyBtn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadowSoft);
+}
+
 @media (max-width: 768px) {
     .sbContainer {
         display: block;

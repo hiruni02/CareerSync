@@ -156,6 +156,37 @@
         </script>
     <?php endif; ?>
 
+    <script>
+        // Messaging panel tab switching (applies across dashboard pages)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.message_menu').forEach(menu => {
+                const tabs = menu.querySelectorAll('.msg-tab');
+                const sections = menu.querySelectorAll('[data-section]');
+
+                function showSection(name) {
+                    sections.forEach(s => {
+                        const v = s.getAttribute('data-section');
+                        if (!v) return;
+                        const shouldShow = (v === name || v === 'empty');
+                        s.style.display = shouldShow ? (s.tagName.toLowerCase() === 'ul' ? 'flex' : 'flex') : 'none';
+                    });
+                }
+
+                tabs.forEach(t => {
+                    t.addEventListener('click', () => {
+                        tabs.forEach(x => x.classList.remove('active'));
+                        t.classList.add('active');
+                        const tab = t.getAttribute('data-tab');
+                        showSection(tab === 'alerts' ? 'alerts' : 'messages');
+                    });
+                });
+
+                // initialize - show messages or empty state
+                showSection('messages');
+            });
+        });
+    </script>
+
 </body>
 
 </html>

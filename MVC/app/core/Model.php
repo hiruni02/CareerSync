@@ -17,7 +17,7 @@ trait Model
                         email VARCHAR(100) NOT NULL UNIQUE,
                         password VARCHAR(255) NOT NULL,
                         role ENUM('candidate', 'counselor', 'company', 'validator', 'admin') NOT NULL,
-                        status ENUM('active', 'inactive', 'pending') DEFAULT 'pending',
+                        status ENUM('active', 'pending') DEFAULT 'pending',
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
         $this->query($user_table);
@@ -59,6 +59,7 @@ trait Model
                         business_certificate VARCHAR(255) NOT NULL UNIQUE,
                         company_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                         payment_status ENUM('inactive','active') DEFAULT 'inactive',
+                        validator_approval ENUM('approved','pending') DEFAULT 'pending',
                         transaction_ref VARCHAR(100),
                         paid_at DATETIME,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)

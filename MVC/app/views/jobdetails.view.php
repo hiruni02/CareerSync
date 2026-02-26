@@ -25,10 +25,10 @@
                     <p class="requirementsHead">Requirements : </p>
                     <p class="ExperienceLevel">Experience Level: <?= $data['job']->exp_level ?></p>
                     <p class="ExperienceYears">Years of Experience: <?= $data['job']->yearsOfExp ?> Years</p>
-                    <p class="requirements"><?= $data['job']->required_skills ?></p> 
-                      
+                    <p class="requirements"><?= $data['job']->required_skills ?></p>
+
                 </div>
-                
+
                 <div class="box right">
                     <div class="jobinfo_box">
                         <img class="company_logo" src="<?= ROOT . $data['job']->company_photo_path ?>" alt="Company Logo">
@@ -67,7 +67,7 @@
                             <table>
                                 <tr>
                                     <td>Work Mode</td>
-                                    <td><strong><?= $data['job']->workMode?></strong></td>
+                                    <td><strong><?= $data['job']->workMode ?></strong></td>
                                 </tr>
 
                                 <tr>
@@ -100,9 +100,9 @@
                                 </div>
                             <?php endif; ?>
                             <?php if (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'company') : ?>
-                            <div>
-                                <button class="edit_job" id="editJobBtn">Edit Job Post</button>
-                            </div>
+                                <div>
+                                    <button class="edit_job" id="editJobBtn">Edit Job Post</button>
+                                </div>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -177,7 +177,6 @@
             }
         });
     }
-
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {

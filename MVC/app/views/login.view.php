@@ -39,11 +39,20 @@
                         style="<?= !empty($errors['password']) ? 'border: 2px solid red;' : '' ?> width: 100%">
                     <button onclick="show_password()" class="eye" type="button" id="eye"></button>
                 </div>
-                <?php if (!empty($errors['password'])): ?>
-                    <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['password'] ?></div>
+                <?php if (!empty($errors['password']) && empty($is_locked)): ?>
+                    <div id="error-msg" class="error" style="color:red; padding-bottom:15px;">
+                        <?= $errors['password'] ?>
+                    </div>
                 <?php endif; ?>
 
-                <button type="submit">Log In</button>
+                <?php if (!empty($is_locked)): ?>
+                    <div id="countdown" style="color:red; padding-bottom:15px;"></div>
+                <?php endif; ?>
+
+
+                <button type="submit" <?= !empty($is_locked) ? 'disabled' : '' ?>>
+                    Log In
+                </button>
             </form>
             <div class="links">
                 <a href="welcome">Create Account</a></t>
@@ -65,6 +74,28 @@
 
         }
     }
+
+    <?php if (!empty($is_locked)): ?>
+        let lockoutUntil = <?= (int)$lockout_until ?> * 1000;
+        let countdownEl = document.getElementById("countdown");
+
+        function updateCountdown() {
+            let now = Date.now();
+            let remaining = Math.ceil((lockoutUntil - now) / 1000);
+
+            if (remaining <= 0) {
+                countdownEl.innerHTML = "You may try logging in again.";
+                location.reload();
+                return;
+            }
+
+            countdownEl.innerHTML =
+                "Too many failed attempts. Try again in " + remaining + " seconds.";
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    <?php endif; ?>
 </script>
 
 </html>

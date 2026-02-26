@@ -1,9 +1,15 @@
 <?php
 //extract validator data
 $validator = new Validator;
-$data['validatorTable'] = $validator->first(['user_id' => $_SESSION['USER']->user_id]);
+$cv = new CV;
 
-$isRealValidator = ($_SESSION['USER']->status != 'active') ? false : true;//var to check if validator is approved by the admin
+$isRealValidator = ($_SESSION['USER']->status != 'active') ? false : true; //var to check if validator is approved by the admin
+
+$data['validatorTable'] = $validator->first(['user_id' => $_SESSION['USER']->user_id]);
+$data['companyDetails'] = $isRealValidator ? $validator->getCompanyDetails() : [];
+
+$is_Validating_CV  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCV');
+$is_Validating_Company  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCompany');
 
 $photoPath = null;
 
@@ -57,8 +63,6 @@ if ($isProfileUpdate) {
     $data['errors'] = $errors;
 }
 
-$cv = new CV;
-
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/jobPost.php';
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/candidate.php';
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
@@ -71,8 +75,8 @@ $unreadResult = $messageModel->query(
 $data['unreadMsgCount'] = $unreadResult ? (int)$unreadResult[0]->cnt : 0;
 
 $data['applications'] = $isRealValidator ? $cv->SelectAll() : [];//validator cant see applications before getting the admin approval
+$isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
-$is_Validating_CV  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCV');
 if ($is_Validating_CV) {
     if ($data['approval']->validator_approval === 'pending') {
     }
@@ -88,22 +92,22 @@ if ($is_Validating_CV) {
 
     if ($cv_id && $status) {
         $cv->update($cv_id, ['validator_approval' => $status], 'cv_id');
-        
+
         if ($status === 'approved') {
             // Get CV data
             $cvData = $cv->first(['cv_id' => $cv_id]);
             $job_id = $cvData->job_id;
-            
+
             // Get job data to find company_id
             $jobPost = new JobPost();
             $jobData = $jobPost->first(['job_id' => $job_id]);
             $company_id = $jobData->company_id;
-            
+
             // Get candidate name
             $candidateModel = new Candidate();
             $candidateData = $candidateModel->first(['user_id' => $cvData->candidate_id]);
             $candidateName = $candidateData->firstName . ' ' . $candidateData->lastName;
-            
+
             // Insert notification message to company
             $messageModel = new Message();
             $messageModel->insert([
@@ -116,7 +120,7 @@ if ($is_Validating_CV) {
             // Get CV data
             $cvData = $cv->first(['cv_id' => $cv_id]);
             $candidate_id = $cvData->candidate_id;
-            
+
             // Insert notification message to candidate
             $messageModel = new Message();
             $messageModel->insert([
@@ -126,7 +130,41 @@ if ($is_Validating_CV) {
                 'is_read' => 0
             ]);
         }
-        
+
+        if ($isAjax) {
+            echo json_encode(['success' => true]);
+            exit;
+        }
         redirect('dashboard');
     }
+}
+
+if ($is_Validating_Company) {
+    $company_id = $_POST['company_id'] ?? null;
+    if (!$company_id) {
+        redirect('dashboard');
+        exit;
+    }
+
+    $user = new User;
+    $company = new Company;
+
+    if (isset($_POST['approve'])) {
+        $company->update(
+            $company_id,
+            ['validator_approval' => 'approved'],
+            'user_id'
+        );
+    }
+
+    if (isset($_POST['reject'])) {
+        $company->delete($company_id, 'user_id');
+        $user->delete($company_id, 'user_id');
+    }
+    if ($isAjax) {
+        echo json_encode(['success' => true]);
+        exit;
+    }
+    redirect('dashboard');
+    exit;
 }
