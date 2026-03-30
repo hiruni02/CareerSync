@@ -177,8 +177,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                     <form method="POST">
                         <input type="hidden" name="action" value="validateCandidate">
                         <input type="hidden" name="candidate_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this candidate?');">Deny Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this candidate?');">Remove Account</button>
                     </form>
                 </div>
             <?php endforeach; ?>

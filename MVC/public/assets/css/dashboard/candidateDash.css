@@ -50,7 +50,7 @@
     font-weight: bold;
     color: var(--white);
     font-family: 'Roboto', sans-serif;
-    background-image: var(--submit_btn_gradient);
+    background-image: var(--green_gradient);
     height: fit-content;
     width: fit-content;
     border: none;

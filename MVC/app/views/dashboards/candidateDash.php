@@ -31,8 +31,8 @@
             <div class="message_empty_state" data-section="empty">
                 <div class="envelope">
                     <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                        <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
+                        <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                        <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
                     </svg>
                 </div>
                 <h2>All caught up!</h2>
@@ -58,19 +58,19 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
 <div class="counting_boxes">
     <div class="box_segment">
         Pending applications:<br>
-        <h1><?= count(array_filter($allCVs, fn($cv) => $cv->company_approval === 'pending')) ?></h1>
+        <h1><?= count(array_filter((array)($data['cv'] ?? []), fn($cv) => $cv->company_approval === 'pending')) ?></h1>
     </div>
     <div class="box_segment">
         Accepted applications: <br>
-        <h1><?= count(array_filter($allCVs, fn($cv) => $cv->company_approval === 'approved')) ?></h1>
+        <h1><?= count(array_filter((array)($data['cv'] ?? []), fn($cv) => $cv->company_approval === 'approved')) ?></h1>
     </div>
     <div class="box_segment">
         Rejected applications: <br>
-        <h1><?= count(array_filter($allCVs, fn($cv) => $cv->company_approval === 'rejected' || $cv->validator_approval === 'rejected')) ?></h1>
+        <h1><?= count(array_filter((array)($data['cv'] ?? []), fn($cv) => $cv->company_approval === 'rejected' || $cv->validator_approval === 'rejected')) ?></h1>
     </div>
     <div class="box_segment">
         Unread messages: <br>
-        <h1><?= count(array_filter($data['messages'] ?? [], fn($msg) => !$msg->is_read)) ?></h1>
+        <h1><?= count(array_filter((array)($data['messages'] ?? []),fn($msg) => is_object($msg) && !$msg->is_read)) ?></h1>
     </div>
 </div>
 

@@ -79,7 +79,7 @@
   font-weight: bold;
   color: var(--white);
   font-family: 'Roboto', sans-serif;
-  background: var(--primaryBlue);
+  background: var(--green_gradient);
   height: 50px;
   width: fit-content;
   padding-left: 5px;

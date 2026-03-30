@@ -55,17 +55,17 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
 <div class="counting_boxes">
     <div class="box_segment">
         Posted Jobs: <br>
-        <h1><?= count($data['postedJobs'] ?? []) ?></h1>
+        <h1><?= count((array)($data['postedJobs'] ?? [])) ?></h1>
     </div>
 
     <div class="box_segment">
         Active Applications: <br>
-        <h1><?= count($allApplications) ?></h1>
+        <h1><?= count((array)$allApplications) ?></h1>
     </div>
 
     <div class="box_segment">
         Shortlisted Candidates: <br>
-        <h1><?= count(array_filter($allApplications, fn($cv) => $cv->company_approval === 'approved')) ?></h1>
+        <h1><?= count((array)array_filter((array)$allApplications, fn($cv) => $cv->company_approval === 'approved')) ?></h1>
     </div>
 
     <div class="box_segment">

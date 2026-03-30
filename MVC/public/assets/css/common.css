@@ -9,6 +9,7 @@
   --footer_gradient: linear-gradient(60deg, #0F172A, #182f6d, #0F172A);
   --nav_btn_gradient: linear-gradient(to right, #1D4ED8, #3B82F6);
   --submit_btn_gradient: linear-gradient(89deg, #1E3A8A 0%, #1D4ED8 50%, #3B82F6 100%);
+  --green_gradient: linear-gradient(120deg, #008304 0%, #00c20a 100%);
 
   --primaryBlue: #1D4ED8;
   --darkBlue: #1E3A8A;
@@ -107,7 +108,7 @@ body {
   pointer-events: all;
 }
 
-#page-loader p{
+#page-loader p {
   padding-left: 16px;
   font-size: 1.5rem;
 }
