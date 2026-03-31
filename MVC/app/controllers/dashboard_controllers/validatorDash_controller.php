@@ -3,7 +3,7 @@
 $validator = new Validator;
 $cv = new CV;
 
-$isRealValidator = ($_SESSION['USER']->status != 'active') ? false : true; //var to check if validator is approved by the admin
+$isRealValidator = ($_SESSION['USER']->status != 'active') ? false : true;
 
 $data['validatorTable'] = $validator->first(['user_id' => $_SESSION['USER']->user_id]);
 $data['companyDetails'] = $isRealValidator ? $validator->getCompanyDetails() : [];
@@ -39,10 +39,9 @@ if ($isProfileUpdate) {
     }
 
     if (empty($errors)) {
-        // Prepare validator update array
         $validatorUpdate = [
             'firstName' => $_POST['firstName'] ?? '',
-            'lastName' => $_POST['lastName'] ?? '',
+            'lastName'  => $_POST['lastName'] ?? '',
             'contactNo' => $_POST['contactNo'] ?? '',
             'validator_photo_path' => $photoPath ?? $data['validatorTable']->validator_photo_path
         ];
@@ -53,9 +52,8 @@ if ($isProfileUpdate) {
         if ($updatedUser) {
             $_SESSION['USER'] = $updatedUser;
         }
-        $_SESSION['USER']->firstName = $_POST['firstName']; //this is to fix an error in the home page. do this, or log out once edited profile
-        $_SESSION['USER']->photo_path = $photoPath ?? $data['validatorTable']->validator_photo_path; //need to fix this too. editing pfp and redirecting to a logged in home doesnt show the pfp
-        //unset($_SESSION['USER']);//this loggs out after editing profile
+        $_SESSION['USER']->firstName  = $_POST['firstName'];
+        $_SESSION['USER']->photo_path = $photoPath ?? $data['validatorTable']->validator_photo_path;
         redirect('home');
         exit;
     }
@@ -74,12 +72,9 @@ $unreadResult = $messageModel->query(
 );
 $data['unreadMsgCount'] = $unreadResult ? (int)$unreadResult[0]->cnt : 0;
 
-$data['applications'] = $isRealValidator ? $cv->SelectAll() : [];//validator cant see applications before getting the admin approval
 $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
 
 if ($is_Validating_CV) {
-    if ($data['approval']->validator_approval === 'pending') {
-    }
     $cv_id = $_POST['cv_id'] ?? null;
 
     if (isset($_POST['approve'])) {
@@ -94,40 +89,34 @@ if ($is_Validating_CV) {
         $cv->update($cv_id, ['validator_approval' => $status], 'cv_id');
 
         if ($status === 'approved') {
-            // Get CV data
-            $cvData = $cv->first(['cv_id' => $cv_id]);
-            $job_id = $cvData->job_id;
+            $cvData      = $cv->first(['cv_id' => $cv_id]);
+            $job_id      = $cvData->job_id;
 
-            // Get job data to find company_id
-            $jobPost = new JobPost();
-            $jobData = $jobPost->first(['job_id' => $job_id]);
-            $company_id = $jobData->company_id;
+            $jobPost     = new JobPost();
+            $jobData     = $jobPost->first(['job_id' => $job_id]);
+            $company_id  = $jobData->company_id;
 
-            // Get candidate name
             $candidateModel = new Candidate();
-            $candidateData = $candidateModel->first(['user_id' => $cvData->candidate_id]);
-            $candidateName = $candidateData->firstName . ' ' . $candidateData->lastName;
+            $candidateData  = $candidateModel->first(['user_id' => $cvData->candidate_id]);
+            $candidateName  = $candidateData->firstName . ' ' . $candidateData->lastName;
 
-            // Insert notification message to company
             $messageModel = new Message();
             $messageModel->insert([
-                'receiver_id' => $company_id,
+                'receiver_id'   => $company_id,
                 'receiver_type' => 'company',
-                'content' => "A candidate, {$candidateName}, has applied to your job '{$jobData->posTitle}' and has been validated.",
-                'is_read' => 0
+                'content'       => "A candidate, {$candidateName}, has applied to your job '{$jobData->posTitle}' and has been validated.",
+                'is_read'       => 0
             ]);
-        } else if ($status === 'rejected') {
-            // Get CV data
-            $cvData = $cv->first(['cv_id' => $cv_id]);
+        } elseif ($status === 'rejected') {
+            $cvData      = $cv->first(['cv_id' => $cv_id]);
             $candidate_id = $cvData->candidate_id;
 
-            // Insert notification message to candidate
             $messageModel = new Message();
             $messageModel->insert([
-                'receiver_id' => $candidate_id,
+                'receiver_id'   => $candidate_id,
                 'receiver_type' => 'candidate',
-                'content' => "Your CV has been rejected. Please ensure it contains accurate and proper information.",
-                'is_read' => 0
+                'content'       => "Your CV has been rejected. Please ensure it contains accurate and proper information.",
+                'is_read'       => 0
             ]);
         }
 
@@ -136,17 +125,28 @@ if ($is_Validating_CV) {
             exit;
         }
         redirect('dashboard');
+        exit;
+    }
+
+    // If cv_id or status is missing, return error for AJAX
+    if ($isAjax) {
+        echo json_encode(['success' => false, 'message' => 'Invalid request.']);
+        exit;
     }
 }
 
 if ($is_Validating_Company) {
     $company_id = $_POST['company_id'] ?? null;
     if (!$company_id) {
+        if ($isAjax) {
+            echo json_encode(['success' => false, 'message' => 'No company ID provided.']);
+            exit;
+        }
         redirect('dashboard');
         exit;
     }
 
-    $user = new User;
+    $user    = new User;
     $company = new Company;
 
     if (isset($_POST['approve'])) {
@@ -155,12 +155,11 @@ if ($is_Validating_Company) {
             ['validator_approval' => 'approved'],
             'user_id'
         );
-    }
-
-    if (isset($_POST['reject'])) {
+    } elseif (isset($_POST['reject'])) {
         $company->delete($company_id, 'user_id');
         $user->delete($company_id, 'user_id');
     }
+
     if ($isAjax) {
         echo json_encode(['success' => true]);
         exit;
@@ -168,3 +167,5 @@ if ($is_Validating_Company) {
     redirect('dashboard');
     exit;
 }
+
+$data['applications'] = $isRealValidator ? $cv->getValidatorUnapprovedCv() : [];

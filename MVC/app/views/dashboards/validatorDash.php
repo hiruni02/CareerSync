@@ -20,8 +20,8 @@
         <div class="message_empty_state" data-section="empty" style="display: none;">
             <div class="envelope">
                 <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
+                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
                 </svg>
             </div>
             <h2>All caught up!</h2>
@@ -87,7 +87,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 </div>
 
 <div class="sbContainer">
-    <h3> Pending Student Application:</h3>
+    <h3> Pending Candidate Application:</h3>
     <div class="scrollBox">
         <?php
         // filter pending applications
@@ -124,9 +124,8 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 <script>
     document.addEventListener("click", function(e) {
 
-        //cv validation
         if (e.target.closest(".cvValidationForm button")) {
-            const btn = e.target;
+            const btn = e.target.closest("button");
             const form = btn.closest(".cvValidationForm");
 
             const formData = new FormData(form);
@@ -135,9 +134,8 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
             sendAjax(formData, form);
         }
 
-        //comapny validation
         if (e.target.closest(".companyValidationForm button")) {
-            const btn = e.target;
+            const btn = e.target.closest("button");
             const form = btn.closest(".companyValidationForm");
 
             const formData = new FormData(form);
@@ -163,7 +161,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 
                     item.remove();
 
-                    // if no items left show empty message
                     if (!scrollBox.querySelector(".listItem, .companylistItem")) {
                         if (!scrollBox.querySelector(".itemsEmpty")) {
                             scrollBox.insertAdjacentHTML(
