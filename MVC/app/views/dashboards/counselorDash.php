@@ -58,6 +58,12 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/counselorProfile.php"
     </div>
 </div>
 
+<?php if (!$data['isRealCounselor']) { ?>
+    <div class="unverified_message">
+        <p>Your Account is not verified by the administrator. Contact the administrator to gain access to account</p>
+    </div>
+<?php } ?>
+
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSideSchdeuler.php");
 ?>

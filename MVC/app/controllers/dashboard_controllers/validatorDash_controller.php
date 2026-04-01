@@ -4,7 +4,7 @@ $validator = new Validator;
 $cv = new CV;
 
 $isRealValidator = ($_SESSION['USER']->status != 'active') ? false : true;
-
+$data['isRealValidator'] = $isRealValidator;
 $data['validatorTable'] = $validator->first(['user_id' => $_SESSION['USER']->user_id]);
 $data['companyDetails'] = $isRealValidator ? $validator->getCompanyDetails() : [];
 

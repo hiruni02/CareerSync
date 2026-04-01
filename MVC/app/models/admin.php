@@ -15,8 +15,7 @@ class Admin
     {
         $query = "SELECT v.*, u.email, u.status
                 FROM validator v
-                JOIN users u ON v.user_id = u.user_id
-                WHERE u.status = 'pending'";
+                JOIN users u ON v.user_id = u.user_id";
 
         return $this->query($query);
     }
@@ -54,14 +53,13 @@ class Admin
         return $result[0]->total ?? 0;
     }
 
-    public function getActiveUsersLast7Days()
+    public function getActiveUsers()
     {
-        $query = "SELECT COUNT(DISTINCT user_id) AS active_users FROM system_logs
-                WHERE action = 'LOGIN_SUCCESS'
-                AND created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
+        $query = "SELECT COUNT(*) AS total FROM users
+        WHERE status = 'active'";
         $result = $this->query($query);
 
-        return $result[0]->active_users ?? 0;
+        return $result[0]->total ?? 0;
     }
 
     public function getSystemAlertCount()

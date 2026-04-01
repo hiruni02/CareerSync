@@ -52,6 +52,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
         <h1><?= $data['unreadMsgCount'] ?? 0 ?></h1>
     </div>
 </div>
+<?php if (!$data['isRealValidator']) { ?>
+    <div class="unverified_message">
+        <p>Your Account is not verified by the administrator. Contact the administrator to gain access to account</p>
+    </div>
+<?php } ?>
 
 <div class="sbContainer">
     <h3> Pending Company registration requests:</h3>

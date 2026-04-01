@@ -20,8 +20,8 @@
         <div class="message_empty_state" data-section="empty" style="display: none;">
             <div class="envelope">
                 <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
+                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
                 </svg>
             </div>
             <h2>All caught up!</h2>
@@ -57,7 +57,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     </div>
     <div class="box_segment">
         New Feedback forms: <br>
-        <h1>2</h1>
+        <h1>Hard coded</h1>
     </div>
 </div>
 
@@ -143,8 +143,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                     <form method="POST">
                         <input type="hidden" name="action" value="validateCompany">
                         <input type="hidden" name="company_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this company?');">Deny Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this company?');">Remove Company Account</button>
                     </form>
                 </div>
             <?php endforeach; ?>
@@ -177,7 +176,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                     <form method="POST">
                         <input type="hidden" name="action" value="validateCandidate">
                         <input type="hidden" name="candidate_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this candidate?');">Remove Account</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this candidate?');">Remove Candidate Account</button>
                     </form>
                 </div>
             <?php endforeach; ?>
@@ -207,12 +206,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         <label>Contact No: </label>
                         <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
                     </div>
-                    <form method="POST">
-                        <input type="hidden" name="action" value="validateCounselor">
-                        <input type="hidden" name="counselor_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this counselor?');">Deny Access</button>
-                    </form>
+                    <div class="action_btns">
+                        <?php if ($val->status === 'active'): ?>
+                            <button class="denyBtn toggleAccessBtn" data-id="<?= $val->user_id ?>" data-action="validateCounselor" data-current="active">Revoke Access</button>
+                        <?php else: ?>
+                            <button class="acceptBtn toggleAccessBtn" data-id="<?= $val->user_id ?>" data-action="validateCounselor" data-current="pending">Grant Access</button>
+                        <?php endif; ?>
+                        <button class="denyBtn removeUserBtn" data-id="<?= $val->user_id ?>" data-action="validateCounselor">Remove Counselor Account</button>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -241,12 +242,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         <label>Contact No: </label>
                         <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
                     </div>
-                    <form method="POST">
-                        <input type="hidden" name="action" value="validateValidator">
-                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
-                    </form>
+                    <div class="action_btns">
+                        <?php if ($val->status === 'active'): ?>
+                            <button class="denyBtn toggleAccessBtn" data-id="<?= $val->user_id ?>" data-action="validateValidator" data-current="active">Revoke Access</button>
+                        <?php else: ?>
+                            <button class="acceptBtn toggleAccessBtn" data-id="<?= $val->user_id ?>" data-action="validateValidator" data-current="pending">Grant Access</button>
+                        <?php endif; ?>
+                        <button class="denyBtn removeUserBtn" data-id="<?= $val->user_id ?>" data-action="validateValidator">Remove Validator Account</button>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -294,3 +297,87 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         <?php endif; ?>
     </div>
 </div>
+
+<script>
+    document.addEventListener("click", function(e) {
+
+        // Toggle access (grant / revoke)
+        if (e.target.classList.contains("toggleAccessBtn")) {
+            const btn = e.target;
+            const id = btn.dataset.id;
+            const action = btn.dataset.action;
+            const current = btn.dataset.current;
+            const newStatus = current === 'active' ? 'revoke' : 'grant';
+
+            const formData = new FormData();
+            formData.append('action', action);
+
+            // append the correct key based on action
+            if (action === 'validateValidator') formData.append('validator_id', id);
+            if (action === 'validateCounselor') formData.append('counselor_id', id);
+
+            formData.append(newStatus, newStatus);
+
+            fetch("<?= ROOT ?>dashboard", {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        if (newStatus === 'grant') {
+                            btn.textContent = 'Revoke Access';
+                            btn.classList.replace('acceptBtn', 'denyBtn');
+                            btn.dataset.current = 'active';
+                        } else {
+                            btn.textContent = 'Grant Access';
+                            btn.classList.replace('denyBtn', 'acceptBtn');
+                            btn.dataset.current = 'pending';
+                        }
+                    } else {
+                        alert(data.message || 'Action failed');
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+
+        // Remove account
+        if (e.target.classList.contains("removeUserBtn")) {
+            if (!confirm('Are you sure you want to remove this account?')) return;
+
+            const btn = e.target;
+            const id = btn.dataset.id;
+            const action = btn.dataset.action;
+
+            const formData = new FormData();
+            formData.append('action', action);
+            formData.append('deny', 'deny');
+
+            if (action === 'validateValidator') formData.append('validator_id', id);
+            if (action === 'validateCounselor') formData.append('counselor_id', id);
+            if (action === 'validateCandidate') formData.append('candidate_id', id);
+            if (action === 'validateCompany') formData.append('company_id', id);
+
+            fetch("<?= ROOT ?>dashboard", {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        btn.closest('.manager_list_item').remove();
+                    } else {
+                        alert(data.message || 'Action failed');
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+
+    });
+</script>
