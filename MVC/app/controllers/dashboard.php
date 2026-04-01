@@ -11,8 +11,38 @@ class Dashboard
         $user = new User;
         $data['userTable'] = $user->first(['user_id' => $_SESSION['USER']->user_id]);
 
-        $isPasswordChange = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'password_change');
-        $isProfileUpdate  = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'profile_change');
+        $isPasswordChange = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'password_change');
+        $isProfileUpdate  = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'profile_change');
+        $isDeleteMessage = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_message');
+        $isClearMessages = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'clear_messages');
+
+        if ($isDeleteMessage || $isClearMessages) {
+            require_once __DIR__ . '/../models/message.php';
+            $messageModel = new Message();
+            $userId = $_SESSION['USER']->user_id;
+            $userRole = $_SESSION['USER']->role;
+
+            if ($isDeleteMessage) {
+                $messageId = intval($_POST['message_id'] ?? 0);
+                if ($messageId > 0) {
+                    $message = $messageModel->query('SELECT * FROM messages WHERE id = ?', [$messageId]);
+                    if (!empty($message)) {
+                        $existingMessage = $message[0];
+                        if ($existingMessage->receiver_id == $userId && $existingMessage->receiver_type === $userRole) {
+                            $messageModel->delete($messageId);
+                        }
+                    }
+                }
+            }
+
+            if ($isClearMessages) {
+                $messageModel->query('DELETE FROM messages WHERE receiver_id = ? AND receiver_type = ?', [$userId, $userRole]);
+            }
+
+            // after deletion action redirect to avoid resubmit-on-refresh
+            redirect('dashboard');
+            exit;
+        }
 
         switch ($_SESSION['USER']->role) {
             case 'admin':
@@ -83,4 +113,6 @@ class Dashboard
 
         $this->view("dashboard", $data);  // loads dashboard.view.php
     }
+
 }
+

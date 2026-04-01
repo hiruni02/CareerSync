@@ -10,9 +10,13 @@
 <div class="message_menu" id="message_menu" role="region" aria-label="Messages" aria-live="polite">
     <div class="msg-header">
         <div class="msg-title">Inbox</div>
+        <form method="POST" class="clear-messages-form" onsubmit="return confirm('Clear all messages?');">
+            <input type="hidden" name="action" value="clear_messages">
+            <button type="submit" class="clear-messages-btn">Clear All</button>
+        </form>
         <div class="msg-tabs" role="tablist">
-            <button class="msg-tab active" data-tab="messages">Messages</button>
-            <button class="msg-tab" data-tab="alerts">Alerts</button>
+            <button class="msg-tab active" data-tab="messages" type="button">Messages</button>
+            <button class="msg-tab" data-tab="alerts" type="button">Alerts</button>
         </div>
     </div>
 
