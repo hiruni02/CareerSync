@@ -41,7 +41,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 <div class="counting_boxes">
     <div class="box_segment">
         Companies to validate:<br>
-        <h1>hard code</h1>
+        <h1><?= count(array_filter($data['companyDetails'] ?? [])) ?></h1>
     </div>
     <div class="box_segment">
         Candidates to validate: <br>

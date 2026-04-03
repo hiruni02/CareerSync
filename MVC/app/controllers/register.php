@@ -21,6 +21,8 @@ class register
             $email_existing = $user->first(['email' => $_POST['email']]);
             if ($email_existing) {
                 $user->errors['email'] = "Email already exists";
+            } else if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $user->errors['email'] = "Please enter a valid email address.";
             } else if ($_POST['confirm_password'] !== $_POST['password']) {
                 $user->errors['confirm_password'] = "passwords do not match";
             } else {
@@ -51,7 +53,7 @@ class register
                             $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-                            SystemLogger::log('VALIDATOR_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
+                            SystemLogger::log('VALIDATOR_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
                             redirect('login');
                             exit;
                         } else {
@@ -96,7 +98,7 @@ class register
 
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-                            SystemLogger::log('COMPANY_REGISTERED','('.$newUser->user_id.')'.$_POST['companyName'].' registered');
+                            SystemLogger::log('COMPANY_REGISTERED', '(' . $newUser->user_id . ')' . $_POST['companyName'] . ' registered');
                             redirect('login');
                             exit;
                         } else {
@@ -138,7 +140,7 @@ class register
                             $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-                            SystemLogger::log('COUNSELOR_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
+                            SystemLogger::log('COUNSELOR_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
                             redirect('login');
                             exit;
                         } else {
@@ -172,7 +174,7 @@ class register
                             $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-                            SystemLogger::log('CANDIDATE_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
+                            SystemLogger::log('CANDIDATE_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
                             redirect('login');
                             exit;
                         } else {
