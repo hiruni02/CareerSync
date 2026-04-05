@@ -14,7 +14,8 @@ class Contact
         // Handle POST submit
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'sending_feedback') {
 
-            require_once __DIR__ . '/../core/Mailer.php';
+            require_once __DIR__ . '/../core/mailer.php';
+            require_once __DIR__ . '/../models/ContactModel.php'; 
 
             $fromEmail = trim($_POST['email'] ?? '');
             $fromName  = trim($_POST['name'] ?? '');
@@ -40,6 +41,14 @@ class Contact
 
             // Send if valid
             if (empty($data['errors'])) {
+
+                $model = new ContactModel();
+                $model->insert([
+                    'name' => $fromName,
+                    'email' => $fromEmail,
+                    'message' => $message
+                ]);
+
                 $ok = Mailer::feedBackEmail($fromEmail, $fromName, $message);
 
                 if ($ok) {

@@ -12,9 +12,24 @@ $data['counselors'] = $admin->getCounselorDetails();
 $data['companies'] = $admin->getCompanyDetails();
 $data['sysAlerts'] = $admin->getSysAlerts();
 
+$feedbackModel = new ContactModel();
+$data['feedbacks'] = $feedbackModel->SelectAll();
 $reports = new AdminReportDetails;
 $reports->generateMonthlyReportIfMissing($_SESSION['USER']->user_id);
 $data['oldReportDetails'] = $reports->selectOldReports();
+
+require_once __DIR__ . '/../../models/ContactModel.php';
+
+$model = new ContactModel();
+
+// 2️⃣ Handle delete
+if (isset($_GET['delete_id'])) {
+    $id = (int)$_GET['delete_id'];
+    $deleted = $model->deleteMessage($id); // now $model is not null
+    header("Location: " . $_SERVER['PHP_SELF']); // reload page
+    exit;
+}
+
 
 $photoPath = null;
 
