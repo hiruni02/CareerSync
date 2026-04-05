@@ -86,6 +86,7 @@ if ($isProfileUpdate) {
 $isManageValidator = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateValidator');
 $isManageCounselor = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCounselor');
 $isManageCompany = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCompany');
+$isManageCandidate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'validateCandidate');
 
 if ($isManageValidator) {
     $validatorId = $_POST['validator_id'] ?? null;
@@ -134,6 +135,24 @@ if ($isManageCounselor) {
     if (isset($_POST['deny'])) {
         $counselor->delete($counselorId, 'user_id');
         $user->delete($counselorId, 'user_id');
+    }
+    redirect('dashboard');
+    exit;
+}
+
+if ($isManageCandidate) {
+    $candidateId = $_POST['candidate_id'] ?? null;
+    if (!$candidateId) {
+        redirect('dashboard');
+        exit;
+    }
+
+    $user = new User;
+    $candidate = new Candidate;
+
+    if (isset($_POST['deny'])) {
+        $candidate->delete($candidateId, 'user_id');
+        $user->delete($candidateId, 'user_id');
     }
     redirect('dashboard');
     exit;
