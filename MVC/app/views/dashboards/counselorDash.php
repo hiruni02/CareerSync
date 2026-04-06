@@ -21,16 +21,33 @@
     </div>
 
     <div class="message_body">
-        <div class="message_empty_state" data-section="empty" style="display: none;">
-            <div class="envelope">
-                <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                </svg>
+        <?php if (!empty($messages ?? [])): ?>
+            <ul class="message_list" data-section="messages">
+                <?php foreach ($messages as $msg): ?>
+                    <li class="message">
+                        <form method="POST" class="message-item-form" onsubmit="return confirm('Delete this message?');">
+                            <input type="hidden" name="action" value="delete_message">
+                            <input type="hidden" name="message_id" value="<?= htmlspecialchars($msg->id) ?>">
+                            <button type="submit" class="message-item-btn">
+                                <div class="msg-content"><?= htmlspecialchars($msg->content) ?></div>
+                                <span class="msg-time"><?= htmlspecialchars(date('M d, Y', strtotime($msg->created_at))) ?></span>
+                            </button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <div class="message_empty_state" data-section="empty">
+                <div class="envelope">
+                    <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                        <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                    </svg>
+                </div>
+                <h2>All caught up!</h2>
+                <p>New messages will appear here</p>
             </div>
-            <h2>All caught up!</h2>
-            <p>New messages will appear here</p>
-        </div>
+        <?php endif; ?>
     </div>
 
     <div class="decor-star" aria-hidden="true"></div>
