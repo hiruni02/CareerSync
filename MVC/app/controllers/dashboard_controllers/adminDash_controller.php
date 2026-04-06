@@ -20,13 +20,12 @@ $data['oldReportDetails'] = $reports->selectOldReports();
 
 require_once __DIR__ . '/../../models/ContactModel.php';
 
-$model = new ContactModel();
 
-// 2️⃣ Handle delete
+// Handle delete
 if (isset($_GET['delete_id'])) {
     $id = (int)$_GET['delete_id'];
-    $deleted = $model->deleteMessage($id); // now $model is not null
-    header("Location: " . $_SERVER['PHP_SELF']); // reload page
+    $deleted = $feedbackModel->deleteMessage($id); // now $model is not null
+    redirect("Dashboard");    
     exit;
 }
 

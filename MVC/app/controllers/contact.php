@@ -42,8 +42,8 @@ class Contact
             // Send if valid
             if (empty($data['errors'])) {
 
-                $model = new ContactModel();
-                $model->insert([
+                $feedbackModel = new ContactModel();
+                $feedbackModel->insert([
                     'name' => $fromName,
                     'email' => $fromEmail,
                     'message' => $message
