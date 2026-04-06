@@ -41,11 +41,11 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 <div class="counting_boxes">
     <div class="box_segment">
         Companies to validate:<br>
-        <h1><?= count(array_filter($data['companyDetails'] ?? [])) ?></h1>
+        <h1><?= count(array_filter((array)($data['applications'] ?? []), fn($app) => $app->validator_approval === 'pending')) ?></h1>
     </div>
     <div class="box_segment">
         Candidates to validate: <br>
-        <h1><?= count(array_filter($data['applications'] ?? [], fn($app) => $app->validator_approval === 'pending')) ?></h1>
+        <h1><?= count(array_filter((array)($data['applications'] ?? []), fn($app) => $app->validator_approval === 'pending')) ?></h1>
     </div>
     <div class="box_segment">
         Unread messages: <br>
