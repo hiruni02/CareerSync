@@ -25,6 +25,7 @@
                     <select name="role_filter" id="role_filter">
                         <option value="all">All</option>
                         <option value="guest">Guest</option>
+                        <option value="admin">Admin</option>
                         <option value="candidate">Candidate</option>
                         <option value="company">Company</option>
                         <option value="counselor">Counselor</option>
