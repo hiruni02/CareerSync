@@ -2,14 +2,42 @@
 class systemLog
 {
     use Controller;
+
     public function index()
     {
-        //if not logged in the $username variable is deafulted to 'User'
         $data['username'] = empty($_SESSION['USER']) ? 'User' : $_SESSION['USER']->email;
 
         $admin = new Admin;
         $data['syslogs'] = $admin->getSystemLogs();
 
         $this->view("systemLog", $data);
+    }
+
+    public function filter()
+    {
+        $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+        if (!$isAjax) {
+            header('Location: ' . ROOT . 'systemLog');
+            exit;
+        }
+
+        $date_filter = $_GET['date_filter'] ?? 'all';
+        $role_filter = $_GET['role_filter'] ?? 'all';
+
+        try {
+            $admin = new Admin;
+            $syslogs = $admin->getFilteredLogs($date_filter, $role_filter);
+
+            header('Content-Type: application/json');
+            echo json_encode($syslogs ?: []);
+        } catch (Exception $e) {
+            error_log("Filter error: " . $e->getMessage());
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+        exit;
     }
 }
