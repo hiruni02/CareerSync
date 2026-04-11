@@ -125,4 +125,10 @@ class Admin
 
         return $this->query($query);
     }
+
+    public function deleteAllLogs()
+    {
+        $query = "DELETE FROM system_logs";
+        return $this->query($query);
+    }
 }

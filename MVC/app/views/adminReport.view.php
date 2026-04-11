@@ -31,8 +31,7 @@
     $counselor_meetings = $reportDetails['counselor_meetings'] ?? 0;
     //$feedback_emails = $reportDetails['feedback_emails'];
     //$total_earnings = $reportDetails['total_earnings'];
-    //$sys_alerts = $reportDetails['sys_alerts'];
-    //$counselor_meetings = $reportDetails['counselor_meetings'];
+    $sys_alerts = $reportDetails['sys_alerts'];
     ?>
     <table class="summary-table">
         <tr>
@@ -73,7 +72,7 @@
         </tr>
         <tr>
             <td>System alerts</td>
-            <td class="amount"><?= -1 ?></td>
+            <td class="amount"><?= $sys_alerts ?? 0 ?></td>
         </tr>
     </table>
 

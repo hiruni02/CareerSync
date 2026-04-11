@@ -1,9 +1,11 @@
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= ROOT ?>assets/css/systemLog.css">
     <title>System Logs</title>
 </head>
+
 <body>
     <div class="page-content">
         <h1>System Logs</h1>
@@ -31,6 +33,32 @@
                         <option value="counselor">Counselor</option>
                         <option value="validator">Validator</option>
                     </select>
+                </div>
+                <div class="filter_input">
+                    <button class="clearLogs" id="clearLogs" onclick="clearLogs()">Clear All System logs</button>
+                    <script>
+                        const clear_btn = document.getElementById("clearLogs");
+
+                        function clearLogs() {
+                            if (confirm("Are you sure you want to delete all system logs?")) {
+                                fetch(`<?= ROOT ?>systemLog/clearLogs`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'X-Requested-With': 'XMLHttpRequest'
+                                        }
+                                    })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;">No logs found.</td></tr>`;
+                                        } else {
+                                            alert('Failed to delete logs: ' + data.error);
+                                        }
+                                    })
+                                    .catch(err => console.error('Clear error:', err));
+                            }
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -66,7 +94,9 @@
                             </tr>
                         <?php endforeach; ?>
                     <?php else : ?>
-                        <tr><td colspan="8" style="text-align:center;">No logs found.</td></tr>
+                        <tr>
+                            <td colspan="8" style="text-align:center;">No logs found.</td>
+                        </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
@@ -84,29 +114,34 @@
                 tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Loading...</td></tr>`;
 
                 fetch(`<?= ROOT ?>systemLog/filter?date_filter=${date}&role_filter=${role}`, {
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
-                })
-                .then(res => {
-                    if (!res.ok) throw new Error('Network response was not ok');
-                    return res.json();
-                })
-                .then(logs => {
-                    tbody.innerHTML = '';
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(res => {
+                        if (!res.ok) throw new Error('Network response was not ok');
+                        return res.json();
+                    })
+                    .then(logs => {
+                        tbody.innerHTML = '';
 
-                    if (!Array.isArray(logs) || logs.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;">No logs found.</td></tr>`;
-                        return;
-                    }
+                        if (!Array.isArray(logs) || logs.length === 0) {
+                            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;">No logs found.</td></tr>`;
+                            return;
+                        }
 
-                    logs.forEach(log => {
-                        const alertClass = log.action === 'ALERT' ? 'alert' : '';
-                        const agent = log.user_agent ? log.user_agent.substring(0, 30) + '...' : '-';
-                        const time = new Date(log.created_at).toLocaleString('sv-SE', {
-                            year: 'numeric', month: '2-digit', day: '2-digit',
-                            hour: '2-digit', minute: '2-digit'
-                        }).replace('T', ' ');
+                        logs.forEach(log => {
+                            const alertClass = log.action === 'ALERT' ? 'alert' : '';
+                            const agent = log.user_agent ? log.user_agent.substring(0, 30) + '...' : '-';
+                            const time = new Date(log.created_at).toLocaleString('sv-SE', {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            }).replace('T', ' ');
 
-                        tbody.innerHTML += `
+                            tbody.innerHTML += `
                             <tr class="role-${log.role} ${alertClass}">
                                 <td>${log.log_id}</td>
                                 <td>${log.user_id ?? '-'}</td>
@@ -117,12 +152,12 @@
                                 <td class="agent" title="${log.user_agent}">${agent}</td>
                                 <td>${time}</td>
                             </tr>`;
+                        });
+                    })
+                    .catch(err => {
+                        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:red;">Failed to load logs.</td></tr>`;
+                        console.error('Filter error:', err);
                     });
-                })
-                .catch(err => {
-                    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:red;">Failed to load logs.</td></tr>`;
-                    console.error('Filter error:', err);
-                });
             }
 
             dateFilter.addEventListener('change', fetchLogs);
@@ -131,4 +166,5 @@
 
     </div>
 </body>
+
 </html>

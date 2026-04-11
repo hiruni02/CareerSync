@@ -40,4 +40,28 @@ class systemLog
         }
         exit;
     }
+
+    public function clearLogs()
+    {
+        $isAjax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
+        if (!$isAjax) {
+            header('Location: ' . ROOT . 'systemLog');
+            exit;
+        }
+
+        try {
+            $admin = new Admin;
+            $admin->deleteAllLogs();
+
+            header('Content-Type: application/json');
+            echo json_encode(['success' => true]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        }
+        exit;
+    }
 }

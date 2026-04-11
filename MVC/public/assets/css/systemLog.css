@@ -66,6 +66,23 @@ h1 {
     transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+.clearLogs {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #c8d0da;
+    background: #ffffff;
+    color: #333;
+    font-size: 0.875rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.clearLogs:hover {
+    border-color: #5b8dee;
+    box-shadow: 0 0 0 3px rgba(91, 141, 238, 0.15);
+}
+
 .filter_input select:focus,
 .filter_input select:hover {
     border-color: #5b8dee;

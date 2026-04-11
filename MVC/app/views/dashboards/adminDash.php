@@ -272,13 +272,29 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 
 <div class="sbContainer">
     <h3>View Monthly Reports</h3>
-    <div class="scrollBox">
-        <?php
-        $oldReportDetails = $data['oldReportDetails'];
-        ?>
+    <div class="reportFilter">
+        <label for="reportFilter">Filter by Year:</label>
+        <select id="reportFilter">
+            <option value="all">All</option>
+            <?php
+            // extract unique years from existing reports
+            $years = [];
+            foreach ($oldReportDetails as $report) {
+                $year = date('Y', strtotime($report->generated_at));
+                if (!in_array($year, $years)) {
+                    $years[] = $year;
+                }
+            }
+            rsort($years); // newest year first
+            foreach ($years as $year): ?>
+                <option value="<?= $year ?>"><?= $year ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="scrollBox" id="reportsScrollBox">
         <?php if (!empty($oldReportDetails)): ?>
             <?php foreach ($oldReportDetails as $report): ?>
-                <div class="listItem">
+                <div class="listItem" data-year="<?= date('Y', strtotime($report->generated_at)) ?>">
                     <div class="itemContent">
                         <div class="title">
                             <?= htmlspecialchars($report->report_month_name) ?>
@@ -287,7 +303,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                             Generated on: <?= date('Y-m-d', strtotime($report->generated_at)) ?>
                         </div>
                         <div class="description">
-                            <a href="adminReport ? report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
+                            <a href="adminReport?report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
                         </div>
                     </div>
                 </div>
@@ -297,6 +313,21 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         <?php endif; ?>
     </div>
 </div>
+
+<script>
+    document.getElementById('reportFilter').addEventListener('change', function () {
+        const selected = this.value;
+        const items = document.querySelectorAll('#reportsScrollBox .listItem');
+
+        items.forEach(item => {
+            if (selected === 'all' || item.dataset.year === selected) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
 
 <script>
     document.addEventListener("click", function(e) {
