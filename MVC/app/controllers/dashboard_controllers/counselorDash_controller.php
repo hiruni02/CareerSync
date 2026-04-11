@@ -3,9 +3,13 @@
 $counselor = new Counselor;
 $data['counselorTable'] = $counselor->first(['user_id' => $_SESSION['USER']->user_id]);
 
-//extract meting requests made by candidates
+//check validity of counselor
+$isRealCounselor = ($_SESSION['USER']->status != 'active') ? false : true;
+$data['isRealCounselor'] = $isRealCounselor;
+
+//extract meeting requests made by candidates
 $request = new ConsultationRequest;
-$data['request'] = $request->getMeetingRequest($_SESSION['USER']->user_id);
+$data['request'] = $isRealCounselor ? $request->getMeetingRequest($_SESSION['USER']->user_id) : [];
 
 $consultation = new Consultation;
 $data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCounselor($_SESSION['USER']->user_id);

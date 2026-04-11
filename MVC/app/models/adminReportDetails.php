@@ -40,6 +40,7 @@ class AdminReportDetails
             'active_users'        => $this->countActiveUsers(),
             'company_interviews'  => $this->countCompanyInterviews($since),
             'counselor_meetings'  => $this->countCounselorMeetings($since),
+            'sys_alerts'       => $this->countSystemAlerts($since),
         ];
     }
 
@@ -106,6 +107,16 @@ class AdminReportDetails
         WHERE s.slot_datetime >= ?";
 
         return $this->query($query, [$since])[0]->total ?? 0;
+    }
+
+    private function countSystemAlerts($since)
+    {
+        $query = "SELECT COUNT(DISTINCT log_id) AS alert
+        FROM system_logs
+        WHERE action = 'ALERT'
+        AND created_at >= ?";
+
+        return $this->query($query, [$since])[0]->alert ?? 0;
     }
 
     //monthly report generation
