@@ -60,9 +60,15 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         <h1><?= $data['systemAlertCount'] ?? 0 ?></h1>
     </div>
     <div class="box_segment">
-        New Feedback forms: <br>
-        <h1>Hard coded</h1>
-    </div>
+    New Feedback forms: <br>
+    <?php
+    // Ensure countable
+    $feedbacks = $data['feedbacks'] ?? [];
+    if ($feedbacks === false || !is_array($feedbacks)) $feedbacks = [];
+    ?>
+    <h1><?= count($feedbacks); ?></h1>
+</div>
+
 </div>
 
 <div class="sbContainer">
@@ -103,22 +109,28 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <h3>User Feedback</h3>
     <div class="scrollBox">
         <?php
-        for ($x = 0; $x <= 10; $x++) {
+        // Ensure $feedbacks is always an array
+        $feedbacks = !empty($data['feedbacks']) && is_array($data['feedbacks']) ? $data['feedbacks'] : [];
         ?>
-            <div class="listItem">
-                <div class="itemContent">
-                    <div class="title">User ID: 1414</div>
-                    <div class="title">User Name: Anuk Thotawatta</div>
-                    <div class="description">
-                        THE DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+
+        <?php if (!empty($feedbacks)): ?>
+            <?php foreach ($feedbacks as $f): ?>
+                <div class="listItem">
+                    <div class="itemContent">
+                        <div class="title">Name: <?= htmlspecialchars($f->name); ?></div>
+                        <div class="title">Email: <?= htmlspecialchars($f->email); ?></div>
+                        <div class="description"><?= htmlspecialchars($f->message); ?></div>
+                        <div class="deleteLink">
+                            <a href="?delete_id=<?= $f->id ?>" onclick="return confirm('Are you sure you want to delete this message?')">
+                                Delete
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php
-        }
-        ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="itemsEmpty">No feedback yet</p>
+        <?php endif; ?>
     </div>
 </div>
 

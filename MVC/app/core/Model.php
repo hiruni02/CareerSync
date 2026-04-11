@@ -257,6 +257,14 @@ trait Model
                     )";
         $this->query($sysLogs);
 
+        $feedback = "CREATE TABLE IF NOT EXISTS feedback (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        name VARCHAR(50),
+                        email VARCHAR(100),
+                        message TEXT,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    )";
+                    $this->query($feedback);
     }
 
     public function SelectAll()
