@@ -131,6 +131,14 @@ if ($requestMeetingWithCounselor) {
 
     if (!$existing) {
         $counselorRequest->insert($newRequest);
+
+        require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
+        $messageModel = new Message();
+        $messageModel->insert([
+            'receiver_id' => $_POST['counselor_id'],
+            'receiver_type' => 'counselor',
+            'content' => "New meeting request from " . trim($_SESSION['USER']->firstName . ' ' . $_SESSION['USER']->lastName) . ".",
+        ]);
     }
 
     redirect('dashboard');

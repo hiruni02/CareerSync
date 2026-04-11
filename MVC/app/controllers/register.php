@@ -2,6 +2,19 @@
 class register
 {
     use Controller;
+
+    private function addWelcomeMessage(int $receiverId, string $receiverType): void
+    {
+        require_once __DIR__ . '/../models/message.php';
+        $message = new Message();
+        $message->insert([
+            'receiver_id'   => $receiverId,
+            'receiver_type' => $receiverType,
+            'content'       => 'Your account has been successfully created. You can now explore all the features available to you.',
+            'is_read'       => 0,
+        ]);
+    }
+
     public function index()
     {
         $user = new User;
@@ -53,7 +66,10 @@ class register
                             $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-                            SystemLogger::log('VALIDATOR_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
+
+                            $this->addWelcomeMessage($newUser->user_id, 'validator');
+                            SystemLogger::log('VALIDATOR_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
+
                             redirect('login');
                             exit;
                         } else {
@@ -98,7 +114,10 @@ class register
 
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-                            SystemLogger::log('COMPANY_REGISTERED', '(' . $newUser->user_id . ')' . $_POST['companyName'] . ' registered');
+
+                            $this->addWelcomeMessage($newUser->user_id, 'company');
+                            SystemLogger::log('COMPANY_REGISTERED','('.$newUser->user_id.')'.$_POST['companyName'].' registered');
+
                             redirect('login');
                             exit;
                         } else {
@@ -140,7 +159,10 @@ class register
                             $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-                            SystemLogger::log('COUNSELOR_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
+
+                            $this->addWelcomeMessage($newUser->user_id, 'counselor');
+                            SystemLogger::log('COUNSELOR_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
+
                             redirect('login');
                             exit;
                         } else {
@@ -174,7 +196,10 @@ class register
                             $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
-                            SystemLogger::log('CANDIDATE_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
+
+                            $this->addWelcomeMessage($newUser->user_id, 'candidate');
+                            SystemLogger::log('CANDIDATE_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
+
                             redirect('login');
                             exit;
                         } else {

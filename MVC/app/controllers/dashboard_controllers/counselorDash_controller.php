@@ -21,6 +21,7 @@ $unreadResult = $messageModel->query(
     [$_SESSION['USER']->user_id]
 );
 $data['unreadMsgCount'] = $unreadResult ? (int)$unreadResult[0]->cnt : 0;
+$data['messages'] = $messageModel->getByReceiver($_SESSION['USER']->user_id, 'counselor');
 
 $isSchedulingMeeting = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'counselor_scheduler');
 
@@ -117,6 +118,12 @@ if ($isSchedulingMeeting) {
         'address_link'  => $address,
         'extra_details' => $details
     ], $slots);
+
+    $messageModel->insert([
+        'receiver_id' => $candidate_id,
+        'receiver_type' => 'candidate',
+        'content' => "Your counselor accepted the meeting request. Please confirm the available time slot.",
+    ]);
 
     $_SESSION['success'] = "Meeting scheduled. Waiting for candidate to confirm.";
     redirect("dashboard/counselorDash");

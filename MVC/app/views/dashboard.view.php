@@ -184,6 +184,9 @@
                 // initialize - show messages or empty state
                 showSection('messages');
             });
+
+            // no-JS delete/clear mode: forms submit to the server and reload page.
+            // tab switching remains; no API/fetch calls are used here.
         });
     </script>
 
