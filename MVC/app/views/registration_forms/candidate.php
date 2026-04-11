@@ -28,7 +28,7 @@
 <h1>Register as a Candidate</h1>
 <form method="POST" enctype="multipart/form-data" onsubmit="return handleSubmit(this)">
     <div class="input-field">
-        <label for="firstName">First Name</label>
+        <label for="firstName"> <span style="color:red;">*</span> First Name</label>
         <input
             type="text"
             placeholder="First Name"
@@ -38,7 +38,7 @@
     </div>
 
     <div class="input-field">
-        <label for="lastName">Last Name</label>
+        <label for="lastName"> <span style="color:red;">*</span> Last Name</label>
         <input
             type="text"
             placeholder="Last Name"
@@ -48,7 +48,7 @@
     </div>
 
     <div class="input-field">
-        <label for="email">Email Address</label>
+        <label for="email"><span style="color:red;">*</span> Email Address</label>
         <input
             type="email"
             placeholder="Email"
@@ -62,7 +62,7 @@
     <?php endif; ?>
 
     <div class="input-field">
-        <label for="dob">Date of Birth</label>
+        <label for="dob"> <span style="color:red;">*</span> Date of Birth</label>
         <input
             type="date"
             placeholder="Date of Birth"
@@ -72,7 +72,7 @@
     </div>
 
     <div class="input-field">
-        <label for="address">Residential Address</label>
+        <label for="address"><span style="color:red;">*</span> Residential Address</label>
         <input
             type="text"
             placeholder="Enter your full Address here "
@@ -82,7 +82,7 @@
     </div>
 
     <div class="input-field">
-        <label for="candidate_photo_path">Insert a photo of yourself</label>
+        <label for="candidate_photo_path"><span style="color:red;">*</span> Insert a photo of yourself</label>
         <input
             type="file"
             name="candidate_photo_path"
@@ -95,7 +95,7 @@
     <?php endif; ?>
 
     <div class="input-field">
-        <label for="contactNo">Contact Number</label>
+        <label for="contactNo"> <span style="color:red;">*</span> Contact Number</label>
         <input
             type="tel"
             placeholder="Contact Number:07xxxxxxxx"
@@ -106,7 +106,7 @@
     </div>
 
     <div class="input-field">
-        <label for="password">Password</label>
+        <label for="password"> <span style="color:red;">*</span> Password</label>
         <input
             type="password"
             id="pass"
@@ -117,7 +117,7 @@
     </div>
 
     <div class="input-field">
-        <label for="confirm_password">Re-enter Pasword</label>
+        <label for="confirm_password"> <span style="color:red;">*</span> Re-enter Password</label>
         <input
             type="password"
             id="confirm_pass"

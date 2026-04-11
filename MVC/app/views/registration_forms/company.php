@@ -28,7 +28,7 @@
 <h1>Register as a Company</h1>
 <form method="POST" enctype="multipart/form-data" onsubmit="return handleSubmit(this)">
     <div class="input-field">
-        <label for="companyName">Company Name</label>
+        <label for="companyName"><span style="color:red;">*</span> Company Name</label>
         <input
             type="text"
             placeholder="Company name"
@@ -38,7 +38,7 @@
     </div>
 
     <div class="input-field">
-        <label for="email">Company Email</label>
+        <label for="email"><span style="color:red;">*</span> Company Email</label>
         <input
             type="email"
             placeholder="Company email"
@@ -52,7 +52,7 @@
     <?php endif; ?>
 
     <div class=input-field>
-        <label for="contactNo">Company Contact Number</label>
+        <label for="contactNo"><span style="color:red;">*</span> Company Contact Number</label>
         <input
             type="tel"
             placeholder="Contact number ex: 071 xxx xxxx"
@@ -64,7 +64,7 @@
     </div>
 
     <div class="input-field">
-        <label for="hr_firstName">HR Manager First Name</label>
+        <label for="hr_firstName"><span style="color:red;">*</span> HR Manager First Name</label>
         <input
             type="text"
             placeholder="First name of HR Manager"
@@ -74,7 +74,7 @@
     </div>
 
     <div class="input-field">
-        <label for="hr_lastName">HR Manager Last Name</label>
+        <label for="hr_lastName"><span style="color:red;">*</span> HR Manager Last Name</label>
         <input
             type="text"
             placeholder="Last name of HR Manager"
@@ -84,7 +84,7 @@
     </div>
 
     <div class="input-field">
-        <label for="hr_email">HR Contact Email</label>
+        <label for="hr_email"><span style="color:red;">*</span> HR Contact Email</label>
         <input
             type="email"
             placeholder="HR contact email"
@@ -94,7 +94,7 @@
     </div>
 
     <div class="input-field">
-        <label for="hr_contactNo">HR Contact Number</label>
+        <label for="hr_contactNo"><span style="color:red;">*</span> HR Contact Number</label>
         <input
             type="tel"
             placeholder="HR contact number ex: 0718888888"
@@ -105,7 +105,7 @@
     </div>
 
     <div class="input-field">
-        <label for="business_certificate">Business Registration Certificate</label>
+        <label for="business_certificate"><span style="color:red;">*</span> Business Registration Certificate</label>
         <input
             type="file"
             name="business_certificate"
@@ -118,7 +118,7 @@
     <?php endif; ?>
 
     <div class="input-field">
-        <label for="company_photo_path">Company Logo</label>
+        <label for="company_photo_path"><span style="color:red;">*</span> Company Logo</label>
         <input
             type="file"
             name="company_photo_path"
@@ -131,7 +131,7 @@
     <?php endif; ?>
 
     <div class="input-field">
-        <label for="password">Password</label>
+        <label for="password"><span style="color:red;">*</span> Password</label>
         <input
             type="password"
             id="pass"
@@ -142,7 +142,7 @@
     </div>
 
     <div class="input-field">
-        <label for="confirm_password">Re-enter Pasword</label>
+        <label for="confirm_password"><span style="color:red;">*</span> Re-enter Password</label>
         <input
             type="password"
             id="confirm_pass"
