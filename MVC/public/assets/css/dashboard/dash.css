@@ -174,11 +174,14 @@
 
 .message_menu .message_body {
     flex: 1;
-    padding: 20px;
+    min-height: 0;
+    padding: 20px 20px 0;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    overflow: hidden;
+    justify-content: flex-start;
+    gap: 12px;
+    overflow-y: auto;
 }
 
 .message_menu .message_list {
@@ -188,9 +191,19 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
     gap: 10px;
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
-    max-height: calc(100vh - 145px);
+}
+
+.message_menu .message_list li:only-child {
+    flex: 1;
+}
+
+.message_menu .message_list li:only-child .message-item-btn {
+    height: 100%;
 }
 
 .message_menu .message_list::-webkit-scrollbar {
