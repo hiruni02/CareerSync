@@ -89,8 +89,7 @@
                 return;
             }
 
-            countdownEl.innerHTML =
-                "Too many failed attempts. Try again in " + remaining + " seconds.";
+            countdownEl.innerHTML = "Too many failed attempts. Try again in " + remaining + " seconds.";
         }
 
         updateCountdown();

@@ -10,23 +10,44 @@
 <div class="message_menu" id="message_menu" role="region" aria-label="Messages" aria-live="polite">
     <div class="msg-header">
         <div class="msg-title">Inbox</div>
+        <form method="POST" class="clear-messages-form" onsubmit="return confirm('Clear all messages?');">
+            <input type="hidden" name="action" value="clear_messages">
+            <button type="submit" class="clear-messages-btn">Clear All</button>
+        </form>
         <div class="msg-tabs" role="tablist">
-            <button class="msg-tab active" data-tab="messages">Messages</button>
-            <button class="msg-tab" data-tab="alerts">Alerts</button>
+            <button class="msg-tab active" data-tab="messages" type="button">Messages</button>
+            <button class="msg-tab" data-tab="alerts" type="button">Alerts</button>
         </div>
     </div>
 
     <div class="message_body">
-        <div class="message_empty_state" data-section="empty" style="display: none;">
-            <div class="envelope">
-                <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                </svg>
+        <?php if (!empty($messages ?? [])): ?>
+            <ul class="message_list" data-section="messages">
+                <?php foreach ($messages as $msg): ?>
+                    <li class="message">
+                        <form method="POST" class="message-item-form" onsubmit="return confirm('Delete this message?');">
+                            <input type="hidden" name="action" value="delete_message">
+                            <input type="hidden" name="message_id" value="<?= htmlspecialchars($msg->id) ?>">
+                            <button type="submit" class="message-item-btn">
+                                <div class="msg-content"><?= htmlspecialchars($msg->content) ?></div>
+                                <span class="msg-time"><?= htmlspecialchars(date('M d, Y', strtotime($msg->created_at))) ?></span>
+                            </button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <div class="message_empty_state" data-section="empty">
+                <div class="envelope">
+                    <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                        <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                    </svg>
+                </div>
+                <h2>All caught up!</h2>
+                <p>New messages will appear here</p>
             </div>
-            <h2>All caught up!</h2>
-            <p>New messages will appear here</p>
-        </div>
+        <?php endif; ?>
     </div>
 
     <div class="decor-star" aria-hidden="true"></div>
@@ -57,6 +78,12 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/counselorProfile.php"
         <h1><?= $data['unreadMsgCount'] ?? 0 ?></h1>
     </div>
 </div>
+
+<?php if (!$data['isRealCounselor']) { ?>
+    <div class="unverified_message">
+        <p>Your Account is not verified by the administrator. Contact the administrator to gain access to account</p>
+    </div>
+<?php } ?>
 
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSideSchdeuler.php");

@@ -3,9 +3,13 @@
 $counselor = new Counselor;
 $data['counselorTable'] = $counselor->first(['user_id' => $_SESSION['USER']->user_id]);
 
-//extract meting requests made by candidates
+//check validity of counselor
+$isRealCounselor = ($_SESSION['USER']->status != 'active') ? false : true;
+$data['isRealCounselor'] = $isRealCounselor;
+
+//extract meeting requests made by candidates
 $request = new ConsultationRequest;
-$data['request'] = $request->getMeetingRequest($_SESSION['USER']->user_id);
+$data['request'] = $isRealCounselor ? $request->getMeetingRequest($_SESSION['USER']->user_id) : [];
 
 $consultation = new Consultation;
 $data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCounselor($_SESSION['USER']->user_id);
@@ -17,6 +21,7 @@ $unreadResult = $messageModel->query(
     [$_SESSION['USER']->user_id]
 );
 $data['unreadMsgCount'] = $unreadResult ? (int)$unreadResult[0]->cnt : 0;
+$data['messages'] = $messageModel->getByReceiver($_SESSION['USER']->user_id, 'counselor');
 
 $isSchedulingMeeting = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'counselor_scheduler');
 
@@ -113,6 +118,12 @@ if ($isSchedulingMeeting) {
         'address_link'  => $address,
         'extra_details' => $details
     ], $slots);
+
+    $messageModel->insert([
+        'receiver_id' => $candidate_id,
+        'receiver_type' => 'candidate',
+        'content' => "Your counselor accepted the meeting request. Please confirm the available time slot.",
+    ]);
 
     $_SESSION['success'] = "Meeting scheduled. Waiting for candidate to confirm.";
     redirect("dashboard/counselorDash");

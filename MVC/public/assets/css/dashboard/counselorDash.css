@@ -24,22 +24,22 @@
 }
 
 .scrollBox::-webkit-scrollbar {
-  width: 15px;
+    width: 15px;
 }
 
 .scrollBox::-webkit-scrollbar-track {
-  background: var(--white);
-  border-radius: 10px;
+    background: var(--white);
+    border-radius: 10px;
 }
 
 .scrollBox::-webkit-scrollbar-thumb {
-  background-color: var(--primaryBlueLight);
-  border-radius: 10px;
-  border: 3px solid var(--white);
+    background-color: var(--primaryBlueLight);
+    border-radius: 10px;
+    border: 3px solid var(--white);
 }
 
 .scrollBox::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primaryBlue);
+    background-color: var(--primaryBlue);
 }
 
 .request-card {
@@ -186,6 +186,18 @@
     color: var(--textDark);
     font-size: 22px;
     font-weight: bold;
+}
+
+.unverified_message {
+    background-color: rgba(202, 0, 0, 0.247);
+    border: dashed;
+    border-color: rgba(92, 0, 0, 0.651);
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: fit-content;
 }
 
 @media (max-width: 900px) {

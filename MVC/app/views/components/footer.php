@@ -19,14 +19,6 @@
         </div>
 
         <div class="footer-column">
-            <h3>Legal</h3>
-            <ul>
-                <li><a href="">Terms & Conditions</a></li>
-                <li><a href="">Privacy Policy</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
             <h3>Contact</h3>
             <p>Phone: <?= htmlspecialchars($admin_contact) ?></p>
             <p>Email: <?= htmlspecialchars($admin_email) ?></p>

@@ -28,7 +28,7 @@
 <h1>Register as a Validation team member</h1>
 <form method="POST" enctype="multipart/form-data" onsubmit="return handleSubmit(this)">
     <div class="input-field">
-        <label for="firstName">First Name</label>
+        <label for="firstName"><span style="color:red;">*</span> First Name</label>
         <input
             type="text"
             placeholder="First Name"
@@ -38,7 +38,7 @@
     </div>
 
     <div class="input-field">
-        <label for="lastName">Last Name</label>
+        <label for="lastName"><span style="color:red;">*</span> Last Name</label>
         <input
             type="text"
             placeholder="Last Name"
@@ -48,7 +48,7 @@
     </div>
 
     <div class="input-field">
-        <label for="email">Email Address</label>
+        <label for="email"><span style="color:red;">*</span> Email Address</label>
         <input
             type="email"
             placeholder="Email"
@@ -62,7 +62,7 @@
     <?php endif; ?>
 
     <div class="input-field">
-        <label for="contactNo">Contact Number</label>
+        <label for="contactNo"> <span style="color:red;">*</span> Contact Number</label>
         <input
             type="text"
             placeholder="Contact Number:07xxxxxxxx"
@@ -73,7 +73,7 @@
     </div>
 
     <div class="input-field">
-        <label for="validator_photo_path">Insert a photo of yourself</label>
+        <label for="validator_photo_path"> <span style="color:red;">*</span> Insert a photo of yourself</label>
         <input
             type="file"
             placeholder="Insert a photo of your National ID Card"
@@ -87,7 +87,7 @@
     <?php endif; ?>
 
     <div class="input-field">
-        <label for="password">Password</label>
+        <label for="password"> <span style="color:red;">*</span> Password</label>
         <input
             type="password"
             id="pass"
@@ -98,7 +98,7 @@
     </div>
 
     <div class="input-field">
-        <label for="confirm_password">Re-enter Pasword</label>
+        <label for="confirm_password"> <span style="color:red;">*</span> Re-enter Password</label>
         <input
             type="password"
             id="confirm_pass"
