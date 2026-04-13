@@ -278,6 +278,26 @@
     margin-top: -1px
 }
 
+.charts {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.barChart {
+    width: 60%;
+    height: 400px;
+    padding: 20px;
+    margin: 0;
+}
+
+.pieChart {
+    width: 35%;
+    height: 400px;
+    padding: 20px;
+}
+
 @media (max-width: 768px) {
     .sbContainer {
         display: block;

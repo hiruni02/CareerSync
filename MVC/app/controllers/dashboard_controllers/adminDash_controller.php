@@ -14,6 +14,10 @@ $data['counselors'] = $admin->getCounselorDetails();
 $data['companies'] = $admin->getCompanyDetails();
 $data['sysAlerts'] = $admin->getSysAlerts();
 
+//for charts
+$data['monthlyRegistrations'] = $admin->getMonthlyRegistrations(6);
+$data['roleDistribution'] = $admin->getUserRoleDistribution();
+
 $feedbackModel = new ContactModel();
 $data['feedbacks'] = $feedbackModel->SelectAll();
 $reports = new AdminReportDetails;

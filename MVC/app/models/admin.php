@@ -131,4 +131,24 @@ class Admin
         $query = "DELETE FROM system_logs";
         return $this->query($query);
     }
+
+    public function getMonthlyRegistrations($months = 6)
+    {
+        $results = $this->query(
+            "SELECT DATE_FORMAT(created_at, '%Y-%m') AS month, COUNT(*) AS count
+         FROM users
+         WHERE created_at >= DATE_SUB(NOW(), INTERVAL ? MONTH)
+         GROUP BY DATE_FORMAT(created_at, '%Y-%m')
+         ORDER BY month ASC",
+            [$months]
+        );
+        return $results ?? [];
+    }
+
+    public function getUserRoleDistribution()
+    {
+        return $this->query(
+            "SELECT role, COUNT(*) AS count FROM users GROUP BY role"
+        ) ?? [];
+    }
 }
