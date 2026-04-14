@@ -140,7 +140,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         'rgba(153, 102, 255, 0.7)'
                     ],
                     borderColor: '#fff',
-                    borderWidth: 2
+                    borderWidth: 2,
                 }]
             },
             options: {

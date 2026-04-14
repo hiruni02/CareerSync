@@ -285,17 +285,16 @@
     margin: 20px 0;
 }
 
-.barChart {
-    width: 60%;
+.barChart, .pieChart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
     height: 400px;
     padding: 20px;
     margin: 0;
-}
-
-.pieChart {
-    width: 35%;
-    height: 400px;
-    padding: 20px;
+    box-shadow: var(--shadowSoft);
+    border-radius: 15px;
 }
 
 @media (max-width: 768px) {
@@ -338,5 +337,18 @@
     .manager_list_item .photo {
         grid-row: auto;
         height: 180px;
+    }
+
+    .charts {
+        flex-direction: column;
+    }
+
+    .barChart, .pieChart {
+        width: 100%;
+        height: fit-content;
+        padding: 20px;
+        margin: 0;
+        box-shadow: var(--shadowSoft);
+        border-radius: 15px;
     }
 }
