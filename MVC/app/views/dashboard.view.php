@@ -164,11 +164,25 @@
                 const sections = menu.querySelectorAll('[data-section]');
 
                 function showSection(name) {
+                    // Check if the target section has a <ul> with items
+                    let hasContent = false;
+                    sections.forEach(s => {
+                        const v = s.getAttribute('data-section');
+                        if (v === name && s.tagName.toLowerCase() === 'ul') {
+                            hasContent = true;
+                        }
+                    });
+
                     sections.forEach(s => {
                         const v = s.getAttribute('data-section');
                         if (!v) return;
-                        const shouldShow = (v === name || v === 'empty');
-                        s.style.display = shouldShow ? (s.tagName.toLowerCase() === 'ul' ? 'flex' : 'flex') : 'none';
+                        let shouldShow = false;
+                        if (v === name) {
+                            shouldShow = true;
+                        } else if (v === 'empty' && !hasContent) {
+                            shouldShow = true;
+                        }
+                        s.style.display = shouldShow ? 'flex' : 'none';
                     });
                 }
 

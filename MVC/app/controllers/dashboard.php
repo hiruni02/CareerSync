@@ -15,6 +15,7 @@ class Dashboard
         $isProfileUpdate  = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'profile_change');
         $isDeleteMessage = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_message');
         $isClearMessages = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'clear_messages');
+        $isDeleteAlert   = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_alert');
 
         if ($isDeleteMessage || $isClearMessages) {
             require_once __DIR__ . '/../models/message.php';
@@ -40,6 +41,23 @@ class Dashboard
             }
 
             // after deletion action redirect to avoid resubmit-on-refresh
+            redirect('dashboard');
+            exit;
+        }
+
+        if ($isDeleteAlert) {
+            $alertId = intval($_POST['alert_id'] ?? 0);
+            $alertSource = $_POST['alert_source'] ?? 'alerts';
+            if ($alertId > 0) {
+                if ($alertSource === 'system_logs') {
+                    $admin = new Admin();
+                    $admin->query("DELETE FROM system_logs WHERE log_id = ?", [$alertId]);
+                } else {
+                    require_once __DIR__ . '/../models/Alert.php';
+                    $alertModel = new Alert();
+                    $alertModel->deleteAlert($alertId);
+                }
+            }
             redirect('dashboard');
             exit;
         }

@@ -204,6 +204,16 @@ trait Model
                         )";
         $this->query($messages_table);
 
+        $alerts_table = "CREATE TABLE IF NOT EXISTS alerts (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        title VARCHAR(255) NOT NULL,
+                        message TEXT NOT NULL,
+                        type VARCHAR(50) DEFAULT 'info',
+                        is_read TINYINT(1) DEFAULT 0,
+                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                        )";
+        $this->query($alerts_table);
+
         $bookmarks = "CREATE TABLE IF NOT EXISTS bookmarks(
                         bm_id INT AUTO_INCREMENT PRIMARY KEY,
                         user_id INT,
@@ -259,12 +269,13 @@ trait Model
 
         $feedback = "CREATE TABLE IF NOT EXISTS feedback (
                         id INT AUTO_INCREMENT PRIMARY KEY,
-                        name VARCHAR(50),
-                        email VARCHAR(100),
-                        message TEXT,
+                        name VARCHAR(255) NOT NULL,
+                        email VARCHAR(255) NOT NULL,
+                        message TEXT NOT NULL,
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
-                    $this->query($feedback);
+        $this->query($feedback);
+
     }
 
     public function SelectAll()
