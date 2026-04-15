@@ -206,11 +206,20 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
 <div class="content-wrapper">
     <div class="content_section">
         <h3>Upcoming interviews</h3>
+        <div class="filter">
+            <label for="interviewJobFilter">Filter jobs:</label>
+            <select id="interviewJobFilter">
+                <option value="all">All</option>
+                <?php foreach ($postedJobs as $pj): ?>
+                    <option value="<?= $pj->job_id ?>"><?= htmlspecialchars($pj->posTitle) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
         <div class="scScrollbox">
             <?php $confirmedInterviews = $data['confirmedInterviews'] ?? []; ?>
             <?php if (!empty($confirmedInterviews)): ?>
                 <?php foreach ($confirmedInterviews as $iv): ?>
-                    <div class="listItem">
+                    <div class="listItem" data-job-id="<?= htmlspecialchars($iv->job_id) ?>">
                         <div class="li-row">
                             <span class="li-label">Position:</span>
                             <span class="li-value"><?= htmlspecialchars($iv->posTitle) ?></span>
@@ -339,23 +348,42 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     document.addEventListener("DOMContentLoaded", () => {
         const filter = document.getElementById("jobFilter");
         const appliedSection = document.getElementById("appliedCandidatesSection");
+        const interviewFilter = document.getElementById("interviewJobFilter");
+        const upcomingSection = document.querySelector(".content-wrapper .content_section");
 
-        if (!filter || !appliedSection) return;
+        if (filter && appliedSection) {
+            const items = appliedSection.querySelectorAll(".listItem");
 
-        const items = appliedSection.querySelectorAll(".listItem");
+            filter.addEventListener("change", () => {
+                const selectedJob = filter.value;
 
-        filter.addEventListener("change", () => {
-            const selectedJob = filter.value;
+                items.forEach(item => {
+                    const jobId = item.dataset.jobId;
 
-            items.forEach(item => {
-                const jobId = item.dataset.jobId;
-
-                item.style.display =
-                    selectedJob === "all" || jobId === selectedJob ?
-                    "block" :
-                    "none";
+                    item.style.display =
+                        selectedJob === "all" || jobId === selectedJob ?
+                        "block" :
+                        "none";
+                });
             });
-        });
+        }
+
+        if (interviewFilter && upcomingSection) {
+            const items = upcomingSection.querySelectorAll(".listItem[data-job-id]");
+
+            interviewFilter.addEventListener("change", () => {
+                const selectedJob = interviewFilter.value;
+
+                items.forEach(item => {
+                    const jobId = item.dataset.jobId;
+
+                    item.style.display =
+                        selectedJob === "all" || jobId === selectedJob ?
+                        "block" :
+                        "none";
+                });
+            });
+        }
     });
 </script>
 
