@@ -24,7 +24,13 @@ $data['myBM'] = $bookmarks->getMyBookmarks($_SESSION['USER']->user_id);
 
 $consultation = new Consultation;
 $data['consultation'] = $consultation->getConsultationDetails($_SESSION['USER']->user_id);
-$data['consultationMeeting'] = $consultation->getCandidateConsultation($_SESSION['USER']->user_id);
+$data['consultationMeeting'] = [
+    'meetingData' => null,
+    'slots' => []
+];
+if (isset($_GET['request_id'])) {
+    $data['consultationMeeting'] = $consultation->getConsultationByRequest($_GET['request_id']);
+}
 $data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCandidate($_SESSION['USER']->user_id);
 
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');

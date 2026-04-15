@@ -4,6 +4,7 @@
 
         <form method="POST">
             <input type="hidden" name="action" value="candidate_consultation_scheduler">
+            <input type="hidden" name="request_id" id="consultationRequestId">
 
             <div class="interview-details">
                 <p><strong>Mode:</strong> <?= htmlspecialchars($data['consultationMeeting']['meetingData']->mode ?? '') ?></p>

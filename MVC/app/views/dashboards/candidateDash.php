@@ -80,7 +80,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
     </div>
     <div class="box_segment">
         Unread messages: <br>
-        <h1><?= count(array_filter((array)($data['messages'] ?? []),fn($msg) => is_object($msg) && !$msg->is_read)) ?></h1>
+        <h1><?= count(array_filter((array)($data['messages'] ?? []), fn($msg) => is_object($msg) && !$msg->is_read)) ?></h1>
     </div>
 </div>
 
@@ -140,7 +140,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
                 <ul class="applications consultation-list">
                     <?php if (!empty($data['consultation'])): ?>
                         <?php foreach ($data['consultation'] as $cons): ?>
-                            <li class="application_item">
+                            <li class="application_item" data-request-id="<?= $cons->request_id ?>">
                                 <div class="application-title"><?= htmlspecialchars($cons->firstName . $cons->lastName) ?></div>
                                 <div class="application_state">
                                     <?php
@@ -275,23 +275,26 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
             interviewBg.classList.remove("active");
         });
 
-        const consultationBg = document.querySelector(".consultation_scheduler_bg");
         const consultationBackBtn = document.getElementById("consultationSchedulerBackBtn");
-
         const consultationItems = document.querySelectorAll(".applications.consultation-list .application_item");
+        const consultationBg = document.querySelector(".consultation_scheduler_bg");
+        const consultationRequestInput = document.getElementById("consultationRequestId");
+
+        if (consultationBackBtn && consultationBg) {
+            consultationBackBtn.addEventListener("click", () => {
+                consultationBg.classList.remove("active");
+            });
+        }
 
         consultationItems.forEach(item => {
             const status = item.querySelector(".status");
 
             if (status && status.classList.contains("accepted")) {
                 item.addEventListener("click", () => {
-                    consultationBg.classList.add("active");
+                    const requestId = item.dataset.requestId;
+                    window.location.href = "<?= ROOT ?>dashboard?request_id=" + requestId;
                 });
             }
-        });
-
-        consultationBackBtn.addEventListener("click", () => {
-            consultationBg.classList.remove("active");
         });
 
         const selectCounselorBtn = document.getElementById("select_counselor");
@@ -326,3 +329,10 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
 
     });
 </script>
+<?php if (isset($_GET['request_id'])): ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector(".consultation_scheduler_bg").classList.add("active");
+        });
+    </script>
+<?php endif; ?>
