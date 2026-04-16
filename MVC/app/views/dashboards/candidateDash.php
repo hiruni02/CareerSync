@@ -97,10 +97,29 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
                 <ul class="applications job-applications">
                     <?php
                     $sent_cv = $data['cv'];
+                    show($sent_cv);
                     ?>
                     <?php if (!empty($sent_cv)): ?>
                         <?php foreach ($sent_cv as $cv): ?>
-                            <li class="application_item">
+                            <?php
+                            $matchingInterview = null;
+                            $matchingSlots = [];
+
+                            foreach ($data['interview'] as $iv) {
+                                if ($iv['interviewData']->job_id == $cv->job_id) {
+                                    $matchingInterview = $iv['interviewData'];
+                                    $matchingSlots = $iv['slots'];
+                                    break;
+                                }
+                            }
+                            ?>
+
+                            <li class="application_item"
+                                data-id="<?= $matchingInterview->interview_id ?? '' ?>"
+                                data-mode="<?= htmlspecialchars($matchingInterview->mode ?? '') ?>"
+                                data-link="<?= htmlspecialchars($matchingInterview->address_link ?? '') ?>"
+                                data-details="<?= htmlspecialchars($matchingInterview->extra_details ?? '') ?>"
+                                data-slots='<?= json_encode($matchingSlots) ?>'>
                                 <div class="application-title"><?= htmlspecialchars($cv->posTitle) ?></div>
                                 <div class="application_state">
                                     <?php
@@ -260,6 +279,23 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
                 // Open interview scheduler
                 item.addEventListener("click", () => {
                     interviewBg.classList.add("active");
+
+                    document.getElementById("modal_mode").textContent = item.dataset.mode;
+                    document.getElementById("modal_link").textContent = item.dataset.link;
+                    document.getElementById("modal_details").textContent = item.dataset.details;
+                    document.getElementById("modal_interview_id").value = item.dataset.id;
+
+                    const slots = JSON.parse(item.dataset.slots || "[]");
+                    const select = document.getElementById("selected_date");
+
+                    select.innerHTML = '<option disabled selected hidden>Select a date</option>';
+
+                    slots.forEach(slot => {
+                        const opt = document.createElement("option");
+                        opt.value = slot.slot_datetime;
+                        opt.textContent = new Date(slot.slot_datetime).toLocaleString();
+                        select.appendChild(opt);
+                    });
                 });
 
             } else if (status && status.classList.contains("rejected")) {
