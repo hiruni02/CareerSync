@@ -334,15 +334,32 @@
   align-items: center;
   gap: 10px;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
 }
 
 .filter label {
   white-space: nowrap;
-  margin-top: -10px;
+  margin-top: 0;
 }
 
 #jobFilter {
   margin-top: -1px
+}
+
+.filter select,
+.filter input[type="date"] {
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--accentBlue);
+  border-radius: 10px;
+  background-color: var(--white);
+  color: var(--textDark);
+  font: inherit;
+}
+
+.filterEmptyState[hidden] {
+  display: none;
 }
 
 .jdBtns {
@@ -398,6 +415,19 @@
   .content_section h3 {
     font-size: 20px;
     text-align: center;
+  }
+
+  .filter {
+    align-items: stretch;
+  }
+
+  .filter label {
+    width: 100%;
+  }
+
+  .filter select,
+  .filter input[type="date"] {
+    width: 100%;
   }
 
   .announcement_head {

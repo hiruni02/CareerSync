@@ -240,12 +240,19 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                     <option value="<?= $pj->job_id ?>"><?= htmlspecialchars($pj->posTitle) ?></option>
                 <?php endforeach; ?>
             </select>
+            <label for="interviewStartDate">From:</label>
+            <input type="date" id="interviewStartDate">
+            <label for="interviewEndDate">To:</label>
+            <input type="date" id="interviewEndDate">
         </div>
         <div class="scScrollbox">
             <?php $confirmedInterviews = $data['confirmedInterviews'] ?? []; ?>
             <?php if (!empty($confirmedInterviews)): ?>
                 <?php foreach ($confirmedInterviews as $iv): ?>
-                    <div class="listItem" data-job-id="<?= htmlspecialchars($iv->job_id) ?>">
+                    <div
+                        class="listItem"
+                        data-job-id="<?= htmlspecialchars($iv->job_id) ?>"
+                        data-interview-date="<?= htmlspecialchars(date('Y-m-d', strtotime($iv->slot_datetime))) ?>">
                         <div class="li-row">
                             <span class="li-label">Position:</span>
                             <span class="li-value"><?= htmlspecialchars($iv->posTitle) ?></span>
@@ -277,6 +284,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
             <?php else: ?>
                 <p class="itemsEmpty">No upcoming interviews scheduled.</p>
             <?php endif; ?>
+            <p class="itemsEmpty filterEmptyState" id="interviewFilterEmptyState" hidden>No interviews found for the selected date range.</p>
         </div>
     </div>
 </div>
@@ -375,7 +383,10 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
         const filter = document.getElementById("jobFilter");
         const appliedSection = document.getElementById("appliedCandidatesSection");
         const interviewFilter = document.getElementById("interviewJobFilter");
+        const interviewStartDate = document.getElementById("interviewStartDate");
+        const interviewEndDate = document.getElementById("interviewEndDate");
         const upcomingSection = document.querySelector(".content-wrapper .content_section");
+        const interviewEmptyState = document.getElementById("interviewFilterEmptyState");
 
         if (filter && appliedSection) {
             const items = appliedSection.querySelectorAll(".listItem");
@@ -396,19 +407,36 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
 
         if (interviewFilter && upcomingSection) {
             const items = upcomingSection.querySelectorAll(".listItem[data-job-id]");
-
-            interviewFilter.addEventListener("change", () => {
+            const applyInterviewFilters = () => {
                 const selectedJob = interviewFilter.value;
+                const startDate = interviewStartDate?.value || "";
+                const endDate = interviewEndDate?.value || "";
+                let visibleCount = 0;
 
                 items.forEach(item => {
                     const jobId = item.dataset.jobId;
+                    const interviewDate = item.dataset.interviewDate || "";
+                    const matchesJob = selectedJob === "all" || jobId === selectedJob;
+                    const matchesStart = !startDate || interviewDate >= startDate;
+                    const matchesEnd = !endDate || interviewDate <= endDate;
+                    const isVisible = matchesJob && matchesStart && matchesEnd;
 
-                    item.style.display =
-                        selectedJob === "all" || jobId === selectedJob ?
-                        "block" :
-                        "none";
+                    item.style.display = isVisible ? "block" : "none";
+
+                    if (isVisible) {
+                        visibleCount += 1;
+                    }
                 });
-            });
+
+                if (interviewEmptyState) {
+                    interviewEmptyState.hidden = visibleCount !== 0;
+                }
+            };
+
+            interviewFilter.addEventListener("change", applyInterviewFilters);
+            interviewStartDate?.addEventListener("change", applyInterviewFilters);
+            interviewEndDate?.addEventListener("change", applyInterviewFilters);
+            applyInterviewFilters();
         }
     });
 </script>
