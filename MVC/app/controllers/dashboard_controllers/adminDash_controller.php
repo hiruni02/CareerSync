@@ -31,7 +31,7 @@ require_once __DIR__ . '/../../models/ContactModel.php';
 if (isset($_GET['delete_id'])) {
     $id = (int)$_GET['delete_id'];
     $deleted = $feedbackModel->deleteMessage($id); // now $model is not null
-    redirect("Dashboard");    
+    redirect("Dashboard");
     exit;
 }
 
@@ -113,19 +113,19 @@ if ($isManageValidator) {
             ['status' => 'active'],
             'user_id'
         );
-        SystemLogger::log('ACCESS_GRANTED', 'access granted for validator(ID: '.$validatorId.')');
+        SystemLogger::log('ACCESS_GRANTED', 'access granted for validator(ID: ' . $validatorId . ')');
     }
 
     if (isset($_POST['revoke'])) {
         $user->update($validatorId, ['status' => 'pending'], 'user_id');
-        SystemLogger::log('ACCESS_REVOKED', 'access revoked for validator(ID: '.$validatorId.')');
+        SystemLogger::log('ACCESS_REVOKED', 'access revoked for validator(ID: ' . $validatorId . ')');
     }
 
     if (isset($_POST['deny'])) {
         $validator->query("DELETE FROM messages WHERE receiver_id = ? AND receiver_type = 'validator'", [$validatorId]);
         $validator->delete($validatorId, 'user_id');
         $user->delete($validatorId, 'user_id');
-        SystemLogger::log('ACCOUNT_DELETION', 'validator account(ID: '.$validatorId.') deleted from the database');
+        SystemLogger::log('ACCOUNT_DELETION', 'validator account(ID: ' . $validatorId . ') deleted from the database');
         redirect('dashboard');
     }
 
@@ -153,12 +153,12 @@ if ($isManageCounselor) {
 
     if (isset($_POST['grant'])) {
         $user->update($counselorId, ['status' => 'active'], 'user_id');
-        SystemLogger::log('ACCESS_GRANTED', 'access granted for counselor(ID: '.$counselorId.')');
+        SystemLogger::log('ACCESS_GRANTED', 'access granted for counselor(ID: ' . $counselorId . ')');
     }
 
     if (isset($_POST['revoke'])) {
         $user->update($counselorId, ['status' => 'pending'], 'user_id');
-        SystemLogger::log('ACCESS_REVOKED', 'access revoked for counselor(ID: '.$counselorId.')');
+        SystemLogger::log('ACCESS_REVOKED', 'access revoked for counselor(ID: ' . $counselorId . ')');
     }
 
     if (isset($_POST['deny'])) {
@@ -168,7 +168,7 @@ if ($isManageCounselor) {
         $counselor->query("DELETE FROM messages WHERE receiver_id = ? AND receiver_type = 'counselor'", [$counselorId]);
         $counselor->delete($counselorId, 'user_id');
         $user->delete($counselorId, 'user_id');
-        SystemLogger::log('ACCOUNT_DELETION', 'counselor account(ID: '.$counselorId.') deleted from the database');
+        SystemLogger::log('ACCOUNT_DELETION', 'counselor account(ID: ' . $counselorId . ') deleted from the database');
         redirect('dashboard');
     }
 
@@ -226,6 +226,34 @@ if ($isManageCompany) {
         $company->query("DELETE FROM messages WHERE receiver_id = ? AND receiver_type = 'company'", [$companyId]);
         $company->delete($companyId, 'user_id');
         $user->delete($companyId, 'user_id');
+    }
+
+    redirect('dashboard');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'dismissAlert') {
+
+    $logId = $_POST['log_id'] ?? null;
+
+    if (!$logId) {
+        if ($isAjax) {
+            echo json_encode(['success' => false, 'message' => 'No log ID']);
+            exit;
+        }
+        redirect('dashboard');
+        exit;
+    }
+
+    $admin = new Admin;
+
+    $admin->query("DELETE FROM system_logs WHERE log_id = ?", [$logId]);
+
+    SystemLogger::log('ALERT_DISMISSED', "Alert dismissed by Admin");
+
+    if ($isAjax) {
+        echo json_encode(['success' => true]);
+        exit;
     }
 
     redirect('dashboard');

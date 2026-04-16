@@ -188,14 +188,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         <label>Time Created: </label>
                         <div class="alertDetail"><?= htmlspecialchars($a->created_at); ?></div>
                     </div>
+                    <input type="button" class="dismissAlertBtn" value="Dismiss" data-id="<?= $a->log_id ?>">
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class='itemsEmpty'>No Validators Registered yet.</p>
+            <p class='itemsEmpty'>No System alerts.</p>
         <?php endif; ?>
     </div>
 </div>
-
 
 <div class="sbContainer">
     <h3>User Feedback</h3>
@@ -518,5 +518,47 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                 .catch(err => console.error(err));
         }
 
+    });
+</script>
+<script>
+    document.addEventListener("click", async function(e) {
+        const btn = e.target.closest(".dismissAlertBtn");
+        if (!btn) return;
+
+        const logId = btn.dataset.id;
+
+        const formData = new FormData();
+        formData.append("action", "dismissAlert");
+        formData.append("log_id", logId);
+
+        try {
+            const res = await fetch("<?= ROOT ?>dashboard", {
+                method: "POST",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: formData
+            });
+            const data = await res.json();
+            if (!data.success) {
+                alert(data.message || "Failed to dismiss alert");
+                return;
+            }
+            const item = btn.closest(".alertListItem");
+
+            if (item) {
+                item.remove();
+            }
+
+            const box = document.querySelector(".scrollBox");
+            const remaining = box.querySelectorAll(".alertListItem");
+
+            if (remaining.length === 0) {
+                box.innerHTML = `<p class="itemsEmpty">No System alerts.</p>`;
+            }
+
+        } catch (err) {
+            console.error(err);
+        }
     });
 </script>
