@@ -19,7 +19,9 @@ class Dashboard
 
         if ($isDeleteMessage || $isClearMessages) {
             require_once __DIR__ . '/../models/message.php';
+            require_once __DIR__ . '/../models/Alert.php';
             $messageModel = new Message();
+            $alertModel = new Alert();
             $userId = $_SESSION['USER']->user_id;
             $userRole = $_SESSION['USER']->role;
 
@@ -38,6 +40,12 @@ class Dashboard
 
             if ($isClearMessages) {
                 $messageModel->query('DELETE FROM messages WHERE receiver_id = ? AND receiver_type = ?', [$userId, $userRole]);
+                $alertModel->query('DELETE FROM alerts');
+                if ($userRole === 'admin') {
+                    require_once __DIR__ . '/../models/admin.php';
+                    $adminModel = new Admin();
+                    $adminModel->deleteAllLogs();
+                }
             }
 
             // after deletion action redirect to avoid resubmit-on-refresh
@@ -60,6 +68,17 @@ class Dashboard
             }
             redirect('dashboard');
             exit;
+        }
+
+        require_once __DIR__ . '/../models/Alert.php';
+        $alertModel = new Alert();
+        $data['alerts'] = $alertModel->getUnreadAlerts();
+
+        // Load sysAlerts for admin role
+        if ($_SESSION['USER']->role === 'admin') {
+            require_once __DIR__ . '/../models/admin.php';
+            $adminModel = new Admin();
+            $data['sysAlerts'] = $adminModel->getSysAlerts();
         }
 
         switch ($_SESSION['USER']->role) {

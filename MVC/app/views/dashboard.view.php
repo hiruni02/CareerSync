@@ -11,6 +11,10 @@
     <div class="page-wrapper">
         <?php
         include("components/navbar.php");
+        $messageCount = count(array_filter((array)($data['messages'] ?? []), fn($msg) => is_object($msg) && isset($msg->is_read) && !$msg->is_read));
+        $alertCount = count(array_filter((array)($data['alerts'] ?? []), fn($alert) => is_object($alert) && isset($alert->is_read) && !$alert->is_read));
+        $sysAlertCount = count(array_filter((array)($data['sysAlerts'] ?? []), fn($alert) => is_object($alert) && isset($alert->action) && $alert->action === 'ALERT'));
+        $notificationCount = $messageCount + $alertCount + $sysAlertCount;
         ?>
         <div class="page-content">
             <div class="settings_btn" onclick="toggleSettings()">
@@ -18,6 +22,9 @@
             </div>
             <div class="messages_btn" onclick="toggleMessages()">
                 <img src="<?= ROOT ?>assets/images/messages_icon.png" alt="messages_btn">
+                <?php if ($notificationCount > 0): ?>
+                    <span class="notification_badge" id="dashboard_notifications_badge"><?= $notificationCount ?></span>
+                <?php endif; ?>
             </div>
             <?php
             switch ($_SESSION['USER']->role) {
