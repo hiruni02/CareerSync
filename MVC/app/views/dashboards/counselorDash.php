@@ -121,7 +121,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/counselorSideSchdeu
             <?php foreach ($data['confirmedConsultation'] as $cm): ?>
                 <div class="interview-item">
                     <div class="interview-row">
-                        <span class="interview-label">Candudate:</span>
+                        <span class="interview-label">Candidate:</span>
                         <span class="interview-value"><?= htmlspecialchars($cm->candidate_first_name)." ".htmlspecialchars($cm->candidate_last_name) ?></span>
                     </div>
                     <div class="interview-row">

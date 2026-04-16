@@ -86,23 +86,25 @@ class Consultation
     public function getConfirmedConsultationsForCounselor($counselor_id)
     {
         $query = "SELECT 
-                c.meeting_id,
-                c.mode,
-                c.address_link,
-                c.extra_details,
-                c.dateConfirmed,
-                counselor.firstName AS counselor_first_name,
-                counselor.lastName AS counselor_last_name,
-                MIN(cs.slot_datetime) AS slot_datetime
-            FROM consultation c
-            INNER JOIN counselor
-                ON c.counselor_id = counselor.user_id
-            LEFT JOIN consultation_slots cs
-                ON c.meeting_id = cs.meeting_id
-            WHERE c.candidate_id = ?
-            AND c.dateConfirmed = 'confirmed'
-            GROUP BY c.meeting_id
-            ORDER BY slot_datetime ASC";
+            c.meeting_id,
+            c.mode,
+            c.address_link,
+            c.extra_details,
+            c.dateConfirmed,
+            candidate.firstName AS candidate_first_name,
+            candidate.lastName AS candidate_last_name,
+            MIN(cs.slot_datetime) AS slot_datetime
+        FROM consultation c
+        INNER JOIN counselor
+            ON c.counselor_id = counselor.user_id
+        INNER JOIN candidate
+            ON c.candidate_id = candidate.user_id
+        LEFT JOIN consultation_slots cs
+            ON c.meeting_id = cs.meeting_id
+        WHERE c.counselor_id = ?
+        AND c.dateConfirmed = 'confirmed'
+        GROUP BY c.meeting_id
+        ORDER BY slot_datetime ASC";
 
         return $this->query($query, [$counselor_id]);
     }

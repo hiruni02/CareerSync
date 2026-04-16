@@ -97,7 +97,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
                 <ul class="applications job-applications">
                     <?php
                     $sent_cv = $data['cv'];
-                    show($sent_cv);
                     ?>
                     <?php if (!empty($sent_cv)): ?>
                         <?php foreach ($sent_cv as $cv): ?>

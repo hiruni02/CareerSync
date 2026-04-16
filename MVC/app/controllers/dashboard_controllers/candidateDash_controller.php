@@ -179,7 +179,7 @@ if ($isConfirmingConsultationDate) {
 
         if (!empty($allSlots)) {
             foreach ($allSlots as $s) {
-                if ($s->slot_datetime !== $selected_date) {
+                if ($s->slot_datetime !== date('Y-m-d H:i:s', strtotime($selected_date))) {
                     $slot->delete($s->slot_id, 'slot_id');
                 }
             }
