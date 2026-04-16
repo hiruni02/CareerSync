@@ -111,6 +111,22 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
     
 </div>
 
+<div class="announcement_box">
+    <div class="announcement_head">
+        <div>
+            <h3>Subscriber Announcements</h3>
+            <p>Send a message to every candidate subscribed to your company.</p>
+        </div>
+        <span class="announcement_count"><?= count((array)($data['subscribers'] ?? [])) ?> subscribers</span>
+    </div>
+
+    <form method="POST" class="announcement_form">
+        <input type="hidden" name="action" value="send_announcement">
+        <textarea name="announcement_message" rows="3" placeholder="Write your announcement here..."></textarea>
+        <button type="submit" class="announcement_btn">Send Announcement</button>
+    </form>
+</div>
+
 <?php
 include("C:/xampp/htdocs/CareerSync/MVC/app/views/dashboards/listPosition.php");
 ?>

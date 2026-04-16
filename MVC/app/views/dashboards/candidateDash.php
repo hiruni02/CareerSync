@@ -99,6 +99,47 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
     <button id="select_counselor">Contact a Counselor</button>
 </div>
 
+<div class="upcoming_section subscription_section">
+    <div class="content_section">
+        <div class='scrollBoxContainer subscriptionBox'>
+            <div class="subscription_header">
+                <h1>Subscribed Companies</h1>
+                <span class="subscription_count"><?= count((array)($data['candidateSubscriptions'] ?? [])) ?></span>
+            </div>
+            <div class="scrollBox subscriptionScroll">
+                <ul class="subscription_list">
+                    <?php if (!empty($data['subscriptionCompanies'])): ?>
+                        <?php foreach ($data['subscriptionCompanies'] as $companyRow): ?>
+                            <li class="subscription_item">
+                                <div class="subscription-company">
+                                    <img class="subscription-logo" src="<?= ROOT . htmlspecialchars($companyRow->company_photo_path) ?>" alt="<?= htmlspecialchars($companyRow->companyName) ?> logo">
+                                    <div class="subscription-meta">
+                                        <h3><?= htmlspecialchars($companyRow->companyName) ?></h3>
+                                        <p><?= htmlspecialchars(trim($companyRow->hr_firstName . ' ' . $companyRow->hr_lastName)) ?></p>
+                                        <span class="company_status_tag <?= htmlspecialchars($companyRow->validator_approval) ?> <?= htmlspecialchars($companyRow->payment_status) ?>">
+                                            <?= htmlspecialchars(ucfirst($companyRow->validator_approval)) ?> / <?= htmlspecialchars(ucfirst($companyRow->payment_status)) ?>
+                                        </span>
+                                    </div>
+                                </div>
+                                <form method="POST" class="subscription_form">
+                                    <input type="hidden" name="action" value="subscription_action">
+                                    <input type="hidden" name="company_id" value="<?= htmlspecialchars($companyRow->user_id) ?>">
+                                    <input type="hidden" name="subscription_action" value="<?= (int)$companyRow->is_subscribed ? 'unsubscribe' : 'subscribe' ?>">
+                                    <button type="submit" class="<?= (int)$companyRow->is_subscribed ? 'unsubscribeBtn' : 'subscribeBtn' ?>">
+                                        <?= (int)$companyRow->is_subscribed ? 'Unsubscribe' : 'Subscribe' ?>
+                                    </button>
+                                </form>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class='itemsEmpty'>No companies available yet.</p>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="upcoming_section">
     <div class="content_section">
         <div class='scrollBoxContainer'>

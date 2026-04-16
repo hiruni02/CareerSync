@@ -193,6 +193,17 @@ trait Model
                         )";
         $this->query($consultation_slot_table);
 
+        $subscriptions_table = "CREATE TABLE IF NOT EXISTS subscriptions (
+                subscription_id INT AUTO_INCREMENT PRIMARY KEY,
+                candidate_id INT NOT NULL,
+                company_id INT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE KEY unique_candidate_company (candidate_id, company_id),
+                FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
+                FOREIGN KEY (company_id) REFERENCES company(user_id)
+                )";
+        $this->query($subscriptions_table);
+
         $messages_table = "CREATE TABLE IF NOT EXISTS messages (
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         receiver_id INT NOT NULL,
