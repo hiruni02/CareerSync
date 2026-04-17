@@ -29,14 +29,14 @@
         include("components/navbar.php");
         ?>
         <div class="ss">
-            <img id="heroImg" src="<?= ROOT ?>/assets/slideshow/8.png" alt="slideshow image">
+            <img id="heroImg" src="<?= ROOT ?>/assets/slideshow/15.png" alt="slideshow image">
         </div>
 
         <script>
         document.addEventListener('DOMContentLoaded', function () {
             const slides=[
-                "<?= ROOT ?>/assets/slideshow/4.png",
-                "<?= ROOT ?>/assets/slideshow/8.png",
+                "<?= ROOT ?>/assets/slideshow/14.png",
+                "<?= ROOT ?>/assets/slideshow/15.png",
             ]
             let slideIndex = 0;
             const hero = document.getElementById('heroImg');
