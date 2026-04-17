@@ -15,18 +15,8 @@
             <button type="submit" class="clear-messages-btn">Clear All</button>
         </form>
         <div class="msg-tabs" role="tablist">
-            <button class="msg-tab active" data-tab="messages" type="button">
-                Messages
-                <?php if (!empty($messageCount)): ?>
-                    <span class="tab-badge"><?= $messageCount ?></span>
-                <?php endif; ?>
-            </button>
-            <button class="msg-tab" data-tab="alerts" type="button">
-                Alerts
-                <?php if (!empty($alertCount)): ?>
-                    <span class="tab-badge"><?= $alertCount ?></span>
-                <?php endif; ?>
-            </button>
+            <button class="msg-tab active" data-tab="messages" type="button">Messages</button>
+            <button class="msg-tab" data-tab="alerts" type="button">Alerts</button>
         </div>
     </div>
 
@@ -50,8 +40,8 @@
             <div class="message_empty_state" data-section="empty">
                 <div class="envelope">
                     <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                        <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
+                        <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                        <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
                     </svg>
                 </div>
                 <h2>All caught up!</h2>
@@ -92,39 +82,21 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
         Pending Interviews: <br>
         <h1><?= $data['pendingInterviews'] ? (int)$data['pendingInterviews'][0]->cnt : 0 ?></h1>
     </div>
-    
+
 </div>
 
 <div class="list_pos_box">
     <label>Create New Position :</label>
     <?php
-        if($data['companyStatus']->validator_approval == 'pending'){
-            ?><button>Wait for validator approval</button><?php
-        }
-        else if($data['companyStatus']->payment_status == 'inactive'){
-            ?><button id="payBtn">Make Payment</button><?php
-        }
-        else{
-            ?><button id="createBtn">Create</button><?php
-        }
-    ?>
-    
-</div>
+    if ($data['companyStatus']->validator_approval == 'pending') {
+    ?><button>Wait for validator approval</button><?php
+                                                        } else if ($data['companyStatus']->payment_status == 'inactive') {
+                                                            ?><button id="payBtn">Make Payment</button><?php
+                                                        } else {
+                                                        ?><button id="createBtn">Create</button><?php
+                                                        }
+                                                    ?>
 
-<div class="announcement_box">
-    <div class="announcement_head">
-        <div>
-            <h3>Subscriber Announcements</h3>
-            <p>Send a message to every candidate subscribed to your company.</p>
-        </div>
-        <span class="announcement_count"><?= count((array)($data['subscribers'] ?? [])) ?> subscribers</span>
-    </div>
-
-    <form method="POST" class="announcement_form">
-        <input type="hidden" name="action" value="send_announcement">
-        <textarea name="announcement_message" rows="3" placeholder="Write your announcement here..."></textarea>
-        <button type="submit" class="announcement_btn">Send Announcement</button>
-    </form>
 </div>
 
 <?php
@@ -200,7 +172,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
                 <?php foreach ($postedJobs as $pj): ?>
                     <div class="listItem">
                         <div class="li-row">
-                            <a href="<?= ROOT ?>jobdetails/<?= urlencode($pj->job_id) ?>"  class="jobTitleLink"><?= htmlspecialchars($pj->posTitle) ?></a>
+                            <a href="<?= ROOT ?>jobdetails/<?= urlencode($pj->job_id) ?>" class="jobTitleLink"><?= htmlspecialchars($pj->posTitle) ?></a>
                         </div>
                         <div class="li-row">
                             <span class="li-label">Posted On:</span>
@@ -229,30 +201,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
         </div>
     </div>
 </div>
-<div class="content-wrapper">
+<div class="content_wrapper">
     <div class="content_section">
         <h3>Upcoming interviews</h3>
-        <div class="filter">
-            <label for="interviewJobFilter">Filter jobs:</label>
-            <select id="interviewJobFilter">
-                <option value="all">All</option>
-                <?php foreach ($postedJobs as $pj): ?>
-                    <option value="<?= $pj->job_id ?>"><?= htmlspecialchars($pj->posTitle) ?></option>
-                <?php endforeach; ?>
-            </select>
-            <label for="interviewStartDate">From:</label>
-            <input type="date" id="interviewStartDate">
-            <label for="interviewEndDate">To:</label>
-            <input type="date" id="interviewEndDate">
-        </div>
         <div class="scScrollbox">
             <?php $confirmedInterviews = $data['confirmedInterviews'] ?? []; ?>
             <?php if (!empty($confirmedInterviews)): ?>
                 <?php foreach ($confirmedInterviews as $iv): ?>
-                    <div
-                        class="listItem"
-                        data-job-id="<?= htmlspecialchars($iv->job_id) ?>"
-                        data-interview-date="<?= htmlspecialchars(date('Y-m-d', strtotime($iv->slot_datetime))) ?>">
+                    <div class="listItem">
                         <div class="li-row">
                             <span class="li-label">Position:</span>
                             <span class="li-value"><?= htmlspecialchars($iv->posTitle) ?></span>
@@ -284,8 +240,23 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
             <?php else: ?>
                 <p class="itemsEmpty">No upcoming interviews scheduled.</p>
             <?php endif; ?>
-            <p class="itemsEmpty filterEmptyState" id="interviewFilterEmptyState" hidden>No interviews found for the selected date range.</p>
         </div>
+    </div>
+
+    <div class="content_section">
+        <div class="announcement_head">
+            <div>
+                <h3>Subscriber Announcements</h3>
+                <p>Send a message to every candidate subscribed to your company.</p>
+            </div>
+            <span class="announcement_count"><?= count((array)($data['subscribers'] ?? [])) ?> subscribers</span>
+        </div>
+
+        <form method="POST" class="announcement_form">
+            <input type="hidden" name="action" value="send_announcement">
+            <textarea name="announcement_message" rows="3" placeholder="Write your announcement here..."></textarea>
+            <button type="submit" class="announcement_btn">Send Announcement</button>
+        </form>
     </div>
 </div>
 
@@ -382,69 +353,30 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     document.addEventListener("DOMContentLoaded", () => {
         const filter = document.getElementById("jobFilter");
         const appliedSection = document.getElementById("appliedCandidatesSection");
-        const interviewFilter = document.getElementById("interviewJobFilter");
-        const interviewStartDate = document.getElementById("interviewStartDate");
-        const interviewEndDate = document.getElementById("interviewEndDate");
-        const upcomingSection = document.querySelector(".content-wrapper .content_section");
-        const interviewEmptyState = document.getElementById("interviewFilterEmptyState");
 
-        if (filter && appliedSection) {
-            const items = appliedSection.querySelectorAll(".listItem");
+        if (!filter || !appliedSection) return;
 
-            filter.addEventListener("change", () => {
-                const selectedJob = filter.value;
+        const items = appliedSection.querySelectorAll(".listItem");
 
-                items.forEach(item => {
-                    const jobId = item.dataset.jobId;
+        filter.addEventListener("change", () => {
+            const selectedJob = filter.value;
 
-                    item.style.display =
-                        selectedJob === "all" || jobId === selectedJob ?
-                        "block" :
-                        "none";
-                });
+            items.forEach(item => {
+                const jobId = item.dataset.jobId;
+
+                item.style.display =
+                    selectedJob === "all" || jobId === selectedJob ?
+                    "block" :
+                    "none";
             });
-        }
-
-        if (interviewFilter && upcomingSection) {
-            const items = upcomingSection.querySelectorAll(".listItem[data-job-id]");
-            const applyInterviewFilters = () => {
-                const selectedJob = interviewFilter.value;
-                const startDate = interviewStartDate?.value || "";
-                const endDate = interviewEndDate?.value || "";
-                let visibleCount = 0;
-
-                items.forEach(item => {
-                    const jobId = item.dataset.jobId;
-                    const interviewDate = item.dataset.interviewDate || "";
-                    const matchesJob = selectedJob === "all" || jobId === selectedJob;
-                    const matchesStart = !startDate || interviewDate >= startDate;
-                    const matchesEnd = !endDate || interviewDate <= endDate;
-                    const isVisible = matchesJob && matchesStart && matchesEnd;
-
-                    item.style.display = isVisible ? "block" : "none";
-
-                    if (isVisible) {
-                        visibleCount += 1;
-                    }
-                });
-
-                if (interviewEmptyState) {
-                    interviewEmptyState.hidden = visibleCount !== 0;
-                }
-            };
-
-            interviewFilter.addEventListener("change", applyInterviewFilters);
-            interviewStartDate?.addEventListener("change", applyInterviewFilters);
-            interviewEndDate?.addEventListener("change", applyInterviewFilters);
-            applyInterviewFilters();
-        }
+        });
     });
 </script>
 
 
 <script>
-//navigating to the payment gateway
-document.getElementById("payBtn")?.addEventListener("click", () => {
-    window.location.href = "paymentGateway";
-});
+    //navigating to the payment gateway
+    document.getElementById("payBtn")?.addEventListener("click", () => {
+        window.location.href = "paymentGateway";
+    });
 </script>

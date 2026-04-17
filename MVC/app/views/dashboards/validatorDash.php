@@ -15,18 +15,8 @@
             <button type="submit" class="clear-messages-btn">Clear All</button>
         </form>
         <div class="msg-tabs" role="tablist">
-            <button class="msg-tab active" data-tab="messages" type="button">
-                Messages
-                <?php if (!empty($messageCount)): ?>
-                    <span class="tab-badge"><?= $messageCount ?></span>
-                <?php endif; ?>
-            </button>
-            <button class="msg-tab" data-tab="alerts" type="button">
-                Alerts
-                <?php if (!empty($alertCount)): ?>
-                    <span class="tab-badge"><?= $alertCount ?></span>
-                <?php endif; ?>
-            </button>
+            <button class="msg-tab active" data-tab="messages" type="button">Messages</button>
+            <button class="msg-tab" data-tab="alerts" type="button">Alerts</button>
         </div>
     </div>
 

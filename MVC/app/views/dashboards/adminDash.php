@@ -34,7 +34,7 @@
         <div class="message_section" data-section="messages" style="display: none;">
         </div>
         <?php
-            $alertItems = $data['alertMessages'] ?? $data['sysAlerts'] ?? [];
+        $alertItems = $data['alertMessages'] ?? $data['sysAlerts'] ?? [];
         ?>
         <?php if (!empty($alertItems)): ?>
             <ul class="message_list" data-section="alerts" style="flex: 0 1 auto;">
@@ -62,8 +62,8 @@
         <div class="message_empty_state" data-section="empty" style="display: none;">
             <div class="envelope">
                 <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
+                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
                 </svg>
             </div>
             <h2>All caught up!</h2>
@@ -239,22 +239,28 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <h3>User Feedback</h3>
     <div class="scrollBox">
         <?php
-        for ($x = 0; $x <= 10; $x++) {
+        // Ensure $feedbacks is always an array
+        $feedbacks = !empty($data['feedbacks']) && is_array($data['feedbacks']) ? $data['feedbacks'] : [];
         ?>
-            <div class="listItem">
-                <div class="itemContent">
-                    <div class="title">User ID: 1414</div>
-                    <div class="title">User Name: Anuk Thotawatta</div>
-                    <div class="description">
-                        THE DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+
+        <?php if (!empty($feedbacks)): ?>
+            <?php foreach ($feedbacks as $f): ?>
+                <div class="listItem">
+                    <div class="itemContent">
+                        <div class="title">Name: <?= htmlspecialchars($f->name); ?></div>
+                        <div class="title">Email: <?= htmlspecialchars($f->email); ?></div>
+                        <div class="description"><?= htmlspecialchars($f->message); ?></div>
+                        <div class="deleteLink">
+                            <a href="?delete_id=<?= $f->id ?>" onclick="return confirm('Are you sure you want to delete this message?')">
+                                Delete
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php
-        }
-        ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="itemsEmpty">No feedback yet</p>
+        <?php endif; ?>
     </div>
 </div>
 
@@ -283,8 +289,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                     <form method="POST">
                         <input type="hidden" name="action" value="validateCompany">
                         <input type="hidden" name="company_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this company?');">Deny Access</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this company?');">Remove Company Account</button>
                     </form>
                 </div>
             <?php endforeach; ?>
@@ -317,7 +322,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                     <form method="POST">
                         <input type="hidden" name="action" value="validateCandidate">
                         <input type="hidden" name="candidate_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this candidate?');">Remove Account</button>
+                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this candidate?');">Remove Candidate Account</button>
                     </form>
                 </div>
             <?php endforeach; ?>
@@ -347,12 +352,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         <label>Contact No: </label>
                         <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
                     </div>
-                    <form method="POST">
-                        <input type="hidden" name="action" value="validateCounselor">
-                        <input type="hidden" name="counselor_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this counselor?');">Deny Access</button>
-                    </form>
+                    <div class="action_btns">
+                        <?php if ($val->status === 'active'): ?>
+                            <button class="denyBtn toggleAccessBtn" data-id="<?= $val->user_id ?>" data-action="validateCounselor" data-current="active">Revoke Access</button>
+                        <?php else: ?>
+                            <button class="acceptBtn toggleAccessBtn" data-id="<?= $val->user_id ?>" data-action="validateCounselor" data-current="pending">Grant Access</button>
+                        <?php endif; ?>
+                        <button class="denyBtn removeUserBtn" data-id="<?= $val->user_id ?>" data-action="validateCounselor">Remove Counselor Account</button>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -381,12 +388,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         <label>Contact No: </label>
                         <div class="details"><?= htmlspecialchars($val->contactNo); ?></div>
                     </div>
-                    <form method="POST">
-                        <input type="hidden" name="action" value="validateValidator">
-                        <input type="hidden" name="validator_id" value="<?= $val->user_id ?>">
-                        <button type="submit" class="acceptBtn" name="grant" value="grant">Grant Access</button>
-                        <button type="submit" class="denyBtn" name="deny" value="deny" onclick="return confirm('Are you sure you want to deny and delete this validator?');">Deny Access</button>
-                    </form>
+                    <div class="action_btns">
+                        <?php if ($val->status === 'active'): ?>
+                            <button class="denyBtn toggleAccessBtn" data-id="<?= $val->user_id ?>" data-action="validateValidator" data-current="active">Revoke Access</button>
+                        <?php else: ?>
+                            <button class="acceptBtn toggleAccessBtn" data-id="<?= $val->user_id ?>" data-action="validateValidator" data-current="pending">Grant Access</button>
+                        <?php endif; ?>
+                        <button class="denyBtn removeUserBtn" data-id="<?= $val->user_id ?>" data-action="validateValidator">Remove Validator Account</button>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -409,13 +418,29 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 
 <div class="sbContainer">
     <h3>View Monthly Reports</h3>
-    <div class="scrollBox">
-        <?php
-        $oldReportDetails = $data['oldReportDetails'];
-        ?>
+    <div class="reportFilter">
+        <label for="reportFilter">Filter by Year:</label>
+        <select id="reportFilter">
+            <option value="all">All</option>
+            <?php
+            // extract unique years from existing reports
+            $years = [];
+            foreach ($oldReportDetails as $report) {
+                $year = date('Y', strtotime($report->generated_at));
+                if (!in_array($year, $years)) {
+                    $years[] = $year;
+                }
+            }
+            rsort($years); // newest year first
+            foreach ($years as $year): ?>
+                <option value="<?= $year ?>"><?= $year ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="scrollBox" id="reportsScrollBox">
         <?php if (!empty($oldReportDetails)): ?>
             <?php foreach ($oldReportDetails as $report): ?>
-                <div class="listItem">
+                <div class="listItem" data-year="<?= date('Y', strtotime($report->generated_at)) ?>">
                     <div class="itemContent">
                         <div class="title">
                             <?= htmlspecialchars($report->report_month_name) ?>
@@ -424,7 +449,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                             Generated on: <?= date('Y-m-d', strtotime($report->generated_at)) ?>
                         </div>
                         <div class="description">
-                            <a href="adminReport ? report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
+                            <a href="adminReport?report_id=<?= $report->report_id ?>" target="_blank">Click to view / download report</a>
                         </div>
                     </div>
                 </div>
@@ -433,7 +458,6 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
             <p class="itemsEmpty">No Reports available yet</p>
         <?php endif; ?>
     </div>
-
 </div>
 
 <script>
@@ -576,4 +600,3 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         }
     });
 </script>
-
