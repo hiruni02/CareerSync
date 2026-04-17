@@ -112,6 +112,7 @@ if ($isSchedulingMeeting) {
 
     $meetingModel = new Consultation();
     $meeting_id = $meetingModel->createMeeting([
+        'request_id'   => $reqRecord->request_id,
         'candidate_id' => $candidate_id,
         'counselor_id' => $counselor_id,
         'mode'          => $mode,

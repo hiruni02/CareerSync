@@ -68,7 +68,7 @@ class register
                             Mailer::sendTestMail($_POST['email']);
 
                             $this->addWelcomeMessage($newUser->user_id, 'validator');
-                            SystemLogger::log('VALIDATOR_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
+                            SystemLogger::log('VALIDATOR_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
 
                             redirect('login');
                             exit;
@@ -116,7 +116,7 @@ class register
                             Mailer::sendTestMail($_POST['email']);
 
                             $this->addWelcomeMessage($newUser->user_id, 'company');
-                            SystemLogger::log('COMPANY_REGISTERED','('.$newUser->user_id.')'.$_POST['companyName'].' registered');
+                            SystemLogger::log('COMPANY_REGISTERED', '(' . $newUser->user_id . ')' . $_POST['companyName'] . ' registered');
 
                             redirect('login');
                             exit;
@@ -161,7 +161,7 @@ class register
                             Mailer::sendTestMail($_POST['email']);
 
                             $this->addWelcomeMessage($newUser->user_id, 'counselor');
-                            SystemLogger::log('COUNSELOR_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
+                            SystemLogger::log('COUNSELOR_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
 
                             redirect('login');
                             exit;
@@ -177,36 +177,42 @@ class register
                         $filename = time() . '_' . basename($_FILES['candidate_photo_path']['name']);
                         $photo_target = $upload_path . $filename;
 
-                        if (move_uploaded_file($_FILES['candidate_photo_path']['tmp_name'], $photo_target)) {
-
-                            $user->insert($userTableData);
-                            $newUser = $user->first(['email' => $_POST['email']]);
-
-                            $candidateData = [
-                                'user_id'              => $newUser->user_id,
-                                'firstName'            => $_POST['firstName'],
-                                'lastName'             => $_POST['lastName'],
-                                'DOB'                  => $_POST['dob'],
-                                'address'              => $_POST['address'],
-                                'contactNo'            => $_POST['contactNo'],
-                                'candidate_photo_path' => $photo_target,
-                            ];
-
-                            $candidate->insert($candidateData);
-                            $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
-                            require_once __DIR__ . '/../core/Mailer.php';
-                            Mailer::sendTestMail($_POST['email']);
-
-                            $this->addWelcomeMessage($newUser->user_id, 'candidate');
-                            SystemLogger::log('CANDIDATE_REGISTERED','('.$newUser->user_id.')'.$fullName.' registered');
-
-                            redirect('login');
-                            exit;
+                        $now = new DateTime();
+                        $dob = DateTime::createFromFormat('Y-m-d', $_POST['dob']);
+                        if (!$dob || $dob > $now) {
+                            $user->errors['dob'] = "Please enter a valid Birth date";
                         } else {
-                            $user->errors['candidate_photo_path'] = "Failed to upload profile picture";
-                        }
+                            if (move_uploaded_file($_FILES['candidate_photo_path']['tmp_name'], $photo_target)) {
 
-                        break;
+                                $user->insert($userTableData);
+                                $newUser = $user->first(['email' => $_POST['email']]);
+
+                                $candidateData = [
+                                    'user_id'              => $newUser->user_id,
+                                    'firstName'            => $_POST['firstName'],
+                                    'lastName'             => $_POST['lastName'],
+                                    'DOB'                  => $_POST['dob'],
+                                    'address'              => $_POST['address'],
+                                    'contactNo'            => $_POST['contactNo'],
+                                    'candidate_photo_path' => $photo_target,
+                                ];
+
+                                $candidate->insert($candidateData);
+                                $fullName = $_POST['firstName'] . " " . $_POST['lastName'];
+                                require_once __DIR__ . '/../core/Mailer.php';
+                                Mailer::sendTestMail($_POST['email']);
+
+                                $this->addWelcomeMessage($newUser->user_id, 'candidate');
+                                SystemLogger::log('CANDIDATE_REGISTERED', '(' . $newUser->user_id . ')' . $fullName . ' registered');
+
+                                redirect('login');
+                                exit;
+                            } else {
+                                $user->errors['candidate_photo_path'] = "Failed to upload profile picture";
+                            }
+
+                            break;
+                        }
                 }
             }
             // Send errors to the view

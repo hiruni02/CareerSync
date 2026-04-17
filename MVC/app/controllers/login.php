@@ -84,7 +84,7 @@ class login
                     $_SESSION['login_attempts']++;
                     SystemLogger::log('LOGIN_FAILED', 'Invalid credentials');
 
-                    if ($_SESSION['login_attempts'] >= 3) {
+                    if ($_SESSION['login_attempts'] >= 4) {
                         $_SESSION['lockout_until'] = time() + 30; //time that the guest user is locked out
                         $_SESSION['login_attempts'] = 0;
 

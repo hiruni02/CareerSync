@@ -68,8 +68,12 @@
             placeholder="Date of Birth"
             name="dob"
             required
-            value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>">
+            value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>"
+            style="<?= !empty($errors['dob']) ? 'border: 2px solid red;' : '' ?>">
     </div>
+    <?php if (!empty($errors['dob'])): ?>
+        <div style="color:red;" class="error"><?= $errors['dob'] ?></div>
+    <?php endif; ?>
 
     <div class="input-field">
         <label for="address"><span style="color:red;">*</span> Residential Address</label>
