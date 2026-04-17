@@ -27,6 +27,9 @@ $messageModel = new Message();
 $companyId = $_SESSION['USER']->user_id ?? null;
 $data['messages'] = $companyId ? $messageModel->getByReceiver($companyId, 'company') : [];
 
+$subscription = new Subscription;
+$data['subscribers'] = $companyId ? $subscription->getSubscribersByCompany($companyId) : [];
+
 $photoPath = null;
 $certificatePath = $data['companyTable']->business_certificate ?? null;
 
@@ -34,6 +37,7 @@ $isPostingJob = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === '
 $isExtendingDeadline = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'postedJobActions' && $_POST['btn'] === 'Extend Deadline');
 $isDeletingJob = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'postedJobActions' && $_POST['btn'] === 'Delete');
 $isSchedulingInterview = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'company_scheduler');
+$isSendingAnnouncement = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'send_announcement');
 
 if ($isProfileUpdate) {
     $errors = [];
@@ -245,4 +249,36 @@ if ($isSchedulingInterview) {
             $_SESSION['error'] = "Please fill in all required fields.";
         }
     }
+}
+
+if ($isSendingAnnouncement) {
+    $announcementMessage = trim($_POST['announcement_message'] ?? '');
+    $subscribers = $companyId ? $subscription->getSubscribersByCompany($companyId) : [];
+
+    if ($announcementMessage === '') {
+        $_SESSION['error'] = 'Please write an announcement first.';
+        redirect('dashboard/companyDash');
+        exit;
+    }
+
+    if (empty($subscribers)) {
+        $_SESSION['error'] = 'There are no subscribed candidates to notify yet.';
+        redirect('dashboard/companyDash');
+        exit;
+    }
+
+    $companyName = $data['companyTable']->companyName ?? 'Your company';
+
+    foreach ($subscribers as $subscriber) {
+        $messageModel->insert([
+            'receiver_id' => $subscriber->candidate_id,
+            'receiver_type' => 'candidate',
+            'content' => "Announcement from {$companyName}: {$announcementMessage}",
+            'is_read' => 0
+        ]);
+    }
+
+    $_SESSION['success'] = 'Announcement sent to all subscribed candidates.';
+    redirect('dashboard/companyDash');
+    exit;
 }

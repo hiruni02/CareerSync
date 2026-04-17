@@ -40,6 +40,7 @@ class Interview
 
     public function createInterview($data, $slots)
     {
+        $data['dateConfirmed'] = 'confirmed';
         $this->insert($data);
 
         $result = $this->query(
@@ -105,6 +106,7 @@ class Interview
     public function getInterviewsByCompany($company_id)
     {
         $query = "SELECT 
+                interviews.job_id,
                 jobPost.posTitle,
                 CONCAT(candidate.firstName, ' ', candidate.lastName) AS candidateName,
                 MIN(interview_slots.slot_datetime) AS slot_datetime,
@@ -122,7 +124,6 @@ class Interview
                 ON interviews.candidate_id = cvTable.candidate_id
                 AND interviews.job_id = cvTable.job_id
                 WHERE interviews.company_id = ?
-                AND interviews.dateConfirmed = 'confirmed'
                 GROUP BY interviews.interview_id
                 ORDER BY slot_datetime ASC";
 

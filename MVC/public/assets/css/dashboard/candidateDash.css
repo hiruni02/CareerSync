@@ -65,6 +65,161 @@
     z-index: 1;
 }
 
+.subscription_section {
+    margin-top: 20px;
+}
+
+.subscriptionBox {
+    padding-bottom: 16px;
+}
+
+.subscription_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.subscription_count {
+    min-width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primaryBlueLight);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: var(--shadowSoft);
+}
+
+.subscriptionScroll {
+    max-height: 320px;
+}
+
+.subscription_list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.subscription_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: var(--white);
+    border: 3px solid var(--accentBlue);
+    transition: 0.2s ease;
+}
+
+.subscription_item:hover {
+    transform: scale(1.01);
+    box-shadow: var(--shadowSoft);
+    z-index: 2;
+}
+
+.subscription-company {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.subscription-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 2px solid var(--lightBlue);
+    flex: 0 0 auto;
+}
+
+.subscription-meta {
+    min-width: 0;
+}
+
+.subscription-meta h3 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    color: var(--textDark);
+}
+
+.subscription-meta p {
+    margin: 0;
+    color: var(--textDark);
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.company_status_tag {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--textDark);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.company_status_tag.pending {
+    background: rgba(240, 173, 78, 0.18);
+}
+
+.company_status_tag.approved {
+    background: rgba(92, 184, 92, 0.18);
+}
+
+.company_status_tag.active {
+    border: 1px solid rgba(46, 107, 231, 0.18);
+}
+
+.company_status_tag.inactive {
+    background: rgba(217, 83, 79, 0.14);
+}
+
+.subscription_form {
+    flex: 0 0 auto;
+    width: auto;
+    display: inline-flex;
+}
+
+.subscribeBtn,
+.unsubscribeBtn {
+    border: none;
+    border-radius: 12px;
+    padding: 12px 18px;
+    width: auto;
+    color: var(--white);
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s ease;
+    min-width: 130px;
+}
+
+.subscribeBtn {
+    background: var(--green_gradient);
+}
+
+.unsubscribeBtn {
+    background: var(--primaryBlueLight);
+}
+
+.subscribeBtn:hover,
+.unsubscribeBtn:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadowSoft);
+}
+
 .scrollBox {
     max-height: 260px;
     overflow-x: hidden;
@@ -317,6 +472,29 @@
         font-weight: bold;
         font-family: "merriweather";
         padding-bottom: 10px;
+    }
+
+    .subscription_header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .subscription_item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .subscription-company {
+        width: 100%;
+    }
+
+    .subscription_form {
+        width: 100%;
+    }
+
+    .subscribeBtn,
+    .unsubscribeBtn {
+        width: 100%;
     }
 
     .interview-section {

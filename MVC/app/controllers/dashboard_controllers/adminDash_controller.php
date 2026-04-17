@@ -14,6 +14,8 @@ $data['counselors'] = $admin->getCounselorDetails();
 $data['companies'] = $admin->getCompanyDetails();
 $data['sysAlerts'] = $admin->getSysAlerts();
 
+require_once __DIR__ . '/../../models/ContactModel.php';
+
 //for charts
 $data['monthlyRegistrations'] = $admin->getMonthlyRegistrations(6);
 $data['roleDistribution'] = $admin->getUserRoleDistribution();
@@ -23,8 +25,6 @@ $data['feedbacks'] = $feedbackModel->SelectAll();
 $reports = new AdminReportDetails;
 $reports->generateMonthlyReportIfMissing($_SESSION['USER']->user_id);
 $data['oldReportDetails'] = $reports->selectOldReports();
-
-require_once __DIR__ . '/../../models/ContactModel.php';
 
 
 // Handle delete

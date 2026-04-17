@@ -76,7 +76,7 @@
     margin-bottom: 10px;
 }
 
-form {
+.scheduler_window form {
     width: 100%;
     display: flex;
     flex-direction: column;

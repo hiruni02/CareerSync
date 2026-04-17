@@ -15,8 +15,18 @@
             <button type="submit" class="clear-messages-btn">Clear All</button>
         </form>
         <div class="msg-tabs" role="tablist">
-            <button class="msg-tab active" data-tab="messages" type="button">Messages</button>
-            <button class="msg-tab" data-tab="alerts" type="button">Alerts</button>
+            <button class="msg-tab active" data-tab="messages" type="button">
+                Messages
+                <?php if (!empty($messageCount)): ?>
+                    <span class="tab-badge"><?= $messageCount ?></span>
+                <?php endif; ?>
+            </button>
+            <button class="msg-tab" data-tab="alerts" type="button">
+                Alerts
+                <?php if (!empty($alertCount)): ?>
+                    <span class="tab-badge"><?= $alertCount ?></span>
+                <?php endif; ?>
+            </button>
         </div>
     </div>
 
@@ -99,6 +109,22 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/companyProfile.php");
         }
     ?>
     
+</div>
+
+<div class="announcement_box">
+    <div class="announcement_head">
+        <div>
+            <h3>Subscriber Announcements</h3>
+            <p>Send a message to every candidate subscribed to your company.</p>
+        </div>
+        <span class="announcement_count"><?= count((array)($data['subscribers'] ?? [])) ?> subscribers</span>
+    </div>
+
+    <form method="POST" class="announcement_form">
+        <input type="hidden" name="action" value="send_announcement">
+        <textarea name="announcement_message" rows="3" placeholder="Write your announcement here..."></textarea>
+        <button type="submit" class="announcement_btn">Send Announcement</button>
+    </form>
 </div>
 
 <?php
@@ -206,11 +232,27 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
 <div class="content-wrapper">
     <div class="content_section">
         <h3>Upcoming interviews</h3>
+        <div class="filter">
+            <label for="interviewJobFilter">Filter jobs:</label>
+            <select id="interviewJobFilter">
+                <option value="all">All</option>
+                <?php foreach ($postedJobs as $pj): ?>
+                    <option value="<?= $pj->job_id ?>"><?= htmlspecialchars($pj->posTitle) ?></option>
+                <?php endforeach; ?>
+            </select>
+            <label for="interviewStartDate">From:</label>
+            <input type="date" id="interviewStartDate">
+            <label for="interviewEndDate">To:</label>
+            <input type="date" id="interviewEndDate">
+        </div>
         <div class="scScrollbox">
             <?php $confirmedInterviews = $data['confirmedInterviews'] ?? []; ?>
             <?php if (!empty($confirmedInterviews)): ?>
                 <?php foreach ($confirmedInterviews as $iv): ?>
-                    <div class="listItem">
+                    <div
+                        class="listItem"
+                        data-job-id="<?= htmlspecialchars($iv->job_id) ?>"
+                        data-interview-date="<?= htmlspecialchars(date('Y-m-d', strtotime($iv->slot_datetime))) ?>">
                         <div class="li-row">
                             <span class="li-label">Position:</span>
                             <span class="li-value"><?= htmlspecialchars($iv->posTitle) ?></span>
@@ -242,6 +284,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
             <?php else: ?>
                 <p class="itemsEmpty">No upcoming interviews scheduled.</p>
             <?php endif; ?>
+            <p class="itemsEmpty filterEmptyState" id="interviewFilterEmptyState" hidden>No interviews found for the selected date range.</p>
         </div>
     </div>
 </div>
@@ -339,23 +382,62 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/companySideSchedule
     document.addEventListener("DOMContentLoaded", () => {
         const filter = document.getElementById("jobFilter");
         const appliedSection = document.getElementById("appliedCandidatesSection");
+        const interviewFilter = document.getElementById("interviewJobFilter");
+        const interviewStartDate = document.getElementById("interviewStartDate");
+        const interviewEndDate = document.getElementById("interviewEndDate");
+        const upcomingSection = document.querySelector(".content-wrapper .content_section");
+        const interviewEmptyState = document.getElementById("interviewFilterEmptyState");
 
-        if (!filter || !appliedSection) return;
+        if (filter && appliedSection) {
+            const items = appliedSection.querySelectorAll(".listItem");
 
-        const items = appliedSection.querySelectorAll(".listItem");
+            filter.addEventListener("change", () => {
+                const selectedJob = filter.value;
 
-        filter.addEventListener("change", () => {
-            const selectedJob = filter.value;
+                items.forEach(item => {
+                    const jobId = item.dataset.jobId;
 
-            items.forEach(item => {
-                const jobId = item.dataset.jobId;
-
-                item.style.display =
-                    selectedJob === "all" || jobId === selectedJob ?
-                    "block" :
-                    "none";
+                    item.style.display =
+                        selectedJob === "all" || jobId === selectedJob ?
+                        "block" :
+                        "none";
+                });
             });
-        });
+        }
+
+        if (interviewFilter && upcomingSection) {
+            const items = upcomingSection.querySelectorAll(".listItem[data-job-id]");
+            const applyInterviewFilters = () => {
+                const selectedJob = interviewFilter.value;
+                const startDate = interviewStartDate?.value || "";
+                const endDate = interviewEndDate?.value || "";
+                let visibleCount = 0;
+
+                items.forEach(item => {
+                    const jobId = item.dataset.jobId;
+                    const interviewDate = item.dataset.interviewDate || "";
+                    const matchesJob = selectedJob === "all" || jobId === selectedJob;
+                    const matchesStart = !startDate || interviewDate >= startDate;
+                    const matchesEnd = !endDate || interviewDate <= endDate;
+                    const isVisible = matchesJob && matchesStart && matchesEnd;
+
+                    item.style.display = isVisible ? "block" : "none";
+
+                    if (isVisible) {
+                        visibleCount += 1;
+                    }
+                });
+
+                if (interviewEmptyState) {
+                    interviewEmptyState.hidden = visibleCount !== 0;
+                }
+            };
+
+            interviewFilter.addEventListener("change", applyInterviewFilters);
+            interviewStartDate?.addEventListener("change", applyInterviewFilters);
+            interviewEndDate?.addEventListener("change", applyInterviewFilters);
+            applyInterviewFilters();
+        }
     });
 </script>
 

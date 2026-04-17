@@ -22,6 +22,10 @@ $data['counselors'] = $counselors->SelectAll();
 $bookmarks = new Bookmark;
 $data['myBM'] = $bookmarks->getMyBookmarks($_SESSION['USER']->user_id);
 
+$subscription = new Subscription;
+$data['subscriptionCompanies'] = $subscription->getCompaniesForCandidate($_SESSION['USER']->user_id);
+$data['candidateSubscriptions'] = $subscription->getCandidateSubscriptions($_SESSION['USER']->user_id);
+
 $consultation = new Consultation;
 $data['consultation'] = $consultation->getConsultationDetails($_SESSION['USER']->user_id);
 $data['consultationMeeting'] = [
@@ -36,6 +40,7 @@ $data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCand
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
 $requestMeetingWithCounselor = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'send_meeting_request');
 $isConfirmingConsultationDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_consultation_scheduler');
+$isSubscriptionAction = ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'subscription_action');
 
 
 //code for updating user profile 
@@ -145,6 +150,22 @@ if ($requestMeetingWithCounselor) {
             'receiver_type' => 'counselor',
             'content' => "New meeting request from " . trim($_SESSION['USER']->firstName . ' ' . $_SESSION['USER']->lastName) . ".",
         ]);
+    }
+
+    redirect('dashboard');
+    exit;
+}
+
+if ($isSubscriptionAction) {
+    $companyId = $_POST['company_id'] ?? null;
+    $subscriptionAction = $_POST['subscription_action'] ?? '';
+
+    if ($companyId) {
+        if ($subscriptionAction === 'subscribe') {
+            $subscription->subscribe($_SESSION['USER']->user_id, $companyId);
+        } elseif ($subscriptionAction === 'unsubscribe') {
+            $subscription->unsubscribe($_SESSION['USER']->user_id, $companyId);
+        }
     }
 
     redirect('dashboard');

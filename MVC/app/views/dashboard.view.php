@@ -11,6 +11,10 @@
     <div class="page-wrapper">
         <?php
         include("components/navbar.php");
+        $messageCount = count(array_filter((array)($data['messages'] ?? []), fn($msg) => is_object($msg) && isset($msg->is_read) && !$msg->is_read));
+        $alertCount = count(array_filter((array)($data['alerts'] ?? []), fn($alert) => is_object($alert) && isset($alert->is_read) && !$alert->is_read));
+        $sysAlertCount = count(array_filter((array)($data['sysAlerts'] ?? []), fn($alert) => is_object($alert) && isset($alert->action) && $alert->action === 'ALERT'));
+        $notificationCount = $messageCount + $alertCount + $sysAlertCount;
         ?>
         <div class="page-content">
             <div class="settings_btn" onclick="toggleSettings()">
@@ -18,6 +22,9 @@
             </div>
             <div class="messages_btn" onclick="toggleMessages()">
                 <img src="<?= ROOT ?>assets/images/messages_icon.png" alt="messages_btn">
+                <?php if ($notificationCount > 0): ?>
+                    <span class="notification_badge" id="dashboard_notifications_badge"><?= $notificationCount ?></span>
+                <?php endif; ?>
             </div>
             <?php
             switch ($_SESSION['USER']->role) {
@@ -164,11 +171,25 @@
                 const sections = menu.querySelectorAll('[data-section]');
 
                 function showSection(name) {
+                    // Check if the target section has a <ul> with items
+                    let hasContent = false;
+                    sections.forEach(s => {
+                        const v = s.getAttribute('data-section');
+                        if (v === name && s.tagName.toLowerCase() === 'ul') {
+                            hasContent = true;
+                        }
+                    });
+
                     sections.forEach(s => {
                         const v = s.getAttribute('data-section');
                         if (!v) return;
-                        const shouldShow = (v === name || v === 'empty');
-                        s.style.display = shouldShow ? (s.tagName.toLowerCase() === 'ul' ? 'flex' : 'flex') : 'none';
+                        let shouldShow = false;
+                        if (v === name) {
+                            shouldShow = true;
+                        } else if (v === 'empty' && !hasContent) {
+                            shouldShow = true;
+                        }
+                        s.style.display = shouldShow ? 'flex' : 'none';
                     });
                 }
 
