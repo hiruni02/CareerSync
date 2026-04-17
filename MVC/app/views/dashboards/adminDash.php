@@ -34,7 +34,7 @@
         <div class="message_section" data-section="messages" style="display: none;">
         </div>
         <?php
-            $alertItems = $data['alertMessages'] ?? $data['sysAlerts'] ?? [];
+        $alertItems = $data['alertMessages'] ?? $data['sysAlerts'] ?? [];
         ?>
         <?php if (!empty($alertItems)): ?>
             <ul class="message_list" data-section="alerts" style="flex: 0 1 auto;">
@@ -62,8 +62,8 @@
         <div class="message_empty_state" data-section="empty" style="display: none;">
             <div class="envelope">
                 <svg width="80" height="60" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
-                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8"/>
+                    <path d="M1 3.5C1 2.119 2.119 1 3.5 1h17C21.881 1 23 2.119 23 3.5v11c0 1.381-1.119 2.5-2.5 2.5h-17C2.119 17 1 15.881 1 14.5v-11z" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
+                    <path d="M2 3.5L12 10l10-6.5" stroke="rgba(255,255,255,0.9)" stroke-width="0.8" />
                 </svg>
             </div>
             <h2>All caught up!</h2>
@@ -239,22 +239,28 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     <h3>User Feedback</h3>
     <div class="scrollBox">
         <?php
-        for ($x = 0; $x <= 10; $x++) {
+        // Ensure $feedbacks is always an array
+        $feedbacks = !empty($data['feedbacks']) && is_array($data['feedbacks']) ? $data['feedbacks'] : [];
         ?>
-            <div class="listItem">
-                <div class="itemContent">
-                    <div class="title">User ID: 1414</div>
-                    <div class="title">User Name: Anuk Thotawatta</div>
-                    <div class="description">
-                        THE DESCRIPTION GOES HERE.
-                        YOU MUST FETCH THIS DESCRIPTION FROM THE DATABASE
-                        AND MAKE IT APPEAR HERE. SAME GOES FOR THE TITLE
+
+        <?php if (!empty($feedbacks)): ?>
+            <?php foreach ($feedbacks as $f): ?>
+                <div class="listItem">
+                    <div class="itemContent">
+                        <div class="title">Name: <?= htmlspecialchars($f->name); ?></div>
+                        <div class="title">Email: <?= htmlspecialchars($f->email); ?></div>
+                        <div class="description"><?= htmlspecialchars($f->message); ?></div>
+                        <div class="deleteLink">
+                            <a href="?delete_id=<?= $f->id ?>" onclick="return confirm('Are you sure you want to delete this message?')">
+                                Delete
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php
-        }
-        ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="itemsEmpty">No feedback yet</p>
+        <?php endif; ?>
     </div>
 </div>
 
@@ -576,4 +582,3 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
         }
     });
 </script>
-
