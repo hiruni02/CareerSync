@@ -54,7 +54,7 @@
     height: fit-content;
     width: fit-content;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     transition: 0.2s ease;
     padding-left: 5px;
     padding-right: 5px;
@@ -67,6 +67,7 @@
 
 .subscription_section {
     margin-top: 20px;
+    width: 50%;
 }
 
 .subscriptionBox {
@@ -350,7 +351,7 @@
     background-color: var(--formBlue);
     width: 100%;
     border-radius: 10px;
-    max-height: 500px;
+    max-height: 300px;
 }
 
 .interview-scrollbox::-webkit-scrollbar {

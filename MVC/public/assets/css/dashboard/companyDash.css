@@ -86,7 +86,7 @@
   padding-right: 5px;
   margin-left: 20px;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   transition: 0.2s ease;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .announcement_box {
-  width: 100%;
+  width: 50%;
   background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.25));
   border: 1px solid rgba(255,255,255,0.45);
   border-radius: 18px;

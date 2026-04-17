@@ -16,18 +16,8 @@
             <button type="submit" class="clear-messages-btn">Clear All</button>
         </form>
         <div class="msg-tabs" role="tablist">
-            <button class="msg-tab active" data-tab="messages" type="button">
-                Messages
-                <?php if (!empty($messageCount)): ?>
-                    <span class="tab-badge"><?= $messageCount ?></span>
-                <?php endif; ?>
-            </button>
-            <button class="msg-tab" data-tab="alerts" type="button">
-                Alerts
-                <?php if (!empty($alertCount)): ?>
-                    <span class="tab-badge"><?= $alertCount ?></span>
-                <?php endif; ?>
-            </button>
+            <button class="msg-tab active" data-tab="messages" type="button">Messages</button>
+            <button class="msg-tab" data-tab="alerts" type="button">Alerts</button>
         </div>
     </div>
 
@@ -98,8 +88,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
     <label>Unsure about your next step?<br> Reach out to one of our counselors for personalized guidance.</label>
     <button id="select_counselor">Contact a Counselor</button>
 </div>
-
-<div class="upcoming_section subscription_section">
+<div class="subscription_section">
     <div class="content_section">
         <div class='scrollBoxContainer subscriptionBox'>
             <div class="subscription_header">
@@ -114,8 +103,7 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
                                 <div class="subscription-company">
                                     <img class="subscription-logo" src="<?= ROOT . htmlspecialchars($companyRow->company_photo_path) ?>" alt="<?= htmlspecialchars($companyRow->companyName) ?> logo">
                                     <div class="subscription-meta">
-                                        <h3><?= htmlspecialchars($companyRow->companyName) ?></h3>
-                                        <p><?= htmlspecialchars(trim($companyRow->hr_firstName . ' ' . $companyRow->hr_lastName)) ?></p>
+                                        <h2><?= htmlspecialchars($companyRow->companyName) ?></h2>
                                         <span class="company_status_tag <?= htmlspecialchars($companyRow->validator_approval) ?> <?= htmlspecialchars($companyRow->payment_status) ?>">
                                             <?= htmlspecialchars(ucfirst($companyRow->validator_approval)) ?> / <?= htmlspecialchars(ucfirst($companyRow->payment_status)) ?>
                                         </span>
