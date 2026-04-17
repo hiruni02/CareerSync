@@ -3,29 +3,21 @@
 <div class="interview_scheduler_bg">
     <div class="scheduler_window">
         <h1>Schedule Interview</h1>
-
         <form method="POST">
             <input type="hidden" name="action" value="candidate_scheduler">
+
             <div class="interview-details">
-                <?php
-                $interData = $data['interview']['interviewData'];
-                ?>
-                <p><strong>Mode:</strong><?= htmlspecialchars($interData->mode) ?></p>
-                <p><strong>Address/Link:</strong> <?= htmlspecialchars($interData->address_link) ?></p>
-                <p><strong>Extra Details:</strong> <?= htmlspecialchars($interData->extra_details) ?></p>
+                <p><strong>Mode:</strong> <span id="modal_mode"></span></p>
+                <p><strong>Address/Link:</strong> <span id="modal_link"></span></p>
+                <p><strong>Extra Details:</strong> <span id="modal_details"></span></p>
             </div>
 
-            <input type="hidden" name="interview_id" value="<?= $interData->interview_id ?>">
+            <input type="hidden" name="interview_id" id="modal_interview_id">
 
             <div class="input-field">
                 <label for="selected_date">Pick a comfortable date:</label>
                 <select name="selected_date" id="selected_date" required>
                     <option value="" disabled selected hidden>Select a date</option>
-                    <?php
-                    foreach ($data['interview']['slots'] as $slot) {
-                        echo "<option value='{$slot->slot_datetime}'>" . date("F j, Y - g:i A", strtotime($slot->slot_datetime)) . "</option>";
-                    }
-                    ?>
                 </select>
             </div>
 

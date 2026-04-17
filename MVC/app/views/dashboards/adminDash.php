@@ -99,8 +99,106 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
     </div>
     <div class="box_segment">
         New Feedback forms: <br>
-        <h1>2</h1>
+        <?php
+        // Ensure countable
+        $feedbacks = $data['feedbacks'] ?? [];
+        if ($feedbacks === false || !is_array($feedbacks)) $feedbacks = [];
+        ?>
+        <h1><?= count($feedbacks); ?></h1>
     </div>
+</div>
+
+<div class="charts">
+    <div class="barChart">
+        <canvas id="barChart"></canvas>
+    </div>
+    <div class="pieChart">
+        <canvas id="pieChart"></canvas>
+    </div>
+    <?php
+    $chartLabels = [];
+    $chartCounts = [];
+    foreach ($data['monthlyRegistrations'] as $row) {
+        $chartLabels[] = date('M Y', strtotime($row->month . '-01'));
+        $chartCounts[] = $row->count;
+    }
+    ?>
+    <?php
+    $pieLabels = [];
+    $pieCounts = [];
+    foreach ($data['roleDistribution'] as $row) {
+        $pieLabels[] = ucfirst($row->role);
+        $pieCounts[] = $row->count;
+    }
+    ?>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('barChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($chartLabels) ?>,
+                datasets: [{
+                    label: 'New Users Registered',
+                    data: <?= json_encode($chartCounts) ?>,
+                    backgroundColor: 'rgba(15, 67, 180, 0.6)',
+                    borderColor: 'rgb(0, 0, 0)',
+                    borderWidth: 1,
+                    barPercentage: 0.4,
+                    categoryPercentage: 0.5
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        const pieCtx = document.getElementById('pieChart');
+
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: <?= json_encode($pieLabels) ?>,
+                datasets: [{
+                    data: <?= json_encode($pieCounts) ?>,
+                    backgroundColor: [
+                        'rgba(15, 67, 180, 0.7)',
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(255, 205, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)'
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const pct = ((context.parsed / total) * 100).toFixed(1);
+                                return `${context.label}: ${context.parsed} (${pct}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 </div>
 
 <div class="sbContainer">
@@ -128,14 +226,14 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
                         <label>Time Created: </label>
                         <div class="alertDetail"><?= htmlspecialchars($a->created_at); ?></div>
                     </div>
+                    <input type="button" class="dismissAlertBtn" value="Dismiss" data-id="<?= $a->log_id ?>">
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p class='itemsEmpty'>No Validators Registered yet.</p>
+            <p class='itemsEmpty'>No System alerts.</p>
         <?php endif; ?>
     </div>
 </div>
-
 
 <div class="sbContainer">
     <h3>User Feedback</h3>
@@ -335,4 +433,147 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
             <p class="itemsEmpty">No Reports available yet</p>
         <?php endif; ?>
     </div>
+
 </div>
+
+<script>
+    document.getElementById('reportFilter').addEventListener('change', function() {
+        const selected = this.value;
+        const items = document.querySelectorAll('#reportsScrollBox .listItem');
+
+        items.forEach(item => {
+            if (selected === 'all' || item.dataset.year === selected) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("click", function(e) {
+
+        // Toggle access (grant / revoke)
+        if (e.target.classList.contains("toggleAccessBtn")) {
+            const btn = e.target;
+            const id = btn.dataset.id;
+            const action = btn.dataset.action;
+            const current = btn.dataset.current;
+            const newStatus = current === 'active' ? 'revoke' : 'grant';
+
+            const formData = new FormData();
+            formData.append('action', action);
+
+            // append the correct key based on action
+            if (action === 'validateValidator') formData.append('validator_id', id);
+            if (action === 'validateCounselor') formData.append('counselor_id', id);
+
+            formData.append(newStatus, newStatus);
+
+            fetch("<?= ROOT ?>dashboard", {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        if (newStatus === 'grant') {
+                            btn.textContent = 'Revoke Access';
+                            btn.classList.replace('acceptBtn', 'denyBtn');
+                            btn.dataset.current = 'active';
+                        } else {
+                            btn.textContent = 'Grant Access';
+                            btn.classList.replace('denyBtn', 'acceptBtn');
+                            btn.dataset.current = 'pending';
+                        }
+                    } else {
+                        alert(data.message || 'Action failed');
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+
+        // Remove account
+        if (e.target.classList.contains("removeUserBtn")) {
+            if (!confirm('Are you sure you want to remove this account?')) return;
+
+            const btn = e.target;
+            const id = btn.dataset.id;
+            const action = btn.dataset.action;
+
+            const formData = new FormData();
+            formData.append('action', action);
+            formData.append('deny', 'deny');
+
+            if (action === 'validateValidator') formData.append('validator_id', id);
+            if (action === 'validateCounselor') formData.append('counselor_id', id);
+            if (action === 'validateCandidate') formData.append('candidate_id', id);
+            if (action === 'validateCompany') formData.append('company_id', id);
+
+            fetch("<?= ROOT ?>dashboard", {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        btn.closest('.manager_list_item').remove();
+                    } else {
+                        alert(data.message || 'Action failed');
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+
+    });
+</script>
+<script>
+    document.addEventListener("click", async function(e) {
+        const btn = e.target.closest(".dismissAlertBtn");
+        if (!btn) return;
+
+        const logId = btn.dataset.id;
+
+        const formData = new FormData();
+        formData.append("action", "dismissAlert");
+        formData.append("log_id", logId);
+
+        try {
+            const res = await fetch("<?= ROOT ?>dashboard", {
+                method: "POST",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: formData
+            });
+            const data = await res.json();
+            if (!data.success) {
+                alert(data.message || "Failed to dismiss alert");
+                return;
+            }
+            const item = btn.closest(".alertListItem");
+
+            if (item) {
+                item.remove();
+            }
+
+            const box = document.querySelector(".scrollBox");
+            const remaining = box.querySelectorAll(".alertListItem");
+
+            if (remaining.length === 0) {
+                box.innerHTML = `<p class="itemsEmpty">No System alerts.</p>`;
+            }
+
+        } catch (err) {
+            console.error(err);
+        }
+    });
+</script>
+

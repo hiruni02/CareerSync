@@ -28,7 +28,13 @@ $data['candidateSubscriptions'] = $subscription->getCandidateSubscriptions($_SES
 
 $consultation = new Consultation;
 $data['consultation'] = $consultation->getConsultationDetails($_SESSION['USER']->user_id);
-$data['consultationMeeting'] = $consultation->getCandidateConsultation($_SESSION['USER']->user_id);
+$data['consultationMeeting'] = [
+    'meetingData' => null,
+    'slots' => []
+];
+if (isset($_GET['request_id'])) {
+    $data['consultationMeeting'] = $consultation->getConsultationByRequest($_GET['request_id']);
+}
 $data['confirmedConsultation'] = $consultation->getConfirmedConsultationsForCandidate($_SESSION['USER']->user_id);
 
 $isConfirmingInterviewDate = ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'candidate_scheduler');
@@ -194,7 +200,7 @@ if ($isConfirmingConsultationDate) {
 
         if (!empty($allSlots)) {
             foreach ($allSlots as $s) {
-                if ($s->slot_datetime !== $selected_date) {
+                if ($s->slot_datetime !== date('Y-m-d H:i:s', strtotime($selected_date))) {
                     $slot->delete($s->slot_id, 'slot_id');
                 }
             }

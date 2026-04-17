@@ -15,27 +15,26 @@ class Interview
 
     public function getCandidateInterview($candidate_id)
     {
-        // Fetch interview details
-        $query = "SELECT i.*
-              FROM interviews i
-              WHERE i.candidate_id = ?
-              LIMIT 1";
-        $interview = $this->query($query, [$candidate_id]);
-        $interviewData = $interview ? $interview[0] : null;
+        $query = "SELECT * FROM interviews WHERE candidate_id = ?";
+        $interviews = $this->query($query, [$candidate_id]);
 
-        // Fetch interview slots if interview exists
-        $slots = [];
-        if ($interviewData) {
-            $slotQuery = "SELECT slot_datetime
-                      FROM interview_slots
-                      WHERE interview_id = ?";
-            $slots = $this->query($slotQuery, [$interviewData->interview_id]);
+        $result = [];
+
+        if ($interviews) {
+            foreach ($interviews as $interview) {
+                // Fetch slots for each interview
+                $slotQuery = "SELECT slot_datetime 
+                          FROM interview_slots 
+                          WHERE interview_id = ?";
+                $slots = $this->query($slotQuery, [$interview->interview_id]);
+
+                $result[] = [
+                    'interviewData' => $interview,
+                    'slots' => $slots
+                ];
+            }
         }
-
-        return [
-            'interviewData' => $interviewData,
-            'slots' => $slots
-        ];
+        return $result;
     }
 
 
@@ -80,19 +79,26 @@ class Interview
                 interviews.mode,
                 interviews.address_link,
                 cvTable.cv_file_path
-                FROM interviews
-                INNER JOIN interview_slots 
+            FROM interviews
+            INNER JOIN interview_slots 
                 ON interviews.interview_id = interview_slots.interview_id
-                INNER JOIN company 
+            INNER JOIN company 
                 ON interviews.company_id = company.user_id
-                INNER JOIN cvTable 
-                ON interviews.candidate_id = cvTable.candidate_id
-                INNER JOIN jobPost 
-                ON cvTable.job_id = jobPost.job_id
-                WHERE interviews.candidate_id = ?
+            INNER JOIN jobPost 
+                ON interviews.job_id = jobPost.job_id
+            INNER JOIN cvTable 
+                ON interviews.candidate_id = cvTable.candidate_id 
+                AND cvTable.job_id = interviews.job_id
+            WHERE interviews.candidate_id = ?
                 AND cvTable.company_approval = 'approved'
                 AND interviews.dateConfirmed = 'confirmed'
-                GROUP BY interviews.interview_id";
+            GROUP BY 
+                interviews.interview_id,
+                jobPost.posTitle,
+                company.companyName,
+                interviews.mode,
+                interviews.address_link,
+                cvTable.cv_file_path";
 
         return $this->query($query, [$candidate_id]);
     }

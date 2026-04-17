@@ -174,6 +174,7 @@ trait Model
 
         $consultation_table = "CREATE TABLE IF NOT EXISTS consultation (
                         meeting_id INT AUTO_INCREMENT PRIMARY KEY,
+                        request_id INT,
                         candidate_id INT,
                         counselor_id INT,
                         mode ENUM('online','physical') NOT NULL,
@@ -181,7 +182,8 @@ trait Model
                         extra_details TEXT,
                         dateConfirmed ENUM('confirmed','unconfirmed') DEFAULT 'unconfirmed',
                         FOREIGN KEY (candidate_id) REFERENCES candidate(user_id),
-                        FOREIGN KEY (counselor_id) REFERENCES counselor(user_id)
+                        FOREIGN KEY (counselor_id) REFERENCES counselor(user_id),
+                        FOREIGN KEY (request_id) REFERENCES consultation_requests(request_id)
                         )";
         $this->query($consultation_table);
 

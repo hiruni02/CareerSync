@@ -34,13 +34,32 @@
             </div>
             <button type="button" id="add-slot">Add another date/time</button>
             <script>
+                function setMinDate() {
+                    const now = new Date();
+
+                    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+
+                    const min = now.toISOString().slice(0, 16);
+
+                    document.querySelectorAll('input[type="datetime-local"]').forEach(input => {
+                        input.min = min;
+                    });
+                }
+
+                setMinDate();
+
                 document.getElementById('add-slot').addEventListener('click', function() {
                     const div = document.createElement('div');
                     div.classList.add('slot-input');
-                    div.innerHTML = `<input type="datetime-local" name="slots[]" required>
-                   <button type="button" class="remove-slot">X</button>`;
+
+                    div.innerHTML = `<input type="datetime-local" name="slots[]" required><button type="button" class="remove-slot">X</button>`;
+
                     document.getElementById('slots-container').appendChild(div);
+
+                    setMinDate();
                 });
+
+                // Remove slot
                 document.getElementById('slots-container').addEventListener('click', function(e) {
                     if (e.target.classList.contains('remove-slot')) {
                         e.target.parentElement.remove();
