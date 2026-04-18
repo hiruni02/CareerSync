@@ -18,9 +18,22 @@ trait Model
                         password VARCHAR(255) NOT NULL,
                         role ENUM('candidate', 'counselor', 'company', 'validator', 'admin') NOT NULL,
                         status ENUM('active', 'pending') DEFAULT 'pending',
+                        email_verified TINYINT(1) NOT NULL DEFAULT 0,
+                        verification_token VARCHAR(64) DEFAULT NULL,
+                        token_expires_at DATETIME DEFAULT NULL,
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
         $this->query($user_table);
+
+        // Migration: add email verification columns if the DB already exists
+        $alter_queries = [
+            "ALTER TABLE users ADD COLUMN IF NOT EXISTS email_verified TINYINT(1) NOT NULL DEFAULT 0",
+            "ALTER TABLE users ADD COLUMN IF NOT EXISTS verification_token VARCHAR(64) DEFAULT NULL",
+            "ALTER TABLE users ADD COLUMN IF NOT EXISTS token_expires_at DATETIME DEFAULT NULL",
+        ];
+        foreach ($alter_queries as $q) {
+            $this->query($q);
+        }
 
         $admin_table = "CREATE TABLE IF NOT EXISTS admin (
                         user_id INT PRIMARY KEY,
@@ -39,7 +52,7 @@ trait Model
         $result = $this->query($check_admin);
 
         if ($result && isset($result[0]->total_rows) && $result[0]->total_rows == 0) {
-            $insert_user = "INSERT INTO users (email, password, role, status) VALUES (?, ?, 'admin', 'active')";
+            $insert_user = "INSERT INTO users (email, password, role, status, email_verified) VALUES (?, ?, 'admin', 'active', 1)";
             $this->query($insert_user, [$admin_email, password_hash($admin_password, PASSWORD_DEFAULT)]);
 
             $user_id = 1;
@@ -65,7 +78,6 @@ trait Model
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
         $this->query($company_table);
-
 
         $counselor_table = "CREATE TABLE IF NOT EXISTS counselor( 
                         user_id INT PRIMARY KEY,
@@ -98,7 +110,6 @@ trait Model
                         candidate_photo_path VARCHAR(1000) NOT NULL UNIQUE,
                         FOREIGN KEY (user_id) REFERENCES users(user_id)
                     )";
-
         $this->query($candidate_table);
 
         $jobPost_table = "CREATE TABLE IF NOT EXISTS jobPost (
@@ -288,7 +299,6 @@ trait Model
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )";
         $this->query($feedback);
-
     }
 
     public function SelectAll()
@@ -297,6 +307,7 @@ trait Model
         $result = $this->query($query);
         return $result;
     }
+
     public function where($data, $data_not = [])
     {
         $keys = array_keys($data);
@@ -314,7 +325,6 @@ trait Model
         return $this->query($query, $data);
     }
 
-    //this is the new first function prevents incorrect SQL syntax when params are empty
     public function first($data = [], $data_not = [])
     {
         $query = "SELECT * FROM $this->table";
@@ -335,9 +345,10 @@ trait Model
         $result = $this->query($query, $params);
         return $result ? $result[0] : false;
     }
+
     public function insert($data)
     {
-        if (!empty($this->allowedColumns)) { //remove unwanted data
+        if (!empty($this->allowedColumns)) {
             foreach ($data as $key => $value) {
                 if (!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);
@@ -345,15 +356,14 @@ trait Model
             }
         }
         $keys = array_keys($data);
-
         $query = "INSERT INTO $this->table (" . implode(",", $keys) . ") VALUES (" . implode(",", array_fill(0, count($keys), "?")) . ")";
-        //echo $query;
         return $this->query($query, $data);
     }
+
     public function update($id, $data, $id_column = 'id')
     {
-        if (!empty($this->allowedColumns)) { //remove unwanted data
-            foreach ($data as $key => $value) { //foreach ($this->data as $key => $value) {
+        if (!empty($this->allowedColumns)) {
+            foreach ($data as $key => $value) {
                 if (!in_array($key, $this->allowedColumns)) {
                     unset($data[$key]);
                 }
@@ -367,14 +377,13 @@ trait Model
         $query = rtrim($query, ", ");
         $query .= " WHERE $id_column = ?";
         $data[$id_column] = $id;
-        //echo $query;
         return $this->query($query, $data);
     }
+
     public function delete($id, $id_column = 'id')
     {
         $data[$id_column] = $id;
         $query = "DELETE FROM $this->table WHERE $id_column = ?";
-        //echo $query;
         return $this->query($query, $data);
     }
 }
