@@ -17,7 +17,7 @@
                 <input type="hidden" name="action" value="job_edit">
 
                 <div class="input-field">
-                    <label>Position Type</label>
+                    <label><span style="color:red;">*</span> Position Type</label>
                     <select id="posType" name="posType" class="filter_dropdown">
                         <option value="intern" <?= $job->posType == 'intern' ? 'selected' : '' ?>>Intern</option>
                         <option value="fullTime" <?= $job->posType == 'fullTime' ? 'selected' : '' ?>>Full-Time</option>
@@ -28,12 +28,12 @@
                 </div>
 
                 <div class="input-field">
-                    <label>Industry</label>
+                    <label><span style="color:red;">*</span> Industry</label>
                     <input type="text" name="industry" value="<?= $job->industry ?>">
                 </div>
 
                 <div class="input-field">
-                    <label>Experience level</label>
+                    <label><span style="color:red;">*</span> Experience level</label>
                     <select id="experience" name="exp_level" class="filter_dropdown">
                         <option value="entry" <?= $job->exp_level == 'entry' ? 'selected' : '' ?>>Entry</option>
                         <option value="mid" <?= $job->exp_level == 'mid' ? 'selected' : '' ?>>Mid</option>
@@ -42,37 +42,37 @@
                 </div>
 
                 <div class="input-field">
-                    <label>Years of Experience</label>
+                    <label><span style="color:red;">*</span> Years of Experience</label>
                     <input type="number" name="yearsOfExp" value="<?= $job->yearsOfExp ?>">
                 </div>
 
                 <div class="input-field">
-                    <label>Qualifications</label>
+                    <label><span style="color:red;">*</span> Qualifications</label>
                     <input type="text" name="qualifications" value="<?= $job->qualifications ?>">
                 </div>
 
                 <div class="input-field">
-                    <label>Required Skills</label>
+                    <label><span style="color:red;">*</span> Required Skills</label>
                     <textarea name="required_skills"><?= $job->required_skills ?></textarea>
                 </div>
 
                 <div class="input-field">
-                    <label>Salary</label>
+                    <label><span style="color:red;">*</span> Salary</label>
                     <input type="text" name="salaryDetails" value="<?= $job->salaryDetails ?>">
                 </div>
 
                 <div class="input-field">
-                    <label>Address</label>
+                    <label><span style="color:red;">*</span> Address</label>
                     <input type="text" name="address" value="<?= $job->address ?>">
                 </div>
 
                 <div class="input-field">
-                    <label>City</label>
+                    <label><span style="color:red;">*</span> City</label>
                     <input type="text" name="city" value="<?= $job->city ?>">
                 </div>
 
                 <div class="input-field">
-                    <label>Work Mode</label>
+                    <label><span style="color:red;">*</span> Work Mode</label>
                     <select id="workMode" name="workMode" class="filter_dropdown">
                         <option value="">All</option>
                         <option value="online" <?= $job->workMode == 'online' ? 'selected' : '' ?>>Online</option>
@@ -82,17 +82,17 @@
                 </div>
 
                 <div class="input-field">
-                    <label>Job Description</label>
+                    <label><span style="color:red;">*</span> Job Description</label>
                     <textarea name="jobDescription"><?= $job->jobDescription ?></textarea>
                 </div>
 
                 <div class="input-field">
-                    <label> Number of Vacancies</label>
+                    <label><span style="color:red;">*</span> Number of Vacancies</label>
                     <input type="number" name="vacancies" value="<?= $data['job']->vacancies ?>">
                 </div>
 
                 <div class="input-field">
-                    <label> Application Deadline</label>
+                    <label><span style="color:red;">*</span>  Application Deadline</label>
                     <input type="date" name="deadline" value="<?= $job->deadline ?>">
                 </div>
 
