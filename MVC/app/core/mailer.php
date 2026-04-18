@@ -27,7 +27,7 @@ class Mailer
 
         return $mail;
     }
-4
+
     public static function sendVerificationEmail(string $toEmail, string $token): bool
     {
         try {
