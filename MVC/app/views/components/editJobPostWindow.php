@@ -93,8 +93,13 @@
 
                 <div class="input-field">
                     <label><span style="color:red;">*</span>  Application Deadline</label>
-                    <input type="date" name="deadline" value="<?= $job->deadline ?>">
+                    <input type="date" id="deadline" name="deadline" value="<?= $job->deadline ?>">
                 </div>
+
+                <script>
+                    const today = new Date().toISOString().split('T')[0];
+                    document.getElementById("deadline").min = today;
+                </script>
 
                 <div class="form_btns">
                     <button type="submit">Save Changes</button>
