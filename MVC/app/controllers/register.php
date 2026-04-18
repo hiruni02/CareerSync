@@ -78,7 +78,7 @@ class register
                         break;
 
                     case 'company':
-                        $counselor = new Company;
+                        $company = new Company;
 
                         $photo_upload_path = 'assets/uploads/company_logos/';
                         $certificate_upload_path = 'assets/uploads/business_certificates/';
@@ -110,7 +110,7 @@ class register
                                 'business_certificate'  => $certificate_target,
 
                             ];
-                            $counselor->insert($companyData);
+                            $company->insert($companyData);
 
                             require_once __DIR__ . '/../core/Mailer.php';
                             Mailer::sendTestMail($_POST['email']);
