@@ -65,12 +65,21 @@
         <label for="dob"> <span style="color:red;">*</span> Date of Birth</label>
         <input
             type="date"
+            id="dob"
             placeholder="Date of Birth"
             name="dob"
             required
             value="<?= isset($_POST['dob']) ? htmlspecialchars($_POST['dob']) : '' ?>"
             style="<?= !empty($errors['dob']) ? 'border: 2px solid red;' : '' ?>">
     </div>
+
+    <!-- <script>
+            const today = new Date();
+            today.setFullYear(today.getFullYear()-18);
+            const maxDate = today.toISOString().split('T')[0];
+            document.getElementById("dob").max = maxDate;
+    </script> -->
+
     <?php if (!empty($errors['dob'])): ?>
         <div style="color:red;" class="error"><?= $errors['dob'] ?></div>
     <?php endif; ?>
