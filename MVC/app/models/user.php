@@ -8,5 +8,8 @@ class User
         'password',
         'role',
         'status',
+        'email_verified',
+        'verification_token',
+        'token_expires_at',
     ];
 }

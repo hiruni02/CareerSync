@@ -30,17 +30,28 @@ trait Database
         }
 
         // Bind parameters if data is provided
+        // Bind parameters if data is provided
         if (!empty($data)) {
-            // Generate types string
             $types = '';
+            $bind_values = [];
             foreach ($data as $param) {
-                if (is_int($param)) $types .= 'i'; //.= is concatenaton operator
-                elseif (is_double($param)) $types .= 'd';
-                elseif (is_string($param)) $types .= 's';
-                $bind_values[] = $param;
+                if (is_null($param)) {
+                    $types .= 's';           // bind NULL as string — mysqli handles it correctly
+                    $bind_values[] = null;
+                } elseif (is_int($param)) {
+                    $types .= 'i';
+                    $bind_values[] = $param;
+                } elseif (is_double($param)) {
+                    $types .= 'd';
+                    $bind_values[] = $param;
+                } else {
+                    $types .= 's';
+                    $bind_values[] = $param;
+                }
             }
             $stmt->bind_param($types, ...$bind_values);
         }
+        
         $stmt->execute();
         if (stripos(trim($query), "SELECT") === 0) {
             $result = $stmt->get_result();

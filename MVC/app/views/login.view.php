@@ -27,6 +27,17 @@
                 <?php if (!empty($errors['email'])): ?>
                     <div style="color:red; padding-bottom:15px;" class="error"><?= $errors['email'] ?></div>
                 <?php endif; ?>
+                <?php if (!empty($show_resend)): ?>
+                    <div style="margin-bottom:15px; padding:12px 16px; background:#fff3cd; border:1px solid #ffc107; border-radius:6px; font-size:14px;">
+                        ⚠️ Email not verified.
+                        <form method="POST" action="<?= ROOT ?>emailverification/resend" style="display:inline;">
+                            <input type="hidden" name="email" value="<?= htmlspecialchars($resend_email ?? '') ?>">
+                            <button type="submit" style="background:none; border:none; color:#007bff; cursor:pointer; font-size:14px; padding:0; text-decoration:underline;">
+                                Resend verification email
+                            </button>
+                        </form>
+                    </div>
+                <?php endif; ?>
 
                 <div class="input-field-login">
                     <input

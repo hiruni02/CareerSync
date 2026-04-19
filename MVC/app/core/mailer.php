@@ -4,7 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 class Mailer
-{   
+{
     private static function makeMailer(): PHPMailer
     {
         require_once __DIR__ . '/../../../vendor/PHPMailer/src/Exception.php';
@@ -18,7 +18,7 @@ class Mailer
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'careersync1@gmail.com';
-        $mail->Password   = 'kutbfksfllmtdxkr'; 
+        $mail->Password   = 'kutbfksfllmtdxkr';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
@@ -28,12 +28,49 @@ class Mailer
         return $mail;
     }
 
+    public static function sendVerificationEmail(string $toEmail, string $token): bool
+    {
+        try {
+            $mail = self::makeMailer();
+
+            $verifyUrl = ROOT . 'emailverification/verify?token=' . urlencode($token);
+
+            $mail->setFrom('careersync1@gmail.com', 'CareerSync');
+            $mail->addAddress($toEmail);
+
+            $mail->Subject = 'CareerSync – Verify Your Email Address';
+            $mail->Body = "
+                <div style='font-family:Arial,sans-serif;max-width:600px;margin:auto;padding:30px;border:1px solid #e0e0e0;border-radius:8px;'>
+                    <h2 style='color:#2c3e50;'>Welcome to CareerSync!</h2>
+                    <p>Thank you for registering. Please verify your email address by clicking the button below.</p>
+                    <p style='text-align:center;margin:30px 0;'>
+                        <a href='{$verifyUrl}'
+                           style='background-color:#007bff;color:#ffffff;padding:12px 28px;
+                                  text-decoration:none;border-radius:5px;font-size:16px;display:inline-block;'>
+                            Verify Email Address
+                        </a>
+                    </p>
+                    <p style='color:#888;font-size:13px;'>This link will expire in <strong>24 hours</strong>.</p>
+                    <p style='color:#888;font-size:13px;'>If you did not create an account, you can safely ignore this email.</p>
+                    <hr style='border:none;border-top:1px solid #eee;margin-top:30px;'>
+                    <p style='color:#aaa;font-size:12px;text-align:center;'>CareerSync &copy; " . date('Y') . "</p>
+                </div>
+            ";
+            $mail->AltBody = "Welcome to CareerSync! Please verify your email by visiting: {$verifyUrl}\n\nThis link expires in 24 hours.";
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            error_log("Mail Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
     public static function sendTestMail($toEmail): bool
     {
         try {
             $mail = self::makeMailer();
 
-            // Send FROM your own inbox (important for deliverability)
             $mail->setFrom('careersync1@gmail.com', 'CareerSync');
             $mail->addAddress($toEmail);
 
@@ -54,13 +91,8 @@ class Mailer
         try {
             $mail = self::makeMailer();
 
-            // Always send FROM your own inbox (avoid DMARC/SPF issues)
             $mail->setFrom('careersync1@gmail.com', 'CareerSync Feedback');
-
-            // Put user in Reply-To so you can reply safely
             $mail->addReplyTo($fromEmail, $fromName);
-
-            // Where the message goes
             $mail->addAddress('careersync1@gmail.com');
 
             $safeName  = htmlspecialchars($fromName, ENT_QUOTES, 'UTF-8');

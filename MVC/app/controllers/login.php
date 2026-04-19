@@ -32,9 +32,20 @@ class login
                 $this->view("login", $data);
                 return;
             }
+
             $row = $user->first(['email' => $_POST['email']]);
             if ($row) {
                 if (password_verify($_POST["password"], $row->password)) {
+
+                    // Block login if email is not verified
+                    if (!$row->email_verified) {
+                        $data['errors']['email'] = "Please verify your email address before logging in. Check your inbox for the verification link.";
+                        $data['show_resend']     = true;
+                        $data['resend_email']    = $_POST['email'];
+                        $this->view("login", $data);
+                        return;
+                    }
+
                     $_SESSION['USER'] = $row;
                     switch ($row->role) {
                         case 'admin':
@@ -68,15 +79,15 @@ class login
 
                     if ($extra && isset($extra->firstName)) {
                         $_SESSION['USER']->firstName = $extra->firstName;
-                        $_SESSION['USER']->user_id = $row->user_id;
-                        $_SESSION['USER']->role = $row->role;
+                        $_SESSION['USER']->user_id   = $row->user_id;
+                        $_SESSION['USER']->role      = $row->role;
                     }
                     if ($row->role == 'company') {
                         $_SESSION['USER']->hr_firstName = $extra->hr_firstName;
                     }
-                    $_SESSION['USER'] = $row;
-                    $_SESSION['login_attempts'] = 0;
-                    $_SESSION['lockout_until'] = 0;
+                    $_SESSION['USER']            = $row;
+                    $_SESSION['login_attempts']  = 0;
+                    $_SESSION['lockout_until']   = 0;
                     SystemLogger::log('LOGIN_SUCCESS', 'User logged in');
                     redirect('home');
                     exit;
@@ -85,7 +96,7 @@ class login
                     SystemLogger::log('LOGIN_FAILED', 'Invalid credentials');
 
                     if ($_SESSION['login_attempts'] >= 4) {
-                        $_SESSION['lockout_until'] = time() + 3; //time that the guest user is locked out
+                        $_SESSION['lockout_until'] = time() + 3;
                         $_SESSION['login_attempts'] = 0;
 
                         SystemLogger::log(
@@ -94,7 +105,7 @@ class login
                         );
 
                         $data['lockout_until'] = $_SESSION['lockout_until'];
-                        $data['is_locked'] = true;
+                        $data['is_locked']     = true;
                         $data['errors']['password'] =
                             "Too many failed attempts. Please wait 30 seconds.";
                     } else {
