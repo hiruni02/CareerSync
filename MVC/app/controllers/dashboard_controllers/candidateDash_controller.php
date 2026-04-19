@@ -210,13 +210,6 @@ if ($isConfirmingConsultationDate) {
     }
 }
 
-// Load messages for candidate
-/*require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
-$messageModel = new Message();
-$receiver_id = $_SESSION['USER']->user_id;   // 3
-$receiver_type = 'candidate';
-$data['messages'] = $receiver_id ? $messageModel->getByReceiver($receiver_id, $receiver_type) : [];*/
-
 require_once 'C:/xampp/htdocs/CareerSync/MVC/app/models/message.php';
 $messageModel = new Message();
 $candidateId = $_SESSION['USER']->user_id ?? null;
