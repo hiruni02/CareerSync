@@ -7,6 +7,10 @@
 </head>
 
 <body>
+<div id="page-loader">
+    <div class="spinner"></div>
+    <p>Sending Feedback...</p>
+</div>
 <?php include("components/navbar.php"); ?>
 
 <div class='page-content'>
@@ -26,7 +30,7 @@
             </ul>
         <?php endif; ?>
 
-        <form method="POST" class="contact-form" autocomplete="off">
+        <form method="POST" class="contact-form" autocomplete="off" onsubmit="return handleSubmit(this)">
             <input type="hidden" name="action" value="sending_feedback">
 
             <input type="text" name="name" placeholder="Your Name" required maxlength="80"
@@ -42,4 +46,20 @@
     </div>
 </div>
 </body>
+
+<script>
+    function handleSubmit(form) {
+        if (form.dataset.submitted) return false;
+        form.dataset.submitted = "true";
+
+        document.getElementById("page-loader").classList.add("active");
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => form.submit());
+        });
+
+        return false;
+    }
+</script>
+
 </html>

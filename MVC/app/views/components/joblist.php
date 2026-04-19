@@ -213,6 +213,11 @@
                     return;
                 }
 
+                if (userSession !== 'candidate') {
+                    alert("Only a candidate can bookmark jobs.");
+                    return;
+                }
+
                 const jobId = btn.dataset.jobId;
                 const icon = btn.querySelector("img");
 
