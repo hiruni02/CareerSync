@@ -28,4 +28,14 @@ class SystemLogger
 
         $logger->query($query, $data);
     }
+
+    public function getActionList()
+    {
+        $query = "SELECT DISTINCT action 
+                    FROM system_logs 
+                    WHERE action IS NOT NULL 
+                    AND action != '' 
+                    ORDER BY action ASC";
+        return $this->query($query);
+    }
 }

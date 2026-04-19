@@ -99,7 +99,7 @@ class Admin
     }
 
     //system log sorting
-    public function getFilteredLogs($date_filter = 'all', $role_filter = 'all')
+    public function getFilteredLogs($date_filter = 'all', $role_filter = 'all',$action_filter='all')
     {
         $role_filter = strtolower(trim($role_filter));
 
@@ -109,6 +109,10 @@ class Admin
             $query .= " AND LOWER(role) = '$role_filter'";
         }
 
+        if($action_filter !== 'all'){
+            $query .= " AND action = '$action_filter'";
+        }
+        
         switch ($date_filter) {
             case 'today':
                 $query .= " AND DATE(created_at) = CURDATE()";

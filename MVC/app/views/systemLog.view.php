@@ -35,6 +35,19 @@
                     </select>
                 </div>
                 <div class="filter_input">
+                    <label for="action_filter">Actions</label>
+                    <select name="action_filter" id="action_filter">
+                        <option value="all">All</option>
+                        <?php if (!empty($data['actionList'])): ?>
+                            <?php foreach ($data['actionList'] as $a): ?>
+                                <option value="<?= htmlspecialchars($a->action) ?>">
+                                    <?= htmlspecialchars($a->action) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </select>
+                </div>
+                <div class="filter_input">
                     <button class="clearLogs" id="clearLogs" onclick="clearLogs()">Clear All System logs</button>
                     <script>
                         const clear_btn = document.getElementById("clearLogs");
@@ -105,15 +118,17 @@
         <script>
             const dateFilter = document.getElementById('date_filter');
             const roleFilter = document.getElementById('role_filter');
+            const actionFilter = document.getElementById('action_filter');
             const tbody = document.getElementById('syslog-tbody');
 
             function fetchLogs() {
                 const date = dateFilter.value;
                 const role = roleFilter.value;
+                const action = actionFilter.value;
 
                 tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;">Loading...</td></tr>`;
 
-                fetch(`<?= ROOT ?>systemLog/filter?date_filter=${date}&role_filter=${role}`, {
+                fetch(`<?= ROOT ?>systemLog/filter?date_filter=${date}&role_filter=${role}&action_filter=${action}`, {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
                         }
@@ -162,6 +177,7 @@
 
             dateFilter.addEventListener('change', fetchLogs);
             roleFilter.addEventListener('change', fetchLogs);
+            actionFilter.addEventListener('change',fetchLogs);
         </script>
 
     </div>
