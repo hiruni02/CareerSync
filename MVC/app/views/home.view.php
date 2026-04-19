@@ -29,14 +29,14 @@
         include("components/navbar.php");
         ?>
         <div class="ss">
-            <img id="heroImg" src="<?= ROOT ?>/assets/slideshow/15.png" alt="slideshow image">
+            <img id="heroImg" src="<?= ROOT ?>/assets/slideshow/1.png" alt="slideshow image">
         </div>
 
         <script>
         document.addEventListener('DOMContentLoaded', function () {
             const slides=[
-                "<?= ROOT ?>/assets/slideshow/14.png",
-                "<?= ROOT ?>/assets/slideshow/15.png",
+                "<?= ROOT ?>/assets/slideshow/1.png",
+                "<?= ROOT ?>/assets/slideshow/2.png",
             ]
             let slideIndex = 0;
             const hero = document.getElementById('heroImg');
@@ -50,7 +50,7 @@
                 }, 250);
             }
 
-            setInterval(nextSlide, 3000);
+            setInterval(nextSlide, 5000);
         });
         </script>
 

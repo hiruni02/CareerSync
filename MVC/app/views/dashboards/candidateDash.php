@@ -355,7 +355,7 @@ $unreadMsgs = array_filter($messages, fn($msg) => is_object($msg) ? (!($msg->is_
                 // Allow deletion of rejected job applications
                 item.addEventListener("click", () => {
                     const confirmDelete = confirm("This application was rejected. Do you want to delete it?");
-                    if (confirmDelete) item.remove();
+                    if (confirmDelete) item.remove();//need to delete fr
                 });
             }
         });
