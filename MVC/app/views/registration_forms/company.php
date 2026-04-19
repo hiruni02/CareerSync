@@ -137,7 +137,9 @@
             id="pass"
             placeholder="Password"
             name="password"
-            required>
+            required
+            minlength="8"
+            style="<?= !empty($errors['password']) ? 'border: 2px solid red;' : '' ?>">
         <button onclick="show_password()" class="eye" type="button" id="eye1"></button>
     </div>
 
@@ -149,6 +151,7 @@
             placeholder="Confirm Password"
             name="confirm_password"
             required
+            minlength="8"
             style="<?= !empty($errors['confirm_password']) ? 'border: 2px solid red;' : '' ?>">
         <button onclick="show_confirm_password()" class="eye" type="button" id="eye2"></button>
     </div>

@@ -64,23 +64,38 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/components/candidateConsultati
 ?>
 
 <h1 class="dashboard_tag">Welcome back <?php echo $candidateTable->firstName; ?> !</h1>
-<?php $allCVs = $data['cv'] ?? []; ?>
+<?php
+$allCVs = $data['cv'] ?? [];
+if (!is_array($allCVs)) {
+    $allCVs = [];
+}
+
+$messages = $data['messages'] ?? [];
+if (!is_array($messages)) {
+    $messages = [];
+}
+
+$pendingApps = array_filter($allCVs, fn($cv) => is_object($cv) ? (($cv->company_approval ?? '') === 'pending') : false);
+$acceptedApps = array_filter($allCVs, fn($cv) => is_object($cv) ? (($cv->company_approval ?? '') === 'approved') : false);
+$rejectedApps = array_filter($allCVs, fn($cv) => is_object($cv) ? ((($cv->company_approval ?? '') === 'rejected') || (($cv->validator_approval ?? '') === 'rejected')) : false);
+$unreadMsgs = array_filter($messages, fn($msg) => is_object($msg) ? (!($msg->is_read ?? false)) : false);
+?>
 <div class="counting_boxes">
     <div class="box_segment">
         Pending applications:<br>
-        <h1><?= count(array_filter((array)($data['cv'] ?? []), fn($cv) => $cv->company_approval === 'pending')) ?></h1>
+        <h1><?= count($pendingApps) ?></h1>
     </div>
     <div class="box_segment">
         Accepted applications: <br>
-        <h1><?= count(array_filter((array)($data['cv'] ?? []), fn($cv) => $cv->company_approval === 'approved')) ?></h1>
+        <h1><?= count($acceptedApps) ?></h1>
     </div>
     <div class="box_segment">
         Rejected applications: <br>
-        <h1><?= count(array_filter((array)($data['cv'] ?? []), fn($cv) => $cv->company_approval === 'rejected' || $cv->validator_approval === 'rejected')) ?></h1>
+        <h1><?= count($rejectedApps) ?></h1>
     </div>
     <div class="box_segment">
         Unread messages: <br>
-        <h1><?= count(array_filter((array)($data['messages'] ?? []), fn($msg) => is_object($msg) && !$msg->is_read)) ?></h1>
+        <h1><?= count($unreadMsgs) ?></h1>
     </div>
 </div>
 

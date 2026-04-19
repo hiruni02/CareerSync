@@ -80,31 +80,32 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/adminProfile.php");
 ?>
 
 <h1 class="dashboard_tag">Dashboard</h1>
+<?php
+$feedbacks = $data['feedbacks'] ?? [];
+if (!is_array($feedbacks)) {
+    $feedbacks = [];
+}
+?>
 <div class="counting_boxes">
     <div class="box_segment">
         Total Users:<br>
-        <h1><?= $data['totalUsers'] ?? 0 ?></h1>
+        <h1><?= (int)($data['totalUsers'] ?? 0) ?></h1>
     </div>
     <div class="box_segment">
         Active Users: <br>
-        <h1><?= $data['activeUsers'] ?? 0 ?></h1>
+        <h1><?= (int)($data['activeUsers'] ?? 0) ?></h1>
     </div>
     <div class="box_segment">
         Total Posted Jobs: <br>
-        <h1><?= $data['totalJobPosts'] ?? 0 ?></h1>
+        <h1><?= (int)($data['totalJobPosts'] ?? 0) ?></h1>
     </div>
     <div class="box_segment">
         System Alerts: <br>
-        <h1><?= $data['systemAlertCount'] ?? 0 ?></h1>
+        <h1><?= (int)($data['systemAlertCount'] ?? 0) ?></h1>
     </div>
     <div class="box_segment">
         New Feedback forms: <br>
-        <?php
-        // Ensure countable
-        $feedbacks = $data['feedbacks'] ?? [];
-        if ($feedbacks === false || !is_array($feedbacks)) $feedbacks = [];
-        ?>
-        <h1><?= count($feedbacks); ?></h1>
+        <h1><?= count($feedbacks) ?></h1>
     </div>
 </div>
 
