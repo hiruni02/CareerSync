@@ -99,7 +99,7 @@
                                     </button>
                                 </div>
                             <?php endif; ?>
-                            <?php if (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'company') : ?>
+                            <?php if (isset($_SESSION['USER']) && $_SESSION['USER']->role === 'company' && $data['job']->company_id == $_SESSION['USER']->user_id) : ?>
                                 <div>
                                     <button class="edit_job" id="editJobBtn">Edit Job Post</button>
                                 </div>

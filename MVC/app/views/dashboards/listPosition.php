@@ -157,11 +157,17 @@
                     <label for="deadline">Appllication Deadline</label>
                     <input
                         type="date"
+                        id ="deadline"
                         placeholder="Appllication Deadline"
                         name="deadline"
                         required
                         value="<?= isset($_POST['deadline']) ? htmlspecialchars($_POST['deadline']) : '' ?>">
                 </div>
+
+                <script>
+                    const today = new Date().toISOString().split('T')[0];
+                    document.getElementById("deadline").min = today;
+                </script>
 
                 <div class="form_btns">
                     <button type="submit" class="submit">CREATE</button>
