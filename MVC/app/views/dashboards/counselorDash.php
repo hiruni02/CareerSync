@@ -60,18 +60,32 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/counselorProfile.php"
 
 <h1 class="dashboard_tag">Welcome back <?php echo $counselorTable->firstName; ?> !</h1>
 
+<?php
+$requests = $data['request'] ?? [];
+if (!is_array($requests)) {
+    $requests = [];
+}
+
+$confirmedConsultation = $data['confirmedConsultation'] ?? [];
+if (!is_array($confirmedConsultation)) {
+    $confirmedConsultation = [];
+}
+
+$assignedStudents = array_filter($requests, fn($req) => is_object($req) ? (($req->counselor_acceptance ?? '') === 'accepted') : false);
+$pendingApprovals = array_filter($requests, fn($req) => is_object($req) ? (($req->counselor_acceptance ?? '') === 'pending') : false);
+?>
 <div class="counting_boxes">
     <div class="box_segment">
         Assigned Students:<br>
-        <h1><?= count(array_filter($data['request'] ?: [], fn($req) => $req->counselor_acceptance === 'accepted')) ?></h1>
+        <h1><?= count($assignedStudents) ?></h1>
     </div>
     <div class="box_segment">
         Scheduled Sessions: <br>
-        <h1><?= count($data['confirmedConsultation'] ?: []) ?></h1>
+        <h1><?= count($confirmedConsultation) ?></h1>
     </div>
     <div class="box_segment">
         Pending Approvals: <br>
-        <h1><?= count(array_filter($data['request'] ?: [], fn($req) => $req->counselor_acceptance === 'pending')) ?></h1>
+        <h1><?= count($pendingApprovals) ?></h1>
     </div>
     <div class="box_segment">
         Messages: <br>

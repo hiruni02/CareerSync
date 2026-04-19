@@ -42,14 +42,22 @@ include("C:/xampp/htdocs/CareerSync/MVC/app/views/profiles/validatorProfile.php"
 ?>
 
 <h1 class="dashboard_tag">Welcome back <?php echo $validatorTable->firstName; ?> !</h1>
+<?php
+$applications = $data['applications'] ?? [];
+if (!is_array($applications)) {
+    $applications = [];
+}
+
+$pendingApprovals = array_filter($applications, fn($app) => is_object($app) ? (($app->validator_approval ?? '') === 'pending') : false);
+?>
 <div class="counting_boxes">
     <div class="box_segment">
         Companies to validate:<br>
-        <h1><?= count(array_filter((array)($data['applications'] ?? []), fn($app) => $app->validator_approval === 'pending')) ?></h1>
+        <h1><?= count($pendingApprovals) ?></h1>
     </div>
     <div class="box_segment">
         Candidates to validate: <br>
-        <h1><?= count(array_filter((array)($data['applications'] ?? []), fn($app) => $app->validator_approval === 'pending')) ?></h1>
+        <h1><?= count($pendingApprovals) ?></h1>
     </div>
     <div class="box_segment">
         Unread messages: <br>
