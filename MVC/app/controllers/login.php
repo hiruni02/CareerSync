@@ -33,6 +33,11 @@ class login
                 return;
             }
 
+            if (empty($_POST['email']) || empty($_POST['password'])) {
+                $this->view("login", $data);
+                return;
+            }
+
             $row = $user->first(['email' => $_POST['email']]);
             if ($row) {
                 if (password_verify($_POST["password"], $row->password)) {

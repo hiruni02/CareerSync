@@ -10,21 +10,14 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 
     define('ROOT', 'http://localhost/CareerSync/MVC/public/');
 
-// } else if ($_SERVER['SERVER_NAME'] == '2c0f9c49573c.ngrok-free.app') {
-//     #database config
-//     define('DBNAME', 'CareerSync');
-//     define('DBHOST', '2c0f9c49573c.ngrok-free.app');
-//     define('DBUSER', 'root');
-//     define('DBPASS', '');
-
-//     define('ROOT', 'https://2c0f9c49573c.ngrok-free.app/CareerSync/MVC/public/');
-
 } else {
-    #database config
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host     = $_SERVER['HTTP_HOST'];
+    $baseUrl  = $protocol . '://' . $host . '/CareerSync/MVC/public/';
+
     define('DBNAME', 'CareerSync');
     define('DBHOST', 'localhost');
     define('DBUSER', 'root');
     define('DBPASS', '');
-
-    define('ROOT', '/CareerSync/MVC/public/');
+    define('ROOT', $baseUrl);
 }

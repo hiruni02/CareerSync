@@ -40,8 +40,17 @@ class AdminReportDetails
             'active_users'        => $this->countActiveUsers(),
             'company_interviews'  => $this->countCompanyInterviews($since),
             'counselor_meetings'  => $this->countCounselorMeetings($since),
-            'sys_alerts'       => $this->countSystemAlerts($since),
+            'system_alerts'       => $this->countSystemAlerts($since),
+            'feedback_emails'     => $this->countFeedbackEmails($since),
         ];
+    }
+    private function countFeedbackEmails($since)
+    {
+        $query = "SELECT COUNT(*) AS total
+        FROM feedback
+        WHERE created_at >= ?";
+
+        return $this->query($query, [$since])[0]->total ?? 0;
     }
 
     private function countNewCompanies($since)
@@ -171,6 +180,20 @@ class AdminReportDetails
             [$startDate, $endDate]
         )[0]->c;
 
+        $feedbackCount = $this->query(
+            "SELECT COUNT(*) AS c FROM feedback
+            WHERE created_at BETWEEN ? AND ?",
+            [$startDate, $endDate]
+        )[0]->c;
+
+        $systemAlerts = $this->query(
+            "SELECT COUNT(DISTINCT log_id) AS c
+            FROM system_logs
+            WHERE action = 'ALERT'
+            AND created_at BETWEEN ? AND ?",
+            [$startDate, $endDate]
+        )[0]->c;
+
         return $this->insert([
             'report_month'       => $monthKey,
             'report_month_name'  => date('F Y', strtotime('last month')),
@@ -180,11 +203,11 @@ class AdminReportDetails
             'new_counselors'     => $newCounselors,
             'total_users'        => $totalUsers,
             'active_users'       => $activeUsers,
-            'feedback_count'     => 0,
+            'feedback_count'     => $feedbackCount,
             'company_interviews' => $companyInterviews,
             'counselor_meetings' => $counselorMeetings,
             'total_earnings'     => 0.00,
-            'system_alerts'      => 0
+            'system_alerts'      => $systemAlerts,
         ]);
     }
 

@@ -24,19 +24,19 @@ class AdminReport
             }
 
             $data['reportData'] = [
-                'new_companies'       => $report->new_companies,
-                'new_candidates'      => $report->new_candidates,
-                'new_counselors'      => $report->new_counselors,
-                'total_users'         => $report->total_users,
-                'active_users'        => $report->active_users,
-                'company_interviews'  => $report->company_interviews,
-                'counselor_meetings'  => $report->counselor_meetings,
+                'new_companies'      => $report->new_companies,
+                'new_candidates'     => $report->new_candidates,
+                'new_counselors'     => $report->new_counselors,
+                'total_users'        => $report->total_users,
+                'active_users'       => $report->active_users,
+                'company_interviews' => $report->company_interviews,
+                'counselor_meetings' => $report->counselor_meetings,
+                'feedback_emails'    => $report->feedback_count,   // ← was missing
+                'system_alerts'      => $report->system_alerts,    // ← was missing
             ];
 
             $data['reportMonth'] = $report->report_month_name;
-        }
-
-        else {
+        } else {
             $data['reportData'] = $reports->generateLast30DaysReport();
             $data['reportMonth'] = "Last 30 Days";
         }

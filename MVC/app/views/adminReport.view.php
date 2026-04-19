@@ -29,9 +29,9 @@
     $active_users       = $reportDetails['active_users'] ?? 0;
     $company_interviews = $reportDetails['company_interviews'] ?? 0;
     $counselor_meetings = $reportDetails['counselor_meetings'] ?? 0;
-    //$feedback_emails = $reportDetails['feedback_emails'];
+    $feedback_emails = $reportDetails['feedback_emails'];
     //$total_earnings = $reportDetails['total_earnings'];
-    $sys_alerts = $reportDetails['sys_alerts'];
+    $system_alerts = $reportDetails['system_alerts'];
     ?>
     <table class="summary-table">
         <tr>
@@ -56,7 +56,7 @@
         </tr>
         <tr>
             <td>No of feedback emails</td>
-            <td class="amount"><?= -1 ?></td>
+            <td class="amount"><?= $feedback_emails ?? 0 ?></td>
         </tr>
         <tr>
             <td>Scheduled company interviews</td>
@@ -68,11 +68,11 @@
         </tr>
         <tr>
             <td>total earnings in LKR</td>
-            <td class="amount"><?= -1 ?></td>
+            <td class="amount"><?= 0 ?></td>
         </tr>
         <tr>
             <td>System alerts</td>
-            <td class="amount"><?= $sys_alerts ?? 0 ?></td>
+            <td class="amount"><?= $system_alerts ?? 0 ?></td>
         </tr>
     </table>
 

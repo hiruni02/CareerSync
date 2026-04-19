@@ -29,7 +29,7 @@ class PaymentGateway
         }
 
         $merchant_id = "1233775"; // Your sandbox merchant ID
-        $merchant_secret = "MjgxNzM0NTQzMDg1OTU0Mjc1NTIzOTAyMTMzMDIyNzAzMDIxMzg0"; // Your sandbox secret
+        $merchant_secret = "Mjg0MDc2MzEyMDIxNjA3NjY2NzIyNjY1NjU5NTYzNDE0NzUwMDM5Nw=="; // Your sandbox secret
 
         $order_id = $_POST['order_id'] ?? '';
         $amount = number_format($_POST['amount'] ?? 0, 2, '.', '');
@@ -63,7 +63,7 @@ class PaymentGateway
         $status_code     = $_POST['status_code'] ?? '';
         $md5sig          = $_POST['md5sig'] ?? '';
 
-        $merchant_secret = "MjgxNzM0NTQzMDg1OTU0Mjc1NTIzOTAyMTMzMDIyNzAzMDIxMzg0";
+        $merchant_secret = "Mjg0MDc2MzEyMDIxNjA3NjY2NzIyNjY1NjU5NTYzNDE0NzUwMDM5Nw==";
 
         $local_md5sig = strtoupper(
             md5(
