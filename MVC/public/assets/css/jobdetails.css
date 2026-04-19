@@ -253,10 +253,17 @@ h5 {
     width: 100%;
     max-width: 300px;
     border-radius: 8px;
+    border-width: 0px;
     font-size: 15px;
     font-weight: bold;
     margin: 5px auto;
     transition: 0.3s ease;
+}
+
+.edit_job:hover {
+    transform: scale(1.01);
+    box-shadow: var(--shadowSoft);
+    z-index: 1;
 }
 
 /**/
